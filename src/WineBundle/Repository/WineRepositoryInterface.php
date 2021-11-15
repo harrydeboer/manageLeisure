@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\WineBundle\Repository;
+
+use App\Entity\User;
+use App\Pagination\Paginator;
+use App\WineBundle\Entity\Wine;
+
+interface WineRepositoryInterface
+{
+    public function create(Wine $wine): void;
+
+    public function update(): void;
+
+    public function delete(Wine $wine): void;
+
+    public function findLatest(User $user, int $page): Paginator;
+}

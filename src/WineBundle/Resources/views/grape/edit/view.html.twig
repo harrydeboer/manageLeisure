@@ -1,0 +1,23 @@
+{% extends '@WineBundle/base.html.twig' %}
+
+{% block title %}Edit{% endblock %}
+
+{% block body %}
+    {{ form(formUpdate) }}
+    <br>
+    <div class="modal" id="delete-grape-modal">
+        <div class="modal-dialog" id="delete-modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="delete-modal-header">
+                    <h3>Are you sure you want to delete this grape?</h3>
+                    {{ form(formDelete) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="delete-grape"
+            class="btn btn-danger delete-grape">Delete grape</button>
+{% endblock %}

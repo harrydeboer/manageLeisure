@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/fontawesome/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/fontawesome/css/brands.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/fontawesome/css/solid.min.css') }}">
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li><a href="{{ path('homepage') }}">Home</a></li>
+                <li><a href="{{ path('app_login') }}"><i class="fas fa-user"></i></a></li>
+                <li><a href="{{ path('wineHomepage') }}">Wine</a></li>
+            </ul>
+            <div id="navigation-border"></div>
+            {% block navlist %}{% endblock %}
+        </div>
+    </div>
+</nav>
+{% block body %}{% endblock %}
+<script type="text/javascript" src="{{ asset('/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/app.min.js') }}"></script>
+{% block javascripts %}
+    {#{{ encore_entry_script_tags('app') }}#}
+{% endblock %}
+</body>
+</html>

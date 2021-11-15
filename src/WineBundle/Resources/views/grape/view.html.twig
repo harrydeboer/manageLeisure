@@ -1,0 +1,17 @@
+{% extends '@WineBundle/base.html.twig' %}
+
+{% block title %}Grape{% endblock %}
+
+{% block body %}
+    <h1>Grapes</h1>
+    <a href="{{ path('wineGrapeCreate') }}">Create a grape</a>
+    <table class="table table-striped">
+        {% for grape in grapes %}
+            <tr>
+                <td>{{ grape.getName() }}</td>
+                <td>{{ grape.getType() }}</td>
+                <td><a href="{{ path('wineGrapeEdit', {'id': grape.getId()}) }}">edit</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

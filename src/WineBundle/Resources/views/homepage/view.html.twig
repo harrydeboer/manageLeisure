@@ -1,0 +1,52 @@
+{% extends '@WineBundle/base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <h1>Wines</h1>
+    <a href="{{ path('wineCreate') }}">Create a wine</a>
+    <table class="table table-striped">
+        {% for wine in paginator.results %}
+            <tr>
+                <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.getLabel()) }}" alt="label" class="wineLabel"></td>
+                <td>{{ wine.getName() }}</td>
+                <td class="d-none d-md-table-cell">{{ wine.getGrapesView() }}</td>
+                <td class="d-none d-sm-table-cell">{{ wine.getCategory() ? wine.getCategory().getName() : '' }}</td>
+                <td>{{ wine.getYear() }}</td>
+                <td><span class="nowrap">{{ wine.getRating()|number_format(1) }} <i class="fas fa-star"></i></span></td>
+                <td class="d-none d-sm-table-cell"><span class="nowrap">€ {{ wine.getPrice()|number_format(2) }}</span></td>
+                <td class="d-none d-xl-table-cell">{{ wine.getDescription() }}</td>
+                <td><a href="{{ path('wineEdit', {'id': wine.getId()}) }}">edit</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if paginator.hasToPaginate %}
+        <div class="navigation text-center">
+            <ul class="pagination">
+                {% if paginator.hasPreviousPage %}
+                    <li class="prev"><a href="{{ path('wine_index_paginated', {page: paginator.previousPage}) }}"
+                                        rel="previous"><i class="fa fw fa-arrow-left"></i></a></li>
+                {% else %}
+                    <li class="prev disabled"><span><i class="fa fw fa-arrow-left"></i></span></li>
+                {% endif %}
+
+                {% for i in 1..paginator.lastPage %}
+                    {% if i == paginator.currentPage %}
+                        <li class="active">
+                            <span>{{ i }} <span class="sr-only">{{ 'paginator.current' }}</span></span>
+                        </li>
+                    {% else %}
+                        <li><a href="{{ path('wine_index_paginated', {page: i}) }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.hasNextPage %}
+                    <li class="next"><a href="{{ path('wine_index_paginated', {page: paginator.nextPage}) }}"
+                                        rel="next"><i class="fa fw fa-arrow-right"></i></a></li>
+                {% else %}
+                    <li class="next disabled"><span><i class="fa fw fa-arrow-right"></i></span></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

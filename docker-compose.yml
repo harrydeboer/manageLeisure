@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      dockerfile: docker/web/Dockerfile
+      context: .
+      args:
+        PHP_VERSION: "8.0"
+        APP_ENV: ${APP_ENV}
+        APACHE_HOST: ${APACHE_HOST}
+    working_dir: /var/www/html
+    container_name: myLife
+    ports:
+      - "80:80"
+    networks:
+      myLife:
+        ipv4_address: ${APACHE_HOST}
+    depends_on:
+      - database
+  database:
+    image: mysql:8.0
+    ports:
+      - 127.0.0.1:${DB_PORT}:${DB_PORT}
+    container_name: myLifeDb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    entrypoint:
+      sh -c "
+      echo 'CREATE DATABASE IF NOT EXISTS ${DB_DATABASE}; CREATE DATABASE IF NOT EXISTS ${TEST_DATABASE};' > /docker-entrypoint-initdb.d/init.sql;
+      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
+    networks:
+      myLife:
+        ipv4_address: ${DB_HOST}
+
+networks:
+  myLife:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${SUBNET}
