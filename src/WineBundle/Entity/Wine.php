@@ -150,7 +150,7 @@ class Wine
         $this->grapes = $grapes;
     }
 
-    public function getGrapesView(): string
+    public function getGrapeNamesAsString(): string
     {
         $text = '';
         foreach($this->grapes as $grape) {
