@@ -68,7 +68,7 @@ class WineForm extends AbstractType
             ])
             ->add('price', NumberType::class, [
                 'html5' => true,
-                'attr' => ['step' => '0.01'],
+                'attr' => ['step' => '0.01', 'min' => '0'],
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
