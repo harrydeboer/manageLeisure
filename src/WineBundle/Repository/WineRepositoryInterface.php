@@ -16,5 +16,9 @@ interface WineRepositoryInterface
 
     public function delete(Wine $wine): void;
 
-    public function findLatest(User $user, int $page): Paginator;
+    public function findBySortAndFilter(
+        User $user,
+        int $page,
+        array $formData = null,
+    ): Paginator;
 }

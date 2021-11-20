@@ -49,4 +49,41 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
 
         return (new Paginator($qb))->paginate($page);
     }
+
+    public function findBySortAndFilter(
+        User $user,
+        int $page,
+        array $formData = null,
+    ): Paginator
+    {
+        $qb = $this->createQueryBuilder('w')
+            ->where('w.user = ' . $user->getId());
+
+        if (!is_null($formData)) {
+            if ($formData['grapes'] !== []) {
+                $qb->innerJoin('w.grapes', 'g');
+                $ids = '';
+                foreach ($formData['grapes'] as $grape) {
+                    $ids .= $grape->getId() . ',';
+                }
+                $ids = rtrim($ids, ',');
+                $qb->andWhere('g.id IN (' . $ids . ')');
+            }
+
+            if (!is_null($formData['year'])) {
+                $qb->andWhere('w.year = ' . $formData['year']);
+            }
+
+            if (!is_null($formData['category'])) {
+                $qb->andWhere('w.category = ' . $formData['category']->getId());
+            }
+
+            $filterArray = explode(';', $formData['filter']);
+            $qb->orderBy('w.' . $filterArray[0], $filterArray[1]);
+        } else {
+            $qb->orderBy('w.createdAt', 'DESC');
+        }
+
+        return (new Paginator($qb))->paginate($page);
+    }
 }

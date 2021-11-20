@@ -9,6 +9,7 @@ use App\WineBundle\Entity\Wine;
 use App\WineBundle\Form\CreateWineForm;
 use App\WineBundle\Form\DeleteWineForm;
 use App\WineBundle\Form\UpdateWineForm;
+use App\WineBundle\Form\WineFilterAndSortForm;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,12 +29,23 @@ class HomepageController extends Controller
      * @Route("/wine", defaults={"page": "1"}, name="wineHomepage")
      * @Route("/page/{page<[1-9]\d*>}", methods="GET", name="wine_index_paginated")
      */
-    public function view(int $page): Response
+    public function view(Request $request, int $page): Response
     {
-        $latestWines = $this->wineRepository->findLatest($this->getCurrentUser(), $page);
+        $form = $this->createForm(WineFilterAndSortForm::class, null, [
+            'method' => 'GET',
+        ]);
 
-        return $this->render('@WineBundle/homepage/view.html.twig', [
-            'paginator' => $latestWines,
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $wines = $this->wineRepository->findBySortAndFilter($this->getCurrentUser(), $page, $form->getData());
+        } else {
+            $wines = $this->wineRepository->findBySortAndFilter($this->getCurrentUser(), $page);
+        }
+
+        return $this->renderForm('@WineBundle/homepage/view.html.twig', [
+            'paginator' => $wines,
+            'form' => $form,
         ]);
     }
 
