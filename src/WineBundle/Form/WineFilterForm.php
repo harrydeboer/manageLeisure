@@ -53,9 +53,6 @@ class WineFilterForm extends AbstractType
                     return $category ? $category->getName() : 'select category';
                 },
                 'required' => false,
-            ])
-            ->add('year', IntegerType::class, [
-                'attr' => ['min' => 1000, 'max' => 9999],
             ]);
     }
 

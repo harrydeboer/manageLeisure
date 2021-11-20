@@ -31,8 +31,9 @@ class HomepageController extends Controller
      */
     public function view(Request $request, int $page): Response
     {
-        $form = $this->createForm(WineFilterAndSortForm::class, null, [
+        $form = $this->get('form.factory')->createNamed('', WineFilterAndSortForm::class, null, [
             'method' => 'GET',
+            'csrf_protection' => false,
         ]);
 
         $form->handleRequest($request);

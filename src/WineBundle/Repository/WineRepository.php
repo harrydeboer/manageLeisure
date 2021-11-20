@@ -78,7 +78,7 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
                 $qb->andWhere('w.category = ' . $formData['category']->getId());
             }
 
-            $filterArray = explode(';', $formData['filter']);
+            $filterArray = explode('_', $formData['filter']);
             $qb->orderBy('w.' . $filterArray[0], $filterArray[1]);
         } else {
             $qb->orderBy('w.createdAt', 'DESC');

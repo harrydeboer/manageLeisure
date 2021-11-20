@@ -9,7 +9,3 @@ $('.delete-category').on('click', function() {
 $('.delete-grape').on('click', function() {
     $('#delete-grape-modal').modal('show');
 });
-
-$('form[name=wine_filter_and_sort_form]').on('change', function() {
-    $(this).submit();
-});

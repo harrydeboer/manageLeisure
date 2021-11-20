@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,6 +17,9 @@ class WineForm extends WineFilterForm
         parent::buildForm($builder, $options);
         $builder
             ->add('name', TextType::class)
+            ->add('year', IntegerType::class, [
+                'attr' => ['min' => 1000, 'max' => 9999],
+            ])
             ->add('rating', NumberType::class, [
                 'html5' => true,
                 'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0'],
@@ -26,7 +30,6 @@ class WineForm extends WineFilterForm
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-            ])
-        ;
+            ]);
     }
 }
