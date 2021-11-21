@@ -45,6 +45,7 @@ class WineFilterForm extends AbstractType
 
                 return 'red';
             },
+            'attr' => ['class' => 'form-control'],
         ])
             ->add('category', ChoiceType::class, [
                 'choices'  => $categories,
@@ -53,6 +54,7 @@ class WineFilterForm extends AbstractType
                     return $category ? $category->getName() : 'select category';
                 },
                 'required' => false,
+                'attr' => ['class' => 'form-control'],
             ]);
     }
 

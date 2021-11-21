@@ -16,20 +16,23 @@ class WineForm extends WineFilterForm
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
             ->add('year', IntegerType::class, [
-                'attr' => ['min' => 1000, 'max' => 9999],
+                'attr' => ['min' => 1000, 'max' => 9999, 'placeholder' => 'year', 'class' => 'form-control'],
             ])
             ->add('rating', NumberType::class, [
                 'html5' => true,
-                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0'],
+                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0', 'class' => 'form-control'],
             ])
             ->add('price', NumberType::class, [
                 'html5' => true,
-                'attr' => ['step' => '0.01', 'min' => '0'],
+                'attr' => ['step' => '0.01', 'min' => '0', 'class' => 'form-control'],
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
+                'attr' => ['class' => 'form-control'],
             ]);
     }
 }

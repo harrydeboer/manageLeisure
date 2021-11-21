@@ -14,8 +14,12 @@ class UpdateCategoryForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('update', SubmitType::class)
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
+            ->add('update', SubmitType::class, [
+                'attr' => ['class' => 'btn'],
+            ])
         ;
     }
 }

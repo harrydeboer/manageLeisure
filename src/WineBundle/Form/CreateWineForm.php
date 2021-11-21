@@ -15,9 +15,12 @@ class CreateWineForm extends WineForm
         $builder->add('image', FileType::class, [
             'attr' => [
                 'accept' => 'image/*',
+                'class' => 'btn-primary'
             ],
         ]);
         parent::buildForm($builder, $options);
-        $builder->add('create', SubmitType::class);
+        $builder->add('create', SubmitType::class, [
+            'attr' => ['class' => 'btn-primary'],
+        ]);
     }
 }

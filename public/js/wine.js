@@ -9,3 +9,7 @@ $('.delete-category').on('click', function() {
 $('.delete-grape').on('click', function() {
     $('#delete-grape-modal').modal('show');
 });
+
+$('.dropdown-menu').on('click', function (event) {
+    event.stopPropagation();
+});

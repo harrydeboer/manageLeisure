@@ -5,3 +5,24 @@
 .wineLabel:hover {
   height: 400px;
 }
+
+#category {
+  display: inline;
+}
+
+#dropdownGrapesDiv {
+  display: inline;
+}
+
+.dropdown-menu td {
+  white-space: nowrap;
+}
+
+#filterSortForm .form-control {
+  display: inline;
+  width: 25%;
+}
+
+.btn.dropdown-toggle {
+  border-color: #ced4da;
+}

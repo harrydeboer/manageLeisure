@@ -3,5 +3,5 @@
 {% block title %}Create{% endblock %}
 
 {% block body %}
-    {{ form(form) }}
+    {{ include('@Wine/category/form.html.twig', {form: form}) }}
 {% endblock %}

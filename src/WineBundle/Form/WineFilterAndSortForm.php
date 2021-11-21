@@ -15,7 +15,7 @@ class WineFilterAndSortForm extends WineFilterForm
     {
         parent::buildForm($builder, $options);
         $builder->add('year', IntegerType::class, [
-            'attr' => ['min' => 1000, 'max' => 9999],
+            'attr' => ['min' => 1000, 'max' => 9999, 'placeholder' => 'year', 'class' => 'form-control'],
             'required' => false,
         ]);
         $builder->add('filter', ChoiceType::class, [
@@ -27,7 +27,10 @@ class WineFilterAndSortForm extends WineFilterForm
                 'rating descending' => 'rating_DESC',
                 'rating ascending' => 'rating_ASC' ,
             ],
+            'attr' => ['class' => 'form-control'],
         ]);
-        $builder->add('show', SubmitType::class);
+        $builder->add('show', SubmitType::class, [
+            'attr' => ['class' => 'btn btn-primary']
+        ]);
     }
 }

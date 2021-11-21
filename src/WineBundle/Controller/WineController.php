@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class HomepageController extends Controller
+class WineController extends Controller
 {
     public function __construct(
         private KernelInterface $kernel,
@@ -44,7 +44,7 @@ class HomepageController extends Controller
             $wines = $this->wineRepository->findBySortAndFilter($this->getCurrentUser(), $page);
         }
 
-        return $this->renderForm('@WineBundle/homepage/view.html.twig', [
+        return $this->renderForm('@WineBundle/wine/view.html.twig', [
             'paginator' => $wines,
             'form' => $form,
         ]);
@@ -76,7 +76,7 @@ class HomepageController extends Controller
             return $this->redirectToRoute('wineHomepage');
         }
 
-        return $this->renderForm('@WineBundle/edit/view.html.twig', [
+        return $this->renderForm('@WineBundle/wine/edit/view.html.twig', [
             'formUpdate' => $formUpdate,
             'formDelete' => $formDelete,
         ]);
@@ -102,7 +102,7 @@ class HomepageController extends Controller
             return $this->redirectToRoute('wineHomepage');
         }
 
-        return $this->renderForm('@WineBundle/new/view.html.twig', [
+        return $this->renderForm('@WineBundle/wine/new/view.html.twig', [
             'form' => $form,
         ]);
     }

@@ -14,8 +14,12 @@ class CreateCategoryForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('create', SubmitType::class)
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
+            ->add('create', SubmitType::class, [
+                'attr' => ['class' => 'btn'],
+            ])
         ;
     }
 }

@@ -15,10 +15,13 @@ class UpdateWineForm extends WineForm
         $builder->add('image', FileType::class, [
             'attr' => [
                 'accept' => 'image/*',
+                'class' => 'form-control'
             ],
             'required' => false,
         ]);
         parent::buildForm($builder, $options);
-        $builder->add('update', SubmitType::class);
+        $builder->add('update', SubmitType::class, [
+            'attr' => ['class' => 'btn-primary'],
+        ]);
     }
 }

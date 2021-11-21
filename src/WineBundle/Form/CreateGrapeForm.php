@@ -15,11 +15,16 @@ class CreateGrapeForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('type', ChoiceType::class, [
-                'choices' => ['red' => 'red', 'white' => 'white']
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control'],
             ])
-            ->add('create', SubmitType::class)
+            ->add('type', ChoiceType::class, [
+                'choices' => ['red' => 'red', 'white' => 'white'],
+                'attr' => ['class' => 'form-control'],
+            ])
+            ->add('create', SubmitType::class, [
+                'attr' => ['class' => 'btn'],
+            ])
         ;
     }
 }

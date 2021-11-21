@@ -5,7 +5,25 @@
 {% block body %}
     <h1>Wines</h1>
     <a href="{{ path('wineCreate') }}">Create a wine</a>
-    {{ form(form) }}
+    {{ form_start(form, {'attr': {'id': 'filterSortForm'}}) }}
+    {{ form_errors(form) }}
+
+    {{ form_widget(form.category) }}
+
+    <div class="dropdown" id="dropdownGrapesDiv">
+        <button class="btn dropdown-toggle" type="button" id="dropdownGrapes" data-bs-toggle="dropdown" aria-expanded="false">
+            Grapes
+        </button>
+        <table class="dropdown-menu" aria-labelledby="dropdownGrapes">
+            {% for item in form.grapes %}
+                <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    {{ form_widget(form.year) }}
+    {{ form_widget(form.filter) }}
+    {{ form_widget(form.show) }}
+    {{ form_end(form) }}
     <table class="table table-striped">
         {% for wine in paginator.results %}
             <tr>

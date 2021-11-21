@@ -3,7 +3,7 @@
 {% block title %}Edit{% endblock %}
 
 {% block body %}
-    {{ form(formUpdate) }}
+    {{ include('@Wine/grape/form.html.twig', {form: formUpdate}) }}
     <br>
     <div class="modal" id="delete-grape-modal">
         <div class="modal-dialog" id="delete-modal-dialog">
