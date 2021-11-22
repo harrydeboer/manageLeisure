@@ -12,10 +12,20 @@
 
     <div class="dropdown" id="dropdownGrapesDiv">
         <button class="btn dropdown-toggle" type="button" id="dropdownGrapes" data-bs-toggle="dropdown" aria-expanded="false">
-            Grapes
+            Red grapes
         </button>
         <table class="dropdown-menu" aria-labelledby="dropdownGrapes">
-            {% for item in form.grapes %}
+            {% for item in form.redGrapes %}
+                <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="dropdown" id="dropdownGrapesDiv">
+        <button class="btn dropdown-toggle" type="button" id="dropdownGrapes" data-bs-toggle="dropdown" aria-expanded="false">
+            White grapes
+        </button>
+        <table class="dropdown-menu" aria-labelledby="dropdownGrapes">
+            {% for item in form.whiteGrapes %}
                 <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
             {% endfor %}
         </table>

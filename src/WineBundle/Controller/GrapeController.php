@@ -80,7 +80,7 @@ class GrapeController extends Controller
             return $this->redirectToRoute('wineGrape');
         }
 
-        return $this->renderForm('@WineBundle/category/new/view.html.twig', [
+        return $this->renderForm('@WineBundle/grape/new/view.html.twig', [
             'form' => $form,
         ]);
     }

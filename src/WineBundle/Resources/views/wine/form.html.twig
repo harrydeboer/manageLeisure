@@ -3,16 +3,32 @@
         <tr><td>{{ form_label(form.image) }}</td><td>{{ form_widget(form.image) }}</td></tr>
         <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
         <tr><td>{{ form_label(form.category) }}</td><td>{{ form_widget(form.category) }}</td></tr>
-        <tr><td colspan="2"><div class="dropdown" id="dropdownGrapesDiv">
+        <tr>
+            <td>
+                <div class="dropdown" id="dropdownGrapesDiv">
                 <button class="btn dropdown-toggle" type="button" id="dropdownGrapes" data-bs-toggle="dropdown" aria-expanded="false">
-                    Grapes
+                    Red grapes
                 </button>
                 <table class="dropdown-menu" aria-labelledby="dropdownGrapes">
-                    {% for item in form.grapes %}
+                    {% for item in form.redGrapes %}
                         <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
                     {% endfor %}
                 </table>
-            </div></td></tr>
+            </div>
+            </td>
+            <td>
+                <div class="dropdown" id="dropdownGrapesDiv">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownGrapes" data-bs-toggle="dropdown" aria-expanded="false">
+                        White grapes
+                    </button>
+                    <table class="dropdown-menu" aria-labelledby="dropdownGrapes">
+                        {% for item in form.whiteGrapes %}
+                            <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </td>
+        </tr>
         <tr><td>{{ form_label(form.year) }}</td><td>{{ form_widget(form.year) }}</td></tr>
         <tr><td>{{ form_label(form.rating) }}</td><td>{{ form_widget(form.rating) }}</td></tr>
         <tr><td>{{ form_label(form.price) }}</td><td>{{ form_widget(form.price) }}</td></tr>

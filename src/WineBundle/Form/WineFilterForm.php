@@ -30,23 +30,26 @@ class WineFilterForm extends AbstractType
             $categories = array_merge(['' => null], $user?->getCategories()->toArray());
         }
 
-        $builder->add('grapes', ChoiceType::class, [
+        $builder->add('redGrapes', ChoiceType::class, [
             'expanded' => true,
             'multiple' => true,
-            'choices' => $user?->getGrapes(),
+            'choices' => $user?->getRedGrapes(),
             'choice_value' => 'id',
             'choice_label' => function(?Grape $grape) {
                 return $grape ? $grape->getName() : '';
             },
-            'group_by' => function(Grape $grape) {
-                if ($grape->getType() === 'white') {
-                    return 'white';
-                }
-
-                return 'red';
-            },
             'attr' => ['class' => 'form-control'],
         ])
+            ->add('whiteGrapes', ChoiceType::class, [
+                'expanded' => true,
+                'multiple' => true,
+                'choices' => $user?->getWhiteGrapes(),
+                'choice_value' => 'id',
+                'choice_label' => function(?Grape $grape) {
+                    return $grape ? $grape->getName() : '';
+                },
+                'attr' => ['class' => 'form-control'],
+            ])
             ->add('category', ChoiceType::class, [
                 'choices'  => $categories,
                 'choice_value' => 'id',

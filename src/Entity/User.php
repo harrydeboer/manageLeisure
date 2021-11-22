@@ -203,6 +203,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return Collection
+     */
+    public function getRedGrapes(): Collection
+    {
+        $grapes = new ArrayCollection();
+        foreach ($this->grapes as $grape) {
+            if ($grape->getType() === 'red') {
+                $grapes->add($grape);
+            }
+        }
+        return $grapes;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getWhiteGrapes(): Collection
+    {
+        $grapes = new ArrayCollection();
+        foreach ($this->grapes as $grape) {
+            if ($grape->getType() === 'white') {
+                $grapes->add($grape);
+            }
+        }
+        return $grapes;
+    }
+
+    /**
      * @param Collection $grapes
      */
     public function setGrapes(Collection $grapes): void

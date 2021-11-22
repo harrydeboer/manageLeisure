@@ -145,9 +145,43 @@ class Wine
         return $this->grapes->toArray();
     }
 
+    public function getRedGrapes(): array
+    {
+        return $this->grapes->toArray();
+    }
+
+    public function getWhiteGrapes(): array
+    {
+        return $this->grapes->toArray();
+    }
+
     public function setGrapes(ArrayCollection $grapes): void
     {
         $this->grapes = $grapes;
+    }
+
+    public function setRedGrapes($grapes): void
+    {
+        foreach ($this->grapes as $grape) {
+            if ($grape->getType() === 'red') {
+                $this->removeGrape($grape);
+            }
+        }
+        foreach ($grapes as $grape) {
+            $this->addGrape($grape);
+        }
+    }
+
+    public function setWhiteGrapes(array $grapes): void
+    {
+        foreach ($this->grapes as $grape) {
+            if ($grape->getType() === 'white') {
+                $this->removeGrape($grape);
+            }
+        }
+        foreach ($grapes as $grape) {
+            $this->addGrape($grape);
+        }
     }
 
     public function getGrapeNamesAsString(): string

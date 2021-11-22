@@ -7,7 +7,15 @@
 }
 
 #category {
-  display: inline;
+  width: 200px;
+}
+
+#year {
+  width: 100px;
+}
+
+#filter {
+  width: 120px;
 }
 
 #dropdownGrapesDiv {
@@ -20,7 +28,6 @@
 
 #filterSortForm .form-control {
   display: inline;
-  width: 25%;
 }
 
 .btn.dropdown-toggle {
