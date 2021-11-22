@@ -34,4 +34,4 @@
         <tr><td>{{ form_label(form.price) }}</td><td>{{ form_widget(form.price) }}</td></tr>
         <tr><td>{{ form_label(form.description) }}</td><td>{{ form_widget(form.description) }}</td></tr>
     </table>
-{{ form_end(form) }}
+{{ form_end(form, {'render_rest': false}) }}

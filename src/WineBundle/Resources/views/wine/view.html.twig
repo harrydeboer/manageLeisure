@@ -33,7 +33,7 @@
     {{ form_widget(form.year) }}
     {{ form_widget(form.filter) }}
     {{ form_widget(form.show) }}
-    {{ form_end(form) }}
+    {{ form_end(form, {'render_rest': false}) }}
     <table class="table table-striped">
         {% for wine in paginator.results %}
             <tr>
