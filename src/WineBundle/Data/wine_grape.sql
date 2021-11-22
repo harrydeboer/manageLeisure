@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: my_life
+-- Host: localhost    Database: my_life
 -- ------------------------------------------------------
 -- Server version	8.0.25
 
@@ -14,24 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `wine_grape`
---
-
-DROP TABLE IF EXISTS `wine_grape`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `wine_grape` (
-  `wine_id` int NOT NULL,
-  `grape_id` int NOT NULL,
-  PRIMARY KEY (`wine_id`,`grape_id`),
-  KEY `IDX_573E24FD28A2BD76` (`wine_id`),
-  KEY `IDX_573E24FD6B7990EA` (`grape_id`),
-  CONSTRAINT `FK_573E24FD28A2BD76` FOREIGN KEY (`wine_id`) REFERENCES `wine` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_573E24FD6B7990EA` FOREIGN KEY (`grape_id`) REFERENCES `grape` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `wine_grape`
@@ -52,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-15 12:16:21
+-- Dump completed on 2021-11-22 15:23:01

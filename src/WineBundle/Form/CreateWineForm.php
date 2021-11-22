@@ -19,7 +19,7 @@ class CreateWineForm extends WineForm
             ],
         ]);
         parent::buildForm($builder, $options);
-        $builder->add('create', SubmitType::class, [
+        $builder->add('submit', SubmitType::class, [
             'attr' => ['class' => 'btn-primary'],
         ]);
     }

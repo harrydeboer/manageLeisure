@@ -230,7 +230,7 @@ class Wine
 
     public function setPrice(float $price): void
     {
-        $this->price = (int) $price * 100;
+        $this->price = (int) ($price * 100);
     }
 
     public function getRating(): float
@@ -240,7 +240,7 @@ class Wine
 
     public function setRating(float $rating): void
     {
-        $this->rating = (int) $rating * 10;
+        $this->rating = (int) ($rating * 10);
     }
 
     public function getDescription(): ?string
@@ -285,7 +285,7 @@ class Wine
     public function moveImage(?UploadedFile $image)
     {
         if (!is_null($image)) {
-            $id = (string)$this->getId();
+            $id = (string) $this->getId();
             if (!str_starts_with($image->getMimeType(), 'image/')) {
                 throw new ValidatorException('The file is not an image.');
             }

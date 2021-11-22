@@ -3,5 +3,5 @@
 {% block title %}Create{% endblock %}
 
 {% block body %}
-    {{ include('@Wine/wine/form.html.twig', {form: form}) }}
+    {{ include('@Wine/wine/form.html.twig', {form: form, submitLabel: 'create'}) }}
 {% endblock %}
