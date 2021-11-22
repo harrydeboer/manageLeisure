@@ -147,12 +147,26 @@ class Wine
 
     public function getRedGrapes(): array
     {
-        return $this->grapes->toArray();
+        $grapes = new ArrayCollection();
+        foreach ($this->grapes as $grape) {
+            if ($grape->getType() === 'red') {
+                $grapes->add($grape);
+            }
+        }
+
+        return $grapes->toArray();
     }
 
     public function getWhiteGrapes(): array
     {
-        return $this->grapes->toArray();
+        $grapes = new ArrayCollection();
+        foreach ($this->grapes as $grape) {
+            if ($grape->getType() === 'white') {
+                $grapes->add($grape);
+            }
+        }
+
+        return $grapes->toArray();
     }
 
     public function setGrapes(ArrayCollection $grapes): void
