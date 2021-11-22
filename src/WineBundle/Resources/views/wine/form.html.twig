@@ -35,8 +35,5 @@
         <tr><td>{{ form_label(form.description) }}</td><td>{{ form_widget(form.description) }}</td></tr>
         <tr><td colspan="2">{{ form_widget(form.submit, { 'label': submitLabel }) }}</td></tr>
     </table>
-<input type="hidden"
-       id="{{ submitLabel }}_wine_form__token"
-       name="{{ submitLabel }}_wine_form[_token]"
-       value="{{ csrf_token(submitLabel ~ '_wine_form') }}">
+{{ form_widget(form._token) }}
 {{ form_end(form, {'render_rest': false}) }}

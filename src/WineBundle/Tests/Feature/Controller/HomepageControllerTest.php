@@ -20,7 +20,7 @@ class HomepageControllerTest extends AuthControllerTestCase
 
         $crawler = $this->client->request('GET', '/wine/create');
 
-        $buttonCrawlerNode = $crawler->selectButton('create');
+        $buttonCrawlerNode = $crawler->selectButton('Create');
 
         $form = $buttonCrawlerNode->form();
 
@@ -42,7 +42,7 @@ class HomepageControllerTest extends AuthControllerTestCase
 
         $crawler = $this->client->request('GET', '/wine/edit/' . $wine->getId());
 
-        $buttonCrawlerNode = $crawler->selectButton('update');
+        $buttonCrawlerNode = $crawler->selectButton('Update');
 
         $form = $buttonCrawlerNode->form();
 
