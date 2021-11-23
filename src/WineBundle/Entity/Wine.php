@@ -140,9 +140,9 @@ class Wine
     /**
      * @return Grape[]
      */
-    public function getGrapes(): array
+    public function getGrapes(): Collection
     {
-        return $this->grapes->toArray();
+        return $this->grapes;
     }
 
     public function getRedGrapes(): array
