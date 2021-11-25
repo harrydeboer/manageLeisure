@@ -33,7 +33,8 @@ class AuthControllerTestCase extends WebTestCase
 
     public function tearDown(): void
     {
-        $this->drop();
         parent::tearDown();
+
+        $this->drop();
     }
 }

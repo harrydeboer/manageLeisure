@@ -29,8 +29,8 @@ class AuthRepositoryTestCase extends KernelTestCase
 
     protected function tearDown(): void
     {
-        $this->drop();
-
         parent::tearDown();
+
+        $this->drop();
     }
 }

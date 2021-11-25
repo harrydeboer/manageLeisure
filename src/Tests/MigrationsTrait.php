@@ -17,18 +17,18 @@ trait MigrationsTrait
             ->get('doctrine')
             ->getManager();
 
-        $metaData = $this->entityManager->getMetadataFactory()->getAllMetadata();
         $schemaTool = new SchemaTool($this->entityManager);
+        $metaData = $this->entityManager->getMetadataFactory()->getAllMetadata();
         $schemaTool->updateSchema($metaData);
     }
 
     protected function drop(): void
     {
-        parent::tearDown();
+        $db = $this->entityManager->getConnection()->getDatabase();
+        $this->entityManager->getConnection()->executeQuery('DROP DATABASE ' . $db);
+        $this->entityManager->getConnection()->executeQuery('CREATE DATABASE ' . $db);
 
         $this->entityManager->close();
-        $metaData = $this->entityManager->getMetadataFactory()->getAllMetadata();
-        $schemaTool = new SchemaTool($this->entityManager);
-        $schemaTool->dropSchema($metaData);
+        $this->entityManager = null;
     }
 }
