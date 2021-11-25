@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Feature\Controller;
+namespace App\Tests\Feature\Controller;
 
 use App\Tests\MigrationsTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -25,8 +25,6 @@ class RegisterSecurityTest extends WebTestCase
 
     public function testRegisterLoginLogout(): void
     {
-
-
         $crawler = $this->client->request('GET', '/register');
 
         $buttonCrawlerNode = $crawler->selectButton('Register');
