@@ -7,7 +7,6 @@ namespace App\WineBundle\Tests\Feature\Controller;
 use App\Tests\Feature\AuthControllerTestCase;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 class HomepageControllerTest extends AuthControllerTestCase
 {
@@ -24,9 +23,7 @@ class HomepageControllerTest extends AuthControllerTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $kernel = $this->getContainer()->get(KernelInterface::class);
-
-        $form['create_wine_form[image]'] = new File($kernel->getProjectDir() . '/tests/Feature/test.png');
+        $form['create_wine_form[image]'] = new File(dirname(__DIR__) . '/test.png');
         $form['create_wine_form[name]'] = 'test';
         $form['create_wine_form[year]'] = 2000;
         $form['create_wine_form[rating]'] = 7;
