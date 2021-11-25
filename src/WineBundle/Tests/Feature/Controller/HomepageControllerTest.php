@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Controller;
 
-use App\Tests\AuthControllerTestCase;
+use App\Tests\Feature\AuthControllerTestCase;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -26,7 +26,7 @@ class HomepageControllerTest extends AuthControllerTestCase
 
         $kernel = $this->getContainer()->get(KernelInterface::class);
 
-        $form['create_wine_form[image]'] = new File($kernel->getProjectDir() . '/src/Tests/test.png');
+        $form['create_wine_form[image]'] = new File($kernel->getProjectDir() . '/tests/Feature/test.png');
         $form['create_wine_form[name]'] = 'test';
         $form['create_wine_form[year]'] = 2000;
         $form['create_wine_form[rating]'] = 7;

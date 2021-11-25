@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Controller;
 
-use App\Tests\AuthControllerTestCase;
+use App\Tests\Feature\AuthControllerTestCase;
 use App\WineBundle\Repository\CategoryRepositoryInterface;
 
 class CategoryControllerTest extends AuthControllerTestCase

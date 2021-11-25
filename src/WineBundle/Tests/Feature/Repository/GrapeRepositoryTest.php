@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Repository;
 
-use App\Tests\AuthRepositoryTestCase;
+use App\Tests\Feature\AuthRepositoryTestCase;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 use Error;

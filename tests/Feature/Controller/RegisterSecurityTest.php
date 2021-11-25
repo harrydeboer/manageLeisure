@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Feature\Controller;
 
-use App\Tests\MigrationsTrait;
+use App\Tests\Feature\MigrationsTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 
