@@ -27,7 +27,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank ()
      */
     private string $name;
 

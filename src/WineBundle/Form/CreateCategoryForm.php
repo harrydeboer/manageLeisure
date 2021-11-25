@@ -18,7 +18,7 @@ class CreateCategoryForm extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('create', SubmitType::class, [
-                'attr' => ['class' => 'btn'],
+                'attr' => ['class' => 'btn btn-primary'],
             ])
         ;
     }

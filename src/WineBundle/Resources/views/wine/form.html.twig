@@ -1,4 +1,9 @@
 {{ form_start(form) }}
+{{ form_errors(form.image) }}
+{{ form_errors(form.name) }}
+{{ form_errors(form.year) }}
+{{ form_errors(form.rating) }}
+{{ form_errors(form.price) }}
     <table>
         <tr><td>{{ form_label(form.image) }}</td><td>{{ form_widget(form.image) }}</td></tr>
         <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>

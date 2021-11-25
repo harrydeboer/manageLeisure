@@ -1,4 +1,5 @@
 {{ form_start(form) }}
+{{ form_errors(form.name) }}
 <table>
     <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
     <tr><td>{{ form_label(form.type) }}</td><td>{{ form_widget(form.type) }}</td></tr>
