@@ -11,7 +11,7 @@ trait MigrationsTrait
 {
     protected ?EntityManager $entityManager;
 
-    protected function migrate(): void
+    protected function migrateDb(): void
     {
         $this->entityManager = static::$kernel->getContainer()
             ->get('doctrine')
@@ -22,7 +22,7 @@ trait MigrationsTrait
         $schemaTool->updateSchema($metaData);
     }
 
-    protected function drop(): void
+    protected function dropAndCreateDb(): void
     {
         $db = $this->entityManager->getConnection()->getDatabase();
         $this->entityManager->getConnection()->executeQuery('DROP DATABASE ' . $db);

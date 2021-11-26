@@ -18,7 +18,7 @@ class AuthRepositoryTestCase extends KernelTestCase
     {
         static::bootKernel();
 
-        $this->migrate();
+        $this->migrateDb();
 
         $this->user = $this->user = new User();
         $this->user->setUsername('john');
@@ -31,6 +31,6 @@ class AuthRepositoryTestCase extends KernelTestCase
     {
         parent::tearDown();
 
-        $this->drop();
+        $this->dropAndCreateDb();
     }
 }

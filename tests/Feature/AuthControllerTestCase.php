@@ -20,7 +20,7 @@ class AuthControllerTestCase extends WebTestCase
     {
         $this->client = static::createClient();
 
-        $this->migrate();
+        $this->migrateDb();
 
         $this->user = new User();
         $this->user->setUsername('john');
@@ -35,6 +35,6 @@ class AuthControllerTestCase extends WebTestCase
     {
         parent::tearDown();
 
-        $this->drop();
+        $this->dropAndCreateDb();
     }
 }

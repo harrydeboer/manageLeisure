@@ -20,7 +20,7 @@ class RegisterSecurityTest extends WebTestCase
 
         $this->client = static::createClient();
 
-        $this->migrate();
+        $this->migrateDb();
     }
 
     public function testRegisterLoginLogout(): void
@@ -62,6 +62,6 @@ class RegisterSecurityTest extends WebTestCase
     {
         parent::tearDown();
 
-        $this->drop();
+        $this->dropAndCreateDb();
     }
 }
