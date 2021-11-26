@@ -3,41 +3,21 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <form method="post">
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+        <table>
+            <tr><td><label for="username">Email:</label></td>
+                <td><input type="email" id="username" name="username" value="{{ last_username }}"/></td></tr>
+            <tr><td><label for="password">Password:</label></td>
+                <td><input type="password" id="password" name="password"/></td></tr>
+            <tr><td colspan="2"><button type="submit" class="btn btn-primary">Sign in</button></td></tr>
+        </table>
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputUsername">Email</label>
-        <input type="email" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
-
-        {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-        #}
-
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     </form>
     Not registered yet? Go to <a href="{{ path('app_register') }}">this</a> link.
 {% endblock %}

@@ -1,0 +1,12 @@
+<div class="dropdown" id="dropdownGrapesDiv{{ redOrWhite }}">
+    <button class="btn dropdown-toggle" type="button" id="dropdown{{ redOrWhite }}Grapes" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ redOrWhite }} grapes
+    </button>
+    <table class="dropdown-menu" aria-labelledby="dropdown{{ redOrWhite }}Grapes">
+        {% for item in grapes %}
+            <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
+        {% else %}
+            <tr><td colspan="2">{{ form_widget(grapes) }}</td></tr>
+        {% endfor %}
+    </table>
+</div>
