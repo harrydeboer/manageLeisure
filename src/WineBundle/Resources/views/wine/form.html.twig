@@ -10,10 +10,10 @@
         <tr><td>{{ form_label(form.category) }}</td><td>{{ form_widget(form.category) }}</td></tr>
         <tr>
             <td>
-                {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.redGrapes, redOrWhite: 'Red'}) }}
+                {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'Red'}) }}
             </td>
             <td>
-                {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.whiteGrapes, redOrWhite: 'White'}) }}
+                {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'White'}) }}
             </td>
         </tr>
         <tr><td>{{ form_label(form.year) }}</td><td>{{ form_widget(form.year) }}</td></tr>
@@ -22,4 +22,5 @@
         <tr><td>{{ form_label(form.description) }}</td><td>{{ form_widget(form.description) }}</td></tr>
         <tr><td colspan="2">{{ form_widget(form.submit, { 'label': submitLabel }) }}</td></tr>
     </table>
-{{ form_end(form) }}
+{{ form_widget(form._token) }}
+{{ form_end(form, {render_rest: false}) }}

@@ -3,10 +3,8 @@
         {{ redOrWhite }} grapes
     </button>
     <table class="dropdown-menu" aria-labelledby="dropdown{{ redOrWhite }}Grapes">
-        {% for item in grapes %}
+        {% for key, item in grapes|filter(item => grapes.vars.choices[item.vars.value].data.type == redOrWhite|lower ) %}
             <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
-        {% else %}
-            <tr><td colspan="2">{{ form_widget(grapes) }}</td></tr>
         {% endfor %}
     </table>
 </div>
