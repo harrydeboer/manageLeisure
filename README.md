@@ -11,7 +11,7 @@ My Life
 <li>Run npm install (not in container but with a global node install). 
 Then link the UglifyJS and SCSS File Watchers to the node_modules/.bin binaries. 
 The SCSS Arguments in PhpStorm is: --style compressed $FileParentDir$/scss/$FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css</li>
-<li>Optional: import the sql-files in src/WineBundle/Data and copy the images to 
+<li>Optional: import the sql-files in src/WineBundle/Data and copy the labels to 
 public/img/labels.</li>
 </ol>
 
