@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Controller;
 
-use App\Tests\Feature\AuthControllerTestCase;
+use App\Tests\Feature\AuthWebTestCase;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-class HomepageControllerTest extends AuthControllerTestCase
+class HomepageWebTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {

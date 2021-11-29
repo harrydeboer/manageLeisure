@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Controller;
 
-use App\Tests\Feature\AuthControllerTestCase;
+use App\Tests\Feature\AuthWebTestCase;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 
-class GrapeControllerTest extends AuthControllerTestCase
+class GrapeWebTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {

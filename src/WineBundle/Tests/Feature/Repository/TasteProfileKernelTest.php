@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Repository;
 
-use App\Tests\Feature\AuthRepositoryTestCase;
+use App\Tests\Feature\AuthKernelTestCase;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 use Error;
 
-class TasteProfileRepositoryTest extends AuthRepositoryTestCase
+class TasteProfileKernelTest extends AuthKernelTestCase
 {
     public function testCreateUpdateDelete()
     {

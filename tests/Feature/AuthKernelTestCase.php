@@ -8,7 +8,7 @@ use App\Entity\User;
 use App\Repository\UserRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class AuthRepositoryTestCase extends KernelTestCase
+class AuthKernelTestCase extends KernelTestCase
 {
     use MigrationsTrait;
 

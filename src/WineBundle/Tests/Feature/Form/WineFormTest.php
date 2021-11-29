@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Form;
 
-use App\Tests\Feature\AuthControllerTestCase;
+use App\Tests\Feature\AuthWebTestCase;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Form\WineForm;
 
-class WineFormTest extends AuthControllerTestCase
+class WineFormTest extends AuthWebTestCase
 {
     public function testSubmitModel()
     {

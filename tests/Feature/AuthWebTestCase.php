@@ -9,7 +9,7 @@ use App\Repository\UserRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 
-class AuthControllerTestCase extends WebTestCase
+class AuthWebTestCase extends WebTestCase
 {
     use MigrationsTrait;
 

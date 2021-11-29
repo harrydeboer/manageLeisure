@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Repository;
 
-use App\Tests\Feature\AuthRepositoryTestCase;
+use App\Tests\Feature\AuthKernelTestCase;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 use Error;
 
-class GrapeRepositoryTest extends AuthRepositoryTestCase
+class GrapeKernelTest extends AuthKernelTestCase
 {
     public function testCreateUpdateDelete()
     {

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Controller;
 
-use App\Tests\Feature\AuthControllerTestCase;
+use App\Tests\Feature\AuthWebTestCase;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 
-class TasteProfileControllerTest extends AuthControllerTestCase
+class TasteProfileWebTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {

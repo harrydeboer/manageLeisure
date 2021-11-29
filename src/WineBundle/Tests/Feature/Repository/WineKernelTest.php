@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Feature\Repository;
 
-use App\Tests\Feature\AuthRepositoryTestCase;
+use App\Tests\Feature\AuthKernelTestCase;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Error;
 
-class WineRepositoryTest extends AuthRepositoryTestCase
+class WineKernelTest extends AuthKernelTestCase
 {
     private Wine $wine;
     private WineRepositoryInterface $wineRepository;
