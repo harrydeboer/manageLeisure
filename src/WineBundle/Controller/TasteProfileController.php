@@ -6,9 +6,8 @@ namespace App\WineBundle\Controller;
 
 use App\Controller\Controller;
 use App\WineBundle\Entity\TasteProfile;
-use App\WineBundle\Form\CreateTasteProfileForm;
 use App\WineBundle\Form\DeleteTasteProfileForm;
-use App\WineBundle\Form\UpdateTasteProfileForm;
+use App\WineBundle\Form\TasteProfileForm;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +38,7 @@ class TasteProfileController extends Controller
      */
     public function edit(Request $request, TasteProfile $tasteProfile): Response
     {
-        $formUpdate = $this->createForm(UpdateTasteProfileForm::class, $tasteProfile, [
+        $formUpdate = $this->createForm(TasteProfileForm::class, $tasteProfile, [
             'method' => 'POST',
         ]);
 
@@ -69,7 +68,7 @@ class TasteProfileController extends Controller
     public function new(Request $request): Response
     {
         $tasteProfile = new TasteProfile();
-        $form = $this->createForm(CreateTasteProfileForm::class, $tasteProfile);
+        $form = $this->createForm(TasteProfileForm::class, $tasteProfile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

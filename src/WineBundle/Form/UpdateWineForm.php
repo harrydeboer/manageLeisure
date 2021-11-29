@@ -20,8 +20,5 @@ class UpdateWineForm extends WineForm
             'required' => false,
         ]);
         parent::buildForm($builder, $options);
-        $builder->add('submit', SubmitType::class, [
-            'attr' => ['class' => 'btn btn-primary'],
-        ]);
     }
 }

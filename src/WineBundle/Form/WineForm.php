@@ -6,6 +6,7 @@ namespace App\WineBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,6 +34,9 @@ class WineForm extends WineFilterForm
             ->add('description', TextareaType::class, [
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-primary'],
             ]);
     }
 }

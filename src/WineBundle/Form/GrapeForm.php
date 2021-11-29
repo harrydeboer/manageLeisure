@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
+
 namespace App\WineBundle\Form;
 
+
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class UpdateTasteProfileForm extends AbstractType
+class GrapeForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -17,7 +20,11 @@ class UpdateTasteProfileForm extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('update', SubmitType::class, [
+            ->add('type', ChoiceType::class, [
+                'choices' => ['red' => 'red', 'white' => 'white'],
+                'attr' => ['class' => 'form-control'],
+            ])
+            ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])
         ;

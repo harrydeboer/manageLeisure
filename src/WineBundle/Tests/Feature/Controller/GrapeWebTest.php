@@ -22,8 +22,8 @@ class GrapeWebTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['create_grape_form[name]'] = 'test';
-        $form['create_grape_form[type]'] = 'red';
+        $form['grape_form[name]'] = 'test';
+        $form['grape_form[type]'] = 'red';
 
         $this->client->submit($form);
 
@@ -39,7 +39,7 @@ class GrapeWebTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['update_grape_form[name]'] = 'test2';
+        $form['grape_form[name]'] = 'test2';
 
         $this->client->submit($form);
 

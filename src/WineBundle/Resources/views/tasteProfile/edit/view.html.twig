@@ -3,7 +3,7 @@
 {% block title %}Edit{% endblock %}
 
 {% block body %}
-    {{ include('@Wine/tasteProfile/form.html.twig', {form: formUpdate}) }}
+    {{ include('@Wine/tasteProfile/form.html.twig', {form: formUpdate, submitLabel: 'Update'}) }}
     <br>
     <div class="modal" id="delete-taste-profile-modal">
         <div class="modal-dialog" id="delete-modal-dialog">

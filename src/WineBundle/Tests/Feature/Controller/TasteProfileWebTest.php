@@ -22,7 +22,7 @@ class TasteProfileWebTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['create_taste_profile_form[name]'] = 'test';
+        $form['taste_profile_form[name]'] = 'test';
 
         $this->client->submit($form);
 
@@ -38,7 +38,7 @@ class TasteProfileWebTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['update_taste_profile_form[name]'] = 'test2';
+        $form['taste_profile_form[name]'] = 'test2';
 
         $this->client->submit($form);
 

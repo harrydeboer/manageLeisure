@@ -6,9 +6,8 @@ namespace App\WineBundle\Controller;
 
 use App\Controller\Controller;
 use App\WineBundle\Entity\Grape;
-use App\WineBundle\Form\CreateGrapeForm;
 use App\WineBundle\Form\DeleteGrapeForm;
-use App\WineBundle\Form\UpdateGrapeForm;
+use App\WineBundle\Form\GrapeForm;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +38,7 @@ class GrapeController extends Controller
      */
     public function edit(Request $request, Grape $grape): Response
     {
-        $formUpdate = $this->createForm(UpdateGrapeForm::class, $grape, [
+        $formUpdate = $this->createForm(GrapeForm::class, $grape, [
             'method' => 'POST',
         ]);
 
@@ -69,7 +68,7 @@ class GrapeController extends Controller
     public function new(Request $request): Response
     {
         $grape = new Grape();
-        $form = $this->createForm(CreateGrapeForm::class, $grape);
+        $form = $this->createForm(GrapeForm::class, $grape);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
