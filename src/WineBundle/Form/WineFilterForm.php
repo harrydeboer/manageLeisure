@@ -11,13 +11,13 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class WineFilterForm extends AbstractType
 {
     public function __construct(
-        private Security $security,
+        private TokenStorageInterface $token,
     ) {
     }
 
@@ -53,6 +53,6 @@ class WineFilterForm extends AbstractType
      */
     private function getCurrentUser(): UserInterface
     {
-        return $this->security->getUser();
+        return $this->token->getToken()->getUser();
     }
 }
