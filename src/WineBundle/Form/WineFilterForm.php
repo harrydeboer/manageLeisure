@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\WineBundle\Form;
 
 use App\Entity\User;
-use App\WineBundle\Entity\Category;
+use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Entity\Grape;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -36,11 +36,11 @@ class WineFilterForm extends AbstractType
             },
             'attr' => ['class' => 'form-control'],
         ])
-            ->add('category', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $user->getCategories()->toArray()),
+            ->add('tasteProfile', ChoiceType::class, [
+                'choices'  => array_merge(['' => null], $user->getTasteProfiles()->toArray()),
                 'choice_value' => 'id',
-                'choice_label' => function(?Category $category) {
-                    return $category ? $category->getName() : 'select category';
+                'choice_label' => function(?TasteProfile $tasteProfile) {
+                    return $tasteProfile ? $tasteProfile->getName() : 'select taste profile';
                 },
                 'required' => false,
                 'attr' => ['class' => 'form-control'],

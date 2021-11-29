@@ -7,7 +7,7 @@
     <table>
         <tr><td>{{ form_label(form.image) }}</td><td>{{ form_widget(form.image) }}</td></tr>
         <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
-        <tr><td>{{ form_label(form.category) }}</td><td>{{ form_widget(form.category) }}</td></tr>
+        <tr><td>{{ form_label(form.tasteProfile) }}</td><td>{{ form_widget(form.tasteProfile) }}</td></tr>
         <tr>
             <td>
                 {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'Red'}) }}

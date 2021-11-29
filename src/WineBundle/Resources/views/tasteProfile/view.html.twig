@@ -1,0 +1,16 @@
+{% extends '@WineBundle/base.html.twig' %}
+
+{% block title %}Taste Profile{% endblock %}
+
+{% block body %}
+    <h1>Taste Profiles</h1>
+    <a href="{{ path('wineTasteProfileCreate') }}">Create a taste profile</a>
+    <table class="table table-striped">
+        {% for tasteProfile in tasteProfiles %}
+            <tr>
+                <td>{{ tasteProfile.getName() }}</td>
+                <td><a href="{{ path('wineTasteProfileEdit', {'id': tasteProfile.getId()}) }}">edit</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

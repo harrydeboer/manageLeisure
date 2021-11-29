@@ -53,10 +53,10 @@ class Wine
     private User $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="wines")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+     * @ORM\ManyToOne(targetEntity="TasteProfile", inversedBy="wines")
+     * @ORM\JoinColumn(name="taste_profile_id", referencedColumnName="id", nullable=true)
      */
-    private ?Category $category;
+    private ?TasteProfile $tasteProfile;
 
     /**
      * @ORM\Column(type="integer")
@@ -156,14 +156,14 @@ class Wine
         return rtrim($text, ', ');
     }
 
-    public function getCategory(): ?Category
+    public function getTasteProfile(): ?TasteProfile
     {
-        return $this->category;
+        return $this->tasteProfile;
     }
 
-    public function setCategory(?Category $category): void
+    public function setTasteProfile(?TasteProfile $tasteProfile): void
     {
-        $this->category = $category;
+        $this->tasteProfile = $tasteProfile;
     }
 
     public function getUser(): User

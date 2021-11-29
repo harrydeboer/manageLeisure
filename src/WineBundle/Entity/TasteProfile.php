@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace App\WineBundle\Entity;
 
 use App\Entity\User;
-use App\WineBundle\Repository\CategoryRepository;
+use App\WineBundle\Repository\TasteProfileRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
- * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass=TasteProfileRepository::class)
+ * @ORM\Table(name="taste_profile")
  * @UniqueEntity("name")
  */
-class Category
+class TasteProfile
 {
     /**
      * @ORM\Id
@@ -32,13 +32,13 @@ class Category
     private string $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="categories")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasteProfiles")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private User $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Wine", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Wine", mappedBy="tasteProfile")
      */
     private Collection $wines;
 

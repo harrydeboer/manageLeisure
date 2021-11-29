@@ -8,7 +8,7 @@
     {{ form_start(form, {'attr': {'id': 'filterSortForm'}}) }}
     {{ form_errors(form) }}
 
-    {{ form_widget(form.category) }}
+    {{ form_widget(form.tasteProfile) }}
 
     {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'Red'}) }}
     {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'White'}) }}
@@ -22,7 +22,7 @@
                 <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.getLabel()) }}" alt="label" class="wineLabel"></td>
                 <td>{{ wine.getName() }}</td>
                 <td class="d-none d-md-table-cell">{{ wine.getGrapeNamesAsString() }}</td>
-                <td class="d-none d-sm-table-cell">{{ wine.getCategory() ? wine.getCategory().getName() : '' }}</td>
+                <td class="d-none d-sm-table-cell">{{ wine.getTasteProfile() ? wine.getTasteProfile().getName() : '' }}</td>
                 <td>{{ wine.getYear() }}</td>
                 <td><span class="nowrap">{{ wine.getRating()|number_format(1) }} <i class="fas fa-star"></i></span></td>
                 <td class="d-none d-sm-table-cell"><span class="nowrap">€ {{ wine.getPrice()|number_format(2) }}</span></td>

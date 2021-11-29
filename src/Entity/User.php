@@ -50,9 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $wines;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Category", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\TasteProfile", mappedBy="user")
      */
-    private Collection $categories;
+    private Collection $tasteProfiles;
 
     /**
      * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Grape", mappedBy="user")
@@ -63,7 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->wines = new ArrayCollection();
         $this->grapes = new ArrayCollection();
-        $this->categories = new ArrayCollection();
+        $this->tasteProfiles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,77 +162,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection
-     */
     public function getWines(): Collection
     {
         return $this->wines;
     }
 
-    /**
-     * @param Collection $wines
-     */
     public function setWines(Collection $wines): void
     {
         $this->wines = $wines;
     }
 
-    /**
-     * @return Collection
-     */
-    public function getCategories(): Collection
+    public function getTasteProfiles(): Collection
     {
-        return $this->categories;
+        return $this->tasteProfiles;
     }
 
-    /**
-     * @param Collection $categories
-     */
-    public function setCategories(Collection $categories): void
+    public function setTasteProfiles(Collection $tasteProfiles): void
     {
-        $this->categories = $categories;
+        $this->tasteProfiles = $tasteProfiles;
     }
 
-    /**
-     * @return Collection
-     */
     public function getGrapes(): Collection
     {
         return $this->grapes;
     }
 
-    /**
-     * @return Collection
-     */
-    public function getRedGrapes(): Collection
-    {
-        $grapes = new ArrayCollection();
-        foreach ($this->grapes as $grape) {
-            if ($grape->getType() === 'red') {
-                $grapes->add($grape);
-            }
-        }
-        return $grapes;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getWhiteGrapes(): Collection
-    {
-        $grapes = new ArrayCollection();
-        foreach ($this->grapes as $grape) {
-            if ($grape->getType() === 'white') {
-                $grapes->add($grape);
-            }
-        }
-        return $grapes;
-    }
-
-    /**
-     * @param Collection $grapes
-     */
     public function setGrapes(Collection $grapes): void
     {
         $this->grapes = $grapes;

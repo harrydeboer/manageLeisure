@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class DeleteCategoryForm extends AbstractType
+class DeleteTasteProfileForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
