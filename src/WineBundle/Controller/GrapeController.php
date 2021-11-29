@@ -51,7 +51,7 @@ class GrapeController extends Controller
         $formUpdate->handleRequest($request);
 
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
-            $this->checkUser($grape->getUser());
+            $this->isAuthenticated($grape->getUser());
             $this->grapeRepository->update();
 
             return $this->redirectToRoute('wineGrape');
@@ -94,7 +94,7 @@ class GrapeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->checkUser($grape->getUser());
+            $this->isAuthenticated($grape->getUser());
             $this->grapeRepository->delete($grape);
         }
 

@@ -67,7 +67,7 @@ class WineController extends Controller
         $formUpdate->handleRequest($request);
 
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
-            $this->checkUser($wine->getUser());
+            $this->isAuthenticated($wine->getUser());
             $this->wineRepository->update();
             if ($this->kernel->getEnvironment() !== 'test') {
                 $wine->moveImage($formUpdate->get('image')->getData());
@@ -116,7 +116,7 @@ class WineController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->checkUser($wine->getUser());
+            $this->isAuthenticated($wine->getUser());
 
             $this->wineRepository->delete($wine);
             if ($this->kernel->getEnvironment() !== 'test') {
