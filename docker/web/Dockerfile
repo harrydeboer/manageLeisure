@@ -59,7 +59,5 @@ RUN if [ "$APP_ENV" = "dev" ] ; then cp /var/www/html/config/web/php-cli.xdebug.
 RUN if [ "$APP_ENV" = "dev" ] ; then cp /var/www/html/config/web/php-apache2.xdebug.ini /etc/php/${PHP_VERSION}/apache2/conf.d/xdebug-apache2.ini; fi
 RUN sed -i -r "s/APACHE_HOST/${APACHE_HOST}/g" /etc/apache2/apache2.conf
 
-RUN chown www-data:www-data -R /var/www/html/
-
 RUN mkdir /var/www/.cache
 RUN chown www-data:www-data -R /var/www/.cache
