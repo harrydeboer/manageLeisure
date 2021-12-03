@@ -9,7 +9,7 @@ use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Error;
 
-class WineKernelTest extends AuthKernelTestCase
+class WineRepositoryTest extends AuthKernelTestCase
 {
     private Wine $wine;
     private WineRepositoryInterface $wineRepository;

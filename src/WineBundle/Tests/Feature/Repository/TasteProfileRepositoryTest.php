@@ -9,7 +9,7 @@ use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 use Error;
 
-class TasteProfileKernelTest extends AuthKernelTestCase
+class TasteProfileRepositoryTest extends AuthKernelTestCase
 {
     public function testCreateUpdateDelete()
     {

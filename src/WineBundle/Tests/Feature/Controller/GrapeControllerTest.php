@@ -7,7 +7,7 @@ namespace App\WineBundle\Tests\Feature\Controller;
 use App\Tests\Feature\AuthWebTestCase;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 
-class GrapeWebTest extends AuthWebTestCase
+class GrapeControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {

@@ -9,7 +9,7 @@ use App\WineBundle\Entity\Grape;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 use Error;
 
-class GrapeKernelTest extends AuthKernelTestCase
+class GrapeRepositoryTest extends AuthKernelTestCase
 {
     public function testCreateUpdateDelete()
     {
