@@ -37,6 +37,10 @@ class HomepageControllerTest extends AuthWebTestCase
 
         $wine = $wineRepository->findOneBy(['name' => 'test']);
 
+        $this->client->request('GET', '/wine/' . $wine->getId());
+
+        $this->assertResponseIsSuccessful();
+
         $crawler = $this->client->request('GET', '/wine/edit/' . $wine->getId());
 
         $buttonCrawlerNode = $crawler->selectButton('Update');

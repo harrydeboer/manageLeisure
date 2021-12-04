@@ -126,4 +126,14 @@ class WineController extends Controller
 
         return $this->redirectToRoute('wineHomepage');
     }
+    
+    /**
+     * @Route("/wine/{id}", name="wineSingle")
+     */
+    public function single(Wine $wine): Response
+    {
+        return $this->render('@Wine/wine/single/view.html.twig', [
+            'wine' => $wine,
+        ]);
+    }
 }

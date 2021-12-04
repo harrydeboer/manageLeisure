@@ -19,15 +19,15 @@
     <table class="table table-striped">
         {% for wine in paginator.results %}
             <tr>
-                <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.getLabel()) }}" alt="label" class="wineLabel"></td>
-                <td>{{ wine.getName() }}</td>
-                <td class="d-none d-md-table-cell">{{ wine.getGrapeNamesAsString() }}</td>
-                <td class="d-none d-sm-table-cell">{{ wine.getTasteProfile() ? wine.getTasteProfile().getName() : '' }}</td>
+                <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.label) }}" alt="label" class="wineLabel"></td>
+                <td><a href="{{ path('wineSingle', {'id': wine.id}) }}">{{ wine.name }}</a></td>
+                <td class="d-none d-md-table-cell">{{ wine.grapeNamesAsString }}</td>
+                <td class="d-none d-sm-table-cell">{{ wine.tasteProfile ? wine.tasteProfile.name : '' }}</td>
                 <td>{{ wine.getYear() }}</td>
-                <td><span class="nowrap">{{ wine.getRating()|number_format(1) }} <i class="fas fa-star"></i></span></td>
-                <td class="d-none d-sm-table-cell"><span class="nowrap">€ {{ wine.getPrice()|number_format(2) }}</span></td>
-                <td class="d-none d-xl-table-cell">{{ wine.getDescription() }}</td>
-                <td><a href="{{ path('wineEdit', {'id': wine.getId()}) }}">edit</a></td>
+                <td><span class="nowrap">{{ wine.rating|number_format(1) }} <i class="fas fa-star"></i></span></td>
+                <td class="d-none d-sm-table-cell"><span class="nowrap">€ {{ wine.price|number_format(2) }}</span></td>
+                <td class="d-none d-xl-table-cell">{{ wine.description }}</td>
+                <td><a href="{{ path('wineEdit', {'id': wine.id}) }}">edit</a></td>
             </tr>
         {% endfor %}
     </table>
