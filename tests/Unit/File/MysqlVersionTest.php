@@ -8,9 +8,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Dotenv\Dotenv;
 
-class DockerComposeTest extends TestCase
+class MysqlVersionTest extends TestCase
 {
-    public function testVersionsWordpressTestSuiteMatch()
+    public function testMysqlVersionsSameDotenvAndDockerCompose()
     {
         $projectDir = dirname(__DIR__, 3);
 

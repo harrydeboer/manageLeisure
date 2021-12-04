@@ -133,7 +133,7 @@ class WineController extends Controller
     public function single(Wine $wine): Response
     {
         $this->isAuthenticated($wine->getUser());
-        
+
         return $this->render('@Wine/wine/single/view.html.twig', [
             'wine' => $wine,
         ]);
