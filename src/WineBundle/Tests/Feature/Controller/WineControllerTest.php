@@ -64,7 +64,7 @@ class WineControllerTest extends AuthWebTestCase
 
         $wine = $wineRepository->findOneBy(['name' => 'test']);
 
-        $this->client->request('GET', '/wine/' . $wine->getId());
+        $this->client->request('GET', '/wine/single/' . $wine->getId());
 
         $this->assertResponseIsSuccessful();
 

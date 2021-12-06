@@ -120,17 +120,18 @@ class WineController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->wineRepository->delete($wine);
             if ($this->kernel->getEnvironment() !== 'test') {
                 $wine->unlinkImage();
             }
+
+            $this->wineRepository->delete($wine);
         }
 
         return $this->redirectToRoute('wineHomepage');
     }
 
     /**
-     * @Route("/wine/{id}", name="wineSingle")
+     * @Route("/wine/single/{id}", name="wineSingle")
      */
     public function single(Wine $wine): Response
     {
