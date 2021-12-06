@@ -12,6 +12,32 @@ class WineControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
+        $this->client->request('GET', '/country');
+
+        $crawler = $this->client->request('GET', '/country/create');
+
+        $buttonCrawlerNode = $crawler->selectButton('Create');
+
+        $form = $buttonCrawlerNode->form();
+
+        $form['country_form[name]'] = 'France';
+        $form['country_form[code]'] = 'FR';
+
+        $this->client->submit($form);
+
+        $this->client->request('GET', '/wine/region');
+
+        $crawler = $this->client->request('GET', '/wine/region/create');
+
+        $buttonCrawlerNode = $crawler->selectButton('Create');
+
+        $form = $buttonCrawlerNode->form();
+
+        $form['region_form[name]'] = 'Bordeaux';
+        $form['region_form[country]'] = 1;
+
+        $this->client->submit($form);
+
         $this->client->request('GET', '/wine');
 
         $this->assertResponseIsSuccessful();
@@ -28,6 +54,7 @@ class WineControllerTest extends AuthWebTestCase
         $form['create_wine_form[year]'] = 2000;
         $form['create_wine_form[rating]'] = 7;
         $form['create_wine_form[price]'] = 10;
+        $form['create_wine_form[region]'] = 1;
 
         $this->client->submit($form);
 

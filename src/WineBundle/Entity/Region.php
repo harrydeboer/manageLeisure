@@ -7,6 +7,7 @@ namespace App\WineBundle\Entity;
 use App\Entity\Country;
 use App\Entity\User;
 use App\WineBundle\Repository\RegionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -48,6 +49,11 @@ class Region
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private Country $country;
+
+    public function __construct()
+    {
+        $this->wines = new ArrayCollection();
+    }
 
     public function getId(): int
     {

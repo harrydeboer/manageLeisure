@@ -114,7 +114,7 @@ class WineController extends Controller
     public function delete(Request $request, Wine $wine): RedirectResponse
     {
         $this->isAuthenticated($wine->getUser());
-        
+
         $form = $this->createForm(DeleteWineForm::class);
         $form->handleRequest($request);
 
