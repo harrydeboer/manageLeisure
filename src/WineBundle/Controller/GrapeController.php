@@ -38,6 +38,8 @@ class GrapeController extends Controller
      */
     public function edit(Request $request, Grape $grape): Response
     {
+        $this->isAuthenticated($grape->getUser());
+
         $formUpdate = $this->createForm(GrapeForm::class, $grape, [
             'method' => 'POST',
         ]);
@@ -50,7 +52,6 @@ class GrapeController extends Controller
         $formUpdate->handleRequest($request);
 
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
-            $this->isAuthenticated($grape->getUser());
             $this->grapeRepository->update();
 
             return $this->redirectToRoute('wineGrape');
@@ -89,11 +90,12 @@ class GrapeController extends Controller
      */
     public function delete(Request $request, Grape $grape): RedirectResponse
     {
+        $this->isAuthenticated($grape->getUser());
+
         $form = $this->createForm(DeleteGrapeForm::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->isAuthenticated($grape->getUser());
             $this->grapeRepository->delete($grape);
         }
 

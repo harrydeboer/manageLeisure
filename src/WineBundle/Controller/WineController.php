@@ -55,6 +55,8 @@ class WineController extends Controller
      */
     public function edit(Request $request, Wine $wine): Response
     {
+        $this->isAuthenticated($wine->getUser());
+
         $formUpdate = $this->createForm(UpdateWineForm::class, $wine, [
             'method' => 'POST',
         ]);
@@ -67,7 +69,6 @@ class WineController extends Controller
         $formUpdate->handleRequest($request);
 
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
-            $this->isAuthenticated($wine->getUser());
             $this->wineRepository->update();
             if ($this->kernel->getEnvironment() !== 'test') {
                 $wine->moveImage($formUpdate->get('image')->getData());
@@ -112,11 +113,12 @@ class WineController extends Controller
      */
     public function delete(Request $request, Wine $wine): RedirectResponse
     {
+        $this->isAuthenticated($wine->getUser());
+        
         $form = $this->createForm(DeleteWineForm::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->isAuthenticated($wine->getUser());
 
             $this->wineRepository->delete($wine);
             if ($this->kernel->getEnvironment() !== 'test') {

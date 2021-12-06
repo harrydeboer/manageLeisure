@@ -38,6 +38,8 @@ class TasteProfileController extends Controller
      */
     public function edit(Request $request, TasteProfile $tasteProfile): Response
     {
+        $this->isAuthenticated($tasteProfile->getUser());
+
         $formUpdate = $this->createForm(TasteProfileForm::class, $tasteProfile, [
             'method' => 'POST',
         ]);
@@ -50,7 +52,6 @@ class TasteProfileController extends Controller
         $formUpdate->handleRequest($request);
 
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
-            $this->isAuthenticated($tasteProfile->getUser());
             $this->tasteProfileRepository->update();
 
             return $this->redirectToRoute('wineTasteProfile');
@@ -88,9 +89,10 @@ class TasteProfileController extends Controller
      */
     public function delete(Request $request, TasteProfile $tasteProfile): RedirectResponse
     {
+        $this->isAuthenticated($tasteProfile->getUser());
+
         $form = $this->createForm(DeleteTasteProfileForm::class);
         $form->handleRequest($request);
-        $this->isAuthenticated($tasteProfile->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->tasteProfileRepository->delete($tasteProfile);

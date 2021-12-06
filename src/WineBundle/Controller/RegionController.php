@@ -38,6 +38,8 @@ class RegionController extends Controller
      */
     public function edit(Request $request, Region $region): Response
     {
+        $this->isAuthenticated($region->getUser());
+
         $formUpdate = $this->createForm(RegionForm::class, $region, [
             'method' => 'POST',
         ]);
@@ -50,7 +52,6 @@ class RegionController extends Controller
         $formUpdate->handleRequest($request);
 
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
-            $this->isAuthenticated($region->getUser());
             $this->regionRepository->update();
 
             return $this->redirectToRoute('wineRegion');
@@ -88,9 +89,10 @@ class RegionController extends Controller
      */
     public function delete(Request $request, Region $region): RedirectResponse
     {
+        $this->isAuthenticated($region->getUser());
+
         $form = $this->createForm(DeleteRegionForm::class);
         $form->handleRequest($request);
-        $this->isAuthenticated($region->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->regionRepository->delete($region);

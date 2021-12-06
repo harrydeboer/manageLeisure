@@ -37,6 +37,8 @@ class CountryController extends Controller
      */
     public function edit(Request $request, Country $country): Response
     {
+        $this->isAuthenticated($country->getUser());
+
         $formUpdate = $this->createForm(CountryForm::class, $country, [
             'method' => 'POST',
         ]);
@@ -86,6 +88,8 @@ class CountryController extends Controller
      */
     public function delete(Request $request, Country $country): RedirectResponse
     {
+        $this->isAuthenticated($country->getUser());
+
         $form = $this->createForm(DeleteCountryForm::class);
         $form->handleRequest($request);
 
