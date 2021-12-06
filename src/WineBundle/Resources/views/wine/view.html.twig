@@ -26,7 +26,7 @@
                 <td>{{ wine.getYear() }}</td>
                 <td><span class="nowrap">{{ wine.rating|number_format(1) }} <i class="fas fa-star"></i></span></td>
                 <td class="d-none d-sm-table-cell"><span class="nowrap">€ {{ wine.price|number_format(2) }}</span></td>
-                <td class="d-none d-xl-table-cell">{{ wine.description }}</td>
+                <td class="d-none d-xl-table-cell">{{ wine.region.name }}</td>
                 <td><a href="{{ path('wineEdit', {'id': wine.id}) }}">edit</a></td>
             </tr>
         {% endfor %}

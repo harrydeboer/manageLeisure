@@ -61,11 +61,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private Collection $grapes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="user")
+     */
+    private Collection $regions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Country", mappedBy="user")
+     */
+    private Collection $countries;
+
     public function __construct()
     {
         $this->wines = new ArrayCollection();
         $this->grapes = new ArrayCollection();
         $this->tasteProfiles = new ArrayCollection();
+        $this->countries = new ArrayCollection();
+        $this->regions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,12 +85,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
     public function setUsername(string $username): self
@@ -107,7 +124,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
     /**
@@ -192,5 +209,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGrapes(Collection $grapes): void
     {
         $this->grapes = $grapes;
+    }
+
+    public function getRegions(): Collection
+    {
+        return $this->regions;
+    }
+
+    public function setRegions(Collection $regions): void
+    {
+        $this->regions = $regions;
+    }
+
+    public function getCountries(): Collection
+    {
+        return $this->countries;
+    }
+
+    public function setCountries(Collection $countries): void
+    {
+        $this->countries = $countries;
     }
 }

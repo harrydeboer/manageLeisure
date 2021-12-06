@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create{% endblock %}
+
+{% block body %}
+    {{ include('country/form.html.twig', {form: form, submitLabel: 'Create'}) }}
+{% endblock %}

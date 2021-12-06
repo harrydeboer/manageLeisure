@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Entity;
 
+use App\Entity\Country;
 use App\Entity\User;
-use App\WineBundle\Repository\TasteProfileRepository;
+use App\WineBundle\Repository\RegionRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=TasteProfileRepository::class)
- * @ORM\Table(name="taste_profile")
+ * @ORM\Entity(repositoryClass=RegionRepository::class)
+ * @ORM\Table(name="region")
  * @UniqueEntity("name")
  */
-class TasteProfile
+class Region
 {
     /**
      * @ORM\Id
@@ -27,20 +28,26 @@ class TasteProfile
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank ()
+     * @Assert\NotBlank()
      */
     private string $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasteProfiles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="regions")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private User $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="Wine", mappedBy="tasteProfile")
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="region")
      */
     private Collection $wines;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="regions")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private Country $country;
 
     public function getId(): int
     {
@@ -62,6 +69,16 @@ class TasteProfile
         $this->name = $name;
     }
 
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(Country $country): void
+    {
+        $this->country = $country;
+    }
+
     public function getUser(): User
     {
         return $this->user;
@@ -72,17 +89,11 @@ class TasteProfile
         $this->user = $user;
     }
 
-    /**
-     * @return Collection
-     */
     public function getWines(): Collection
     {
         return $this->wines;
     }
 
-    /**
-     * @param Collection $wines
-     */
     public function setWines(Collection $wines): void
     {
         $this->wines = $wines;

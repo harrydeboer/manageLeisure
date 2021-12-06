@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.25, for Linux (x86_64)
 --
--- Host: localhost    Database: my_life
+-- Host: 127.0.0.1    Database: my_life
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +21,7 @@
 
 LOCK TABLES `grape` WRITE;
 /*!40000 ALTER TABLE `grape` DISABLE KEYS */;
-INSERT INTO `grape` VALUES (1,1,'tempranillo','red'),(2,1,'merlot','red'),(3,1,'shiraz','red'),(4,1,'cabernet sauvignon','red'),(5,1,'malbec','red'),(6,1,'pinot noir','red'),(7,1,'grenache','red'),(8,1,'sangiovese','red'),(9,1,'carménère','red'),(10,1,'gamay','red'),(11,1,'corvina','red'),(12,1,'rondinella','red'),(13,1,'molinara','red'),(14,1,'montepulciano','red'),(15,1,'sauvignon blanc','white'),(16,1,'pinot blanc','white'),(17,1,'riesling','white'),(18,1,'chardonnay','white');
+INSERT INTO `grape` VALUES (1,1,'tempranillo','red'),(2,1,'merlot','red'),(3,1,'shiraz','red'),(4,1,'cabernet sauvignon','red'),(5,1,'malbec','red'),(6,1,'pinot noir','red'),(7,1,'grenache','red'),(8,1,'sangiovese','red'),(9,1,'carménère','red'),(10,1,'gamay','red'),(11,1,'corvina','red'),(12,1,'rondinella','red'),(13,1,'molinara','red'),(14,1,'montepulciano','red'),(15,1,'sauvignon blanc','white'),(16,1,'pinot blanc','white'),(17,1,'riesling','white'),(18,1,'chardonnay','white'),(19,1,'zinfandel','red'),(20,1,'mencía','red');
 /*!40000 ALTER TABLE `grape` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-22 15:22:32
+-- Dump completed on 2021-12-04 20:05:28

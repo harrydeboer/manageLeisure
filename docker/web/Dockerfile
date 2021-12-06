@@ -43,7 +43,7 @@ RUN if [ "$APP_ENV" = "dev" ] ; then apt-get install php${PHP_VERSION}-xdebug &&
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 
-COPY --from=composer:2.0.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.1.14 /usr/bin/composer /usr/bin/composer
 
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony

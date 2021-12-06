@@ -10,6 +10,10 @@ $('#delete-grape').on('click', function() {
     $('#delete-grape-modal').modal('show');
 });
 
+$('#delete-region').on('click', function() {
+    $('#delete-region-modal').modal('show');
+});
+
 $('.dropdown-menu').on('click', function (event) {
     event.stopPropagation();
 });

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.25, for Linux (x86_64)
 --
--- Host: localhost    Database: my_life
+-- Host: 127.0.0.1    Database: my_life
 -- ------------------------------------------------------
--- Server version	8.0.25
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,7 +21,7 @@
 
 LOCK TABLES `wine_grape` WRITE;
 /*!40000 ALTER TABLE `wine_grape` DISABLE KEYS */;
-INSERT INTO `wine_grape` VALUES (1,1),(2,3),(2,7),(3,1),(3,7),(4,9),(5,10),(6,11),(6,12),(6,13),(7,11),(7,12),(7,13),(8,5),(9,5),(10,14),(11,2);
+INSERT INTO `wine_grape` VALUES (1,1),(2,3),(2,7),(3,1),(3,7),(4,9),(5,10),(6,11),(6,12),(6,13),(7,11),(7,12),(7,13),(8,5),(9,5),(10,14),(11,2),(12,10),(13,19),(14,20);
 /*!40000 ALTER TABLE `wine_grape` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-22 15:23:01
+-- Dump completed on 2021-12-04 20:05:56

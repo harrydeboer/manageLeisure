@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit{% endblock %}
+
+{% block body %}
+    {{ include('country/form.html.twig', {form: formUpdate, submitLabel: 'Update'}) }}
+    <br>
+    <div class="modal" id="delete-country-modal">
+        <div class="modal-dialog" id="delete-modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" id="delete-modal-header">
+                    <h3>Are you sure you want to delete this country?</h3>
+                    {{ form(formDelete) }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="delete-country"
+            class="btn btn-danger">Delete country</button>
+{% endblock %}

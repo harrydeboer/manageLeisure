@@ -36,3 +36,4 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/wine, roles: ROLE_USER }
+         - { path: ^/country, roles: ROLE_USER }

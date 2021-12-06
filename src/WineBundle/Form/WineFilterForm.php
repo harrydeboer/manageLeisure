@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\WineBundle\Form;
 
 use App\Entity\User;
+use App\WineBundle\Entity\Region;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Entity\Grape;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -44,9 +45,16 @@ class WineFilterForm extends AbstractType
                 },
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
+            ])
+            ->add('region', ChoiceType::class, [
+                'choices'  => array_merge(['' => null], $user->getRegions()->toArray()),
+                'choice_value' => 'id',
+                'choice_label' => function(?Region $region) {
+                    return $region ? $region->getName() : 'select region';
+                },
+                'attr' => ['class' => 'form-control'],
             ]);
     }
-
 
     /**
      * @return User

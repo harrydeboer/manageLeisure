@@ -38,27 +38,6 @@ class Wine
     private string $imageExtension;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Grape", inversedBy="wines")
-     * @ORM\JoinTable(name="wine_grape",
-     *     joinColumns={@ORM\JoinColumn(name="wine_id", referencedColumnName="id", onDelete="CASCADE")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="grape_id", referencedColumnName="id", onDelete="CASCADE")}
-     *     )
-     */
-    private Collection $grapes;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="wines")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
-     */
-    private User $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="TasteProfile", inversedBy="wines")
-     * @ORM\JoinColumn(name="taste_profile_id", referencedColumnName="id", nullable=true)
-     */
-    private ?TasteProfile $tasteProfile;
-
-    /**
      * @ORM\Column(type="integer")
      * @Assert\Length(4)
      */
@@ -83,38 +62,55 @@ class Wine
     private ?string $description;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $review;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private int $createdAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Grape", inversedBy="wines")
+     * @ORM\JoinTable(name="wine_grape",
+     *     joinColumns={@ORM\JoinColumn(name="wine_id", referencedColumnName="id", onDelete="CASCADE")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="grape_id", referencedColumnName="id", onDelete="CASCADE")}
+     *     )
+     */
+    private Collection $grapes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="wines")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private User $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="TasteProfile", inversedBy="wines")
+     * @ORM\JoinColumn(name="taste_profile_id", referencedColumnName="id", nullable=true)
+     */
+    private ?TasteProfile $tasteProfile;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Region", inversedBy="wines")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     */
+    private Region $region;
 
     public function __construct()
     {
         $this->grapes = new ArrayCollection();
     }
 
-    public function addGrape(Grape $grape)
-    {
-        if ($this->grapes->contains($grape)) {
-            return;
-        }
-
-        $this->grapes->add($grape);
-        $grape->addWine($this);
-    }
-
-    public function removeGrape(Grape $grape)
-    {
-        if (!$this->grapes->contains($grape)) {
-            return;
-        }
-
-        $this->grapes->removeElement($grape);
-        $grape->removeWine($this);
-    }
-
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getName(): string
@@ -145,6 +141,26 @@ class Wine
     public function setGrapes(ArrayCollection $grapes): void
     {
         $this->grapes = $grapes;
+    }
+
+    public function addGrape(Grape $grape)
+    {
+        if ($this->grapes->contains($grape)) {
+            return;
+        }
+
+        $this->grapes->add($grape);
+        $grape->addWine($this);
+    }
+
+    public function removeGrape(Grape $grape)
+    {
+        if (!$this->grapes->contains($grape)) {
+            return;
+        }
+
+        $this->grapes->removeElement($grape);
+        $grape->removeWine($this);
     }
 
     public function getGrapeNamesAsString(): string
@@ -216,7 +232,17 @@ class Wine
         $this->description = $description;
     }
 
-    public function getCreateAt(): int
+    public function getReview(): ?string
+    {
+        return $this->review;
+    }
+
+    public function setReview(?string $review): void
+    {
+        $this->review = $review;
+    }
+
+    public function getCreatedAt(): int
     {
         return $this->createdAt;
     }
@@ -262,13 +288,22 @@ class Wine
     public function getLabel(): string
     {
         $idString = (string) $this->getId();
-        $path = 'img/labels/' . $idString . '.' . $this->getImageExtension();
 
-        return $path;
+        return 'img/labels/' . $idString . '.' . $this->getImageExtension();
     }
 
     public function unlinkImage()
     {
         unlink($this->getProjectDir() . '/public/' . $this->getLabel());
+    }
+
+    public function getRegion(): Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(Region $region): void
+    {
+        $this->region = $region;
     }
 }

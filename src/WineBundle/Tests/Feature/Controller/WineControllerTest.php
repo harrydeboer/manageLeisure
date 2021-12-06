@@ -8,7 +8,7 @@ use App\Tests\Feature\AuthWebTestCase;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-class HomepageControllerTest extends AuthWebTestCase
+class WineControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {

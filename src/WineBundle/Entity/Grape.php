@@ -53,29 +53,14 @@ class Grape
         $this->wines = new ArrayCollection();
     }
 
-    public function addWine(Wine $wine)
-    {
-        if ($this->wines->contains($wine)) {
-            return;
-        }
-
-        $this->wines->add($wine);
-        $wine->addGrape($this);
-    }
-
-    public function removeWine(Wine $wine)
-    {
-        if (!$this->wines->contains($wine)) {
-            return;
-        }
-
-        $this->wines->removeElement($wine);
-        $wine->removeGrape($this);
-    }
-
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getName(): string
@@ -116,5 +101,25 @@ class Grape
     public function setWines(ArrayCollection $wines): void
     {
         $this->wines = $wines;
+    }
+
+    public function addWine(Wine $wine)
+    {
+        if ($this->wines->contains($wine)) {
+            return;
+        }
+
+        $this->wines->add($wine);
+        $wine->addGrape($this);
+    }
+
+    public function removeWine(Wine $wine)
+    {
+        if (!$this->wines->contains($wine)) {
+            return;
+        }
+
+        $this->wines->removeElement($wine);
+        $wine->removeGrape($this);
     }
 }
