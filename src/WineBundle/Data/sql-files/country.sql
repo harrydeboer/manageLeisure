@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `taste_profile`
+-- Dumping data for table `country`
 --
 
-LOCK TABLES `taste_profile` WRITE;
-/*!40000 ALTER TABLE `taste_profile` DISABLE KEYS */;
-INSERT INTO `taste_profile` VALUES (1,1,'royal red (stevig, verfijnd, veel smaak)'),(2,1,'big red (soepel, veel smaak, intens)'),(3,1,'classic red (stevig, bite, structuur)'),(4,1,'easy rider (soepel, rond, toegankelijk)'),(5,1,'fresh red (fruitig, fris, verfijnd)'),(6,1,'fruit smoothie (fruitig, sappig, toegankelijk)'),(7,1,'big white (vol, zacht, soepel)'),(8,1,'sugar honey (vol, zoet, toegankelijk)'),(9,1,'classic white (fruitig, verfijnd, klassiek)'),(10,1,'fresh hammer (fris, veel smaak, intens)'),(11,1,'fresh prince (fris, verfijnd, sappig)'),(12,1,'fruit lover (fruitig, licht, toegankelijk)'),(13,1,'big rosé (vol, zacht, soepel)'),(14,1,'sugar honey rosé (vol, zoet, toegankelijk)'),(15,1,'fresh hammer rosé (fris, veel smaak, intens)'),(16,1,'classic rosé (fruitig, verfijnd, klassiek)'),(17,1,'fruit lover rosé (fruitig, licht, toegankelijk)'),(18,1,'fresh prince rosé (fris, verfijnd, sappig)');
-/*!40000 ALTER TABLE `taste_profile` ENABLE KEYS */;
+LOCK TABLES `country` WRITE;
+/*!40000 ALTER TABLE `country` DISABLE KEYS */;
+INSERT INTO `country` VALUES (1,1,'FR','Frankrijk'),(2,1,'IT','Italië'),(3,1,'ES','Spanje'),(4,1,'PT','Portugal'),(5,1,'ZA','Zuid-Afrika'),(6,1,'US','Verenigde Staten'),(7,1,'DE','Duitsland'),(8,1,'GR','Griekenland'),(9,1,'AR','Argentinië'),(10,1,'CL','Chili');
+/*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-06 17:17:09
+-- Dump completed on 2021-12-06 17:16:56

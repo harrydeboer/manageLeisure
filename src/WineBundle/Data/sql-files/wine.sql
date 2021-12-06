@@ -21,7 +21,7 @@
 
 LOCK TABLES `wine` WRITE;
 /*!40000 ALTER TABLE `wine` DISABLE KEYS */;
-INSERT INTO `wine` VALUES (1,1,1,'Viña Mayor Crianza','png',2018,60,899,'wrangig, boerenjongens',1635852086),(2,1,3,'M. Chapoutier Côtes du Rhône','png',2018,75,1098,NULL,1635852086),(3,1,3,'Ondarre Rioja Reserva','png',2016,65,799,NULL,1635852086),(4,1,2,'Valdivieso Gran Reserva carmenère','png',2019,77,998,NULL,1635852086),(5,1,5,'Mommessin Domaine De La Presle Fleurie','png',2019,90,1329,NULL,1635852086),(6,1,5,'Masi Frescaripa Bardolino','png',2019,68,929,NULL,1635852086),(7,1,5,'Zonin Valpolicella Classico','png',2020,70,799,NULL,1635852086),(8,1,4,'Catena Altamira Malbec','png',2018,90,1065,NULL,1635852086),(9,1,2,'Catena Appelation Lunlunta Malbec','png',2019,78,1065,NULL,1635856835),(10,1,5,'Hieron Montepulciano D\'Abruzzo','png',2019,77,449,NULL,1636289235),(11,1,1,'Cadiot','jpg',2018,90,899,NULL,1636974777),(12,1,6,'DeBeaune Beaujolais nouveau','png',2021,20,499,'smerig',1638017094),(13,1,2,'Ironstone Old Vine Zinfandel','png',2019,65,998,'zurig rood fruit',1638123943),(14,1,6,'Pagod del Galir Mencía','png',2018,75,928,'vol',1638644386);
+INSERT INTO `wine` VALUES (1,1,1,7,'Viña Mayor Crianza','png',2018,60,899,NULL,'wrangig, boerenjongens',1635852086),(2,1,3,8,'M. Chapoutier Côtes du Rhône','png',2018,75,1098,NULL,NULL,1635852086),(3,1,3,9,'Ondarre Rioja Reserva','png',2016,65,799,NULL,NULL,1635852086),(4,1,2,10,'Valdivieso Gran Reserva carmenère','png',2019,77,998,NULL,NULL,1635852086),(5,1,5,2,'Mommessin Domaine De La Presle Fleurie','png',2019,90,1329,NULL,NULL,1635852086),(6,1,5,11,'Masi Frescaripa Bardolino','png',2019,68,929,NULL,NULL,1635852086),(7,1,5,11,'Zonin Valpolicella Classico','png',2020,70,799,NULL,NULL,1635852086),(8,1,4,5,'Catena Altamira Malbec','png',2018,90,1065,NULL,NULL,1635852086),(9,1,2,5,'Catena Appelation Lunlunta Malbec','png',2019,78,1065,NULL,NULL,1635856835),(10,1,5,6,'Hieron Montepulciano D\'Abruzzo','png',2019,77,449,NULL,NULL,1636289235),(11,1,1,1,'Cadiot','jpg',2018,90,899,NULL,NULL,1636974777);
 /*!40000 ALTER TABLE `wine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-04 20:05:42
+-- Dump completed on 2021-12-06 17:17:22
