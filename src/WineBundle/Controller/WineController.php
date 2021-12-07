@@ -31,7 +31,7 @@ class WineController extends Controller
      */
     public function view(Request $request, int $page): Response
     {
-        $form = $this->get('form.factory')->createNamed('', WineFilterAndSortForm::class, null, [
+        $form = $this->container->get('form.factory')->createNamed('', WineFilterAndSortForm::class, null, [
             'method' => 'GET',
             'csrf_protection' => false,
         ]);

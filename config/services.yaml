@@ -22,10 +22,5 @@ services:
             - '../src/Tests/'
     App\Asset\VersionStrategy\FileMTime:
 
-    App\Repository\UserRepositoryInterface: '@App\Repository\UserRepository'
-    App\WineBundle\Repository\WineRepositoryInterface: '@App\WineBundle\Repository\WineRepository'
-    App\WineBundle\Repository\GrapeRepositoryInterface: '@App\WineBundle\Repository\GrapeRepository'
-    App\WineBundle\Repository\CategoryRepositoryInterface: '@App\WineBundle\Repository\CategoryRepository'
-
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

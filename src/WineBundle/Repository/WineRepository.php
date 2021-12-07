@@ -60,8 +60,7 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
             ->where('w.user = ' . $user->getId());
 
         if (!is_null($formData)) {
-            if ($formData['redGrapes'] !== [] || $formData['whiteGrapes'] !== []) {
-                $formData['grapes'] = array_merge($formData['redGrapes'], $formData['whiteGrapes']);
+            if (count($formData['grapes']) !== 0) {
                 $qb->innerJoin('w.grapes', 'g');
                 $ids = '';
                 foreach ($formData['grapes'] as $grape) {

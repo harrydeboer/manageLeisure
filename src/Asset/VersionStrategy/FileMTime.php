@@ -8,13 +8,13 @@ use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
 
 class FileMTime implements VersionStrategyInterface
 {
-    public function getVersion(string $path)
+    public function getVersion(string $path): string
     {
 
-        return filemtime(dirname(__DIR__, 3) . '/public/' . $path);
+        return (string) filemtime(dirname(__DIR__, 3) . '/public/' . $path);
     }
 
-    public function applyVersion(string $path)
+    public function applyVersion(string $path): string
     {
         $version = $this->getVersion($path);
 

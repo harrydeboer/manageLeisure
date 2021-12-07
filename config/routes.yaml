@@ -1,2 +1,6 @@
 wine_bundle:
-  resource: '@WineBundle/Resources/config/routing.yaml'
+    resource: '@WineBundle/Resources/config/routing.yaml'
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
