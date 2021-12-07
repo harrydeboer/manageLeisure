@@ -94,7 +94,7 @@ class Wine
 
     /**
      * @ORM\ManyToOne(targetEntity="Region", inversedBy="wines")
-     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=false)
      */
     private Region $region;
 

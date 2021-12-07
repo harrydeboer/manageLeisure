@@ -46,7 +46,7 @@ class Region
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="regions")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
      */
     private Country $country;
 
