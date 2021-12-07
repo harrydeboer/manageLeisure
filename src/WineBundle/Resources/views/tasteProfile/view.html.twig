@@ -9,6 +9,8 @@
         {% for tasteProfile in tasteProfiles %}
             <tr>
                 <td>{{ tasteProfile.getName() }}</td>
+                <td>{{ tasteProfile.getSecondName() }}</td>
+                <td>{{ tasteProfile.getDescription() }}</td>
                 <td><a href="{{ path('wineTasteProfileEdit', {'id': tasteProfile.getId()}) }}">edit</a></td>
             </tr>
         {% endfor %}

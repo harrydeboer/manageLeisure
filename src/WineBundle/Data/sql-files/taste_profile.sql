@@ -21,7 +21,7 @@
 
 LOCK TABLES `taste_profile` WRITE;
 /*!40000 ALTER TABLE `taste_profile` DISABLE KEYS */;
-INSERT INTO `taste_profile` VALUES (1,1,'royal red (stevig, verfijnd, veel smaak)'),(2,1,'big red (soepel, veel smaak, intens)'),(3,1,'classic red (stevig, bite, structuur)'),(4,1,'easy rider (soepel, rond, toegankelijk)'),(5,1,'fresh red (fruitig, fris, verfijnd)'),(6,1,'fruit smoothie (fruitig, sappig, toegankelijk)'),(7,1,'big white (vol, zacht, soepel)'),(8,1,'sugar honey (vol, zoet, toegankelijk)'),(9,1,'classic white (fruitig, verfijnd, klassiek)'),(10,1,'fresh hammer (fris, veel smaak, intens)'),(11,1,'fresh prince (fris, verfijnd, sappig)'),(12,1,'fruit lover (fruitig, licht, toegankelijk)'),(13,1,'big rosé (vol, zacht, soepel)'),(14,1,'sugar honey rosé (vol, zoet, toegankelijk)'),(15,1,'fresh hammer rosé (fris, veel smaak, intens)'),(16,1,'classic rosé (fruitig, verfijnd, klassiek)'),(17,1,'fruit lover rosé (fruitig, licht, toegankelijk)'),(18,1,'fresh prince rosé (fris, verfijnd, sappig)');
+INSERT INTO `taste_profile` VALUES (1,1,'royal red','stevig, verfijnd, veel smaak',NULL),(2,1,'big red','soepel, veel smaak, intens',NULL),(3,1,'classic red','stevig, bite, structuur',NULL),(4,1,'easy rider','soepel, rond, toegankelijk',NULL),(5,1,'fresh red','fruitig, fris, verfijnd',NULL),(6,1,'fruit smoothie','fruitig, sappig, toegankelijk',NULL),(7,1,'big white','vol, zacht, soepel',NULL),(8,1,'sugar honey','vol, zoet, toegankelijk',NULL),(9,1,'classic white','fruitig, verfijnd, klassiek',NULL),(10,1,'fresh hammer','fris, veel smaak, intens',NULL),(11,1,'fresh prince','fris, verfijnd, sappig',NULL),(12,1,'fruit lover','fruitig, licht, toegankelijk',NULL),(13,1,'big rosé','vol, zacht, soepel',NULL),(14,1,'sugar honey rosé','vol, zoet, toegankelijk',NULL),(15,1,'fresh hammer rosé','fris, veel smaak, intens',NULL),(16,1,'classic rosé','fruitig, verfijnd, klassiek',NULL),(17,1,'fruit lover rosé','fruitig, licht, toegankelijk',NULL),(18,1,'fresh prince rosé','fris, verfijnd, sappig',NULL);
 /*!40000 ALTER TABLE `taste_profile` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -34,4 +34,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-06 17:17:09
+-- Dump completed on 2021-12-07 12:23:57

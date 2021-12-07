@@ -21,7 +21,7 @@
 
 LOCK TABLES `region` WRITE;
 /*!40000 ALTER TABLE `region` DISABLE KEYS */;
-INSERT INTO `region` VALUES (1,1,1,'Bordeaux'),(2,1,1,'Beaujolais'),(3,1,3,'Galicië'),(4,1,6,'Californië'),(5,1,9,'Mendoza'),(6,1,2,'Abruzzo'),(7,1,3,'Ribera del Duero'),(8,1,1,'Rhône'),(9,1,3,'Rioja'),(10,1,10,'Colchagua'),(11,1,2,'Veneto');
+INSERT INTO `region` VALUES (1,1,1,'Bordeaux'),(2,1,1,'Beaujolais'),(3,1,3,'Galicië'),(4,1,6,'Californië'),(5,1,9,'Mendoza'),(6,1,2,'Abruzzen'),(7,1,3,'Ribera del Duero'),(8,1,1,'Rhône'),(9,1,3,'Rioja'),(10,1,10,'Colchagua'),(11,1,2,'Veneto');
 /*!40000 ALTER TABLE `region` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -32,6 +32,16 @@ class TasteProfile
     private string $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $secondName;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $description;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasteProfiles")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
@@ -60,6 +70,26 @@ class TasteProfile
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getSecondName(): ?string
+    {
+        return $this->secondName;
+    }
+
+    public function setSecondName(?string $secondName): void
+    {
+        $this->secondName = $secondName;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
     }
 
     public function getUser(): User
