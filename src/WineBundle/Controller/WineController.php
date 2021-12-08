@@ -13,6 +13,7 @@ use App\WineBundle\Form\WineFilterAndSortForm;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -140,5 +141,13 @@ class WineController extends Controller
         return $this->render('@Wine/wine/single/view.html.twig', [
             'wine' => $wine,
         ]);
+    }
+
+    /**
+     * @Route("/wine/{notfound}", name="winePageNotFound")
+     */
+    public function pageNotFound(): void
+    {
+        throw new NotFoundHttpException('The page has not been found.');
     }
 }
