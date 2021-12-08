@@ -13,7 +13,7 @@
     {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'Red'}) }}
     {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'White'}) }}
     {{ form_widget(form.year) }}
-    {{ form_widget(form.filter) }}
+    {{ form_widget(form.sort) }}
     {{ form_widget(form.show) }}
     {{ form_end(form, {render_rest: false}) }}
     <table class="table table-striped">

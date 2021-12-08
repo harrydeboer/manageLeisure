@@ -46,7 +46,7 @@ class RegisterSecurityTest extends WebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['username'] = 'john@secret.com';
+        $form['email'] = 'john@secret.com';
         $form['password'] = 'secret';
 
         $this->client->submit($form);

@@ -100,4 +100,16 @@ class TasteProfileController extends Controller
 
         return $this->redirectToRoute('wineTasteProfile');
     }
+
+    /**
+     * @Route("/wine/taste-profile/single/{id}", name="wineTasteProfileSingle")
+     */
+    public function single(TasteProfile $tasteProfile): Response
+    {
+        $this->isAuthenticated($tasteProfile->getUser());
+
+        return $this->render('@Wine/tasteProfile/single/view.html.twig', [
+            'tasteProfile' => $tasteProfile,
+        ]);
+    }
 }

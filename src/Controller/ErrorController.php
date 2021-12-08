@@ -12,6 +12,9 @@ class ErrorController extends Controller
 {
     public function show(Throwable $exception, DebugLoggerInterface $logger = null): Response
     {
+        /**
+         * When the exception has a status code the matching status code page is rendered.
+         */
         if (method_exists($exception, 'getStatusCode')) {
             return $this->render('error/' . $exception->getStatusCode() . '.html.twig', [
                 'message' => $exception->getMessage()

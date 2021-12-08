@@ -60,7 +60,7 @@ class WineControllerTest extends AuthWebTestCase
 
         $this->assertResponseRedirects('/wine');
 
-        $this->client->request('GET', '/wine?tasteProfile=&year=&filter=createdAt_DESC&show=');
+        $this->client->request('GET', '/wine?tasteProfile=&year=&sort=createdAt_DESC&show=');
 
         $this->assertResponseIsSuccessful();
 

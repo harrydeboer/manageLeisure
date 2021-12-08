@@ -9,6 +9,10 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * This form is used for the filtering and sorting on the wine homepage.
+ * It extends the filter form because creating and updating has grapes, taste profiles and regions also.
+ */
 class WineFilterAndSortForm extends WineFilterForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -18,7 +22,7 @@ class WineFilterAndSortForm extends WineFilterForm
             'attr' => ['min' => 1000, 'max' => 9999, 'placeholder' => 'year', 'class' => 'form-control'],
             'required' => false,
         ]);
-        $builder->add('filter', ChoiceType::class, [
+        $builder->add('sort', ChoiceType::class, [
             'choices' => [
                 'latest' => 'createdAt_DESC',
                 'oldest' => 'createdAt_ASC' ,

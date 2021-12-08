@@ -163,6 +163,9 @@ class Wine
         $grape->removeWine($this);
     }
 
+    /**
+     * In the view the grapes of a wine are shown as one comma seperated string.
+     */
     public function getGrapeNamesAsString(): string
     {
         $text = '';

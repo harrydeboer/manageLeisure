@@ -15,6 +15,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * This form is extended by create, update and filter/sort forms.
+ */
 class WineFilterForm extends AbstractType
 {
     public function __construct(

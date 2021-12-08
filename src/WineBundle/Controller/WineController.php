@@ -69,6 +69,9 @@ class WineController extends Controller
 
         $formUpdate->handleRequest($request);
 
+        /**
+         * When a wine is updated the uploaded image gets moved to the label directory when not testing.
+         */
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
             $this->wineRepository->update();
             if ($this->kernel->getEnvironment() !== 'test') {
@@ -93,6 +96,10 @@ class WineController extends Controller
         $form = $this->createForm(CreateWineForm::class, $wine);
         $form->handleRequest($request);
 
+        /**
+         * When a wine is created it gets a creation time.
+         * The uploaded image gets moved to the label directory when not testing.
+         */
         if ($form->isSubmitted() && $form->isValid()) {
             $wine->setUser($this->getCurrentUser());
             $wine->setCreatedAt(time());
@@ -119,6 +126,9 @@ class WineController extends Controller
         $form = $this->createForm(DeleteWineForm::class);
         $form->handleRequest($request);
 
+        /**
+         * When the submitted form is valid the wine is deleted along with its label when not testing.
+         */
         if ($form->isSubmitted() && $form->isValid()) {
 
             if ($this->kernel->getEnvironment() !== 'test') {

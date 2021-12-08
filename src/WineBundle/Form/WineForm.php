@@ -11,6 +11,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * This form is extended by create and update wine forms.
+ * It extends the filter form because filtering on the wine homepage has grapes, taste profiles and regions also.
+ */
 class WineForm extends WineFilterForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

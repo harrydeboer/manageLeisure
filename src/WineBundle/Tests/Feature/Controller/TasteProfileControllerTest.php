@@ -32,6 +32,10 @@ class TasteProfileControllerTest extends AuthWebTestCase
 
         $tasteProfile = $tasteProfileRepository->findOneBy(['name' => 'test']);
 
+        $this->client->request('GET', '/wine/taste-profile/single/' . $tasteProfile->getId());
+
+        $this->assertResponseIsSuccessful();
+
         $crawler = $this->client->request('GET', '/wine/taste-profile/edit/' . $tasteProfile->getId());
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
