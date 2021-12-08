@@ -6,6 +6,7 @@ namespace App\WineBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -18,9 +19,11 @@ class TasteProfileForm extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('secondName', TextType::class, [
+                'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
+                'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('submit', SubmitType::class, [

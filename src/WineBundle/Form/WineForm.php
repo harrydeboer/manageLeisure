@@ -27,10 +27,6 @@ class WineForm extends WineFilterForm
             ->add('year', IntegerType::class, [
                 'attr' => ['min' => 1000, 'max' => 9999, 'placeholder' => 'year', 'class' => 'form-control'],
             ])
-            ->add('rating', NumberType::class, [
-                'html5' => true,
-                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0', 'class' => 'form-control'],
-            ])
             ->add('price', NumberType::class, [
                 'html5' => true,
                 'attr' => ['step' => '0.01', 'min' => '0', 'class' => 'form-control'],
@@ -38,6 +34,14 @@ class WineForm extends WineFilterForm
             ->add('description', TextareaType::class, [
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
+            ])
+            ->add('rating', NumberType::class, [
+                'html5' => true,
+                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0', 'class' => 'form-control'],
+            ])
+            ->add('review', TextareaType::class, [
+                'required' => false,
+                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0', 'class' => 'form-control'],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
