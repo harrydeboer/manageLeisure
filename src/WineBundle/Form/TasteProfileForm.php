@@ -17,6 +17,12 @@ class TasteProfileForm extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
+            ->add('secondName', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
+            ->add('description', TextType::class, [
+                'attr' => ['class' => 'form-control'],
+            ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])
