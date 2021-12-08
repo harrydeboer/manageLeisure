@@ -17,9 +17,6 @@ class CountryForm extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('code', TextType::class, [
-                'attr' => ['class' => 'form-control'],
-            ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ])

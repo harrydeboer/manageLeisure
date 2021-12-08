@@ -9,7 +9,6 @@
         {% for country in countries %}
             <tr>
                 <td>{{ country.name }}</td>
-                <td>{{ country.code }}</td>
                 <td><a href="{{ path('countryEdit', {'id': country.id}) }}">edit</a></td>
             </tr>
         {% endfor %}

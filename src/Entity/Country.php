@@ -14,7 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=CountryRepository::class)
  * @ORM\Table(name="country")
- * @UniqueEntity("code")
  * @UniqueEntity("name")
  */
 class Country
@@ -25,12 +24,6 @@ class Country
      * @ORM\Column(type="integer")
      */
     private int $id;
-
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\NotBlank()
-     */
-    private string $code;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -72,16 +65,6 @@ class Country
     public function setName(string $name): void
     {
         $this->name = $name;
-    }
-
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): void
-    {
-        $this->code = $code;
     }
 
     public function setRegions(Collection $regions): void

@@ -21,7 +21,7 @@
 
 LOCK TABLES `country` WRITE;
 /*!40000 ALTER TABLE `country` DISABLE KEYS */;
-INSERT INTO `country` VALUES (1,1,'FR','Frankrijk'),(2,1,'IT','Italië'),(3,1,'ES','Spanje'),(4,1,'PT','Portugal'),(5,1,'ZA','Zuid-Afrika'),(6,1,'US','Verenigde Staten'),(7,1,'DE','Duitsland'),(8,1,'GR','Griekenland'),(9,1,'AR','Argentinië'),(10,1,'CL','Chili');
+INSERT INTO `country` VALUES (1,1,'Frankrijk'),(2,1,'Italië'),(3,1,'Spanje'),(4,1,'Portugal'),(5,1,'Zuid-Afrika'),(6,1,'Verenigde Staten'),(7,1,'Duitsland'),(8,1,'Griekenland'),(9,1,'Argentinië'),(10,1,'Chili');
 /*!40000 ALTER TABLE `country` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

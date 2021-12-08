@@ -13,10 +13,8 @@ class CountryFormTypeTest extends TypeTestCase
     public function testSubmitModel(): void
     {
         $name = 'France';
-        $code = 'FR';
         $formData = [
             'name' => $name,
-            'code' => $code,
         ];
 
         $country = new Country();
@@ -25,7 +23,6 @@ class CountryFormTypeTest extends TypeTestCase
 
         $expected = new Country();
         $expected->setName($name);
-        $expected->setCode($code);
 
         $form->submit($formData);
 

@@ -15,7 +15,6 @@ class CountryRepositoryTest extends AuthKernelTestCase
     {
         $country = new Country();
         $country->setName('France');
-        $country->setCode('FR');
         $country->setUser($this->user);
 
         $countryRepository = static::getContainer()->get(CountryRepositoryInterface::class);
@@ -24,7 +23,6 @@ class CountryRepositoryTest extends AuthKernelTestCase
         $this->assertSame($country, $countryRepository->find($country->getId()));
 
         $country->setName('Italy');
-        $country->setCode('IT');
 
         $countryRepository->update();
 

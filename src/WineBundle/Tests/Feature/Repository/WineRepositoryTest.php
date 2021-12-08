@@ -16,8 +16,6 @@ use Error;
 class WineRepositoryTest extends AuthKernelTestCase
 {
     private Wine $wine;
-    private CountryRepositoryInterface $countryRepository;
-    private RegionRepositoryInterface $regionRepository;
     private WineRepositoryInterface $wineRepository;
 
     public function setUp(): void
@@ -27,7 +25,6 @@ class WineRepositoryTest extends AuthKernelTestCase
         $country = new Country();
         $country->setUser($this->user);
         $country->setName('France');
-        $country->setCode('FR');
 
         $countryRepository = static::getContainer()->get(CountryRepositoryInterface::class);
         $countryRepository->create($country);

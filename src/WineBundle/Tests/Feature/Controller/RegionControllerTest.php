@@ -23,7 +23,6 @@ class RegionControllerTest extends AuthWebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['country_form[name]'] = 'France';
-        $form['country_form[code]'] = 'FR';
 
         $this->client->submit($form);
 
