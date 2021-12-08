@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 use Throwable;
 
-class ErrorController extends Controller
+class ErrorController extends AbstractController
 {
     public function show(Throwable $exception, DebugLoggerInterface $logger = null): Response
     {
