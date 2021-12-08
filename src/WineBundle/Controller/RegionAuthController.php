@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Controller;
 
-use App\Controller\Controller;
+use App\Controller\AuthController;
 use App\WineBundle\Entity\Region;
 use App\WineBundle\Form\DeleteRegionForm;
 use App\WineBundle\Form\RegionForm;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class RegionController extends Controller
+class RegionAuthController extends AuthController
 {
     public function __construct(
         private RegionRepositoryInterface $regionRepository,

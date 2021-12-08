@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Controller;
 
-use App\Controller\Controller;
+use App\Controller\AuthController;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Form\DeleteTasteProfileForm;
 use App\WineBundle\Form\TasteProfileForm;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TasteProfileController extends Controller
+class TasteProfileAuthController extends AuthController
 {
     public function __construct(
         private TasteProfileRepositoryInterface $tasteProfileRepository,

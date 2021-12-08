@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Controller;
 
-use App\Controller\Controller;
+use App\Controller\AuthController;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Form\CreateWineForm;
 use App\WineBundle\Form\DeleteWineForm;
@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class WineController extends Controller
+class WineAuthController extends AuthController
 {
     public function __construct(
         private KernelInterface $kernel,

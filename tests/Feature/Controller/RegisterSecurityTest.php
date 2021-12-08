@@ -4,25 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Feature\Controller;
 
-use App\Tests\Feature\MigrationsTrait;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\AbstractBrowser;
+use App\Tests\Feature\WebTestCase;
 
 class RegisterSecurityTest extends WebTestCase
 {
-    use MigrationsTrait;
-
-    protected AbstractBrowser $client;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = static::createClient();
-
-        $this->migrateDb();
-    }
-
     public function testRegisterLoginLogout(): void
     {
         $crawler = $this->client->request('GET', '/register');
@@ -56,12 +41,5 @@ class RegisterSecurityTest extends WebTestCase
         $this->client->request('GET', '/logout');
 
         $this->assertResponseRedirects();
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-
-        $this->dropAndCreateDb();
     }
 }

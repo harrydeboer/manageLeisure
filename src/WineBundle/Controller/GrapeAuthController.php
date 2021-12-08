@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Controller;
 
-use App\Controller\Controller;
+use App\Controller\AuthController;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Form\DeleteGrapeForm;
 use App\WineBundle\Form\GrapeForm;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GrapeController extends Controller
+class GrapeAuthController extends AuthController
 {
     public function __construct(
         private GrapeRepositoryInterface $grapeRepository,

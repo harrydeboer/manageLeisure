@@ -31,7 +31,8 @@ class ImportCommand extends Command
                 $this->em->getConnection()->executeQuery(file_get_contents($sqlFilesPath . '/' . $file));
             }
         }
-        echo 'SQL files loaded.' . PHP_EOL;
+
+        $output->writeln('SQL files loaded.');
 
         $files = scandir($labelsPath);
         foreach($files as $file) {
@@ -39,7 +40,7 @@ class ImportCommand extends Command
                 copy($labelsPath . '/' . $file, $publicLabelsPath . '/' . $file);
             }
         }
-        echo 'Labels moved to public/img/labels.' . PHP_EOL;
+        $output->writeln('Labels moved to public/img/labels.');
 
         return Command::SUCCESS;
     }
