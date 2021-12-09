@@ -113,7 +113,7 @@ class CountryController extends AuthController
 
         $country = $this->countryRepository->find($id);
         $this->isAuthenticated($country->getUser());
-        
+
         return $this->render('country/getRegions.html.twig', [
             'regions' => $country->getRegions(),
         ]);
