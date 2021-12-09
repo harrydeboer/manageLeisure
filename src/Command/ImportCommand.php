@@ -8,14 +8,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 class ImportCommand extends Command
 {
     protected static $defaultName = 'app:import';
 
     public function __construct(
-            private EntityManagerInterface $em,
-            string $name = null,
+        private KernelInterface $kernel,
+        private EntityManagerInterface $em,
+        string $name = null,
     )
     {
         parent::__construct($name);
@@ -36,13 +38,16 @@ class ImportCommand extends Command
 
         $output->writeln('SQL files loaded.');
 
-        $files = scandir($labelsPath);
-        foreach($files as $file) {
-            if ($file !== '.' && $file !== '..') {
-                copy($labelsPath . '/' . $file, $publicLabelsPath . '/' . $file);
+        if ($this->kernel->getEnvironment() !== 'test') {
+
+            $files = scandir($labelsPath);
+            foreach ($files as $file) {
+                if ($file !== '.' && $file !== '..') {
+                    copy($labelsPath . '/' . $file, $publicLabelsPath . '/' . $file);
+                }
             }
+            $output->writeln('Labels moved to public/img/labels.');
         }
-        $output->writeln('Labels moved to public/img/labels.');
 
         return Command::SUCCESS;
     }

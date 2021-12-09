@@ -23,6 +23,5 @@ class ImportCommandTest extends KernelTestCase
 
         $output = $commandTester->getDisplay();
         $this->assertStringContainsString('SQL files loaded.', $output);
-        $this->assertStringContainsString('Labels moved to public/img/labels.', $output);
     }
 }
