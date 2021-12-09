@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\WineBundle\Repository;
 
 use App\WineBundle\Entity\Region;
