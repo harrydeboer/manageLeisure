@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TasteProfileAuthController extends AuthController
+class TasteProfileController extends AuthController
 {
     public function __construct(
         private TasteProfileRepositoryInterface $tasteProfileRepository,

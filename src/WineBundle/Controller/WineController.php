@@ -18,7 +18,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class WineAuthController extends AuthController
+class WineController extends AuthController
 {
     public function __construct(
         private KernelInterface $kernel,

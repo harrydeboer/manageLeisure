@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CountryAuthController extends AuthController
+class CountryController extends AuthController
 {
     public function __construct(
         private CountryRepositoryInterface $countryRepository,

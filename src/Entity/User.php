@@ -58,16 +58,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Grape", mappedBy="user")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private Collection $grapes;
 
     /**
      * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="user")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private Collection $regions;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Country", mappedBy="user")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private Collection $countries;
 

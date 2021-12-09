@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class RegionAuthController extends AuthController
+class RegionController extends AuthController
 {
     public function __construct(
         private RegionRepositoryInterface $regionRepository,
