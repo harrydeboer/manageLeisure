@@ -45,6 +45,7 @@ class WineRepositoryTest extends AuthKernelTestCase
         $wine->setRating(8);
         $wine->setYear(2000);
         $wine->setLabelExtension('png');
+        $wine->setCountry($country);
         $wine->setRegion($region);
 
         $this->wine = $wine;

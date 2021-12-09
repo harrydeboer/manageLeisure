@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\WineBundle\Form;
 
 use App\Entity\User;
-use App\WineBundle\Entity\Region;
+use App\Repository\CountryRepositoryInterface;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Entity\Grape;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -22,6 +23,7 @@ class WineFilterType extends AbstractType
 {
     public function __construct(
         private TokenStorageInterface $token,
+        protected CountryRepositoryInterface $countryRepository,
     ) {
     }
 
@@ -48,22 +50,21 @@ class WineFilterType extends AbstractType
                 },
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
-            ])
-            ->add('region', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $user->getRegions()->toArray()),
-                'choice_value' => 'id',
-                'choice_label' => function(?Region $region) {
-                    return $region ? $region->getName() : 'select region';
-                },
-                'attr' => ['class' => 'form-control'],
             ]);
     }
 
     /**
      * @return User
      */
-    private function getCurrentUser(): UserInterface
+    protected function getCurrentUser(): UserInterface
     {
         return $this->token->getToken()->getUser();
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'country' => null,
+        ]);
     }
 }

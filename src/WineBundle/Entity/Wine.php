@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Entity;
 
+use App\Entity\Country;
 use App\Entity\User;
 use App\WineBundle\Repository\WineRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -97,6 +98,12 @@ class Wine
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=false)
      */
     private Region $region;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="wines")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
+     */
+    private Country $country;
 
     public function __construct()
     {
@@ -308,5 +315,15 @@ class Wine
     public function setRegion(Region $region): void
     {
         $this->region = $region;
+    }
+
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(Country $country): void
+    {
+        $this->country = $country;
     }
 }

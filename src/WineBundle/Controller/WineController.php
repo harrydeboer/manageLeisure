@@ -35,6 +35,7 @@ class WineController extends AuthController
         $form = $this->container->get('form.factory')->createNamed('', WineFilterAndSortType::class, null, [
             'method' => 'GET',
             'csrf_protection' => false,
+            'country' => $request->get('country'),
         ]);
 
         $form->handleRequest($request);
@@ -60,6 +61,7 @@ class WineController extends AuthController
 
         $formUpdate = $this->createForm(UpdateWineType::class, $wine, [
             'method' => 'POST',
+            'country' => $wine->getCountry()->getId(),
         ]);
 
         $formDelete = $this->createForm(DeleteWineType::class, $wine, [
@@ -93,7 +95,9 @@ class WineController extends AuthController
     public function new(Request $request): Response
     {
         $wine = new Wine();
-        $form = $this->createForm(CreateWineType::class, $wine);
+        $form = $this->createForm(CreateWineType::class, $wine, [
+            'country' => null,
+        ]);
         $form->handleRequest($request);
 
         /**

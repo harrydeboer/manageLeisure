@@ -17,3 +17,10 @@ $('#delete-region').on('click', function() {
 $('.dropdown-menu').on('click', function (event) {
     event.stopPropagation();
 });
+
+$('#country, #update_wine_country, #create_wine_country').on('change', function(event) {
+    id = $(this).val();
+    $.get('/country/get-regions/' + id, '', function (data) {
+        $('#region, #update_wine_region, #create_wine_region').html(data);
+    });
+});

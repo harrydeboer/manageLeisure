@@ -72,6 +72,14 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
                 $qb->andWhere('w.year = ' . $formData['year']);
             }
 
+            if (!is_null($formData['country'])) {
+                $qb->andWhere('w.country = ' . $formData['country']->getId());
+            }
+
+            if (!is_null($formData['region'])) {
+                $qb->andWhere('w.region = ' . $formData['region']->getId());
+            }
+
             if (!is_null($formData['tasteProfile'])) {
                 $qb->andWhere('w.tasteProfile = ' . $formData['tasteProfile']->getId());
             }

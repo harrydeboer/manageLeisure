@@ -45,6 +45,11 @@ class Country
      */
     private Collection $regions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="country", orphanRemoval=true)
+     */
+    private Collection $wines;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -88,5 +93,15 @@ class Country
     public function setUser(User $user): void
     {
         $this->user = $user;
+    }
+
+    public function getWines(): Collection
+    {
+        return $this->wines;
+    }
+
+    public function setWines(Collection $wines): void
+    {
+        $this->wines = $wines;
     }
 }

@@ -32,6 +32,10 @@ class CountryControllerTest extends AuthWebTestCase
 
         $country = $countryRepository->findOneBy(['name' => 'France']);
 
+        $this->client->request('GET', '/country/get-regions/' . $country->getId());
+
+        $this->assertResponseIsSuccessful();
+
         $crawler = $this->client->request('GET', '/country/edit/' . $country->getId());
 
         $buttonCrawlerNode = $crawler->selectButton('Update');

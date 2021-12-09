@@ -99,4 +99,21 @@ class CountryController extends AuthController
 
         return $this->redirectToRoute('country');
     }
+
+    /**
+     * @Route("/country/get-regions/{id}", name="wineGetRegions")
+     */
+    public function getRegions(int $id = null): Response
+    {
+        if (is_null($id)) {
+            return $this->render('country/getRegions.html.twig', [
+                'regions' => [],
+            ]);
+        }
+
+        $country = $this->countryRepository->find($id);
+        return $this->render('country/getRegions.html.twig', [
+            'regions' => $country->getRegions(),
+        ]);
+    }
 }
