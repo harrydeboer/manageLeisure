@@ -35,7 +35,7 @@ class Wine
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $imageExtension;
+    private string $labelExtension;
 
     /**
      * @ORM\Column(type="integer")
@@ -123,14 +123,14 @@ class Wine
         $this->name = $name;
     }
 
-    public function getImageExtension(): string
+    public function getLabelExtension(): string
     {
-        return $this->imageExtension;
+        return $this->labelExtension;
     }
 
-    public function setImageExtension(string $imageExtension): void
+    public function setLabelExtension(string $labelExtension): void
     {
-        $this->imageExtension = $imageExtension;
+        $this->labelExtension = $labelExtension;
     }
 
     public function getGrapes(): Collection
@@ -255,17 +255,17 @@ class Wine
         $this->createdAt = $createdAt;
     }
 
-    public function getImage(): UploadedFile
+    public function getLabel(): UploadedFile
     {
         $idString = (string) $this->getId();
         return new UploadedFile($this->getProjectDir() . '/public/' .
-            $this->getLabel(), $idString . '.' . $this->getImageExtension());
+            $this->getLabelPath(), $idString . '.' . $this->getLabelExtension());
     }
 
-    public function setImage(?UploadedFile $image)
+    public function setLabel(?UploadedFile $label)
     {
-        if (!is_null($image)) {
-            $this->setImageExtension($image->getClientOriginalExtension());
+        if (!is_null($label)) {
+            $this->setLabelExtension($label->getClientOriginalExtension());
         }
     }
 
@@ -274,30 +274,30 @@ class Wine
         return dirname(__DIR__, 3);
     }
 
-    public function moveImage(?UploadedFile $image)
+    public function moveLabel(?UploadedFile $label)
     {
-        if (!is_null($image)) {
+        if (!is_null($label)) {
             $id = (string) $this->getId();
-            if (!str_starts_with($image->getMimeType(), 'image/')) {
+            if (!str_starts_with($label->getMimeType(), 'image/')) {
                 throw new ValidatorException('The file is not an image.');
             }
-            $image->move(
+            $label->move(
                 $this->getProjectDir() . '/public/img/labels/',
-                $id . '.' . $image->getClientOriginalExtension()
+                $id . '.' . $label->getClientOriginalExtension()
             );
         }
     }
 
-    public function getLabel(): string
+    public function getLabelPath(): string
     {
         $idString = (string) $this->getId();
 
-        return 'img/labels/' . $idString . '.' . $this->getImageExtension();
+        return 'img/labels/' . $idString . '.' . $this->getLabelExtension();
     }
 
-    public function unlinkImage()
+    public function unlinkLabel()
     {
-        unlink($this->getProjectDir() . '/public/' . $this->getLabel());
+        unlink($this->getProjectDir() . '/public/' . $this->getLabelPath());
     }
 
     public function getRegion(): Region

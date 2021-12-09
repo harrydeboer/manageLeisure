@@ -48,7 +48,7 @@ class WineControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['create_wine_form[image]'] = new File(dirname(__DIR__) . '/test.png');
+        $form['create_wine_form[label]'] = new File(dirname(__DIR__) . '/test.png');
         $form['create_wine_form[name]'] = 'test';
         $form['create_wine_form[year]'] = 2000;
         $form['create_wine_form[rating]'] = 7;

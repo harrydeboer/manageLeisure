@@ -44,7 +44,7 @@ class WineRepositoryTest extends AuthKernelTestCase
         $wine->setPrice(10);
         $wine->setRating(8);
         $wine->setYear(2000);
-        $wine->setImageExtension('png');
+        $wine->setLabelExtension('png');
         $wine->setRegion($region);
 
         $this->wine = $wine;
@@ -71,12 +71,8 @@ class WineRepositoryTest extends AuthKernelTestCase
         $this->wineRepository->find($this->wine->getId());
     }
 
-    public function testFindLatest()
+    public function findBySortAndFilter()
     {
-        $this->wineRepository->create($this->wine);
-
-        $wines = $this->wineRepository->findLatest($this->user, 1)->getResults();
-
-        $this->assertSame($this->wine, $wines->current());
+        $this->assertEquals(1, count($this->wineRepository->findBySortAndFilter($this->user, 1)));
     }
 }

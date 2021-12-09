@@ -44,18 +44,6 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
     }
 
     /**
-     * The wine homepage shows all wines of the user sorted no creation time.
-     */
-    public function findLatest(User $user, int $page): Paginator
-    {
-        $qb = $this->createQueryBuilder('w')
-            ->where('w.user = ' . $user->getId())
-            ->orderBy('w.createdAt', 'DESC');
-
-        return (new Paginator($qb))->paginate($page);
-    }
-
-    /**
      * The wine homepage has a filtering and sorting of wines.
      * The filtering is on the current user, grapes, year, taste profile.
      * The sorting is on rating, price and creation time.

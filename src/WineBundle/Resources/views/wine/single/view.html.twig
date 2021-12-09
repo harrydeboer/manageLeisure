@@ -4,7 +4,7 @@
 
 {% block body %}
     <table class="table">
-        <tr><td colspan="2"><img src="{{ asset(wine.label) }}" id="wineLabel" alt="wine"></td></tr>
+        <tr><td colspan="2"><img src="{{ asset(wine.labelPath) }}" id="wineLabel" alt="wine"></td></tr>
         <tr><td>Name</td><td>{{ wine.name }}</td></tr>
         <tr><td>Year</td><td>{{ wine.year }}</td></tr>
         <tr><td>Country</td><td>{{ wine.region.country.name }}</td></tr>

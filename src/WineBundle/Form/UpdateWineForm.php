@@ -11,7 +11,7 @@ class UpdateWineForm extends WineForm
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('image', FileType::class, [
+        $builder->add('label', FileType::class, [
             'attr' => [
                 'accept' => 'image/*',
                 'class' => 'form-control'

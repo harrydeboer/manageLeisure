@@ -75,7 +75,7 @@ class WineController extends AuthController
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
             $this->wineRepository->update();
             if ($this->kernel->getEnvironment() !== 'test') {
-                $wine->moveImage($formUpdate->get('image')->getData());
+                $wine->moveLabel($formUpdate->get('label')->getData());
             }
 
             return $this->redirectToRoute('wineHomepage');
@@ -105,7 +105,7 @@ class WineController extends AuthController
             $wine->setCreatedAt(time());
             $this->wineRepository->create($wine);
             if ($this->kernel->getEnvironment() !== 'test') {
-                $wine->moveImage($form->get('image')->getData());
+                $wine->moveLabel($form->get('label')->getData());
             }
 
             return $this->redirectToRoute('wineHomepage');
@@ -132,7 +132,7 @@ class WineController extends AuthController
         if ($form->isSubmitted() && $form->isValid()) {
 
             if ($this->kernel->getEnvironment() !== 'test') {
-                $wine->unlinkImage();
+                $wine->unlinkLabel();
             }
 
             $this->wineRepository->delete($wine);

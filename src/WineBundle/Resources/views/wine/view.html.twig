@@ -19,7 +19,7 @@
     <table class="table table-striped">
         {% for wine in paginator.results %}
             <tr>
-                <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.label) }}" alt="label" class="wineLabel"></td>
+                <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.labelPath) }}" alt="label" class="wineLabel"></td>
                 <td><a href="{{ path('wineSingle', {'id': wine.id}) }}">{{ wine.name }}</a></td>
                 <td class="d-none d-md-table-cell">{{ wine.grapeNamesAsString }}</td>
                 <td class="d-none d-sm-table-cell">{{ wine.tasteProfile ? wine.tasteProfile.name : '' }}</td>
