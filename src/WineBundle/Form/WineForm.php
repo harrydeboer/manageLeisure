@@ -33,7 +33,7 @@ class WineForm extends WineFilterForm
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control', 'rows' => 5],
             ])
             ->add('rating', NumberType::class, [
                 'html5' => true,
@@ -41,7 +41,7 @@ class WineForm extends WineFilterForm
             ])
             ->add('review', TextareaType::class, [
                 'required' => false,
-                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0', 'class' => 'form-control'],
+                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0', 'class' => 'form-control', 'rows' => 5],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],

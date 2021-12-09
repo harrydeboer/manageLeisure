@@ -3,21 +3,26 @@
 {% block title %}Wine{% endblock %}
 
 {% block body %}
-    <table class="table">
-        <tr><td colspan="2"><img src="{{ asset(wine.labelPath) }}" id="wineLabel" alt="wine"></td></tr>
-        <tr><td>Name</td><td>{{ wine.name }}</td></tr>
-        <tr><td>Year</td><td>{{ wine.year }}</td></tr>
-        <tr><td>Country</td><td>{{ wine.region.country.name }}</td></tr>
-        <tr><td>Region</td><td>{{ wine.region.name }}</td></tr>
-        <tr><td>Created at</td><td>{{ date(wine.createdAt).format('d-m-Y') }}</td></tr>
-        <tr><td>Grape(s)</td><td>{{ wine.grapeNamesAsString }}</td></tr>
-        <tr><td>Taste profile</td><td>{{ wine.tasteProfile ? wine.tasteProfile.name : '' }}</td></tr>
-        <tr><td>Price</td><td>€ {{ wine.price }}</td></tr>
-        <tr><td>Description</td><td>{{ wine.description }}</td></tr>
-        <tr><td>Rating</td>
-            <td><span class="nowrap">{{ wine.rating|number_format(1) }} <i class="fas fa-star"></i></span></td>
-        </tr>
-        <tr><td>Review</td><td>{{ wine.review }}</td></tr>
-        <tr><td colspan="2"><a href="{{ path('wineEdit', {'id': wine.id}) }}">edit</a></td></tr>
-    </table>
+    <div class="row">
+        <div class="col-sm"><img src="{{ asset(wine.labelPath) }}" id="wineLabel" alt="wine"></div>
+        <div class="col-sm">
+            <table class="table">
+                <tr><td colspan="2"></td></tr>
+                <tr><td>Name</td><td>{{ wine.name }}</td></tr>
+                <tr><td>Year</td><td>{{ wine.year }}</td></tr>
+                <tr><td>Country</td><td>{{ wine.region.country.name }}</td></tr>
+                <tr><td>Region</td><td>{{ wine.region.name }}</td></tr>
+                <tr><td>Created at</td><td>{{ date(wine.createdAt).format('d-m-Y') }}</td></tr>
+                <tr><td>Grape(s)</td><td>{{ wine.grapeNamesAsString }}</td></tr>
+                <tr><td>Taste profile</td><td>{{ wine.tasteProfile ? wine.tasteProfile.name : '' }}</td></tr>
+                <tr><td>Price</td><td>€ {{ wine.price }}</td></tr>
+                <tr><td>Description</td><td>{{ wine.description }}</td></tr>
+                <tr><td>Rating</td>
+                    <td><span class="nowrap">{{ wine.rating|number_format(1) }} <i class="fas fa-star"></i></span></td>
+                </tr>
+                <tr><td>Review</td><td>{{ wine.review }}</td></tr>
+                <tr><td colspan="2"><a href="{{ path('wineEdit', {'id': wine.id}) }}">edit</a></td></tr>
+            </table>
+        </div>
+    </div>
 {% endblock %}

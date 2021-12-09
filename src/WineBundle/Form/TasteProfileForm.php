@@ -24,7 +24,7 @@ class TasteProfileForm extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control', 'rows' => 20],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
