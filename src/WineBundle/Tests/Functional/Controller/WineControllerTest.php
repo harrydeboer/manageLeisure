@@ -11,49 +11,67 @@ use App\WineBundle\Entity\Region;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\RegionRepositoryInterface;
 use App\WineBundle\Repository\WineRepositoryInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 class WineControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $country = new Country();
-        $country->setUser($this->user);
-        $country->setName('France');
+        $this->client->request('GET', '/country');
 
-        $countryRepository = static::getContainer()->get(CountryRepositoryInterface::class);
-        $countryRepository->create($country);
+        $crawler = $this->client->request('GET', '/country/create');
 
-        $region = new Region();
-        $region->setUser($this->user);
-        $region->setCountry($country);
-        $region->setName('Bordeaux');
+        $buttonCrawlerNode = $crawler->selectButton('Create');
 
-        $regionRepository = static::getContainer()->get(RegionRepositoryInterface::class);
-        $regionRepository->create($region);
+        $form = $buttonCrawlerNode->form();
+
+        $form['country[name]'] = 'France';
+
+        $this->client->submit($form);
+
+        $this->client->request('GET', '/wine/region');
+
+        $crawler = $this->client->request('GET', '/wine/region/create');
+
+        $buttonCrawlerNode = $crawler->selectButton('Create');
+
+        $form = $buttonCrawlerNode->form();
+
+        $form['region[name]'] = 'Bordeaux';
+        $form['region[country]'] = 1;
+
+        $this->client->submit($form);
 
         $this->client->request('GET', '/wine');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('nav', 'Home');
 
-        $wine = new Wine();
-        $wine->setUser($this->user);
-        $wine->setName('test');
-        $wine->setCreatedAt(time());
-        $wine->setPrice(10);
-        $wine->setRating(8);
-        $wine->setYear(2000);
-        $wine->setLabelExtension('png');
-        $wine->setCountry($country);
-        $wine->setRegion($region);
+        $crawler = $this->client->request('GET', '/wine/create');
 
-        $wineRepository = $this->getContainer()->get(WineRepositoryInterface::class);
+        $buttonCrawlerNode = $crawler->selectButton('Create');
 
-        $wineRepository->create($wine);
+        $form = $buttonCrawlerNode->form();
+
+        $form['wine[label]'] = new File(dirname(__DIR__) . '/test.png');
+        $form['wine[name]'] = 'test';
+        $form['wine[year]'] = 2000;
+        $form['wine[rating]'] = 7;
+        $form['wine[price]'] = 10;
+        $form['wine[country]'] = '1';
+
+        $values = $form->getPhpValues();
+        $values['wine']['region'] = '1';
+
+        $this->client->request('POST', '/wine/create', $values, $form->getPhpFiles());
+
+        $this->assertResponseRedirects('/wine');
 
         $this->client->request('GET', '/wine?tasteProfile=&year=&sort=createdAt_DESC&show=');
 
         $this->assertResponseIsSuccessful();
+
+        $wineRepository = $this->getContainer()->get(WineRepositoryInterface::class);
 
         $wine = $wineRepository->findOneBy(['name' => 'test']);
 
