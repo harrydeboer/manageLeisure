@@ -3,6 +3,7 @@
         {{ redOrWhite }} grapes
     </button>
     <table class="dropdown-menu" aria-labelledby="dropdown{{ redOrWhite }}Grapes">
+        {# Get the Grape entity from the grapes choices and get its type which must match the variable redOrWhite. #}
         {% for item in grapes|filter((item, key) => grapes.vars.choices[key].data.type == redOrWhite|lower ) %}
             <tr><td>{{ form_widget(item) }}</td><td>{{ form_label(item) }}</td></tr>
         {% endfor %}
