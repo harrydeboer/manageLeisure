@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Form;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Form\RegistrationForm;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Validator\Validation;
 
-class RegistrationFormTypeTest extends TypeTestCase
+class RegistrationFormTest extends TypeTestCase
 {
     public function testSubmitModel(): void
     {
@@ -25,7 +25,7 @@ class RegistrationFormTypeTest extends TypeTestCase
         $user = new User();
 
         // $model will retrieve data from the form submission; pass it as the second argument
-        $form = $this->factory->create(RegistrationFormType::class, $user);
+        $form = $this->factory->create(RegistrationForm::class, $user);
 
         $expected = new User();
         $expected->setName($name);

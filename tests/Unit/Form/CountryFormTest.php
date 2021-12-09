@@ -8,7 +8,7 @@ use App\Entity\Country;
 use App\Form\CountryForm;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class CountryFormTypeTest extends TypeTestCase
+class CountryFormTest extends TypeTestCase
 {
     public function testSubmitModel(): void
     {

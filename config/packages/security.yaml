@@ -34,3 +34,4 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/wine, roles: ROLE_USER }
         - { path: ^/country, roles: ROLE_USER }
+        - { path: ^/change-password, roles: ROLE_USER }
