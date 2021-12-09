@@ -18,9 +18,9 @@
     </php>
 
     <testsuites>
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
-            <directory>src/WineBundle/Tests/Feature</directory>
+        <testsuite name="Functional">
+            <directory>tests/Functional</directory>
+            <directory>src/WineBundle/Tests/Functional</directory>
         </testsuite>
     </testsuites>
 

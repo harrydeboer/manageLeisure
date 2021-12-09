@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Feature\Controller;
+namespace App\Tests\Functional\Controller;
 
 use App\Repository\CountryRepositoryInterface;
-use App\Tests\Feature\AuthWebTestCase;
+use App\Tests\Functional\AuthWebTestCase;
 
 class CountryControllerTest extends AuthWebTestCase
 {

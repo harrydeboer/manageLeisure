@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Feature;
+namespace App\Tests\Functional;
 
 class KernelTestCase extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
 {

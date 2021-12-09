@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Feature\Command;
+namespace App\Tests\Functional\Command;
 
-use App\Tests\Feature\KernelTestCase;
+use App\Tests\Functional\KernelTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 

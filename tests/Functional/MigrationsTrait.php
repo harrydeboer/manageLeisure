@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Feature;
+namespace App\Tests\Functional;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\EntityManager;

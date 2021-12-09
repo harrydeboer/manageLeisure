@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Tests\Feature\Form;
+namespace App\WineBundle\Tests\Functional\Form;
 
-use App\Tests\Feature\AuthWebTestCase;
+use App\Tests\Functional\AuthWebTestCase;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Form\WineForm;
 

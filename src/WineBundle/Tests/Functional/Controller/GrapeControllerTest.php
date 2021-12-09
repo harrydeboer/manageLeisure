@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Tests\Feature\Controller;
+namespace App\WineBundle\Tests\Functional\Controller;
 
-use App\Tests\Feature\AuthWebTestCase;
+use App\Tests\Functional\AuthWebTestCase;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 
 class GrapeControllerTest extends AuthWebTestCase

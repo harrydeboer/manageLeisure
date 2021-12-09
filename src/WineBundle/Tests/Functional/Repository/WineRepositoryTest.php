@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Tests\Feature\Repository;
+namespace App\WineBundle\Tests\Functional\Repository;
 
 use App\Entity\Country;
 use App\Repository\CountryRepositoryInterface;
-use App\Tests\Feature\AuthKernelTestCase;
+use App\Tests\Functional\AuthKernelTestCase;
 use App\WineBundle\Entity\Region;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\RegionRepositoryInterface;

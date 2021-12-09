@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Tests\Feature\Repository;
+namespace App\WineBundle\Tests\Functional\Repository;
 
-use App\Tests\Feature\AuthKernelTestCase;
+use App\Tests\Functional\AuthKernelTestCase;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 use Error;

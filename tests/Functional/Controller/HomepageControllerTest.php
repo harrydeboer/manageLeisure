@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Feature\Controller;
+namespace App\Tests\Functional\Controller;
 
-use App\Tests\Feature\WebTestCase;
+use App\Tests\Functional\WebTestCase;
 
 class HomepageControllerTest extends WebTestCase
 {

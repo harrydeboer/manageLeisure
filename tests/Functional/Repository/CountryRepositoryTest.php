@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Feature\Repository;
+namespace App\Tests\Functional\Repository;
 
 use App\Entity\Country;
 use App\Repository\CountryRepositoryInterface;
-use App\Tests\Feature\AuthKernelTestCase;
-use Error;
+use App\Tests\Functional\AuthKernelTestCase;
 
 class CountryRepositoryTest extends AuthKernelTestCase
 {
