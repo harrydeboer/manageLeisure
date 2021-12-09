@@ -6,8 +6,8 @@ namespace App\WineBundle\Controller;
 
 use App\Controller\AuthController;
 use App\WineBundle\Entity\Region;
-use App\WineBundle\Form\DeleteRegionForm;
-use App\WineBundle\Form\RegionForm;
+use App\WineBundle\Form\DeleteRegionType;
+use App\WineBundle\Form\RegionType;
 use App\WineBundle\Repository\RegionRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +40,11 @@ class RegionController extends AuthController
     {
         $this->isAuthenticated($region->getUser());
 
-        $formUpdate = $this->createForm(RegionForm::class, $region, [
+        $formUpdate = $this->createForm(RegionType::class, $region, [
             'method' => 'POST',
         ]);
 
-        $formDelete = $this->createForm(DeleteRegionForm::class, $region, [
+        $formDelete = $this->createForm(DeleteRegionType::class, $region, [
             'action' => $this->generateUrl('wineRegionDelete', ['id' => $region->getId()]),
             'method' => 'POST',
         ]);
@@ -69,7 +69,7 @@ class RegionController extends AuthController
     public function new(Request $request): Response
     {
         $region = new Region();
-        $form = $this->createForm(RegionForm::class, $region);
+        $form = $this->createForm(RegionType::class, $region);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,7 +91,7 @@ class RegionController extends AuthController
     {
         $this->isAuthenticated($region->getUser());
 
-        $form = $this->createForm(DeleteRegionForm::class);
+        $form = $this->createForm(DeleteRegionType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

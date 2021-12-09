@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Form;
 
 use App\Entity\Country;
-use App\Form\CountryForm;
+use App\Form\CountryType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class CountryFormTest extends TypeTestCase
+class CountryTypeTest extends TypeTestCase
 {
     public function testSubmitModel(): void
     {
@@ -19,7 +19,7 @@ class CountryFormTest extends TypeTestCase
 
         $country = new Country();
 
-        $form = $this->factory->create(CountryForm::class, $country);
+        $form = $this->factory->create(CountryType::class, $country);
 
         $expected = new Country();
         $expected->setName($name);

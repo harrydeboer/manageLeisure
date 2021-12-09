@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\WineBundle\Tests\Unit\Form;
 
 use App\WineBundle\Entity\Grape;
-use App\WineBundle\Form\GrapeForm;
+use App\WineBundle\Form\GrapeType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class GrapeFormTest extends TypeTestCase
+class GrapeTypeTest extends TypeTestCase
 {
     public function testSubmitModel()
     {
@@ -21,7 +21,7 @@ class GrapeFormTest extends TypeTestCase
 
         $grape = new Grape();
 
-        $form = $this->factory->create(GrapeForm::class, $grape);
+        $form = $this->factory->create(GrapeType::class, $grape);
 
         $expected = new Grape();
         $expected->setName($name);

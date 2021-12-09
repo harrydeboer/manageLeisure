@@ -6,8 +6,8 @@ namespace App\WineBundle\Controller;
 
 use App\Controller\AuthController;
 use App\WineBundle\Entity\Grape;
-use App\WineBundle\Form\DeleteGrapeForm;
-use App\WineBundle\Form\GrapeForm;
+use App\WineBundle\Form\DeleteGrapeType;
+use App\WineBundle\Form\GrapeType;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +40,11 @@ class GrapeController extends AuthController
     {
         $this->isAuthenticated($grape->getUser());
 
-        $formUpdate = $this->createForm(GrapeForm::class, $grape, [
+        $formUpdate = $this->createForm(GrapeType::class, $grape, [
             'method' => 'POST',
         ]);
 
-        $formDelete = $this->createForm(DeleteGrapeForm::class, $grape, [
+        $formDelete = $this->createForm(DeleteGrapeType::class, $grape, [
             'action' => $this->generateUrl('wineGrapeDelete', ['id' => $grape->getId()]),
             'method' => 'POST',
         ]);
@@ -69,7 +69,7 @@ class GrapeController extends AuthController
     public function new(Request $request): Response
     {
         $grape = new Grape();
-        $form = $this->createForm(GrapeForm::class, $grape);
+        $form = $this->createForm(GrapeType::class, $grape);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,7 +92,7 @@ class GrapeController extends AuthController
     {
         $this->isAuthenticated($grape->getUser());
 
-        $form = $this->createForm(DeleteGrapeForm::class);
+        $form = $this->createForm(DeleteGrapeType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Form;
 
 use App\Entity\User;
-use App\Form\ChangePasswordForm;
+use App\Form\ChangePasswordType;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Validator\Validation;
 
-class ChangePasswordFormTest extends TypeTestCase
+class ChangePasswordTypeTest extends TypeTestCase
 {
     public function testSubmitModel(): void
     {
@@ -19,7 +19,7 @@ class ChangePasswordFormTest extends TypeTestCase
             'plainPassword' => $newPassword,
         ];
 
-        $form = $this->factory->create(ChangePasswordForm::class);
+        $form = $this->factory->create(ChangePasswordType::class);
 
         $form->submit($formData);
 

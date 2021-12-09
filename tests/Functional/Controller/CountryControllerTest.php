@@ -22,7 +22,7 @@ class CountryControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['country_form[name]'] = 'France';
+        $form['country[name]'] = 'France';
 
         $this->client->submit($form);
 
@@ -38,7 +38,7 @@ class CountryControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['country_form[name]'] = 'Italy';
+        $form['country[name]'] = 'Italy';
 
         $this->client->submit($form);
 

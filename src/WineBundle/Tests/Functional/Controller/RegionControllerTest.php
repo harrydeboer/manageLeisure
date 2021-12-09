@@ -22,7 +22,7 @@ class RegionControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['country_form[name]'] = 'France';
+        $form['country[name]'] = 'France';
 
         $this->client->submit($form);
 
@@ -39,8 +39,8 @@ class RegionControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['region_form[name]'] = 'test';
-        $form['region_form[country]'] = 1;
+        $form['region[name]'] = 'test';
+        $form['region[country]'] = 1;
 
         $this->client->submit($form);
 
@@ -56,7 +56,7 @@ class RegionControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['region_form[name]'] = 'test2';
+        $form['region[name]'] = 'test2';
 
         $this->client->submit($form);
 

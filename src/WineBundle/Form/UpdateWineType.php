@@ -7,7 +7,7 @@ namespace App\WineBundle\Form;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class UpdateWineForm extends WineForm
+class UpdateWineType extends WineType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

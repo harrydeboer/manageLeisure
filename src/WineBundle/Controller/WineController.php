@@ -6,10 +6,10 @@ namespace App\WineBundle\Controller;
 
 use App\Controller\AuthController;
 use App\WineBundle\Entity\Wine;
-use App\WineBundle\Form\CreateWineForm;
-use App\WineBundle\Form\DeleteWineForm;
-use App\WineBundle\Form\UpdateWineForm;
-use App\WineBundle\Form\WineFilterAndSortForm;
+use App\WineBundle\Form\CreateWineType;
+use App\WineBundle\Form\DeleteWineType;
+use App\WineBundle\Form\UpdateWineType;
+use App\WineBundle\Form\WineFilterAndSortType;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +32,7 @@ class WineController extends AuthController
      */
     public function view(Request $request, int $page): Response
     {
-        $form = $this->container->get('form.factory')->createNamed('', WineFilterAndSortForm::class, null, [
+        $form = $this->container->get('form.factory')->createNamed('', WineFilterAndSortType::class, null, [
             'method' => 'GET',
             'csrf_protection' => false,
         ]);
@@ -58,11 +58,11 @@ class WineController extends AuthController
     {
         $this->isAuthenticated($wine->getUser());
 
-        $formUpdate = $this->createForm(UpdateWineForm::class, $wine, [
+        $formUpdate = $this->createForm(UpdateWineType::class, $wine, [
             'method' => 'POST',
         ]);
 
-        $formDelete = $this->createForm(DeleteWineForm::class, $wine, [
+        $formDelete = $this->createForm(DeleteWineType::class, $wine, [
             'action' => $this->generateUrl('wineDelete', ['id' => $wine->getId()]),
             'method' => 'POST',
         ]);
@@ -93,7 +93,7 @@ class WineController extends AuthController
     public function new(Request $request): Response
     {
         $wine = new Wine();
-        $form = $this->createForm(CreateWineForm::class, $wine);
+        $form = $this->createForm(CreateWineType::class, $wine);
         $form->handleRequest($request);
 
         /**
@@ -123,7 +123,7 @@ class WineController extends AuthController
     {
         $this->isAuthenticated($wine->getUser());
 
-        $form = $this->createForm(DeleteWineForm::class);
+        $form = $this->createForm(DeleteWineType::class);
         $form->handleRequest($request);
 
         /**

@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class RegionForm extends AbstractType
+class RegionType extends AbstractType
 {
     public function __construct(
         private TokenStorageInterface $token,

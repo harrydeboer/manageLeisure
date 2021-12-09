@@ -20,7 +20,7 @@ class WineControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['country_form[name]'] = 'France';
+        $form['country[name]'] = 'France';
 
         $this->client->submit($form);
 
@@ -32,8 +32,8 @@ class WineControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['region_form[name]'] = 'Bordeaux';
-        $form['region_form[country]'] = 1;
+        $form['region[name]'] = 'Bordeaux';
+        $form['region[country]'] = 1;
 
         $this->client->submit($form);
 
@@ -48,12 +48,12 @@ class WineControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['create_wine_form[label]'] = new File(dirname(__DIR__) . '/test.png');
-        $form['create_wine_form[name]'] = 'test';
-        $form['create_wine_form[year]'] = 2000;
-        $form['create_wine_form[rating]'] = 7;
-        $form['create_wine_form[price]'] = 10;
-        $form['create_wine_form[region]'] = 1;
+        $form['create_wine[label]'] = new File(dirname(__DIR__) . '/test.png');
+        $form['create_wine[name]'] = 'test';
+        $form['create_wine[year]'] = 2000;
+        $form['create_wine[rating]'] = 7;
+        $form['create_wine[price]'] = 10;
+        $form['create_wine[region]'] = 1;
 
         $this->client->submit($form);
 
@@ -77,7 +77,7 @@ class WineControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['update_wine_form[name]'] = 'test2';
+        $form['update_wine[name]'] = 'test2';
 
         $this->client->submit($form);
 

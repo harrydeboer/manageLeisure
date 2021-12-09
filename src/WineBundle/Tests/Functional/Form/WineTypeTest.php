@@ -6,9 +6,9 @@ namespace App\WineBundle\Tests\Functional\Form;
 
 use App\Tests\Functional\AuthWebTestCase;
 use App\WineBundle\Entity\Wine;
-use App\WineBundle\Form\WineForm;
+use App\WineBundle\Form\WineType;
 
-class WineFormTest extends AuthWebTestCase
+class WineTypeTest extends AuthWebTestCase
 {
     public function testSubmitModel()
     {
@@ -25,7 +25,7 @@ class WineFormTest extends AuthWebTestCase
 
         $wine = new Wine();
 
-        $form = $this->getContainer()->get('form.factory')->create(WineForm::class, $wine);
+        $form = $this->getContainer()->get('form.factory')->create(WineType::class, $wine);
 
         $expected = new Wine();
         $expected->setName($name);

@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * This form is used for the filtering and sorting on the wine homepage.
  * It extends the filter form because creating and updating has grapes, taste profiles and regions also.
  */
-class WineFilterAndSortForm extends WineFilterForm
+class WineFilterAndSortType extends WineFilterType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

@@ -6,8 +6,8 @@ namespace App\WineBundle\Controller;
 
 use App\Controller\AuthController;
 use App\WineBundle\Entity\TasteProfile;
-use App\WineBundle\Form\DeleteTasteProfileForm;
-use App\WineBundle\Form\TasteProfileForm;
+use App\WineBundle\Form\DeleteTasteProfileType;
+use App\WineBundle\Form\TasteProfileType;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,11 +40,11 @@ class TasteProfileController extends AuthController
     {
         $this->isAuthenticated($tasteProfile->getUser());
 
-        $formUpdate = $this->createForm(TasteProfileForm::class, $tasteProfile, [
+        $formUpdate = $this->createForm(TasteProfileType::class, $tasteProfile, [
             'method' => 'POST',
         ]);
 
-        $formDelete = $this->createForm(DeleteTasteProfileForm::class, $tasteProfile, [
+        $formDelete = $this->createForm(DeleteTasteProfileType::class, $tasteProfile, [
             'action' => $this->generateUrl('wineTasteProfileDelete', ['id' => $tasteProfile->getId()]),
             'method' => 'POST',
         ]);
@@ -69,7 +69,7 @@ class TasteProfileController extends AuthController
     public function new(Request $request): Response
     {
         $tasteProfile = new TasteProfile();
-        $form = $this->createForm(TasteProfileForm::class, $tasteProfile);
+        $form = $this->createForm(TasteProfileType::class, $tasteProfile);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,7 +91,7 @@ class TasteProfileController extends AuthController
     {
         $this->isAuthenticated($tasteProfile->getUser());
 
-        $form = $this->createForm(DeleteTasteProfileForm::class);
+        $form = $this->createForm(DeleteTasteProfileType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

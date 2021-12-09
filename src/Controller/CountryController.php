@@ -6,8 +6,8 @@ namespace App\Controller;
 
 use App\Repository\CountryRepositoryInterface;
 use App\Entity\Country;
-use App\Form\DeleteCountryForm;
-use App\Form\CountryForm;
+use App\Form\DeleteCountryType;
+use App\Form\CountryType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,11 +39,11 @@ class CountryController extends AuthController
     {
         $this->isAuthenticated($country->getUser());
 
-        $formUpdate = $this->createForm(CountryForm::class, $country, [
+        $formUpdate = $this->createForm(CountryType::class, $country, [
             'method' => 'POST',
         ]);
 
-        $formDelete = $this->createForm(DeleteCountryForm::class, $country, [
+        $formDelete = $this->createForm(DeleteCountryType::class, $country, [
             'action' => $this->generateUrl('countryDelete', ['id' => $country->getId()]),
             'method' => 'POST',
         ]);
@@ -68,7 +68,7 @@ class CountryController extends AuthController
     public function new(Request $request): Response
     {
         $country = new Country();
-        $form = $this->createForm(CountryForm::class, $country);
+        $form = $this->createForm(CountryType::class, $country);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,7 +90,7 @@ class CountryController extends AuthController
     {
         $this->isAuthenticated($country->getUser());
 
-        $form = $this->createForm(DeleteCountryForm::class);
+        $form = $this->createForm(DeleteCountryType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -6,13 +6,13 @@ namespace App\WineBundle\Tests\Unit\Form;
 
 use App\Entity\User;
 use App\WineBundle\Entity\Region;
-use App\WineBundle\Form\RegionForm;
+use App\WineBundle\Form\RegionType;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Authenticator\Token\PostAuthenticationToken;
 
-class RegionFormTest extends TypeTestCase
+class RegionTypeTest extends TypeTestCase
 {
     private object $token;
 
@@ -26,7 +26,7 @@ class RegionFormTest extends TypeTestCase
 
     protected function getExtensions(): array
     {
-       $type = new RegionForm($this->token);
+       $type = new RegionType($this->token);
 
         return [
             new PreloadedExtension([$type], []),
@@ -43,7 +43,7 @@ class RegionFormTest extends TypeTestCase
 
         $region = new Region();
 
-        $form = $this->factory->create(RegionForm::class, $region);
+        $form = $this->factory->create(RegionType::class, $region);
 
         $expected = new Region();
         $expected->setName($name);
