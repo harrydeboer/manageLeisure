@@ -32,7 +32,7 @@ class CountryControllerTest extends AuthWebTestCase
 
         $country = $countryRepository->findOneBy(['name' => 'France']);
 
-        $this->client->request('GET', '/country/get-regions/' . $country->getId());
+        $this->client->xmlHttpRequest('GET', '/country/get-regions/' . $country->getId());
 
         $this->assertResponseIsSuccessful();
 

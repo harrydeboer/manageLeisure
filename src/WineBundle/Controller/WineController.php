@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Exception\ValidatorException;
 
 class WineController extends AuthController
 {
@@ -75,6 +76,10 @@ class WineController extends AuthController
          * When a wine is updated the uploaded image gets moved to the label directory when not testing.
          */
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
+            if ($wine->getCountry() !== $wine->getRegion()->getCountry()) {
+                throw new ValidatorException('The region does not belong to the country.');
+            }
+
             $this->wineRepository->update();
             if ($this->kernel->getEnvironment() !== 'test') {
                 $wine->moveLabel($formUpdate->get('label')->getData());
@@ -105,6 +110,9 @@ class WineController extends AuthController
          * The uploaded image gets moved to the label directory when not testing.
          */
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($wine->getCountry() !== $wine->getRegion()->getCountry()) {
+                throw new ValidatorException('The region does not belong to the country.');
+            }
             $wine->setUser($this->getCurrentUser());
             $wine->setCreatedAt(time());
             $this->wineRepository->create($wine);
