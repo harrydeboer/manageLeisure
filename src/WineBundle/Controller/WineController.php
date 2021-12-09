@@ -6,11 +6,12 @@ namespace App\WineBundle\Controller;
 
 use App\Controller\AuthController;
 use App\WineBundle\Entity\Wine;
-use App\WineBundle\Form\CreateWineType;
 use App\WineBundle\Form\DeleteWineType;
 use App\WineBundle\Form\UpdateWineType;
 use App\WineBundle\Form\WineFilterAndSortType;
+use App\WineBundle\Form\WineType;
 use App\WineBundle\Repository\WineRepositoryInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -24,6 +25,7 @@ class WineController extends AuthController
     public function __construct(
         private KernelInterface $kernel,
         private WineRepositoryInterface $wineRepository,
+        private FormFactoryInterface $formFactory
     ) {
     }
 
@@ -33,7 +35,7 @@ class WineController extends AuthController
      */
     public function view(Request $request, int $page): Response
     {
-        $form = $this->container->get('form.factory')->createNamed('', WineFilterAndSortType::class, null, [
+        $form = $this->formFactory->createNamed('', WineFilterAndSortType::class, null, [
             'method' => 'GET',
             'csrf_protection' => false,
             'country' => $request->get('country'),
@@ -100,8 +102,8 @@ class WineController extends AuthController
     public function new(Request $request): Response
     {
         $wine = new Wine();
-        $form = $this->createForm(CreateWineType::class, $wine, [
-            'country' => null,
+        $form = $this->createForm(WineType::class, $wine, [
+            'country' => is_null($request->get('wine')) ? null : $request->get('wine')['country'],
         ]);
         $form->handleRequest($request);
 

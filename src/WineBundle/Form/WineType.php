@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Form;
 
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,6 +19,12 @@ class WineType extends WineFilterType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder->add('label', FileType::class, [
+            'attr' => [
+                'accept' => 'image/*',
+                'class' => 'btn-primary'
+            ],
+        ]);
         parent::buildForm($builder, $options);
         $builder
             ->add('name', TextType::class, [
