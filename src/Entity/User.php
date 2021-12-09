@@ -28,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180)
      */
-    private string $username;
+    private string $name;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -90,14 +90,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->id = $id;
     }
 
-    public function getUsername(): string
+    public function getName(): string
     {
-        return $this->username;
+        return $this->name;
     }
 
-    public function setUsername(string $username): self
+    public function setName(string $name): self
     {
-        $this->username = $username;
+        $this->name = $name;
 
         return $this;
     }

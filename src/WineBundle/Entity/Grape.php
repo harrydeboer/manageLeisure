@@ -14,8 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=GrapeRepository::class)
- * @ORM\Table(name="grape")
- * @UniqueEntity("name")
+ * @ORM\Table(
+ *    name="grape",
+ *    uniqueConstraints={
+ *        @ORM\UniqueConstraint(name="name_unique", columns={"user_id", "name"})
+ *    }
+ * )
  */
 class Grape
 {
@@ -27,7 +31,7 @@ class Grape
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private string $name;

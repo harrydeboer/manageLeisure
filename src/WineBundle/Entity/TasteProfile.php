@@ -13,8 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TasteProfileRepository::class)
- * @ORM\Table(name="taste_profile")
- * @UniqueEntity("name")
+@ORM\Table(
+ *    name="taste_profile",
+ *    uniqueConstraints={
+ *        @ORM\UniqueConstraint(name="name_unique", columns={"user_id", "name"})
+ *    }
+ * )
  */
 class TasteProfile
 {
@@ -26,7 +30,7 @@ class TasteProfile
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank ()
      */
     private string $name;

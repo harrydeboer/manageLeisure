@@ -14,10 +14,11 @@ class RegistrationFormTypeTest extends TypeTestCase
 {
     public function testSubmitModel(): void
     {
-        $username = 'testUser';
+        $name = 'testUser';
+        $email = 'test@test.nl';
         $formData = [
-            'username' => $username,
-            'agreeTerms' => true,
+            'name' => $name,
+            'email' => $email,
             'plainPassword' => 'plainPassword',
         ];
 
@@ -27,7 +28,8 @@ class RegistrationFormTypeTest extends TypeTestCase
         $form = $this->factory->create(RegistrationFormType::class, $user);
 
         $expected = new User();
-        $expected->setUsername($username);
+        $expected->setName($name);
+        $expected->setEmail($email);
         // ...populate $object properties with the data stored in $formData
 
         // submit the data to the form directly
