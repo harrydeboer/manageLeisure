@@ -1,21 +1,10 @@
-.wineLabel {
-  height: 100px;
-}
-
-.wineLabel:hover {
-  height: 400px;
-}
-
+// Header
 #tasteProfile {
   width: 200px;
 }
 
 #year {
   width: 100px;
-}
-
-#wineLabel {
-  height: 600px;
 }
 
 #country {
@@ -30,6 +19,14 @@
   width: 120px;
 }
 
+#filterSortForm .form-control {
+  display: inline;
+}
+
+.btn.dropdown-toggle {
+  border-color: #ced4da;
+}
+
 #dropdownGrapesDivRed, #dropdownGrapesDivWhite {
   display: inline;
 }
@@ -38,10 +35,16 @@
   white-space: nowrap;
 }
 
-#filterSortForm .form-control {
-  display: inline;
+// Body
+#wineLabel {
+  height: 600px;
 }
 
-.btn.dropdown-toggle {
-  border-color: #ced4da;
+.wineLabel {
+  height: 100px;
 }
+
+.wineLabel:hover {
+  height: 400px;
+}
+
