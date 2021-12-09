@@ -41,7 +41,7 @@ class Country
     private User $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="country")
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="country", orphanRemoval=true)
      */
     private Collection $regions;
 
