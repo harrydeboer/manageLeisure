@@ -1,5 +1,5 @@
-/* header */
-#tasteProfile {
+/* Wines page */
+#taste-profile {
   width: 200px;
 }
 
@@ -19,7 +19,7 @@
   width: 120px;
 }
 
-#filterSortForm .form-control {
+#filter-sort-form .form-control {
   display: inline;
 }
 
@@ -27,7 +27,7 @@
   border-color: #ced4da;
 }
 
-#dropdownGrapesDivRed, #dropdownGrapesDivWhite {
+#dropdown-grapes-div-red, #dropdown-grapes-div-white {
   display: inline;
 }
 
@@ -35,16 +35,15 @@
   white-space: nowrap;
 }
 
-/* body */
-#wineLabel {
-  height: 600px;
-}
-
-.wineLabel {
+.wine-label {
   height: 100px;
 }
 
-.wineLabel:hover {
+.wine-label:hover {
   height: 400px;
 }
 
+/* Wine page */
+#wine-label {
+  height: 600px;
+}

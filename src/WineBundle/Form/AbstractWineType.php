@@ -63,7 +63,7 @@ abstract class AbstractWineType extends AbstractType
                 'choice_label' => function(?Country $country) {
                     return $country ? $country->getName() : 'select country';
                 },
-                'attr' => ['class' => 'form-control countrySelect'],
+                'attr' => ['class' => 'form-control country-select'],
             ]);
         $regions = [];
         if ($options['country'] !== '' && !is_null($options['country'])) {
@@ -75,7 +75,7 @@ abstract class AbstractWineType extends AbstractType
             'choice_label' => function(?Region $region) {
                 return $region ? $region->getName() : 'select region';
             },
-            'attr' => ['class' => 'form-control regionSelect'],
+            'attr' => ['class' => 'form-control region-select'],
         ]);
     }
 

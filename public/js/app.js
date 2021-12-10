@@ -1,3 +1,3 @@
-$('#delete-country').on('click', function() {
-    $('#delete-country-modal').modal('show');
+$('.delete-modal-button').on('click', function() {
+    $('.delete-modal').modal('show');
 });

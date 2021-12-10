@@ -1,26 +1,10 @@
-$('#delete-wine').on('click', function() {
-    $('#delete-wine-modal').modal('show');
-});
-
-$('#delete-taste-profile').on('click', function() {
-    $('#delete-taste-profile-modal').modal('show');
-});
-
-$('#delete-grape').on('click', function() {
-    $('#delete-grape-modal').modal('show');
-});
-
-$('#delete-region').on('click', function() {
-    $('#delete-region-modal').modal('show');
-});
-
 $('.dropdown-menu').on('click', function (event) {
     event.stopPropagation();
 });
 
-$('.countrySelect').on('change', function() {
+$('.country-select').on('change', function() {
     let id = $(this).val();
     $.get('/country/get-regions/' + id, '', function (data) {
-        $('.regionSelect').html(data);
+        $('.region-select').html(data);
     });
 });

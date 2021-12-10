@@ -5,10 +5,10 @@
 {% block body %}
     <h1>Wines</h1>
     <a href="{{ path('wineCreate') }}">Create a wine</a>
-    {{ form_start(form, {'attr': {'id': 'filterSortForm'}}) }}
+    {{ form_start(form, {'attr': {'id': 'filter-sort-form'}}) }}
     {{ form_errors(form) }}
 
-    {{ form_widget(form.tasteProfile) }}
+    {{ form_widget(form.tasteProfile, { 'id': 'taste-profile'}) }}
 
     {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'Red'}) }}
     {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'White'}) }}
@@ -21,7 +21,7 @@
     <table class="table table-striped">
         {% for wine in paginator.results %}
             <tr>
-                <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.labelPath) }}" alt="label" class="wineLabel"></td>
+                <td class="d-none d-lg-table-cell"><img src="{{ asset(wine.labelPath) }}" alt="label" class="wine-label"></td>
                 <td><a href="{{ path('wineSingle', {'id': wine.id}) }}">{{ wine.name }}</a></td>
                 <td class="d-none d-md-table-cell">{{ wine.grapeNamesAsString }}</td>
                 <td class="d-none d-sm-table-cell">{{ wine.tasteProfile ? wine.tasteProfile.name : '' }}</td>
