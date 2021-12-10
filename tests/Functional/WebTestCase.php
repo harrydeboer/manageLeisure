@@ -9,7 +9,6 @@ use Symfony\Component\BrowserKit\AbstractBrowser;
 class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {
     use MigrationsTrait;
-    use EntityFactory;
 
     protected AbstractBrowser $client;
 

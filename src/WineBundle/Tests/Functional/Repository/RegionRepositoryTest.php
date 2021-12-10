@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Functional\Repository;
 
-use App\Tests\Functional\AuthKernelTestCase;
+use App\Tests\Functional\KernelTestCase;
+use App\WineBundle\Factory\RegionFactory;
 use App\WineBundle\Repository\RegionRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class RegionRepositoryTest extends AuthKernelTestCase
+class RegionRepositoryTest extends KernelTestCase
 {
     public function testCreateUpdateDelete()
     {
-        $region = $this->createRegion($this->user);
+        $region = static::getContainer()->get(RegionFactory::class)->create();
 
         $regionRepository = static::getContainer()->get(RegionRepositoryInterface::class);
 
@@ -29,6 +30,6 @@ class RegionRepositoryTest extends AuthKernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $regionRepository->getFromUser($id, $this->user->getId());
+        $regionRepository->getFromUser($id, $region->getUser()->getId());
     }
 }

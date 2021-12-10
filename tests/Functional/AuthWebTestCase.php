@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Functional;
 
 use App\Entity\User;
-use App\Repository\UserRepositoryInterface;
+use App\Factory\UserFactory;
 
 class AuthWebTestCase extends WebTestCase
 {
@@ -15,11 +15,7 @@ class AuthWebTestCase extends WebTestCase
     {
         parent::setUp();
 
-        $this->user = new User();
-        $this->user->setName('John');
-        $this->user->setEmail('john@secret.com');
-
-        $this->user = $this->getContainer()->get(UserRepositoryInterface::class)->create($this->user, 'secret');
+        $this->user = $this->getContainer()->get(UserFactory::class)->create();
 
         $this->client->loginUser($this->user);
     }

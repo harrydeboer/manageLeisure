@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Functional\Controller;
 
-use App\Entity\Country;
-use App\Repository\CountryRepositoryInterface;
 use App\Tests\Functional\AuthWebTestCase;
-use App\WineBundle\Entity\Region;
-use App\WineBundle\Entity\Wine;
-use App\WineBundle\Repository\RegionRepositoryInterface;
+use App\WineBundle\Factory\RegionFactory;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -17,7 +13,7 @@ class WineControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $region = $this->createRegion($this->user);
+        $region = $this->getContainer()->get(RegionFactory::class)->create($this->user);
 
         $this->client->request('GET', '/wine');
 

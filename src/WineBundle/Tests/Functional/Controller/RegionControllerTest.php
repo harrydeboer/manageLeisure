@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Functional\Controller;
 
+use App\Factory\CountryFactory;
 use App\Tests\Functional\AuthWebTestCase;
 use App\WineBundle\Repository\RegionRepositoryInterface;
 
@@ -11,7 +12,7 @@ class RegionControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $country = $this->createCountry($this->user);
+        $country = $this->getContainer()->get(CountryFactory::class)->create($this->user);
 
         $this->client->request('GET', '/wine/region');
 

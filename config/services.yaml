@@ -22,5 +22,15 @@ services:
             - '../src/Tests/'
     App\Asset\VersionStrategy\FileMTime:
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Factory\UserFactory:
+        public: true
+    App\Factory\CountryFactory:
+        public: true
+    App\WineBundle\Factory\RegionFactory:
+        public: true
+    App\WineBundle\Factory\GrapeFactory:
+        public: true
+    App\WineBundle\Factory\TasteProfileFactory:
+        public: true
+    App\WineBundle\Factory\WineFactory:
+        public: true

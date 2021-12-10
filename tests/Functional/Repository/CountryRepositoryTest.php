@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Repository;
 
-use App\Entity\Country;
+use App\Factory\CountryFactory;
 use App\Repository\CountryRepositoryInterface;
-use App\Tests\Functional\AuthKernelTestCase;
+use App\Tests\Functional\KernelTestCase;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CountryRepositoryTest extends AuthKernelTestCase
+class CountryRepositoryTest extends KernelTestCase
 {
     public function testCreateUpdateDelete()
     {
-        $country = $this->createCountry($this->user);
+        $country = static::getContainer()->get(CountryFactory::class)->create();
 
         $countryRepository = static::getContainer()->get(CountryRepositoryInterface::class);
 
@@ -30,6 +30,6 @@ class CountryRepositoryTest extends AuthKernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $countryRepository->getFromUser($id, $this->user->getId());
+        $countryRepository->getFromUser($id, $country->getUser()->getId());
     }
 }
