@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * This form is extended by create and update wine forms.
  * It extends the filter form because filtering on the wine homepage has grapes, taste profiles and regions also.
  */
-class WineType extends WineFilterType
+class WineType extends AbstractWineType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

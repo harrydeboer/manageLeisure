@@ -18,9 +18,9 @@ $('.dropdown-menu').on('click', function (event) {
     event.stopPropagation();
 });
 
-$('#country, #update_wine_country, #wine_country').on('change', function(event) {
-    id = $(this).val();
+$('.countrySelect').on('change', function() {
+    let id = $(this).val();
     $.get('/country/get-regions/' + id, '', function (data) {
-        $('#region, #update_wine_region, #wine_region').html(data);
+        $('.regionSelect').html(data);
     });
 });

@@ -60,10 +60,13 @@ class WineControllerTest extends AuthWebTestCase
         $form['wine[price]'] = 10;
         $form['wine[country]'] = '1';
 
+        /**
+         * The create page has no regions but when a country is selected the regions are retrieved
+         * by ajax and javascript. The javascript does not work in a php browser so a region is handpicked.
+         */
         $values = $form->getPhpValues();
         $values['wine']['region'] = '1';
-
-        $this->client->request('POST', '/wine/create', $values, $form->getPhpFiles());
+        $this->client->request($form->getMethod(), $form->getUri(), $values, $form->getPhpFiles());
 
         $this->assertResponseRedirects('/wine');
 

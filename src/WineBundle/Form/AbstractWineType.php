@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * This form is extended by create, update and filter/sort forms.
  */
-class WineFilterType extends AbstractType
+abstract class AbstractWineType extends AbstractType
 {
     public function __construct(
         private TokenStorageInterface $token,
@@ -63,14 +63,11 @@ class WineFilterType extends AbstractType
                 'choice_label' => function(?Country $country) {
                     return $country ? $country->getName() : 'select country';
                 },
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control countrySelect'],
             ]);
+        $regions = [];
         if ($options['country'] !== '' && !is_null($options['country'])) {
             $regions = $this->countryRepository->find((int) $options['country'])->getRegions()->toArray();
-        } elseif (is_null($options['country'])) {
-            $regions = [];
-        } else {
-            $regions = $this->getCurrentUser()->getRegions()->toArray();
         }
         $builder->add('region', ChoiceType::class, [
             'choices'  => array_merge(['' => null], $regions),
@@ -78,7 +75,7 @@ class WineFilterType extends AbstractType
             'choice_label' => function(?Region $region) {
                 return $region ? $region->getName() : 'select region';
             },
-            'attr' => ['class' => 'form-control'],
+            'attr' => ['class' => 'form-control regionSelect'],
         ]);
     }
 
