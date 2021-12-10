@@ -8,7 +8,7 @@ use App\WineBundle\Entity\Region;
 
 interface RegionRepositoryInterface
 {
-    public function create(Region $region): void;
+    public function create(Region $region): Region;
 
     public function update(): void;
 

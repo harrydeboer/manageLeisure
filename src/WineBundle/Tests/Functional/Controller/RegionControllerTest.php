@@ -11,22 +11,7 @@ class RegionControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $this->client->request('GET', '/country');
-
-        $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('nav', 'Country');
-
-        $crawler = $this->client->request('GET', '/country/create');
-
-        $buttonCrawlerNode = $crawler->selectButton('Create');
-
-        $form = $buttonCrawlerNode->form();
-
-        $form['country[name]'] = 'France';
-
-        $this->client->submit($form);
-
-        $this->assertResponseRedirects('/country');
+        $country = $this->createCountry($this->user);
 
         $this->client->request('GET', '/wine/region');
 
@@ -40,7 +25,7 @@ class RegionControllerTest extends AuthWebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['region[name]'] = 'test';
-        $form['region[country]'] = 1;
+        $form['region[country]'] = $country->getId();
 
         $this->client->submit($form);
 

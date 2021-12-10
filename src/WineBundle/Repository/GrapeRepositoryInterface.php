@@ -8,7 +8,7 @@ use App\WineBundle\Entity\Grape;
 
 interface GrapeRepositoryInterface
 {
-    public function create(Grape $grape): void;
+    public function create(Grape $grape): Grape;
 
     public function update(): void;
 

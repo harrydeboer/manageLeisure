@@ -35,10 +35,12 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
         return $region;
     }
 
-    public function create(Region $region): void
+    public function create(Region $region): Region
     {
         $this->em->persist($region);
         $this->em->flush();
+
+        return $region;
     }
 
     public function update(): void

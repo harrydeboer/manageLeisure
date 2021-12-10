@@ -13,12 +13,9 @@ class CountryRepositoryTest extends AuthKernelTestCase
 {
     public function testCreateUpdateDelete()
     {
-        $country = new Country();
-        $country->setName('France');
-        $country->setUser($this->user);
+        $country = $this->createCountry($this->user);
 
         $countryRepository = static::getContainer()->get(CountryRepositoryInterface::class);
-        $countryRepository->create($country);
 
         $this->assertSame($country, $countryRepository->find($country->getId()));
 

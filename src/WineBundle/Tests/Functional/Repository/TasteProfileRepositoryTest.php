@@ -13,12 +13,9 @@ class TasteProfileRepositoryTest extends AuthKernelTestCase
 {
     public function testCreateUpdateDelete()
     {
-        $tasteProfile = new TasteProfile();
-        $tasteProfile->setName('fresh');
-        $tasteProfile->setUser($this->user);
+        $tasteProfile = $this->createTasteProfile($this->user);
 
         $tasteProfileRepository = static::getContainer()->get(TasteProfileRepositoryInterface::class);
-        $tasteProfileRepository->create($tasteProfile);
 
         $this->assertSame($tasteProfile, $tasteProfileRepository->find($tasteProfile->getId()));
 

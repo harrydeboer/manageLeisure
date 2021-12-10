@@ -37,10 +37,12 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         return $country;
     }
 
-    public function create(Country $country): void
+    public function create(Country $country): Country
     {
         $this->em->persist($country);
         $this->em->flush();
+
+        return $country;
     }
 
     public function update(): void

@@ -35,10 +35,12 @@ class GrapeRepository extends ServiceEntityRepository implements GrapeRepository
         return $grape;
     }
 
-    public function create(Grape $grape): void
+    public function create(Grape $grape): Grape
     {
         $this->em->persist($grape);
         $this->em->flush();
+
+        return $grape;
     }
 
     public function update(): void

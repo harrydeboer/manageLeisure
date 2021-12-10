@@ -35,10 +35,12 @@ class TasteProfileRepository extends ServiceEntityRepository implements TastePro
         return $tasteProfile;
     }
 
-    public function create(TasteProfile $tasteProfile): void
+    public function create(TasteProfile $tasteProfile): TasteProfile
     {
         $this->em->persist($tasteProfile);
         $this->em->flush();
+
+        return $tasteProfile;
     }
 
     public function update(): void

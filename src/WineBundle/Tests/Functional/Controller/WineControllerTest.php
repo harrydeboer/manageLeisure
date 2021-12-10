@@ -17,30 +17,7 @@ class WineControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $this->client->request('GET', '/country');
-
-        $crawler = $this->client->request('GET', '/country/create');
-
-        $buttonCrawlerNode = $crawler->selectButton('Create');
-
-        $form = $buttonCrawlerNode->form();
-
-        $form['country[name]'] = 'France';
-
-        $this->client->submit($form);
-
-        $this->client->request('GET', '/wine/region');
-
-        $crawler = $this->client->request('GET', '/wine/region/create');
-
-        $buttonCrawlerNode = $crawler->selectButton('Create');
-
-        $form = $buttonCrawlerNode->form();
-
-        $form['region[name]'] = 'Bordeaux';
-        $form['region[country]'] = 1;
-
-        $this->client->submit($form);
+        $region = $this->createRegion($this->user);
 
         $this->client->request('GET', '/wine');
 
@@ -58,14 +35,14 @@ class WineControllerTest extends AuthWebTestCase
         $form['wine[year]'] = 2000;
         $form['wine[rating]'] = 7;
         $form['wine[price]'] = 10;
-        $form['wine[country]'] = '1';
+        $form['wine[country]'] = $region->getCountry()->getId();
 
         /**
          * The create page has no regions but when a country is selected the regions are retrieved
          * by ajax and javascript. The javascript does not work in a php browser so a region is handpicked.
          */
         $values = $form->getPhpValues();
-        $values['wine']['region'] = '1';
+        $values['wine']['region'] = $region->getId();
         $this->client->request($form->getMethod(), $form->getUri(), $values, $form->getPhpFiles());
 
         $this->assertResponseRedirects('/wine');

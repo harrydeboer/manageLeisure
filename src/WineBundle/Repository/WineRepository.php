@@ -37,10 +37,12 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
         return $wine;
     }
 
-    public function create(Wine $wine): void
+    public function create(Wine $wine): Wine
     {
         $this->em->persist($wine);
         $this->em->flush();
+
+        return $wine;
     }
 
     public function update(): void

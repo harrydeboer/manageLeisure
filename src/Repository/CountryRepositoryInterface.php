@@ -9,7 +9,7 @@ use App\Entity\User;
 
 interface CountryRepositoryInterface
 {
-    public function create(Country $country): void;
+    public function create(Country $country): Country;
 
     public function update(): void;
 

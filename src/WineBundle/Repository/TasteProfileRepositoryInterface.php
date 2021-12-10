@@ -8,7 +8,7 @@ use App\WineBundle\Entity\TasteProfile;
 
 interface TasteProfileRepositoryInterface
 {
-    public function create(TasteProfile $tasteProfile): void;
+    public function create(TasteProfile $tasteProfile): TasteProfile;
 
     public function update(): void;
 

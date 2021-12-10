@@ -7,6 +7,7 @@ namespace App\Tests\Functional;
 class KernelTestCase extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
 {
     use MigrationsTrait;
+    use EntityFactory;
 
     protected function setUp(): void
     {
