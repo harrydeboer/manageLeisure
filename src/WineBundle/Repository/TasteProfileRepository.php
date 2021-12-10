@@ -11,6 +11,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
+ * @method TasteProfile|null find($id, $lockMode = null, $lockVersion = null)
  * @method TasteProfile|null findOneBy(array $criteria, array $orderBy = null)
  * @method TasteProfile[]    findAll()
  * @method TasteProfile[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
@@ -24,9 +25,9 @@ class TasteProfileRepository extends ServiceEntityRepository implements TastePro
         parent::__construct($registry, TasteProfile::class);
     }
 
-    public function find($id, $lockMode = null, $lockVersion = null): ?object
+    public function getFromUser(int $id, int $userId): TasteProfile
     {
-        $tasteProfile = $this->em->find(TasteProfile::class, $id);
+        $tasteProfile = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($tasteProfile)) {
             throw new NotFoundHttpException('This taste profile does not exist.');

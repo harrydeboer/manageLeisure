@@ -18,11 +18,4 @@ class AuthController extends AbstractController
     {
         return $this->getUser();
     }
-
-    protected function isAuthenticated(User $user): void
-    {
-        if ($user !== $this->getCurrentUser()) {
-            throw new AuthenticationException('This user is not logged in.');
-        }
-    }
 }

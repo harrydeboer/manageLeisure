@@ -36,9 +36,9 @@ class RegionController extends AuthController
     /**
      * @Route("/wine/region/edit/{id}", name="wineRegionEdit")
      */
-    public function edit(Request $request, Region $region): Response
+    public function edit(Request $request, int $id): Response
     {
-        $this->isAuthenticated($region->getUser());
+        $region = $this->getRegion($id);
 
         $formUpdate = $this->createForm(RegionType::class, $region, [
             'method' => 'POST',
@@ -87,9 +87,9 @@ class RegionController extends AuthController
     /**
      * @Route("/wine/region/delete/{id}", name="wineRegionDelete")
      */
-    public function delete(Request $request, Region $region): RedirectResponse
+    public function delete(Request $request, int $id): RedirectResponse
     {
-        $this->isAuthenticated($region->getUser());
+        $region = $this->getRegion($id);
 
         $form = $this->createForm(DeleteRegionType::class);
         $form->handleRequest($request);
@@ -99,5 +99,10 @@ class RegionController extends AuthController
         }
 
         return $this->redirectToRoute('wineRegion');
+    }
+
+    private function getRegion(int $id): Region
+    {
+        return $this->regionRepository->getFromUser($id, $this->getCurrentUser()->getId());
     }
 }

@@ -36,9 +36,9 @@ class GrapeController extends AuthController
     /**
      * @Route("/wine/grape/edit/{id}", name="wineGrapeEdit")
      */
-    public function edit(Request $request, Grape $grape): Response
+    public function edit(Request $request, int $id): Response
     {
-        $this->isAuthenticated($grape->getUser());
+        $grape = $this->getGrape($id);
 
         $formUpdate = $this->createForm(GrapeType::class, $grape, [
             'method' => 'POST',
@@ -88,9 +88,9 @@ class GrapeController extends AuthController
     /**
      * @Route("/wine/grape/delete/{id}", name="wineGrapeDelete")
      */
-    public function delete(Request $request, Grape $grape): RedirectResponse
+    public function delete(Request $request, int $id): RedirectResponse
     {
-        $this->isAuthenticated($grape->getUser());
+        $grape = $this->getGrape($id);
 
         $form = $this->createForm(DeleteGrapeType::class);
         $form->handleRequest($request);
@@ -100,5 +100,10 @@ class GrapeController extends AuthController
         }
 
         return $this->redirectToRoute('wineGrape');
+    }
+
+    private function getGrape(int $id): Grape
+    {
+        return $this->grapeRepository->getFromUser($id, $this->getCurrentUser()->getId());
     }
 }

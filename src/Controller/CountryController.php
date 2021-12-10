@@ -35,9 +35,9 @@ class CountryController extends AuthController
     /**
      * @Route("/country/edit/{id}", name="countryEdit")
      */
-    public function edit(Request $request, Country $country): Response
+    public function edit(Request $request, int $id): Response
     {
-        $this->isAuthenticated($country->getUser());
+        $country = $this->getCountry($id);
 
         $formUpdate = $this->createForm(CountryType::class, $country, [
             'method' => 'POST',
@@ -86,9 +86,9 @@ class CountryController extends AuthController
     /**
      * @Route("/country/delete/{id}", name="countryDelete")
      */
-    public function delete(Request $request, Country $country): RedirectResponse
+    public function delete(Request $request, int $id): RedirectResponse
     {
-        $this->isAuthenticated($country->getUser());
+        $country = $this->getCountry($id);
 
         $form = $this->createForm(DeleteCountryType::class);
         $form->handleRequest($request);
@@ -111,11 +111,15 @@ class CountryController extends AuthController
             ]);
         }
 
-        $country = $this->countryRepository->find($id);
-        $this->isAuthenticated($country->getUser());
+        $country = $this->getCountry($id);
 
         return $this->render('country/getRegions.html.twig', [
             'regions' => $country->getRegions(),
         ]);
+    }
+
+    private function getCountry(int $id): Country
+    {
+        return $this->countryRepository->getFromUser($id, $this->getCurrentUser()->getId());
     }
 }

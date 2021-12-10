@@ -30,6 +30,6 @@ class CountryRepositoryTest extends AuthKernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $countryRepository->find($id);
+        $countryRepository->getFromUser($id, $this->user->getId());
     }
 }

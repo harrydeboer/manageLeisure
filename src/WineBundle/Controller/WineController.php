@@ -57,9 +57,9 @@ class WineController extends AuthController
     /**
      * @Route("/wine/edit/{id}", name="wineEdit")
      */
-    public function edit(Request $request, Wine $wine): Response
+    public function edit(Request $request, int $id): Response
     {
-        $this->isAuthenticated($wine->getUser());
+        $wine = $this->getWine($id);
 
         $formUpdate = $this->createForm(UpdateWineType::class, $wine, [
             'method' => 'POST',
@@ -132,9 +132,9 @@ class WineController extends AuthController
     /**
      * @Route("/wine/delete/{id}", name="wineDelete")
      */
-    public function delete(Request $request, Wine $wine): RedirectResponse
+    public function delete(Request $request, int $id): RedirectResponse
     {
-        $this->isAuthenticated($wine->getUser());
+        $wine = $this->getWine($id);
 
         $form = $this->createForm(DeleteWineType::class);
         $form->handleRequest($request);
@@ -157,12 +157,17 @@ class WineController extends AuthController
     /**
      * @Route("/wine/single/{id}", name="wineSingle")
      */
-    public function single(Wine $wine): Response
+    public function single(int $id): Response
     {
-        $this->isAuthenticated($wine->getUser());
+        $wine = $this->getWine($id);
 
         return $this->render('@Wine/wine/single/view.html.twig', [
             'wine' => $wine,
         ]);
+    }
+
+    private function getWine(int $id): Wine
+    {
+        return $this->wineRepository->getFromUser($id, $this->getCurrentUser()->getId());
     }
 }

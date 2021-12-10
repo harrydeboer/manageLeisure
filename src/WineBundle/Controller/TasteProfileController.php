@@ -36,9 +36,9 @@ class TasteProfileController extends AuthController
     /**
      * @Route("/wine/taste-profile/edit/{id}", name="wineTasteProfileEdit")
      */
-    public function edit(Request $request, TasteProfile $tasteProfile): Response
+    public function edit(Request $request, int $id): Response
     {
-        $this->isAuthenticated($tasteProfile->getUser());
+        $tasteProfile = $this->getTasteProfile($id);
 
         $formUpdate = $this->createForm(TasteProfileType::class, $tasteProfile, [
             'method' => 'POST',
@@ -87,9 +87,9 @@ class TasteProfileController extends AuthController
     /**
      * @Route("/wine/taste-profile/delete/{id}", name="wineTasteProfileDelete")
      */
-    public function delete(Request $request, TasteProfile $tasteProfile): RedirectResponse
+    public function delete(Request $request, int $id): RedirectResponse
     {
-        $this->isAuthenticated($tasteProfile->getUser());
+        $tasteProfile = $this->getTasteProfile($id);
 
         $form = $this->createForm(DeleteTasteProfileType::class);
         $form->handleRequest($request);
@@ -104,12 +104,17 @@ class TasteProfileController extends AuthController
     /**
      * @Route("/wine/taste-profile/single/{id}", name="wineTasteProfileSingle")
      */
-    public function single(TasteProfile $tasteProfile): Response
+    public function single(int $id): Response
     {
-        $this->isAuthenticated($tasteProfile->getUser());
+        $tasteProfile = $this->getTasteProfile($id);
 
         return $this->render('@Wine/tasteProfile/single/view.html.twig', [
             'tasteProfile' => $tasteProfile,
         ]);
+    }
+
+    private function getTasteProfile(int $id): TasteProfile
+    {
+        return $this->tasteProfileRepository->getFromUser($id, $this->getCurrentUser()->getId());
     }
 }

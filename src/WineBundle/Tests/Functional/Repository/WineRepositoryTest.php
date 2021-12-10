@@ -36,7 +36,7 @@ class WineRepositoryTest extends AuthKernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $this->wineRepository->find($id);
+        $this->wineRepository->getFromUser($id, $this->user->getId());
     }
 
     public function findBySortAndFilter()

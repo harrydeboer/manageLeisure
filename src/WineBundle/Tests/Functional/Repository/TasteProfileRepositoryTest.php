@@ -30,6 +30,6 @@ class TasteProfileRepositoryTest extends AuthKernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $tasteProfileRepository->find($id);
+        $tasteProfileRepository->getFromUser($id, $this->user->getId());
     }
 }

@@ -13,6 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
+ * @method Wine|null find($id, $lockMode = null, $lockVersion = null)
  * @method Wine|null findOneBy(array $criteria, array $orderBy = null)
  * @method Wine[]    findAll()
  * @method Wine[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
@@ -26,9 +27,9 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
         parent::__construct($registry, Wine::class);
     }
 
-    public function find($id, $lockMode = null, $lockVersion = null): ?object
+    public function getFromUser(int $id, int $userId): Wine
     {
-        $wine = $this->em->find(Wine::class, $id);
+        $wine = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($wine)) {
             throw new NotFoundHttpException('This wine does not exist.');

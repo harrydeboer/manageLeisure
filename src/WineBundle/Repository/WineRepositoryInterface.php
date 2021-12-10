@@ -10,6 +10,8 @@ use App\WineBundle\Entity\Wine;
 
 interface WineRepositoryInterface
 {
+    public function getFromUser(int $id, int $userId): Wine;
+
     public function create(Wine $wine): Wine;
 
     public function update(): void;

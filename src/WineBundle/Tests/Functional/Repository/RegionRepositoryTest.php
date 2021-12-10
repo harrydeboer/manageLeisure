@@ -29,6 +29,6 @@ class RegionRepositoryTest extends AuthKernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $regionRepository->find($id);
+        $regionRepository->getFromUser($id, $this->user->getId());
     }
 }

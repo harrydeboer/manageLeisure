@@ -29,6 +29,6 @@ class GrapeRepositoryTest extends AuthKernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $grapeRepository->find($id);
+        $grapeRepository->getFromUser($id, $this->user->getId());
     }
 }

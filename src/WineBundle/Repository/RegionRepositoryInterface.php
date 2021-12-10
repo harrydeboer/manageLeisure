@@ -8,6 +8,8 @@ use App\WineBundle\Entity\Region;
 
 interface RegionRepositoryInterface
 {
+    public function getFromUser(int $id, int $userId): Region;
+
     public function create(Region $region): Region;
 
     public function update(): void;

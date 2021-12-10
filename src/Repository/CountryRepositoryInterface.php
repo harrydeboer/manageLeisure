@@ -9,6 +9,8 @@ use App\Entity\User;
 
 interface CountryRepositoryInterface
 {
+    public function getFromUser(int $id, int $userId): Country;
+
     public function create(Country $country): Country;
 
     public function update(): void;

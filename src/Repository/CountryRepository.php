@@ -12,6 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
+ * @method Country|null find($id, $lockMode = null, $lockVersion = null)
  * @method Country|null findOneBy(array $criteria, array $orderBy = null)
  * @method Country[]    findAll()
  * @method Country[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
@@ -26,9 +27,9 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         parent::__construct($registry, Country::class);
     }
 
-    public function find($id, $lockMode = null, $lockVersion = null): ?object
+    public function getFromUser(int $id, int $userId): Country
     {
-        $country = $this->em->find(Country::class, $id);
+        $country = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($country)) {
             throw new NotFoundHttpException('This country does not exist.');
