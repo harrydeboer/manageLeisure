@@ -4,3 +4,9 @@ wine_bundle:
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+
+not_found:
+    path: /{req}
+    defaults: { _controller: 'App\Controller\HomepageController::notFound' }
+    requirements:
+        req: ".*"

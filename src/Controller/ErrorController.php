@@ -4,22 +4,32 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Log\DebugLoggerInterface;
 use Throwable;
 
 class ErrorController extends AbstractController
 {
-    public function show(Throwable $exception, DebugLoggerInterface $logger = null): Response
+    public function __construct(
+        private Environment $environment,
+    ) {
+    }
+
+    public function show(Throwable $exception): Response
     {
         /**
          * When the exception has a status code the matching status code page is rendered.
          */
         if (method_exists($exception, 'getStatusCode')) {
-            return $this->render('error/' . $exception->getStatusCode() . '.html.twig', [
-                'message' => $exception->getMessage()
-            ]);
+            $statusCodeString = (string) $exception->getStatusCode();
+
+            $templatePath = 'error/' . $statusCodeString . '.html.twig';
+            if ($this->environment->getLoader()->exists($templatePath)) {
+                return $this->render($templatePath, [
+                    'message' => $exception->getMessage()
+                ]);
+            }
         }
 
         return $this->render('error/500.html.twig', [

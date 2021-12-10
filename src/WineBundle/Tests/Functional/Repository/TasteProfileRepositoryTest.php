@@ -7,7 +7,7 @@ namespace App\WineBundle\Tests\Functional\Repository;
 use App\Tests\Functional\AuthKernelTestCase;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
-use Error;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TasteProfileRepositoryTest extends AuthKernelTestCase
 {
@@ -28,10 +28,11 @@ class TasteProfileRepositoryTest extends AuthKernelTestCase
 
         $this->assertSame('test2', $tasteProfileRepository->find($tasteProfile->getId())->getName());
 
+        $id = $tasteProfile->getId();
         $tasteProfileRepository->delete($tasteProfile);
 
-        $this->expectException(Error::class);
+        $this->expectException(NotFoundHttpException::class);
 
-        $tasteProfileRepository->find($tasteProfile->getId());
+        $tasteProfileRepository->find($id);
     }
 }

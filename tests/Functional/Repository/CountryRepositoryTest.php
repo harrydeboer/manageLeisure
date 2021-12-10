@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Repository;
 use App\Entity\Country;
 use App\Repository\CountryRepositoryInterface;
 use App\Tests\Functional\AuthKernelTestCase;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CountryRepositoryTest extends AuthKernelTestCase
 {
@@ -30,6 +31,8 @@ class CountryRepositoryTest extends AuthKernelTestCase
         $id = $country->getId();
         $countryRepository->delete($country);
 
-        $this->assertNull($countryRepository->find($id));
+        $this->expectException(NotFoundHttpException::class);
+
+        $countryRepository->find($id);
     }
 }

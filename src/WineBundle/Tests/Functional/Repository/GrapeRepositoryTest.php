@@ -7,7 +7,7 @@ namespace App\WineBundle\Tests\Functional\Repository;
 use App\Tests\Functional\AuthKernelTestCase;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
-use Error;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GrapeRepositoryTest extends AuthKernelTestCase
 {
@@ -29,10 +29,11 @@ class GrapeRepositoryTest extends AuthKernelTestCase
 
         $this->assertSame('test2', $grapeRepository->find($grape->getId())->getName());
 
+        $id = $grape->getId();
         $grapeRepository->delete($grape);
 
-        $this->expectException(Error::class);
+        $this->expectException(NotFoundHttpException::class);
 
-        $grapeRepository->find($grape->getId());
+        $grapeRepository->find($id);
     }
 }

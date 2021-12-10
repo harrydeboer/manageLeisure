@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomepageController extends AbstractController
@@ -16,5 +17,10 @@ class HomepageController extends AbstractController
     public function view(): Response
     {
         return $this->render('homepage/view.html.twig');
+    }
+
+    public function notFound(): void
+    {
+        throw new NotFoundHttpException('The page has not been found.');
     }
 }

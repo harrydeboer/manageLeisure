@@ -11,7 +11,7 @@ use App\WineBundle\Entity\Region;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\RegionRepositoryInterface;
 use App\WineBundle\Repository\WineRepositoryInterface;
-use Error;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class WineRepositoryTest extends AuthKernelTestCase
 {
@@ -65,11 +65,12 @@ class WineRepositoryTest extends AuthKernelTestCase
 
         $this->assertSame('test2', $this->wineRepository->find($this->wine->getId())->getName());
 
+        $id = $this->wine->getId();
         $this->wineRepository->delete($this->wine);
 
-        $this->expectException(Error::class);
+        $this->expectException(NotFoundHttpException::class);
 
-        $this->wineRepository->find($this->wine->getId());
+        $this->wineRepository->find($id);
     }
 
     public function findBySortAndFilter()
