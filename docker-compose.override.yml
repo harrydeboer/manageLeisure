@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      args:
+        APP_ENV: dev
+    volumes:
+      - .:/var/www/html
+  database:
+    ports:
+      - ${DB_PORT}:${DB_PORT}

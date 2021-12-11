@@ -14,12 +14,12 @@ class EnvTest extends TestCase
         $projectDir = dirname(__DIR__, 3);
 
 	    $dotEnv = new Dotenv('dev');
-        $dotEnv->bootEnv($projectDir . '/.env');
+        $dotEnv->bootEnv($projectDir . '/.env.local');
 
 	    $envNames = $_ENV;
 
         $dotEnv = new Dotenv('dev');
-        $dotEnv->bootEnv($projectDir . '/.env.example');
+        $dotEnv->bootEnv($projectDir . '/.env.local.example');
 
         $envExampleNames = $_ENV;
 
@@ -29,6 +29,8 @@ class EnvTest extends TestCase
             $value = rtrim($value);
             if ($envNames[$key] === "") {
                 $this->assertTrue($value === "");
+            } elseif ($key === 'DATABASE_URL') {
+                continue;
             } else {
                 $this->assertTrue(
                     str_starts_with($envNames[$key], $value),

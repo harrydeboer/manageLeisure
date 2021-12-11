@@ -7,21 +7,17 @@ services:
       context: .
       args:
         PHP_VERSION: "8.1"
-        APP_ENV: ${APP_ENV}
-        APACHE_HOST: ${APACHE_HOST}
+        APP_ENV: prod
     working_dir: /var/www/html
     container_name: myLife
     ports:
       - "80:80"
     networks:
       myLife:
-        ipv4_address: ${APACHE_HOST}
     depends_on:
       - database
     extra_hosts:
       - host.docker.internal:host-gateway
-    volumes:
-    - .:/var/www/html
     environment:
       - PHP_XDEBUG_ENABLED=1
       - PHP_INI_XDEBUG__CLIENT_PORT=9003
@@ -29,12 +25,12 @@ services:
       - PHP_IDE_CONFIG=serverName=myLife
   database:
     image: mysql:8.0
+    extra_hosts:
+      - host.docker.internal:host-gateway
     ports:
-      - 127.0.0.1:${DB_PORT}:${DB_PORT}
+      - ${DB_PORT}:${DB_PORT}
     container_name: myLifeDb
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+    env_file: .env.local
     volumes:
       - mysqldata:/var/lib/mysql
     entrypoint:
@@ -44,7 +40,6 @@ services:
       "
     networks:
       myLife:
-        ipv4_address: ${DB_HOST}
 
 volumes:
   mysqldata:
@@ -54,5 +49,3 @@ networks:
   myLife:
     ipam:
       driver: default
-      config:
-        - subnet: ${SUBNET}

@@ -2,7 +2,6 @@ FROM ubuntu:20.04
 
 ARG PHP_VERSION
 ARG APP_ENV
-ARG APACHE_HOST
 
 RUN apt-get update
 
@@ -57,7 +56,6 @@ COPY ./config/web/php-cli.ini /etc/php/${PHP_VERSION}/cli/conf.d/php-cli.ini
 
 RUN if [ "$APP_ENV" = "dev" ] ; then cp /var/www/html/config/web/php-cli.xdebug.ini /etc/php/${PHP_VERSION}/cli/conf.d/xdebug-cli.ini; fi
 RUN if [ "$APP_ENV" = "dev" ] ; then cp /var/www/html/config/web/php-apache2.xdebug.ini /etc/php/${PHP_VERSION}/apache2/conf.d/xdebug-apache2.ini; fi
-RUN sed -i -r "s/APACHE_HOST/${APACHE_HOST}/g" /etc/apache2/apache2.conf
 
 RUN chown www-data:www-data -R /var/www/html/
 
