@@ -3,7 +3,7 @@ My Life
 
 <h3>Install</h3>
 <ol>
-<li>Copy .env.example to .env and fill in the fields.</li>
+<li>Copy .env.local.example to .env.local and fill in the fields.</li>
 <li>Build the docker-compose image and up -d the image.</li>
 <li>Run composer install.</li>
 <li>Run the migrations.</li>
