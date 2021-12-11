@@ -5,6 +5,8 @@ My Life
 <ol>
 <li>Copy .env.local.example to .env.local and fill in the fields.</li>
 <li>Build the docker-compose image and up -d the image.</li>
+<li>Create the database and the test database. 
+The test database has to be the database with suffix _test.</li>
 <li>Run composer install.</li>
 <li>Run the migrations.</li>
 <li>Register the user in the route /register.</li>
@@ -19,5 +21,5 @@ initial data and have initial wine labels.</li>
 
 <ol>
 <li>Run unitTests.sh to unit test.</li>
-<li>Run featureTests.sh to feature test.</li>
+<li>Run functionalTests.sh to functional test.</li>
 </ol>
