@@ -26,7 +26,7 @@ class GrapeController extends AuthController
      */
     public function view(): Response
     {
-        $grapes = $this->getCurrentUser()->getGrapes();
+        $grapes = $this->getUser()->getGrapes();
 
         return $this->renderForm('@WineBundle/grape/view.html.twig', [
             'grapes' => $grapes,
@@ -74,7 +74,7 @@ class GrapeController extends AuthController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $grape->setUser($this->getCurrentUser());
+            $grape->setUser($this->getUser());
             $this->grapeRepository->create($grape);
 
             return $this->redirectToRoute('wineGrape');
@@ -104,6 +104,6 @@ class GrapeController extends AuthController
 
     private function getGrape(int $id): Grape
     {
-        return $this->grapeRepository->getFromUser($id, $this->getCurrentUser()->getId());
+        return $this->grapeRepository->getFromUser($id, $this->getUser()->getId());
     }
 }

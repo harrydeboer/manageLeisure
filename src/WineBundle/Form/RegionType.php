@@ -28,7 +28,7 @@ class RegionType extends AbstractType
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('country', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $this->getCurrentUser()->getCountries()->toArray()),
+                'choices'  => array_merge(['' => null], $this->getUser()->getCountries()->toArray()),
                 'choice_value' => 'id',
                 'choice_label' => function(?Country $country) {
                     return $country ? $country->getName() : 'select country';
@@ -43,7 +43,7 @@ class RegionType extends AbstractType
     /**
      * @return User
      */
-    private function getCurrentUser(): UserInterface
+    private function getUser(): UserInterface
     {
         return $this->token->getToken()->getUser();
     }

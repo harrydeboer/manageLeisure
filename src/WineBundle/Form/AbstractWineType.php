@@ -32,13 +32,11 @@ abstract class AbstractWineType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $user = $this->getCurrentUser();
-
         $builder->add('grapes', EntityType::class, [
             'class' => Grape::class,
             'expanded' => true,
             'multiple' => true,
-            'choices' => $user->getGrapes(),
+            'choices' => $this->getUser()->getGrapes(),
             'choice_value' => 'id',
             'choice_label' => function(?Grape $grape) {
                 return $grape ? $grape->getName() : '';
@@ -46,7 +44,7 @@ abstract class AbstractWineType extends AbstractType
             'attr' => ['class' => 'form-control'],
         ])
             ->add('tasteProfile', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $user->getTasteProfiles()->toArray()),
+                'choices'  => array_merge(['' => null], $this->getUser()->getTasteProfiles()->toArray()),
                 'choice_value' => 'id',
                 'choice_label' => function(?TasteProfile $tasteProfile) {
                     return $tasteProfile ? $tasteProfile->getName() : 'select taste profile';
@@ -58,7 +56,7 @@ abstract class AbstractWineType extends AbstractType
                 'attr' => ['min' => 1000, 'max' => 9999, 'placeholder' => 'year', 'class' => 'form-control'],
             ])
             ->add('country', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $this->getCurrentUser()->getCountries()->toArray()),
+                'choices'  => array_merge(['' => null], $this->getUser()->getCountries()->toArray()),
                 'choice_value' => 'id',
                 'choice_label' => function(?Country $country) {
                     return $country ? $country->getName() : 'select country';
@@ -82,7 +80,7 @@ abstract class AbstractWineType extends AbstractType
     /**
      * @return User
      */
-    protected function getCurrentUser(): UserInterface
+    protected function getUser(): UserInterface
     {
         return $this->token->getToken()->getUser();
     }

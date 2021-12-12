@@ -43,9 +43,9 @@ class WineController extends AuthController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $wines = $this->wineRepository->findBySortAndFilter($this->getCurrentUser(), $page, $form->getData());
+            $wines = $this->wineRepository->findBySortAndFilter($this->getUser(), $page, $form->getData());
         } else {
-            $wines = $this->wineRepository->findBySortAndFilter($this->getCurrentUser(), $page);
+            $wines = $this->wineRepository->findBySortAndFilter($this->getUser(), $page);
         }
 
         return $this->renderForm('@WineBundle/wine/view.html.twig', [
@@ -114,7 +114,7 @@ class WineController extends AuthController
             if ($wine->getCountry() !== $wine->getRegion()->getCountry()) {
                 throw new ValidatorException('The region does not belong to the country.');
             }
-            $wine->setUser($this->getCurrentUser());
+            $wine->setUser($this->getUser());
             $wine->setCreatedAt(time());
             $this->wineRepository->create($wine);
             if ($this->kernel->getEnvironment() !== 'test') {
@@ -168,6 +168,6 @@ class WineController extends AuthController
 
     private function getWine(int $id): Wine
     {
-        return $this->wineRepository->getFromUser($id, $this->getCurrentUser()->getId());
+        return $this->wineRepository->getFromUser($id, $this->getUser()->getId());
     }
 }

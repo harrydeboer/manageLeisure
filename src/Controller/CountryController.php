@@ -25,7 +25,7 @@ class CountryController extends AuthController
      */
     public function view(): Response
     {
-        $countries = $this->countryRepository->findOrderedByName($this->getCurrentUser());
+        $countries = $this->countryRepository->findOrderedByName($this->getUser());
 
         return $this->render('country/view.html.twig', [
             'countries' => $countries,
@@ -72,7 +72,7 @@ class CountryController extends AuthController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $country->setUser($this->getCurrentUser());
+            $country->setUser($this->getUser());
             $this->countryRepository->create($country);
 
             return $this->redirectToRoute('country');
@@ -120,6 +120,6 @@ class CountryController extends AuthController
 
     private function getCountry(int $id): Country
     {
-        return $this->countryRepository->getFromUser($id, $this->getCurrentUser()->getId());
+        return $this->countryRepository->getFromUser($id, $this->getUser()->getId());
     }
 }

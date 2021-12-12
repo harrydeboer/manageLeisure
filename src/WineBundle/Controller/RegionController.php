@@ -26,7 +26,7 @@ class RegionController extends AuthController
      */
     public function view(): Response
     {
-        $regions = $this->getCurrentUser()->getRegions();
+        $regions = $this->getUser()->getRegions();
 
         return $this->render('@WineBundle/region/view.html.twig', [
             'regions' => $regions,
@@ -73,7 +73,7 @@ class RegionController extends AuthController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $region->setUser($this->getCurrentUser());
+            $region->setUser($this->getUser());
             $this->regionRepository->create($region);
 
             return $this->redirectToRoute('wineRegion');
@@ -103,6 +103,6 @@ class RegionController extends AuthController
 
     private function getRegion(int $id): Region
     {
-        return $this->regionRepository->getFromUser($id, $this->getCurrentUser()->getId());
+        return $this->regionRepository->getFromUser($id, $this->getUser()->getId());
     }
 }

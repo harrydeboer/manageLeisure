@@ -24,9 +24,9 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
-            'isLoggedIn' => !is_null($this->getCurrentUser()),
+            'isLoggedIn' => !is_null($this->getUser()),
             'last_username' => $lastUsername,
-            'name' => $this->getCurrentUser()?->getName(),
+            'name' => $this->getUser()?->getName(),
             'error' => $error,
             ]);
     }
@@ -42,8 +42,8 @@ class SecurityController extends AbstractController
     /**
      * @return ?User
      */
-    protected function getCurrentUser(): ?UserInterface
+    protected function getUser(): ?UserInterface
     {
-        return $this->getUser();
+        return parent::getUser();
     }
 }

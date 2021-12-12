@@ -14,8 +14,8 @@ class AuthController extends AbstractController
     /**
      * @return User
      */
-    protected function getCurrentUser(): UserInterface
+    protected function getUser(): UserInterface
     {
-        return $this->getUser();
+        return parent::getUser();
     }
 }

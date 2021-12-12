@@ -26,7 +26,7 @@ class TasteProfileController extends AuthController
      */
     public function view(): Response
     {
-        $tasteProfiles = $this->getCurrentUser()->getTasteProfiles();
+        $tasteProfiles = $this->getUser()->getTasteProfiles();
 
         return $this->render('@WineBundle/tasteProfile/view.html.twig', [
             'tasteProfiles' => $tasteProfiles,
@@ -73,7 +73,7 @@ class TasteProfileController extends AuthController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $tasteProfile->setUser($this->getCurrentUser());
+            $tasteProfile->setUser($this->getUser());
             $this->tasteProfileRepository->create($tasteProfile);
 
             return $this->redirectToRoute('wineTasteProfile');
@@ -115,6 +115,6 @@ class TasteProfileController extends AuthController
 
     private function getTasteProfile(int $id): TasteProfile
     {
-        return $this->tasteProfileRepository->getFromUser($id, $this->getCurrentUser()->getId());
+        return $this->tasteProfileRepository->getFromUser($id, $this->getUser()->getId());
     }
 }

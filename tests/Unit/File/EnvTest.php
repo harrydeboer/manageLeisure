@@ -13,13 +13,17 @@ class EnvTest extends TestCase
     {
         $projectDir = dirname(__DIR__, 3);
 
+        $_ENV = [];
+
 	    $dotEnv = new Dotenv('dev');
-        $dotEnv->bootEnv($projectDir . '/.env.local');
+        $dotEnv->load($projectDir . '/.env.local');
 
 	    $envNames = $_ENV;
 
+        $_ENV = [];
+
         $dotEnv = new Dotenv('dev');
-        $dotEnv->bootEnv($projectDir . '/.env.local.example');
+        $dotEnv->load($projectDir . '/.env.local.example');
 
         $envExampleNames = $_ENV;
 
