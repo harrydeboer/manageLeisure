@@ -24,7 +24,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
     libxslt1.1 \
     libc6 \
     libonig5 \
-    libgd3 \
     wget \
     libapache2-mod-php${PHP_VERSION}
 
