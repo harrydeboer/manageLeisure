@@ -20,11 +20,11 @@ class RegionFactory extends AbstractFactory
 
     public function create(array $params = []): Region
     {
+        $paramsParent = [];
         if (isset($params['user'])) {
-            $country = $this->countryFactory->create(['user' => $params['user']]);
-        } else {
-            $country = $this->countryFactory->create($params);
+            $paramsParent['user'] = $params['user'];
         }
+        $country = $this->countryFactory->create($paramsParent);
 
         $region = new Region();
         $region->setName('jan');

@@ -19,11 +19,14 @@ class WineFactory extends AbstractFactory
 
     public function create(array $params = []): Wine
     {
+        $paramsParent = [];
         if (isset($params['user'])) {
-            $region = $this->regionFactory->create(['user' => $params['user']]);
-        } else {
-            $region = $this->regionFactory->create($params);
+            $paramsParent['user'] = $params['user'];
+        } elseif (isset($params['country'])) {
+            $paramsParent['country'] = $params['country'];
         }
+
+        $region = $this->regionFactory->create($paramsParent);
 
         $wine = new Wine();
         $wine->setUser($region->getUser());
