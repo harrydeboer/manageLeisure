@@ -7,21 +7,21 @@ namespace App\Factory;
 use App\Entity\User;
 use App\Repository\UserRepositoryInterface;
 
-class UserFactory
+class UserFactory extends AbstractFactory
 {
     public function __construct(
        private UserRepositoryInterface $userRepository,
     ) {
     }
 
-    public function create(): User
+    public function create(array $params = []): User
     {
         $user = new User();
         $user->setName(uniqid('userName'));
         $user->setEmail(uniqid('userEmail'));
 
-        $this->userRepository->create($user, 'secret');
+        $this->setParams($params, $user);
 
-        return $user;
+        return $this->userRepository->create($user, 'secret');
     }
 }

@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\WineBundle\Factory;
 
 use App\Entity\User;
+use App\Factory\AbstractFactory;
 use App\Factory\UserFactory;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 
-class GrapeFactory
+class GrapeFactory extends AbstractFactory
 {
     public function __construct(
         private UserFactory $userFactory,
@@ -17,19 +18,15 @@ class GrapeFactory
     ) {
     }
 
-    public function create(User $user=null): Grape
+    public function create(array $params = []): Grape
     {
         $grape = new Grape();
-        if (is_null($user)) {
-            $grape->setUser($this->userFactory->create());
-        } else {
-            $grape->setUser($user);
-        }
+        $grape->setUser($this->userFactory->create());
         $grape->setName(uniqid('grape'));
         $grape->setType(array_rand(['red' => 0, 'white' => 1]));
 
-        $this->grapeRepository->create($grape);
+        $this->setParams($params, $grape);
 
-        return $grape;
+        return $this->grapeRepository->create($grape);
     }
 }

@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\WineBundle\Factory;
 
 use App\Entity\User;
+use App\Factory\AbstractFactory;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\WineRepositoryInterface;
 
-class WineFactory
+class WineFactory extends AbstractFactory
 {
     public function __construct(
         private RegionFactory $regionFactory,
@@ -16,9 +17,13 @@ class WineFactory
     ) {
     }
 
-    public function create(User $user=null): Wine
+    public function create(array $params = []): Wine
     {
-        $region = $this->regionFactory->create($user);
+        if (isset($params['user'])) {
+            $region = $this->regionFactory->create(['user' => $params['user']]);
+        } else {
+            $region = $this->regionFactory->create($params);
+        }
 
         $wine = new Wine();
         $wine->setUser($region->getUser());
@@ -31,8 +36,8 @@ class WineFactory
         $wine->setPrice(random_int(1, 100));
         $wine->setCreatedAt(time());
 
-        $this->wineRepository->create($wine);
+        $this->setParams($params, $wine);
 
-        return $wine;
+        return $this->wineRepository->create($wine);
     }
 }

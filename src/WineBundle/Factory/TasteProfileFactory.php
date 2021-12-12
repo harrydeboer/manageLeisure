@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\WineBundle\Factory;
 
 use App\Entity\User;
+use App\Factory\AbstractFactory;
 use App\Factory\UserFactory;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 
-class TasteProfileFactory
+class TasteProfileFactory extends AbstractFactory
 {
     public function __construct(
         private UserFactory $userFactory,
@@ -17,20 +18,16 @@ class TasteProfileFactory
     ) {
     }
 
-    public function create(User $user=null): TasteProfile
+    public function create(array $params = []): TasteProfile
     {
         $tasteProfile = new TasteProfile();
-        if (is_null($user)) {
-            $tasteProfile->setUser($this->userFactory->create());
-        } else {
-            $tasteProfile->setUser($user);
-        }
+        $tasteProfile->setUser($this->userFactory->create());
         $tasteProfile->setName(uniqid('tasteProfile'));
         $tasteProfile->setSecondName(uniqid('tasteProfileSecond'));
         $tasteProfile->setDescription(uniqid('tasteProfileDescription'));
 
-        $this->tasteProfileRepository->create($tasteProfile);
+        $this->setParams($params, $tasteProfile);
 
-        return $tasteProfile;
+        return $this->tasteProfileRepository->create($tasteProfile);
     }
 }

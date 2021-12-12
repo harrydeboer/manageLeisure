@@ -12,7 +12,7 @@ class RegionControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $country = $this->getContainer()->get(CountryFactory::class)->create($this->user);
+        $country = $this->getContainer()->get(CountryFactory::class)->create(['user' => $this->user]);
 
         $this->client->request('GET', '/wine/region');
 
