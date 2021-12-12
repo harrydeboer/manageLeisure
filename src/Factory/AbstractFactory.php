@@ -6,7 +6,7 @@ namespace App\Factory;
 
 abstract class AbstractFactory
 {
-    protected function setParams(array $params, object $entity)
+    protected function setParams(array $params, object $entity): void
     {
         foreach ($params as $key => $param) {
             $key = ucfirst($key);
