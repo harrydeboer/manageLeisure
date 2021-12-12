@@ -26,7 +26,7 @@ class GrapeFactory
             $grape->setUser($user);
         }
         $grape->setName(uniqid('grape'));
-        $grape->setType(array_rand(['red' => 0, 'white' => 1]));;
+        $grape->setType(array_rand(['red' => 0, 'white' => 1]));
 
         $this->grapeRepository->create($grape);
 

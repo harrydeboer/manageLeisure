@@ -36,9 +36,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
 
         $user->setPassword(
-            $this->passwordEncoder->hashPassword(
-                $user,
-                $newPassword,)
+            $this->passwordEncoder->hashPassword($user, $newPassword)
         );
         $this->_em->persist($user);
         $this->_em->flush();
@@ -47,10 +45,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function create(User $user, string $plainPassword): User
     {
         $user->setPassword(
-            $this->passwordEncoder->hashPassword(
-                $user,
-                $plainPassword,
-            )
+            $this->passwordEncoder->hashPassword($user, $plainPassword)
         );
 
         $this->em->persist($user);

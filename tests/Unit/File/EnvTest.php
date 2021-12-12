@@ -36,7 +36,7 @@ class EnvTest extends TestCase
             } elseif ($key === 'DATABASE_URL') {
                 continue;
             } elseif ($key === 'TEST_DATABASE') {
-                $this->assertEquals($value, '_test');
+                $this->assertEquals( '_test', $value);
             } else {
                 $this->assertTrue(
                     str_starts_with($envNames[$key], $value),
