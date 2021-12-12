@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Factory;
 
-use App\Entity\User;
 use App\Factory\AbstractFactory;
 use App\Factory\CountryFactory;
 use App\WineBundle\Entity\Region;
