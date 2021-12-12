@@ -26,12 +26,20 @@ class WineControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $form['wine[label]'] = new File(dirname(__DIR__) . '/test.png');
+        $testLabelPath = dirname(__DIR__) . '/test.png';
+        $form['wine[label]'] = new File($testLabelPath);
         $form['wine[name]'] = 'test';
         $form['wine[year]'] = 2000;
         $form['wine[rating]'] = 7;
         $form['wine[price]'] = 10;
         $form['wine[country]'] = $region->getCountry()->getId();
+
+        $publicLabel1Path = dirname(__DIR__, 5) . '/public/img/labels/1.png';
+        $labelExists = true;
+        if (!file_exists($publicLabel1Path)) {
+            $labelExists = false;
+            copy($testLabelPath, $publicLabel1Path);
+        }
 
         /**
          * The create page has no regions but when a country is selected the regions are retrieved
@@ -76,5 +84,9 @@ class WineControllerTest extends AuthWebTestCase
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine');
+
+        if (!$labelExists) {
+            unlink($publicLabel1Path);
+        }
     }
 }
