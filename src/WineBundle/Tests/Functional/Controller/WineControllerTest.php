@@ -34,13 +34,6 @@ class WineControllerTest extends AuthWebTestCase
         $form['wine[price]'] = 10;
         $form['wine[country]'] = $region->getCountry()->getId();
 
-        $publicLabel1Path = dirname(__DIR__, 5) . '/public/img/labels/1.png';
-        $labelExists = true;
-        if (!file_exists($publicLabel1Path)) {
-            $labelExists = false;
-            copy($testLabelPath, $publicLabel1Path);
-        }
-
         /**
          * The create page has no regions but when a country is selected the regions are retrieved
          * by ajax and javascript. The javascript does not work in a php browser so a region is handpicked.
@@ -84,9 +77,5 @@ class WineControllerTest extends AuthWebTestCase
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine');
-
-        if (!$labelExists) {
-            unlink($publicLabel1Path);
-        }
     }
 }

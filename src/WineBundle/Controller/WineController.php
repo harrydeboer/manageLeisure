@@ -14,7 +14,6 @@ use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -22,7 +21,6 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 class WineController extends AuthController
 {
     public function __construct(
-        private KernelInterface $kernel,
         private WineRepositoryInterface $wineRepository,
         private FormFactoryInterface $formFactory
     ) {
@@ -82,9 +80,7 @@ class WineController extends AuthController
             }
 
             $this->wineRepository->update();
-            if ($this->kernel->getEnvironment() !== 'test') {
-                $wine->moveLabel($formUpdate->get('label')->getData());
-            }
+            $wine->moveLabel($formUpdate->get('label')->getData());
 
             return $this->redirectToRoute('wineHomepage');
         }
@@ -117,9 +113,7 @@ class WineController extends AuthController
             $wine->setUser($this->getUser());
             $wine->setCreatedAt(time());
             $this->wineRepository->create($wine);
-            if ($this->kernel->getEnvironment() !== 'test') {
-                $wine->moveLabel($form->get('label')->getData());
-            }
+            $wine->moveLabel($form->get('label')->getData());
 
             return $this->redirectToRoute('wineHomepage');
         }
@@ -144,9 +138,7 @@ class WineController extends AuthController
          */
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if ($this->kernel->getEnvironment() !== 'test') {
-                $wine->unlinkLabel();
-            }
+            $wine->unlinkLabel();
 
             $this->wineRepository->delete($wine);
         }

@@ -265,8 +265,8 @@ class Wine
     public function getLabel(): UploadedFile
     {
         $idString = (string) $this->getId();
-        return new UploadedFile($this->getProjectDir() . '/public/' .
-            $this->getLabelPath(), $idString . '.' . $this->getLabelExtension());
+        return new UploadedFile($this->getProjectDir() . '/public/' . $this->getLabelPath(),
+            $idString . '.' . $this->getLabelExtension());
     }
 
     public function setLabel(?UploadedFile $label)
@@ -288,8 +288,12 @@ class Wine
             if (!str_starts_with($label->getMimeType(), 'image/')) {
                 throw new ValidatorException('The file is not an image.');
             }
+            $extraPath = '';
+            if ($_ENV['APP_ENV'] === 'test') {
+                $extraPath = 'test/';
+            }
             $label->move(
-                $this->getProjectDir() . '/public/img/labels/',
+                $this->getProjectDir() . '/public/img/labels/' . $extraPath,
                 $id . '.' . $label->getClientOriginalExtension()
             );
         }
@@ -298,8 +302,12 @@ class Wine
     public function getLabelPath(): string
     {
         $idString = (string) $this->getId();
+        $extraPath = '';
+        if ($_ENV['APP_ENV'] === 'test') {
+            $extraPath = 'test/';
+        }
 
-        return 'img/labels/' . $idString . '.' . $this->getLabelExtension();
+        return 'img/labels/' . $extraPath . $idString . '.' . $this->getLabelExtension();
     }
 
     public function unlinkLabel()
