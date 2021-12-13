@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\WineBundle\Tests\Functional\Controller;
 
 use App\Tests\Functional\AuthWebTestCase;
+use App\WineBundle\Factory\GrapeFactory;
 use App\WineBundle\Factory\RegionFactory;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -14,6 +15,7 @@ class WineControllerTest extends AuthWebTestCase
     public function testCreateUpdateDelete(): void
     {
         $region = $this->getContainer()->get(RegionFactory::class)->create(['user' => $this->user]);
+        $grape = $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
 
         $this->client->request('GET', '/wine');
 
@@ -29,6 +31,7 @@ class WineControllerTest extends AuthWebTestCase
         $testLabelPath = dirname(__DIR__) . '/test.png';
         $form['wine[label]'] = new File($testLabelPath);
         $form['wine[name]'] = 'test';
+        $form['wine[grapes]'][0]->setValue((string) $grape->getId());
         $form['wine[year]'] = 2000;
         $form['wine[rating]'] = 7;
         $form['wine[price]'] = 10;
