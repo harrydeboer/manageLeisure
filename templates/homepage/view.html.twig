@@ -3,4 +3,12 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+    <div class="text-center">
+        <h1>Welcome to your life app.</h1>
+        {% if isLoggedIn %}
+            <p>Visit your <a href="{{ path('wineHomepage') }}">wines</a>.</p>
+        {% else %}
+            <p>Login to visit your <a href="{{ path('wineHomepage') }}">wines</a>.</p>
+        {% endif %}
+    </div>
 {% endblock %}
