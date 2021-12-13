@@ -78,6 +78,10 @@ class Wine
      *     joinColumns={@ORM\JoinColumn(name="wine_id", referencedColumnName="id", onDelete="CASCADE")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="grape_id", referencedColumnName="id", onDelete="CASCADE")}
      *     )
+     * @Assert\Count(
+     *      min = 1,
+     *      minMessage = "The wine must have at least one grape.",
+     * )
      */
     private Collection $grapes;
 
