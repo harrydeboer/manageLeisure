@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Form;
 
-use App\Entity\Country;
+use App\WineBundle\Entity\Country;
 use App\Form\CountryType;
 use Symfony\Component\Form\Test\TypeTestCase;
 

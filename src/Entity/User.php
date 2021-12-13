@@ -69,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $regions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Country", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Country", mappedBy="user")
      * @ORM\OrderBy({"name" = "ASC"})
      */
     private Collection $countries;

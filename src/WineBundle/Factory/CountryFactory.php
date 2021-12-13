@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Factory;
+namespace App\WineBundle\Factory;
 
-use App\Entity\Country;
-use App\Repository\CountryRepositoryInterface;
+use App\Factory\AbstractFactory;
+use App\Factory\UserFactory;
+use App\WineBundle\Entity\Country;
+use App\WineBundle\Repository\CountryRepositoryInterface;
 
 class CountryFactory extends AbstractFactory
 {

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Entity;
 
-use App\Entity\Country;
 use App\Entity\User;
 use App\WineBundle\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -43,12 +42,12 @@ class Region
     private User $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Wine", mappedBy="region", orphanRemoval=true)
      */
     private Collection $wines;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="regions")
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="regions")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
      */
     private Country $country;

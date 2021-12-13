@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Form;
 
-use App\Entity\Country;
+use App\WineBundle\Entity\Country;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

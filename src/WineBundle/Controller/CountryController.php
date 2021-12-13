@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\WineBundle\Controller;
 
-use App\Repository\CountryRepositoryInterface;
-use App\Entity\Country;
+use App\Controller\AuthController;
+use App\WineBundle\Repository\CountryRepositoryInterface;
+use App\WineBundle\Entity\Country;
 use App\Form\DeleteCountryType;
 use App\Form\CountryType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,19 +22,19 @@ class CountryController extends AuthController
     }
 
     /**
-     * @Route("/country", name="country")
+     * @Route("/wine/country", name="wineCountry")
      */
     public function view(): Response
     {
         $countries = $this->countryRepository->findOrderedByName($this->getUser());
 
-        return $this->render('country/view.html.twig', [
+        return $this->render('@WineBundle/country/view.html.twig', [
             'countries' => $countries,
         ]);
     }
 
     /**
-     * @Route("/country/edit/{id}", name="countryEdit")
+     * @Route("/wine/country/edit/{id}", name="wineCountryEdit")
      */
     public function edit(Request $request, int $id): Response
     {
@@ -44,7 +45,7 @@ class CountryController extends AuthController
         ]);
 
         $formDelete = $this->createForm(DeleteCountryType::class, $country, [
-            'action' => $this->generateUrl('countryDelete', ['id' => $country->getId()]),
+            'action' => $this->generateUrl('wineCountryDelete', ['id' => $country->getId()]),
             'method' => 'POST',
         ]);
 
@@ -53,17 +54,17 @@ class CountryController extends AuthController
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
             $this->countryRepository->update();
 
-            return $this->redirectToRoute('country');
+            return $this->redirectToRoute('wineCountry');
         }
 
-        return $this->renderForm('country/edit/view.html.twig', [
+        return $this->renderForm('@WineBundle/country/edit/view.html.twig', [
             'formUpdate' => $formUpdate,
             'formDelete' => $formDelete,
         ]);
     }
 
     /**
-     * @Route("/country/create", name="countryCreate")
+     * @Route("/wine/country/create", name="wineCountryCreate")
      */
     public function new(Request $request): Response
     {
@@ -75,16 +76,16 @@ class CountryController extends AuthController
             $country->setUser($this->getUser());
             $this->countryRepository->create($country);
 
-            return $this->redirectToRoute('country');
+            return $this->redirectToRoute('wineCountry');
         }
 
-        return $this->renderForm('country/new/view.html.twig', [
+        return $this->renderForm('@WineBundle/country/new/view.html.twig', [
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/country/delete/{id}", name="countryDelete")
+     * @Route("/wine/country/delete/{id}", name="wineCountryDelete")
      */
     public function delete(Request $request, int $id): RedirectResponse
     {
@@ -97,23 +98,23 @@ class CountryController extends AuthController
             $this->countryRepository->delete($country);
         }
 
-        return $this->redirectToRoute('country');
+        return $this->redirectToRoute('wineCountry');
     }
 
     /**
-     * @Route("/country/get-regions/{id}", name="wineGetRegions")
+     * @Route("/wine/country/get-regions/{id}", name="wineGetRegions")
      */
     public function getRegions(int $id = null): Response
     {
         if (is_null($id)) {
-            return $this->render('country/getRegions.html.twig', [
+            return $this->render('@WineBundle/country/getRegions.html.twig', [
                 'regions' => [],
             ]);
         }
 
         $country = $this->getCountry($id);
 
-        return $this->render('country/getRegions.html.twig', [
+        return $this->render('@WineBundle/country/getRegions.html.twig', [
             'regions' => $country->getRegions(),
         ]);
     }

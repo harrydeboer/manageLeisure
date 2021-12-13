@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Form;
 
-use App\Entity\Country;
+use App\WineBundle\Entity\Country;
 use App\Entity\User;
-use App\Repository\CountryRepositoryInterface;
+use App\WineBundle\Repository\CountryRepositoryInterface;
 use App\WineBundle\Entity\Region;
 use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Entity\Grape;

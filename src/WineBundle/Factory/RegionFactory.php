@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\WineBundle\Factory;
 
 use App\Factory\AbstractFactory;
-use App\Factory\CountryFactory;
 use App\WineBundle\Entity\Region;
 use App\WineBundle\Repository\RegionRepositoryInterface;
 

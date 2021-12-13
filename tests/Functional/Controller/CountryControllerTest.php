@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Controller;
 
-use App\Repository\CountryRepositoryInterface;
+use App\WineBundle\Repository\CountryRepositoryInterface;
 use App\Tests\Functional\AuthWebTestCase;
 
 class CountryControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $this->client->request('GET', '/country');
+        $this->client->request('GET', '/wine/country');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('nav', 'Countries');
 
-        $crawler = $this->client->request('GET', '/country/create');
+        $crawler = $this->client->request('GET', '/wine/country/create');
 
         $buttonCrawlerNode = $crawler->selectButton('Create');
 
@@ -26,17 +26,17 @@ class CountryControllerTest extends AuthWebTestCase
 
         $this->client->submit($form);
 
-        $this->assertResponseRedirects('/country');
+        $this->assertResponseRedirects('/wine/country');
 
         $countryRepository = $this->getContainer()->get(CountryRepositoryInterface::class);
 
         $country = $countryRepository->findOneBy(['name' => 'France']);
 
-        $this->client->xmlHttpRequest('GET', '/country/get-regions/' . $country->getId());
+        $this->client->xmlHttpRequest('GET', '/wine/country/get-regions/' . $country->getId());
 
         $this->assertResponseIsSuccessful();
 
-        $crawler = $this->client->request('GET', '/country/edit/' . $country->getId());
+        $crawler = $this->client->request('GET', '/wine/country/edit/' . $country->getId());
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
 
@@ -46,9 +46,9 @@ class CountryControllerTest extends AuthWebTestCase
 
         $this->client->submit($form);
 
-        $this->assertResponseRedirects('/country');
+        $this->assertResponseRedirects('/wine/country');
 
-        $crawler = $this->client->request('GET', '/country/edit/' . $country->getId());
+        $crawler = $this->client->request('GET', '/wine/country/edit/' . $country->getId());
 
         $buttonCrawlerNode = $crawler->selectButton('Delete');
 
@@ -56,6 +56,6 @@ class CountryControllerTest extends AuthWebTestCase
 
         $this->client->submit($form);
 
-        $this->assertResponseRedirects('/country');
+        $this->assertResponseRedirects('/wine/country');
     }
 }
