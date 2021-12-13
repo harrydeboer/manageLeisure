@@ -27,6 +27,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
     wget \
     libapache2-mod-php${PHP_VERSION}
 
+RUN if [ "$APP_ENV" = "dev" ] ; then DEBIAN_FRONTEND=noninteractive apt-get -y install nodejs npm; fi
+
 RUN a2enmod php${PHP_VERSION}
 
 RUN a2enmod headers rewrite ssl

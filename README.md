@@ -10,8 +10,7 @@ The test database has to be the database with suffix _test.</li>
 <li>Run composer install.</li>
 <li>Run the migrations.</li>
 <li>Register the user in the route /register.</li>
-<li>Run npm install (not in container but with a global node install). 
-Then link the UglifyJS and SCSS File Watchers to the node_modules/.bin binaries. 
+<li>Run npm install. Then link the UglifyJS and SCSS File Watchers to the node_modules/.bin binaries. 
 The SCSS Arguments in PhpStorm is '--style compressed $FileParentDir$/scss/$FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css'.</li>
 <li>Optional: run php bin/console app:import to fill the database with 
 initial data and have initial wine labels.</li>
