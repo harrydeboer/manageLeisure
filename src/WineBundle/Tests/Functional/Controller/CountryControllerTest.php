@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Controller;
+namespace App\WineBundle\Tests\Functional\Controller;
 
 use App\WineBundle\Repository\CountryRepositoryInterface;
 use App\Tests\Functional\AuthWebTestCase;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Form;
+namespace App\WineBundle\Tests\Unit\Form;
 
 use App\WineBundle\Entity\Country;
-use App\Form\CountryType;
+use App\WineBundle\Form\CountryType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class CountryTypeTest extends TypeTestCase

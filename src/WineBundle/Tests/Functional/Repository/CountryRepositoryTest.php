@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Repository;
+namespace App\WineBundle\Tests\Functional\Repository;
 
 use App\WineBundle\Factory\CountryFactory;
 use App\WineBundle\Repository\CountryRepositoryInterface;
