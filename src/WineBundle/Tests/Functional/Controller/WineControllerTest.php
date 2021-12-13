@@ -15,7 +15,8 @@ class WineControllerTest extends AuthWebTestCase
     public function testCreateUpdateDelete(): void
     {
         $region = $this->getContainer()->get(RegionFactory::class)->create(['user' => $this->user]);
-        $grape = $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
+        $grape0 = $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
+        $grape1 = $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
 
         $this->client->request('GET', '/wine');
 
@@ -31,7 +32,8 @@ class WineControllerTest extends AuthWebTestCase
         $testLabelPath = dirname(__DIR__) . '/test.png';
         $form['wine[label]'] = new File($testLabelPath);
         $form['wine[name]'] = 'test';
-        $form['wine[grapes]'][0]->setValue((string) $grape->getId());
+        $form['wine[grapes]'][0]->setValue((string) $grape0->getId());
+        $form['wine[grapes]'][1]->setValue((string) $grape1->getId());
         $form['wine[year]'] = 2000;
         $form['wine[rating]'] = 7;
         $form['wine[price]'] = 10;
@@ -54,6 +56,8 @@ class WineControllerTest extends AuthWebTestCase
         $wineRepository = $this->getContainer()->get(WineRepositoryInterface::class);
 
         $wine = $wineRepository->findOneBy(['name' => 'test']);
+
+        $grapes = $wine->getGrapes();
 
         $this->client->request('GET', '/wine/single/' . $wine->getId());
 
