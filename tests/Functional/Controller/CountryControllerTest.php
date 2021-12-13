@@ -14,7 +14,7 @@ class CountryControllerTest extends AuthWebTestCase
         $this->client->request('GET', '/country');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('nav', 'Country');
+        $this->assertSelectorTextContains('nav', 'Countries');
 
         $crawler = $this->client->request('GET', '/country/create');
 

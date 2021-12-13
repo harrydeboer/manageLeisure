@@ -35,11 +35,22 @@
   white-space: nowrap;
 }
 
+.navbar-nav {
+  margin: 0;
+}
+
+#wineHeaderImg {
+  height: 125px;
+  background-image: url("../img/wine/glasses.jpg");
+  background-repeat: repeat-x;
+  background-size: 400px auto;
+}
+
+/* Wine page */
 .wine-label {
   height: 100px;
 }
 
-/* Wine page */
 #wine-label {
   height: 600px;
 }

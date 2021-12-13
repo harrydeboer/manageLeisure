@@ -12,6 +12,9 @@
     {% endblock %}
 </head>
 <body>
+{% block headerImg %}
+    <img src="{{ asset('img/life.jpg') }}" id="lifeImg" alt="life">
+{% endblock %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -22,8 +25,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li><a href="{{ path('homepage') }}">Home</a></li>
                 <li><a href="{{ path('app_login') }}"><i class="fas fa-user"></i></a></li>
-                <li><a href="{{ path('country') }}">Country</a></li>
-                <li><a href="{{ path('wineHomepage') }}">Wine</a></li>
+                <li><a href="{{ path('country') }}">Countries</a></li>
+                <li><a href="{{ path('wineHomepage') }}">Wines</a></li>
             </ul>
             <div id="navigation-border"></div>
             {% block navlist %}{% endblock %}
