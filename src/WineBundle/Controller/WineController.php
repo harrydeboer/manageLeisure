@@ -13,6 +13,7 @@ use App\WineBundle\Form\WineType;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,9 +73,7 @@ class WineController extends AuthController
 
         $formUpdate->handleRequest($request);
 
-        if (count($formUpdate->get('grapes')->getData()) === 0) {
-            $formUpdate->get('grapes')->addError(new FormError('Specify at least one grape.'));
-        }
+        $this->addPotentialGrapeFormError($formUpdate);
 
         /**
          * When a wine is updated the uploaded image gets moved to the label directory when not testing.
@@ -107,9 +106,7 @@ class WineController extends AuthController
         ]);
         $form->handleRequest($request);
 
-        if (count($form->get('grapes')->getData()) === 0) {
-            $form->get('grapes')->addError(new FormError('Specify at least one grape.'));
-        }
+        $this->addPotentialGrapeFormError($form);
 
         /**
          * When a wine is created it gets a creation time.
@@ -170,5 +167,12 @@ class WineController extends AuthController
     private function getWine(int $id): Wine
     {
         return $this->wineRepository->getFromUser($id, $this->getUser()->getId());
+    }
+
+    private function addPotentialGrapeFormError(FormInterface $form)
+    {
+        if (count($form->get('grapes')->getData()) === 0) {
+            $form->get('grapes')->addError(new FormError('Specify at least one grape.'));
+        }
     }
 }
