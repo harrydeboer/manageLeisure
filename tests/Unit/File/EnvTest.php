@@ -13,19 +13,11 @@ class EnvTest extends TestCase
     {
         $projectDir = dirname(__DIR__, 3);
 
-        $_ENV = [];
-
 	    $dotEnv = new Dotenv('dev');
-        $dotEnv->load($projectDir . '/.env.local');
-
-	    $envNames = $_ENV;
-
-        $_ENV = [];
+        $envNames = $dotEnv->parse(file_get_contents($projectDir . '/.env.local'));
 
         $dotEnv = new Dotenv('dev');
-        $dotEnv->load($projectDir . '/.env.local.example');
-
-        $envExampleNames = $_ENV;
+        $envExampleNames = $dotEnv->parse(file_get_contents($projectDir . '/.env.local.example'));
 
         $this->assertSameSize($envNames, $envExampleNames);
 
