@@ -8,6 +8,7 @@ use Doctrine\ORM\QueryBuilder as DoctrineQueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 use Iterator;
+use Exception;
 use function count;
 
 class Paginator
@@ -26,6 +27,9 @@ class Paginator
         $this->pageSize = $pageSize;
     }
 
+    /**
+     * @throws Exception
+     */
     public function paginate(int $page = 1): self
     {
         $this->currentPage = max(1, $page);

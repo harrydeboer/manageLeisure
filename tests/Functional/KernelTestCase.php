@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
+use Doctrine\DBAL\Exception;
+
 class KernelTestCase extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
 {
     use MigrationsTrait;
@@ -15,6 +17,9 @@ class KernelTestCase extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCase
         $this->migrateDb();
     }
 
+    /**
+     * @throws Exception
+     */
     protected function tearDown(): void
     {
         parent::tearDown();

@@ -11,6 +11,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Exception;
 
 /**
  * @method Wine|null find($id, $lockMode = null, $lockVersion = null)
@@ -61,6 +62,7 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
      * The wine homepage has a filtering and sorting of wines.
      * The filtering is on the current user, grapes, year, taste profile.
      * The sorting is on rating, price and creation time.
+     * @throws Exception
      */
     public function findBySortAndFilter(
         User $user,

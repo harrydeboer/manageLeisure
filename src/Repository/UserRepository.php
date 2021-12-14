@@ -11,7 +11,6 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,7 +18,7 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface, UserRepositoryInterface
+class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface
 {
     public function __construct(
         private EntityManagerInterface $em,
@@ -32,14 +31,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newPassword): void
     {
         if (!$user instanceof User) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }
 
         $user->setPassword(
             $this->passwordEncoder->hashPassword($user, $newPassword)
         );
-        $this->_em->persist($user);
-        $this->_em->flush();
+
+        $this->em->persist($user);
+        $this->em->flush();
     }
 
     public function create(User $user, string $plainPassword): User

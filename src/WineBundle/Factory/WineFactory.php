@@ -9,6 +9,7 @@ use App\Factory\UserFactory;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Exception;
 
 class WineFactory extends AbstractFactory
 {
@@ -21,6 +22,9 @@ class WineFactory extends AbstractFactory
     ) {
     }
 
+    /**
+     * @throws Exception
+     */
     public function create(array $params = []): Wine
     {
         /**

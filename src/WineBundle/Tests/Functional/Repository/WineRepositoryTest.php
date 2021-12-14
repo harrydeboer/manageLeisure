@@ -8,6 +8,7 @@ use App\Tests\Functional\KernelTestCase;
 use App\WineBundle\Factory\WineFactory;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Exception;
 
 class WineRepositoryTest extends KernelTestCase
 {
@@ -23,6 +24,9 @@ class WineRepositoryTest extends KernelTestCase
         $this->wineFactory = static::getContainer()->get(WineFactory::class);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testCreateUpdateDelete()
     {
         $wine = $this->wineFactory->create();
@@ -43,6 +47,9 @@ class WineRepositoryTest extends KernelTestCase
         $this->wineRepository->getFromUser($id, $wine->getUser()->getId());
     }
 
+    /**
+     * @throws Exception
+     */
     public function testFindBySortAndFilter()
     {
         $wine = $this->wineFactory->create();

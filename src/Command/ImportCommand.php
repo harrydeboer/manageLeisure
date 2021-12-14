@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Doctrine\DBAL\Exception;
 
 class ImportCommand extends Command
 {
@@ -23,6 +24,9 @@ class ImportCommand extends Command
         parent::__construct($name);
     }
 
+    /**
+     * @throws Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $projectDir = $this->kernel->getProjectDir();

@@ -19,11 +19,11 @@ class RegionRepositoryTest extends KernelTestCase
 
         $this->assertSame($region, $regionRepository->find($region->getId()));
 
-        $region->setName('test2');
+        $region->setName('regionUpdate');
 
         $regionRepository->update();
 
-        $this->assertSame('test2', $regionRepository->find($region->getId())->getName());
+        $this->assertSame('regionUpdate', $regionRepository->find($region->getId())->getName());
 
         $id = $region->getId();
         $regionRepository->delete($region);
