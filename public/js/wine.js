@@ -4,7 +4,7 @@ $('.dropdown-menu').on('click', function (event) {
 
 $('.country-select').on('change', function() {
     let id = $(this).val();
-    $.get('/country/get-regions/' + id, '', function (data) {
+    $.get('/wine/country/get-regions/' + id, '', function (data) {
         $('.region-select').html(data);
     });
 });

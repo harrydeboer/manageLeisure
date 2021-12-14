@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-sm"><img src="{{ asset(wine.labelPath) }}" id="wine-label" alt="wine"></div>
+        <div class="col-sm"><img src="{{ asset(wine.getLabelPath(appEnv)) }}" id="wine-label" alt="wine"></div>
         <div class="col-sm">
             <table class="table">
                 <tr><td colspan="2"></td></tr>

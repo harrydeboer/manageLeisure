@@ -9,7 +9,7 @@
         {% for tasteProfile in tasteProfiles %}
             <tr>
                 <td><a href="{{ path('wineTasteProfileSingle', {'id': tasteProfile.id}) }}">{{ tasteProfile.name }}</a></td>
-                <td>{{ tasteProfile.getSecondName() }}</td>
+                <td>{{ tasteProfile.secondName }}</td>
                 <td><a href="{{ path('wineTasteProfileEdit', {'id': tasteProfile.id }) }}">edit</a></td>
             </tr>
         {% endfor %}

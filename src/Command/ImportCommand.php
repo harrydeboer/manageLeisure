@@ -25,9 +25,10 @@ class ImportCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $sqlFilesPath = dirname(__DIR__) . '/WineBundle/Data/sql-files';
-        $labelsPath = dirname(__DIR__) . '/WineBundle/Data/labels';
-        $publicLabelsPath = dirname(__DIR__,2) . '/public/img/labels';
+        $projectDir = $this->kernel->getProjectDir();
+        $sqlFilesPath = $projectDir . '/src/WineBundle/Data/sql-files';
+        $labelsPath = $projectDir . '/src/WineBundle/Data/labels';
+        $publicLabelsPath = $projectDir . '/public/img/wine/labels';
 
         $files = scandir($sqlFilesPath);
         foreach($files as $file) {

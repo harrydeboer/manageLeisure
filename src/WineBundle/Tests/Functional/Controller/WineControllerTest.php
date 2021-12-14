@@ -29,7 +29,7 @@ class WineControllerTest extends AuthWebTestCase
 
         $form = $buttonCrawlerNode->form();
 
-        $testLabelPath = dirname(__DIR__) . '/test.png';
+        $testLabelPath = __DIR__ . '/test.png';
         $form['wine[label]'] = new File($testLabelPath);
         $form['wine[name]'] = 'test';
         $form['wine[grapes]'][0]->tick();

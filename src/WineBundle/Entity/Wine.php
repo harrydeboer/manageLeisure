@@ -265,26 +265,23 @@ class Wine
         $this->createdAt = $createdAt;
     }
 
-    public function getLabel(): UploadedFile
+    /**
+     * The label getter and setter have to exist for the wine form to work,
+     * but the value of getLabel is never used because a html input of type file cannot be prefilled.
+     * The setter only sets the labelExtension, because it does not save the image.
+     * The function moveLabel saves the image.
+     */
+    public function getLabel(): void
     {
-        $idString = (string) $this->getId();
-        return new UploadedFile($this->getProjectDir() . '/public/' . $this->getLabelPath(),
-            $idString . '.' . $this->getLabelExtension());
     }
-
-    public function setLabel(?UploadedFile $label)
+    public function setLabel(?UploadedFile $label): void
     {
         if (!is_null($label)) {
             $this->setLabelExtension($label->getClientOriginalExtension());
         }
     }
 
-    private function getProjectDir(): string
-    {
-        return dirname(__DIR__, 3);
-    }
-
-    public function moveLabel(?UploadedFile $label)
+    public function moveLabel(?UploadedFile $label, string $appEnv, string $projectDir)
     {
         if (!is_null($label)) {
             $id = (string) $this->getId();
@@ -292,30 +289,30 @@ class Wine
                 throw new ValidatorException('The file is not an image.');
             }
             $extraPath = '';
-            if ($_ENV['APP_ENV'] === 'test') {
+            if ($appEnv === 'test') {
                 $extraPath = 'test/';
             }
             $label->move(
-                $this->getProjectDir() . '/public/img/wine/labels/' . $extraPath,
+                $projectDir . '/public/img/wine/labels/' . $extraPath,
                 $id . '.' . $label->getClientOriginalExtension()
             );
         }
     }
 
-    public function getLabelPath(): string
+    public function getLabelPath(string $appEnv): string
     {
         $idString = (string) $this->getId();
         $extraPath = '';
-        if ($_ENV['APP_ENV'] === 'test') {
+        if ($appEnv === 'test') {
             $extraPath = 'test/';
         }
 
         return 'img/wine/labels/' . $extraPath . $idString . '.' . $this->getLabelExtension();
     }
 
-    public function unlinkLabel()
+    public function unlinkLabel(string $appEnv, string $projectDir)
     {
-        unlink($this->getProjectDir() . '/public/' . $this->getLabelPath());
+        unlink($projectDir . '/public/' . $this->getLabelPath($appEnv));
     }
 
     public function getRegion(): Region

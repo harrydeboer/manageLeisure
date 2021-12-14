@@ -12,8 +12,10 @@ use App\WineBundle\Form\WineFilterAndSortType;
 use App\WineBundle\Form\WineType;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -22,7 +24,8 @@ class WineController extends AuthController
 {
     public function __construct(
         private WineRepositoryInterface $wineRepository,
-        private FormFactoryInterface $formFactory
+        private FormFactoryInterface $formFactory,
+        private KernelInterface $kernel,
     ) {
     }
 
@@ -48,6 +51,7 @@ class WineController extends AuthController
 
         return $this->renderForm('@WineBundle/wine/view.html.twig', [
             'paginator' => $wines,
+            'appEnv' => $this->kernel->getEnvironment(),
             'form' => $form,
         ]);
     }
@@ -80,7 +84,7 @@ class WineController extends AuthController
             }
 
             $this->wineRepository->update();
-            $wine->moveLabel($formUpdate->get('label')->getData());
+            $this->moveLabel($wine, $formUpdate->get('label')->getData());
 
             return $this->redirectToRoute('wineHomepage');
         }
@@ -113,7 +117,7 @@ class WineController extends AuthController
             $wine->setUser($this->getUser());
             $wine->setCreatedAt(time());
             $this->wineRepository->create($wine);
-            $wine->moveLabel($form->get('label')->getData());
+            $this->moveLabel($wine, $form->get('label')->getData());
 
             return $this->redirectToRoute('wineHomepage');
         }
@@ -138,7 +142,7 @@ class WineController extends AuthController
          */
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $wine->unlinkLabel();
+            $wine->unlinkLabel($this->kernel->getEnvironment(), $this->kernel->getProjectDir());
 
             $this->wineRepository->delete($wine);
         }
@@ -155,11 +159,17 @@ class WineController extends AuthController
 
         return $this->render('@Wine/wine/single/view.html.twig', [
             'wine' => $wine,
+            'appEnv' => $this->kernel->getEnvironment(),
         ]);
     }
 
     private function getWine(int $id): Wine
     {
         return $this->wineRepository->getFromUser($id, $this->getUser()->getId());
+    }
+
+    private function moveLabel(Wine $wine, ?UploadedFile $label)
+    {
+        $wine->moveLabel($label, $this->kernel->getEnvironment(), $this->kernel->getProjectDir());
     }
 }
