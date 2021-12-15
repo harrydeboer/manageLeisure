@@ -17,10 +17,6 @@ services:
       - database
   database:
     image: mysql:8.0
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    ports:
-      - ${DB_PORT}:${DB_PORT}
     container_name: manageLeisureDb
     env_file: .env.local
     volumes:

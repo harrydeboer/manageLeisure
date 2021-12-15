@@ -12,3 +12,8 @@ services:
       - PHP_IDE_CONFIG=serverName=manageLeisure
     volumes:
       - .:/var/www/html
+  database:
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    extra_hosts:
+      - host.docker.internal:host-gateway
