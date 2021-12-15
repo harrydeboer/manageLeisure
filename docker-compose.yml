@@ -9,11 +9,11 @@ services:
         PHP_VERSION: "8.1"
         APP_ENV: prod
     working_dir: /var/www/html
-    container_name: myLife
+    container_name: manageLeisure
     ports:
       - "80:80"
     networks:
-      myLife:
+      manageLeisure:
     depends_on:
       - database
     extra_hosts:
@@ -22,25 +22,25 @@ services:
       - PHP_XDEBUG_ENABLED=1
       - PHP_INI_XDEBUG__CLIENT_PORT=9003
       - XDEBUG_CONFIG=client_host=host.docker.internal
-      - PHP_IDE_CONFIG=serverName=myLife
+      - PHP_IDE_CONFIG=serverName=manageLeisure
   database:
     image: mysql:8.0
     extra_hosts:
       - host.docker.internal:host-gateway
     ports:
       - ${DB_PORT}:${DB_PORT}
-    container_name: myLifeDb
+    container_name: manageLeisureDb
     env_file: .env.local
     volumes:
       - mysqldata:/var/lib/mysql
     networks:
-      myLife:
+      manageLeisure:
 
 volumes:
   mysqldata:
     driver: local
 
 networks:
-  myLife:
+  manageLeisure:
     ipam:
       driver: default

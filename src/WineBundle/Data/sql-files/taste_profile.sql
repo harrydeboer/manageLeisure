@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.25, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: my_life
+-- Host: 127.0.0.1    Database: manage_leisure
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
