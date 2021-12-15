@@ -1,7 +1,7 @@
 My Life
 ========================
 
-<h3>Install</h3>
+<h3>Install Dev</h3>
 <ol>
 <li>Copy .env.local.example to .env.local and fill in the fields.</li>
 <li>Build the docker-compose image and up -d the image.</li>
@@ -21,4 +21,19 @@ initial data and have initial wine labels.</li>
 <ol>
 <li>Run unitTests.sh to unit test.</li>
 <li>Run functionalTests.sh to functional test.</li>
+</ol>
+
+<h3>Production/Staging</h3>
+
+<ol>
+<li>Copy .env.local.example to .env.local and fill in the fields.</li>
+<li>Copy bin/dockerBuildAndUp.sh to project dir and replace {APP_ENV} with prod or staging.</li>
+<li>Follow the steps in update.sh.</li>
+<li>For staging: allow certain ips only (and the server ip) in the ./config/apache.conf file.</li>
+<li>In production: install postfix, dovecot, opendkim, opendmarc, postsrsd and spamassassin.</li>
+<li>In production: add yourdevuser@manageleisure.com, info@manageleisure.com, noreply@manageleisure.com, 
+postmaster@manageleisure.com and root@manageleisure.com 
+in. yourdevuser@manageleisure.com and info@manageleisure.com to manageleisure@gmail.com.</li>
+<li>An update in production or staging can be retrieved with the command ’./update.sh’</li>
+<li>To revert the update execute ’./rollback.sh’.</li>
 </ol>

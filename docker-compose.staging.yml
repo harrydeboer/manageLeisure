@@ -2,7 +2,7 @@ services:
   web:
     build:
       args:
-        APP_ENV: prod
+        APP_ENV: staging
     volumes:
       - ./public/.well-known/acme-challenge:/var/www/html/public/.well-known/acme-challenge
     restart: always

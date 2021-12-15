@@ -7,7 +7,6 @@ services:
       context: .
       args:
         PHP_VERSION: "8.1"
-        APP_ENV: prod
     working_dir: /var/www/html
     container_name: manageLeisure
     ports:
