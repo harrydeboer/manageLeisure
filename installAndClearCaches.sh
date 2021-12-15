@@ -1,5 +1,5 @@
 #!/bin/bash
-docker-compose build --no-cache
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml build --no-cache
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --remove-orphans
 docker cp /home/letsencrypt manageLeisure:/etc/letsencrypt
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --remove-orphans
