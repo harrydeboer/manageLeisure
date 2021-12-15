@@ -10,7 +10,8 @@ services:
     working_dir: /var/www/html
     container_name: manageLeisure
     ports:
-      - "80:80"
+      - 80:80
+      - 443:443
     networks:
       manageLeisure:
     depends_on:
