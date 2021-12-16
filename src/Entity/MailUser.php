@@ -41,8 +41,6 @@ class MailUser
      */
     private ?string $forward;
 
-    private ?string $newPassword;
-
     public function getId(): int
     {
         return $this->id;
@@ -73,14 +71,14 @@ class MailUser
         $this->password = $password;
     }
 
-    public function getNewPassword(): ?string
+    /**
+     * The new password getter and setter are needed for the form, but the values are not used.
+     */
+    public function getNewPassword(): void
     {
-        return $this->newPassword;
     }
-
     public function setNewPassword(?string $newPassword): void
     {
-        $this->newPassword = $newPassword;
     }
 
     public function getEmail(): string
