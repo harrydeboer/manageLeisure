@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+        <h1>Contact us</h1>
+        {% if success is null %}
+        {% elseif success %}
+            Successfully send email.
+        {% else %}
+            Could not deliver mail.
+        {% endif %}
+        {{ form_start(form) }}
+        <table>
+            <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
+            <tr><td>{{ form_label(form.subject) }}</td><td>{{ form_widget(form.subject) }}</td></tr>
+            <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email) }}</td></tr>
+            <tr><td>{{ form_label(form.message) }}</td><td>{{ form_widget(form.message) }}</td></tr>
+            <tr><td colspan="2">{{ form_widget(form.send) }}</td></tr>
+        </table>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
