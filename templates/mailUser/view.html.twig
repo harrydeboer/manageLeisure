@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mail User{% endblock %}
+
+{% block body %}
+    <a href="{{ path('mailUserCreate') }}">Create a mail user</a>
+    <table class="table table-striped">
+        <tr><td>Domain</td><td>Email</td><td>Forward</td></tr>
+    {% for mailUser in mailUsers %}
+        <tr><td>{{ mailUser.domain }}</td>
+            <td>{{ mailUser.email }}</td>
+            <td>{{ mailUser.forward }}</td>
+            <td><a href="{{ path('mailUserEdit', {'id': mailUser.id}) }}">edit</a></td></tr>
+    {% endfor %}
+    </table>
+{% endblock %}

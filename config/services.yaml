@@ -22,6 +22,10 @@ services:
             - '../src/Tests/'
     App\Asset\VersionStrategy\FileMTime:
 
+    App\Factory\:
+       resource: '../src/Factory/'
+       public: true
+
     App\WineBundle\Factory\:
         resource: '../src/WineBundle/Factory/'
         public: true

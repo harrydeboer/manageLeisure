@@ -53,4 +53,9 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
 
         return $user;
     }
+
+    public function update(): void
+    {
+        $this->em->flush();
+    }
 }

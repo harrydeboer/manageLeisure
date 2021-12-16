@@ -11,7 +11,7 @@ interface MailUserRepositoryInterface extends ServiceEntityRepositoryInterface
 {
     public function create(MailUser $mailUser): MailUser;
 
-    public function update(): void;
+    public function update(MailUser $mailUser, ?string $newPassword): void;
 
     public function delete(MailUser $mailUser): void;
 }

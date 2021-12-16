@@ -12,5 +12,7 @@ interface UserRepositoryInterface extends ServiceEntityRepositoryInterface
 {
     public function create(User $user, string $plainPassword): User;
 
+    public function update(): void;
+
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newPassword): void;
 }

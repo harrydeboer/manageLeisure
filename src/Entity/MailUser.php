@@ -41,6 +41,8 @@ class MailUser
      */
     private ?string $forward;
 
+    private ?string $newPassword;
+
     public function getId(): int
     {
         return $this->id;
@@ -69,6 +71,16 @@ class MailUser
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    public function getNewPassword(): ?string
+    {
+        return $this->newPassword;
+    }
+
+    public function setNewPassword(?string $newPassword): void
+    {
+        $this->newPassword = $newPassword;
     }
 
     public function getEmail(): string

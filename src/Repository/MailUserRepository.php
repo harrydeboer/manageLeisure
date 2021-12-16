@@ -26,14 +26,19 @@ class MailUserRepository extends ServiceEntityRepository implements MailUserRepo
 
     public function create(MailUser $mailUser): MailUser
     {
+        $mailUser->setPassword($this->encryptPasswordSHA512($mailUser->getPassword()));
         $this->em->persist($mailUser);
         $this->em->flush();
 
         return $mailUser;
     }
 
-    public function update(): void
+    public function update(MailUser $mailUser, ?string $newPassword): void
     {
+        if (!is_null($newPassword)) {
+            $mailUser->setPassword($this->encryptPasswordSHA512($newPassword));
+        }
+
         $this->em->flush();
     }
 
@@ -41,5 +46,19 @@ class MailUserRepository extends ServiceEntityRepository implements MailUserRepo
     {
         $this->em->remove($mailUser);
         $this->em->flush();
+    }
+
+    private function encryptPasswordSHA512(string $password):string
+    {
+        $saltLength = 50;
+
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $salt = '';
+        for ($i = 0; $i < $saltLength; $i++) {
+            $salt .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return crypt($password, '$6$' . $salt);
     }
 }
