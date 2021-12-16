@@ -4,7 +4,8 @@ My Life
 <h3>Install Development</h3>
 <ol>
 <li>Copy .env.local.example to .env.local and fill in the fields.
-The DB_HOST has to be host.docker.internal.</li>
+The DB_HOST has to be host.docker.internal and 
+MAILER_DSN has to be smtp://name:password@domain.com:25</li>
 <li>Build the docker-compose image and up -d the image.</li>
 <li>Create the database and the test database. 
 The test database has to be the database with suffix _test.</li>
