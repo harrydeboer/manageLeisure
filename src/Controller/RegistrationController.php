@@ -43,21 +43,7 @@ class RegistrationController extends AbstractController
 
             $this->userRepository->create($user, $form->get('plainPassword')->getData());
 
-            $signatureComponents = $this->verifyEmailHelper->generateSignature(
-                'registration_confirmation_route',
-                (string) $user->getId(),
-                $user->getEmail()
-            );
-
-            $email = new TemplatedEmail();
-            $email->from(new Address('postmaster@manageleisure.com', 'Postmaster'));
-            $email->to($user->getEmail());
-            $email->htmlTemplate('registration/confirmation_email.html.twig');
-            $email->context(['signedUrl' => $signatureComponents->getSignedUrl()]);
-
-            if ($this->kernel->getEnvironment() === 'prod') {
-                $this->mailer->send($email);
-            }
+            $this->sendVerifyMail();
 
             return $this->redirectToRoute('homepage');
         }
@@ -89,9 +75,49 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your e-mail address has been verified.');
 
         $this->getUser()->setIsVerified(true);
-
+        $this->getUser()->addRoles(['ROLE_USER_VERIFIED']);
         $this->userRepository->update();
 
         return $this->redirectToRoute('homepage');
+    }
+
+    /**
+     * @Route("/verify-again/{send}", name="verifyAgain")
+     */
+    public function verifyAgain(int $send): Response
+    {
+        $success = 0;
+        if ($send === 1) {
+            $success = $this->sendVerifyMail();
+        }
+
+        return $this->render('registration/verifyAgain.html.twig', [
+            'success' => $success,
+        ]);
+    }
+
+    private function sendVerifyMail(): int
+    {
+        if ($this->kernel->getEnvironment() === 'prod') {
+            $user = $this->getUser();
+
+            $signatureComponents = $this->verifyEmailHelper->generateSignature(
+                'registration_confirmation_route',
+                (string)$user->getId(),
+                $user->getEmail()
+            );
+
+            $email = new TemplatedEmail();
+            $email->from(new Address('postmaster@manageleisure.com', 'Postmaster'));
+            $email->to($user->getEmail());
+            $email->htmlTemplate('registration/confirmation_email.html.twig');
+            $email->context(['signedUrl' => $signatureComponents->getSignedUrl()]);
+
+            $this->mailer->send($email);
+
+            return 1;
+        }
+
+        return 2;
     }
 }

@@ -19,6 +19,8 @@ class UserFactory extends AbstractFactory
         $user = new User();
         $user->setName(uniqid('userName'));
         $user->setEmail(uniqid('userEmail'));
+        $user->addRoles(['ROLE_USER_VERIFIED']);
+        $user->setIsVerified(true);
 
         $this->setParams($params, $user);
 
