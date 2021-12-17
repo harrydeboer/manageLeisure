@@ -88,6 +88,8 @@ class RegistrationController extends AbstractController
 
         $this->addFlash('success', 'Your e-mail address has been verified.');
 
+        $this->getUser()->setIsVerified(true);
+
         return $this->redirectToRoute('homepage');
     }
 }
