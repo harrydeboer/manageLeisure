@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Symfony\Component\HttpKernel\KernelInterface;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,12 +12,11 @@ use Throwable;
 class ErrorController extends AbstractController
 {
     public function __construct(
-        private KernelInterface $kernel,
         private Environment $environment,
     ) {
     }
 
-    public function show(Throwable $exception): Response
+    public function show(Throwable $exception): ?Response
     {
         /**
          * When the exception has a status code the matching status code page is rendered.
@@ -36,13 +34,6 @@ class ErrorController extends AbstractController
                     'message' => $exception->getMessage(),
                 ]);
             }
-        }
-
-        if ($this->kernel->getEnvironment() === 'dev') {
-            return $this->render('error/500.html.twig', [
-                'message' => $exception->getMessage(),
-                'trace' => $exception->getTraceAsString(),
-            ]);
         }
 
         return $this->render('error/500.html.twig', [

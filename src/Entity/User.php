@@ -133,7 +133,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function addRoles(array $roles): void
     {
-        $this->roles = array_unique(array_merge($this->getRoles(), $roles));
+        $this->roles = array_unique(array_merge($this->roles, $roles));
     }
 
     public function setRoles(array $roles): void
