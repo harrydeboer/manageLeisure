@@ -90,6 +90,8 @@ class RegistrationController extends AbstractController
 
         $this->getUser()->setIsVerified(true);
 
+        $this->userRepository->update();
+
         return $this->redirectToRoute('homepage');
     }
 }
