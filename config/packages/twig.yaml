@@ -4,6 +4,10 @@ twig:
     paths:
         'src/WineBundle/Resources/views': 'WineBundle'
 
+    globals:
+        # the value is the service's id
+        token: '@Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface'
+
 when@test:
     twig:
         strict_variables: true

@@ -37,7 +37,7 @@ initial data and have initial wine labels.</li>
 <li>For staging: allow certain ips only (and the server ip) in the ./config/apache.conf file.</li>
 <li>In production: install postfix, dovecot, opendkim, opendmarc, postsrsd and spamassassin.</li>
 <li>In production: add the mail users yourdevuser@manageleisure.com, info@manageleisure.com, noreply@manageleisure.com, 
-postmaster@manageleisure.com and root@manageleisure.com by going to the url /mail-user.</li>
+postmaster@manageleisure.com and root@manageleisure.com by going to Mail Users.</li>
 <li>An update in production or staging can be retrieved with the command ’./update.sh’</li>
 <li>To revert the update execute ’./rollback.sh’.</li>
 </ol>

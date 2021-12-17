@@ -27,6 +27,9 @@
                 <li><a href="{{ path('app_login') }}"><i class="fas fa-user"></i></a></li>
                 <li><a href="{{ path('contact') }}">Contact</a></li>
                 <li><a href="{{ path('wineHomepage') }}">Wines</a></li>
+                {% if token.token is not null and 'ROLE_ADMIN' in token.token.user.roles  %}
+                    <li><a href="{{ path('wineHomepage') }}">Mail Users</a></li>
+                {% endif %}
             </ul>
             <div id="navigation-border"></div>
             {% block navlist %}{% endblock %}
