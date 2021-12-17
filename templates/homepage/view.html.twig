@@ -3,6 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="text-center">
         <h1>Welcome to your leisure site.</h1>
         {% if isLoggedIn %}
