@@ -15,6 +15,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -43,7 +44,7 @@ class RegistrationController extends AbstractController
 
             $this->userRepository->create($user, $form->get('plainPassword')->getData());
 
-            $this->sendVerifyMail();
+            $this->sendVerifyMail($user);
 
             return $this->redirectToRoute('homepage');
         }
@@ -61,7 +62,7 @@ class RegistrationController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
 
-        // Do not get the User's Id or Email Address from the Request object
+        // Do not get the User's id or Email Address from the Request object
         try {
             $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), (string) $user->getId(), $user->getEmail());
         } catch (VerifyEmailExceptionInterface $e) {
@@ -83,12 +84,13 @@ class RegistrationController extends AbstractController
 
     /**
      * @Route("/verify-again/{send}", name="verifyAgain")
+     * @throws TransportExceptionInterface
      */
     public function verifyAgain(int $send): Response
     {
         $success = 0;
         if ($send === 1) {
-            $success = $this->sendVerifyMail();
+            $success = $this->sendVerifyMail($this->getUser());
         }
 
         return $this->render('registration/verifyAgain.html.twig', [
@@ -96,14 +98,16 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    private function sendVerifyMail(): int
+    /**
+     * @throws TransportExceptionInterface
+     */
+    private function sendVerifyMail(UserInterface $user): int
     {
         if ($this->kernel->getEnvironment() === 'prod') {
-            $user = $this->getUser();
 
             $signatureComponents = $this->verifyEmailHelper->generateSignature(
                 'registration_confirmation_route',
-                (string)$user->getId(),
+                (string) $user->getId(),
                 $user->getEmail()
             );
 
