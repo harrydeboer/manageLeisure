@@ -11,6 +11,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,6 +25,7 @@ class RegistrationController extends AbstractController
         private UserRepositoryInterface $userRepository,
         private VerifyEmailHelperInterface $verifyEmailHelper,
         private MailerInterface $mailer,
+        private KernelInterface $kernel,
     ) {
     }
 
@@ -38,6 +40,9 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->userRepository->create($user, $form->get('plainPassword')->getData());
+
             $signatureComponents = $this->verifyEmailHelper->generateSignature(
                 'registration_confirmation_route',
                 (string) $user->getId(),
@@ -50,9 +55,9 @@ class RegistrationController extends AbstractController
             $email->htmlTemplate('registration/confirmation_email.html.twig');
             $email->context(['signedUrl' => $signatureComponents->getSignedUrl()]);
 
-            $this->mailer->send($email);
-
-            $this->userRepository->create($user, $form->get('plainPassword')->getData());
+            if ($this->kernel->getEnvironment() === 'prod') {
+                $this->mailer->send($email);
+            }
 
             return $this->redirectToRoute('homepage');
         }
