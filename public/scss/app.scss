@@ -55,6 +55,11 @@ body {
   width: 265px;
 }
 
+#loginTable, #registerTable, #changePasswordTable {
+  width: 360px;
+  margin: 0 auto;
+}
+
 #mailUserTable td {
   padding-right: 0;
   padding-left: 0;

@@ -3,28 +3,30 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('verify_email_error') %}
-        <div class="flash-notice">
-            {{ message }}
-        </div>
-    {% endfor %}
-    <h1>Register</h1>
+    <div class="text-center">
+        {% for message in app.flashes('verify_email_error') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <h1>Register</h1>
 
-    {{ form_start(form) }}
-    {{ form_errors(form.name) }}
-    {{ form_errors(form.email) }}
-    {{ form_errors(form.plainPassword) }}
-    {{ form_errors(form.plainPassword.children.first) }}
-    {{ form_errors(form.plainPassword.children.second) }}
-    <table>
-        <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
-        <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email) }}</td></tr>
-        <tr><td>{{ form_label(form.plainPassword.children.first) }}</td>
-            <td>{{ form_widget(form.plainPassword.children.first) }}</td></tr>
-        <tr><td>{{ form_label(form.plainPassword.children.second) }}</td>
-            <td>{{ form_widget(form.plainPassword.children.second) }}</td></tr>
-        <tr><td colspan="2">{{ form_widget(form.register) }}</td></tr>
-    </table>
+        {{ form_start(form) }}
+        {{ form_errors(form.name) }}
+        {{ form_errors(form.email) }}
+        {{ form_errors(form.plainPassword) }}
+        {{ form_errors(form.plainPassword.children.first) }}
+        {{ form_errors(form.plainPassword.children.second) }}
+        <table id="registerTable">
+            <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
+            <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email) }}</td></tr>
+            <tr><td>{{ form_label(form.plainPassword.children.first) }}</td>
+                <td>{{ form_widget(form.plainPassword.children.first) }}</td></tr>
+            <tr><td>{{ form_label(form.plainPassword.children.second) }}</td>
+                <td>{{ form_widget(form.plainPassword.children.second) }}</td></tr>
+            <tr><td colspan="2">{{ form_widget(form.register) }}</td></tr>
+        </table>
 
-    {{ form_end(form) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
