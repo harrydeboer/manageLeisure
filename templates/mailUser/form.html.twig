@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-<table>
+<table class="createUpdateTable">
     <tr><td>{{ form_label(form.domain) }}</td><td>{{ form_widget(form.domain) }}</td></tr>
     {% if submitLabel == 'Create' %}
         <tr><td>{{ form_label(form.password) }}</td><td>{{ form_widget(form.password) }}</td></tr>

@@ -19,6 +19,10 @@
   width: 120px;
 }
 
+.navbar-nav {
+  margin: 0 auto;
+}
+
 #filter-sort-form .form-control {
   display: inline;
 }
@@ -35,8 +39,8 @@
   white-space: nowrap;
 }
 
-.navbar-nav {
-  margin: 0;
+.createUpdateTable {
+  margin: 0 auto;
 }
 
 #wineHeaderImg {
@@ -53,4 +57,27 @@
 
 #wine-label {
   height: 600px;
+}
+
+@media (max-width: 576px) {
+  #filter-sort-form .form-control {
+    width: 150px;
+    display: block;
+  }
+
+  #dropdown-grapes-div-red, #dropdown-grapes-div-white {
+    display: block;
+  }
+
+  [name="wine[label]"] {
+    width: 250px;
+  }
+
+  #dropdown-grapes-div-red .btn, #dropdown-grapes-div-white .btn {
+    width: 150px;
+  }
+
+  #wineCreateUpdateTable #dropdown-grapes-div-red .btn, #dropdown-grapes-div-white .btn {
+    width: 130px;
+  }
 }

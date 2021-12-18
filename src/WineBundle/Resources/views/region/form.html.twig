@@ -1,6 +1,6 @@
 {{ form_start(form) }}
 {{ form_errors(form.name) }}
-<table>
+<table class="createUpdateTable">
     <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
     <tr><td>{{ form_label(form.country) }}</td><td>{{ form_widget(form.country) }}</td></tr>
     <tr><td colspan="2">{{ form_widget(form.submit, { 'label': submitLabel }) }}</td></tr>
