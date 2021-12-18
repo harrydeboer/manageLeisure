@@ -69,7 +69,7 @@
     display: block;
   }
 
-  [name="wine[label]"] {
+  [name="wine[label]"], [name="update_wine[label]"] {
     width: 240px;
   }
 

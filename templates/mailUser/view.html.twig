@@ -4,7 +4,7 @@
 
 {% block body %}
     <a href="{{ path('mailUserCreate') }}">Create a mail user</a>
-    <table class="table table-striped">
+    <table class="table table-striped" id="mailUserTable">
         <tr><td colspan="2">Email</td></tr>
     {% for mailUser in mailUsers %}
         <tr>

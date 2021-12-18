@@ -46,6 +46,12 @@ class MovieController extends AuthController
                 $this->getParameter('omdb_api_key'), $form->get('year')->getData() ?? null);
 
 
+            if (isset($responseObject->Error) && $responseObject->Error == 'Movie not found!') {
+                return $this->render('@MovieBundle/movie/warning.html.twig', [
+                    'message' => $responseObject->Error,
+                ], new Response('', 404));
+            }
+
             if (isset($responseObject->Error)) {
                 return $this->render('@MovieBundle/movie/warning.html.twig', [
                     'message' => $responseObject->Error,
