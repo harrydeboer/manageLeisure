@@ -21,6 +21,7 @@
         <testsuite name="Functional">
             <directory>tests/Functional</directory>
             <directory>src/WineBundle/Tests/Functional</directory>
+            <directory>src/MovieBundle/Tests/Functional</directory>
         </testsuite>
     </testsuites>
 

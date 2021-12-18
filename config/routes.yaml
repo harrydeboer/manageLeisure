@@ -1,6 +1,9 @@
 wine_bundle:
     resource: '@WineBundle/Resources/config/routing.yaml'
 
+movie_bundle:
+    resource: '@MovieBundle/Resources/config/routing.yaml'
+
 kernel:
     resource: ../src/Kernel.php
     type: annotation

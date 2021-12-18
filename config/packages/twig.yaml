@@ -3,6 +3,7 @@ twig:
 
     paths:
         'src/WineBundle/Resources/views': 'WineBundle'
+        'src/MovieBundle/Resources/views': 'MovieBundle'
 
     globals:
         # the value is the service's id

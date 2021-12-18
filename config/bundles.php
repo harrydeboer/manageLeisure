@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\WineBundle\WineBundle;
+use App\MovieBundle\MovieBundle;
 
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
@@ -18,4 +19,5 @@ return [
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle::class => ['all' => true],
     WineBundle::class => ['all' => true],
+    MovieBundle::class => ['all' => true],
 ];

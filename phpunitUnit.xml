@@ -21,6 +21,7 @@
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
             <directory>src/WineBundle/Tests/Unit</directory>
+            <directory>src/MovieBundle/Tests/Unit</directory>
         </testsuite>
     </testsuites>
 

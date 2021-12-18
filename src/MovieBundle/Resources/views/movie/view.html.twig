@@ -1,0 +1,22 @@
+{% extends '@MovieBundle/base.html.twig' %}
+
+{% block title %}Movie{% endblock %}
+
+{% block body %}
+    <div class="row text-center col-md-12">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_widget(form.title) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.year) }}
+        </div>
+        <div class="form-group">
+            <div>
+                {{ form_widget(form.submit) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <div class="row justify-content-center col-md-12" id="get-rating"></div>
+{% endblock %}

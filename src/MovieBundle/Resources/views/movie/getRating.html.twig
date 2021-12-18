@@ -1,0 +1,14 @@
+<div class="text-center">
+    {% if responseObject is defined and reviewsRating is defined %}
+        {{ responseObject.Title }} {{ responseObject.Year }}<BR>
+        {% if responseObject.Metascore == 'N/A' %}
+            Metascore: {{ responseObject.Metascore }}<BR>
+        {% else %}
+            Metascore: {{ responseObject.Metascore/10 }}<BR>
+        {% endif %}
+        IMDB rating: {{ responseObject.imdbRating }}<BR>
+        IMDB reviews rating: {{ reviewsRating }}
+    {% else %}
+        No rating for this movie.
+    {% endif %}
+</div>
