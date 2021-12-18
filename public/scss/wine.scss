@@ -77,7 +77,11 @@
     width: 150px;
   }
 
-  #wineCreateUpdateTable #dropdown-grapes-div-red .btn, #dropdown-grapes-div-white .btn {
-    width: 130px;
+  .createUpdateTable #dropdown-grapes-div-red .btn {
+    width: 120px;
+  }
+
+  .createUpdateTable #dropdown-grapes-div-white .btn {
+    width: 120px;
   }
 }
