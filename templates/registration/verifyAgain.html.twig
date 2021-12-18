@@ -3,11 +3,12 @@
 {% block title %}Verify{% endblock %}
 
 {% block body %}
-    {% if success == 1 %}
-        <div>Successfully send a verification mail.</div>
-    {% elseif success == 2 %}
-        <div>Could not send mail.</div>
-    {% endif %}
-    Your email is not verified. Check your inbox or <a href="{{ path('verifyAgain', {'send' : 1}) }}">get
-    a verification email</a> again.
+    <div class="row text-center">
+        <div>{{ message }}</div>
+        {% if message != 'Your email is already verified.' %}
+            <div>Your email is not verified. Check your inbox or
+                <a href="{{ path('verifyAgain', {'send' : 1}) }}">get
+                    a verification email</a> again.</div>
+        {% endif %}
+    </div>
 {% endblock %}

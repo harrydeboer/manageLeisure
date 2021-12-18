@@ -76,7 +76,6 @@ class RegistrationController extends AbstractController
         $this->addFlash('success', 'Your e-mail address has been verified.');
 
         $this->getUser()->setIsVerified(true);
-        $this->getUser()->addRoles(['ROLE_USER_VERIFIED']);
         $this->userRepository->update();
 
         return $this->redirectToRoute('homepage');
@@ -88,20 +87,24 @@ class RegistrationController extends AbstractController
      */
     public function verifyAgain(int $send): Response
     {
-        $success = 0;
-        if ($send === 1) {
-            $success = $this->sendVerifyMail($this->getUser());
+        if (!$this->getUser()->isVerified()) {
+            $message = '';
+            if ($send === 1) {
+                $message = $this->sendVerifyMail($this->getUser());
+            }
+        } else {
+            $message = 'Your email is already verified.';
         }
 
         return $this->render('registration/verifyAgain.html.twig', [
-            'success' => $success,
+            'message' => $message,
         ]);
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    private function sendVerifyMail(UserInterface $user): int
+    private function sendVerifyMail(UserInterface $user): string
     {
         if ($this->kernel->getEnvironment() === 'prod') {
 
@@ -120,9 +123,9 @@ class RegistrationController extends AbstractController
 
             $this->mailer->send($email);
 
-            return 1;
+            return 'Successfully send a verification mail.';
         }
 
-        return 2;
+        return 'Could not send mail.';
     }
 }

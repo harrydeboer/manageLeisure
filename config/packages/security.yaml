@@ -32,6 +32,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/wine, roles: ROLE_USER_VERIFIED }
+        - { path: ^/wine, roles: ROLE_VERIFIED }
         - { path: ^/change-password, roles: ROLE_USER }
+        - { path: ^/verify-again, roles: ROLE_USER }
         - { path: ^/mail-user, roles: ROLE_ADMIN }

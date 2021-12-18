@@ -3,7 +3,7 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-    <div class="text-center">
+    <div class="row text-center">
         <h1>Contact us</h1>
         {% if success is null %}
         {% elseif success %}
@@ -12,7 +12,7 @@
             Could not deliver mail.
         {% endif %}
         {{ form_start(form) }}
-        <table>
+        <table class="table" id="contact-table">
             <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
             <tr><td>{{ form_label(form.subject) }}</td><td>{{ form_widget(form.subject) }}</td></tr>
             <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email) }}</td></tr>
