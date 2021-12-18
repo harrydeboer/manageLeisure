@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\MovieBundle;
+namespace App\MovieBundle\Service;
 
-class IMDBReviewsScrape
+class IMDBReviewsScraper
 {
     public static function getRating(string $id): ?float
     {

@@ -13,7 +13,7 @@ $(document).ready(function () {
             },
             error: function(data) {
                 $('#hide-all').hide();
-                $('#get-rating').html(data.responseJSON.message);
+                $('#get-rating').html(data.responseText);
             }
         });
 

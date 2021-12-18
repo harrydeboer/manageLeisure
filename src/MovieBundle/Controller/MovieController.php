@@ -6,11 +6,11 @@ namespace App\MovieBundle\Controller;
 
 use App\Controller\AuthController;
 use App\MovieBundle\Form\MovieType;
-use App\MovieBundle\IMDBId;
-use App\MovieBundle\IMDBReviewsScrape;
+use App\MovieBundle\Service\IMDBIdRetriever;
+use App\MovieBundle\Service\IMDBReviewsScraper;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 class MovieController extends AuthController
 {
@@ -42,7 +42,7 @@ class MovieController extends AuthController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $responseObject = IMDBId::getResponseObject($form->get('title')->getData(),
+            $responseObject = IMDBIdRetriever::getResponseObject($form->get('title')->getData(),
                 $this->getParameter('omdb_api_key'), $form->get('year')->getData() ?? null);
 
 
@@ -59,7 +59,7 @@ class MovieController extends AuthController
             }
 
             if (!isset($responseObject->Search)) {
-                $reviewsRating = IMDBReviewsScrape::getRating($responseObject->imdbID);
+                $reviewsRating = IMDBReviewsScraper::getRating($responseObject->imdbID);
             } else {
                 $unique = [];
                 foreach ($responseObject->Search as $item) {
@@ -86,8 +86,8 @@ class MovieController extends AuthController
      */
     public function singleMovie(string $id): Response
     {
-        $responseObject = IMDBId::getSingleMovie($id, $this->getParameter('omdb_api_key'));
-        $reviewsRating = IMDBReviewsScrape::getRating($responseObject->imdbID);
+        $responseObject = IMDBIdRetriever::getSingleMovie($id, $this->getParameter('omdb_api_key'));
+        $reviewsRating = IMDBReviewsScraper::getRating($responseObject->imdbID);
 
         $data = [
             'reviewsRating' => $reviewsRating,

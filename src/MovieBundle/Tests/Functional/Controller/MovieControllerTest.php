@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class MovieControllerTest extends AuthWebTestCase
 {
-    public function testMovie(): void
+    public function testHomepageAndForm(): void
     {
         $crawler = $this->client->request('GET', '/movie');
 

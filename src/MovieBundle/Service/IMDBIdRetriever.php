@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\MovieBundle;
+namespace App\MovieBundle\Service;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class IMDBId
+class IMDBIdRetriever
 {
     public static function getResponseObject(string $title, string $apikey, int $year=null): object
     {
@@ -44,8 +44,9 @@ class IMDBId
             curl_setopt($ch, CURLOPT_URL, "https://www.omdbapi.com/?apikey=" . $apikey .
                 "&" . $queryString . "=" . urlencode($title));
         } else {
+            $yearAsString = (string) $year;
             curl_setopt($ch, CURLOPT_URL, "https://www.omdbapi.com/?apikey=" . $apikey .
-                "&" . $queryString . "=" . urlencode($title) . "&y=" . (string) $year);
+                "&" . $queryString . "=" . urlencode($title) . "&y=" . $yearAsString);
         }
 
         //return the transfer as a string
