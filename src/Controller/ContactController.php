@@ -49,6 +49,8 @@ class ContactController extends AbstractController
                 } catch (TransportExceptionInterface) {
                     $success = false;
                 }
+            } else {
+                $success = false;
             }
         }
 
