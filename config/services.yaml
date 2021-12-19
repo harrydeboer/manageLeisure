@@ -23,6 +23,10 @@ services:
             - '../src/Tests/'
     App\Asset\VersionStrategy\FileMTime:
 
+    App\EventListener\RequestListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
     App\Factory\:
        resource: '../src/Factory/'
        public: true

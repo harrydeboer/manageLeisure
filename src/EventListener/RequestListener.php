@@ -1,0 +1,25 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\EventListener;
+
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+
+class RequestListener
+{
+    public function onKernelResponse(ResponseEvent $event): void
+    {
+        $response = $event->getResponse();
+
+        // Set multiple headers simultaneously
+        $response->headers->set(
+            'Content-Security-Policy', "default-src 'self'; style-src 'self'" .
+            " https://fonts.googleapis.com/css2; " .
+            " font-src 'self' https://fonts.gstatic.com; " .
+            "img-src 'self' data:; " .
+            " script-src 'self'; " .
+            " frame-src 'self'",
+        );
+    }
+}
