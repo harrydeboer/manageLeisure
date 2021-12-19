@@ -25,7 +25,7 @@ class ErrorController extends AbstractController
             $statusCodeString = (string) $exception->getStatusCode();
 
             if ($statusCodeString === '403' && !$this->getUser()->isVerified()) {
-                return $this->redirectToRoute('verifyAgain', ['send' => 0]);
+                return $this->redirectToRoute('sendVerificationEmailAgain');
             }
 
             $templatePath = 'error/' . $statusCodeString . '.html.twig';

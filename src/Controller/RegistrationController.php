@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Form\VerifyType;
 use App\Repository\UserRepositoryInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,9 +48,9 @@ class RegistrationController extends AbstractController
 
             $this->userRepository->create($user, $form->get('plainPassword')->getData());
 
-            $this->sendVerifyMail($user);
+            $this->sendVerificationMail($user);
 
-            $this->addFlash('mustVerify', 'Your email address has to be verified.');
+            $this->addFlash('mustVerify', 'Your email address has to be verified. Check your inbox.');
 
             $token = new UsernamePasswordToken($user, $user->getPassword(), $user->getRoles());
 
@@ -95,27 +96,33 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/verify-again/{send}", name="verifyAgain")
+     * @Route("/send-verification-email-again", name="sendVerificationEmailAgain")
      * @throws TransportExceptionInterface
      */
-    public function verifyAgain(int $send): Response
+    public function sendVerificationEmailAgain(Request $request): Response
     {
         $success = null;
         $error = null;
-        if (!$this->getUser()->isVerified()) {
-            if ($send === 1) {
-                $result = $this->sendVerifyMail($this->getUser());
-                if ($result) {
-                    $success = 'Successfully send a verification mail.';
-                } else {
-                    $error = 'Could not send mail.';
-                }
-            }
-        } else {
+
+        $form = $this->createForm(VerifyType::class);
+        $form->handleRequest($request);
+
+        if ($this->getUser()->isVerified()) {
             $success = 'Your email is already verified.';
         }
 
-        return $this->render('registration/verifyAgain.html.twig', [
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $result = $this->sendVerificationMail($this->getUser());
+            if ($result) {
+                $success = 'Successfully send a verification mail.';
+            } else {
+                $error = 'Could not send mail.';
+            }
+        }
+
+        return $this->renderForm('registration/sendVerificationEmailAgain.html.twig', [
+            'form' => $form,
             'success' => $success,
             'error' => $error,
         ]);
@@ -124,7 +131,7 @@ class RegistrationController extends AbstractController
     /**
      * @throws TransportExceptionInterface
      */
-    private function sendVerifyMail(UserInterface $user): bool
+    private function sendVerificationMail(UserInterface $user): bool
     {
         if ($this->kernel->getEnvironment() === 'prod') {
 

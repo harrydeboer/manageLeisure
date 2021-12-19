@@ -34,5 +34,5 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/wine, roles: ROLE_VERIFIED }
         - { path: ^/change-password, roles: ROLE_USER }
-        - { path: ^/verify-again, roles: ROLE_USER }
+        - { path: ^/send-verification-email-again, roles: ROLE_USER }
         - { path: ^/mail-user, roles: ROLE_ADMIN }

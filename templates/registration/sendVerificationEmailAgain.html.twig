@@ -10,10 +10,11 @@
         {% if error is not null %}
             <div class="errorMessage">{{ error }}</div>
         {% endif %}
-        {% if success != 'Your email is already verified.' %}
+        {% if success is null %}
             <div>Your email is not verified. Check your inbox or
-                <a href="{{ path('verifyAgain', {'send' : 1}) }}">get
-                    a verification email</a> again.</div>
+                {{ form_start(form) }}
+                {{ form_widget(form.sendEmailAgain) }}
+                {{ form_end(form) }}
         {% endif %}
     </div>
 {% endblock %}
