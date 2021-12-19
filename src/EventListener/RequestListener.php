@@ -18,8 +18,9 @@ class RequestListener
             " https://fonts.googleapis.com/css2; " .
             " font-src 'self' https://fonts.gstatic.com; " .
             "img-src 'self' data:; " .
-            " script-src 'self'; " .
-            " frame-src 'self'",
+            " script-src 'self' https://www.googletagmanager.com/gtag/js " .
+            "https://www.google.com/recaptcha/api.js https://www.gstatic.com; " .
+            " frame-src 'self' https://www.google.com/",
         );
     }
 }

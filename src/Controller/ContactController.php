@@ -14,6 +14,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Validator\Exception\ValidatorException;
 
 class ContactController extends AbstractController
 {
@@ -35,6 +36,11 @@ class ContactController extends AbstractController
 
         $success = null;
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($this->kernel->getEnvironment() !== 'test') {
+                $this->validateReCaptcha($form->get('reCaptchaToken')->getData());
+            }
+
             $email = (new Email())
                 ->from(new Address('postmaster@manageleisure.com', $form->get('name')->getData()))
                 ->replyTo($form->get('email')->getData())
@@ -56,7 +62,27 @@ class ContactController extends AbstractController
 
         return $this->render('contact/view.html.twig', [
             'form' => $form->createView(),
+            'reCaptchaKey' => $this->getParameter('re_captcha_key'),
             'success' => $success,
         ]);
+    }
+
+    private function validateReCaptcha(string $token)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "secret=" . $this->getParameter('re_captcha_secret') .
+            "&response=" . $token);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $result = json_decode($response);
+        if ($httpCode !== 200 || $result->success === false) {
+            throw new ValidatorException('No bot requests allowed.');
+        }
+
+        curl_close($ch);
     }
 }

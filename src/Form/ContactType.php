@@ -6,6 +6,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,6 +21,7 @@ class ContactType extends AbstractType
             ->add('subject', TextType::class)
             ->add('email', EmailType::class)
             ->add('message', TextareaType::class)
+            ->add('reCaptchaToken', HiddenType::class)
             ->add('send', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
             ]);
