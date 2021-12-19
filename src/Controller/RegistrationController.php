@@ -15,6 +15,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\User\UserInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
@@ -27,6 +29,7 @@ class RegistrationController extends AbstractController
         private VerifyEmailHelperInterface $verifyEmailHelper,
         private MailerInterface $mailer,
         private KernelInterface $kernel,
+        private TokenStorageInterface $tokenStorage,
     ) {
     }
 
@@ -45,6 +48,12 @@ class RegistrationController extends AbstractController
             $this->userRepository->create($user, $form->get('plainPassword')->getData());
 
             $this->sendVerifyMail($user);
+
+            $this->addFlash('mustVerify', 'Your email address has to be verified.');
+
+            $token = new UsernamePasswordToken($user, $user->getPassword(), $user->getRoles());
+
+            $this->tokenStorage->setToken($token);
 
             return $this->redirectToRoute('homepage');
         }
@@ -73,10 +82,14 @@ class RegistrationController extends AbstractController
 
         // Mark your user as verified. e.g. switch a User::verified property to true
 
-        $this->addFlash('success', 'Your e-mail address has been verified.');
+        $this->addFlash('success', 'Your email address has been verified.');
 
         $this->getUser()->setIsVerified(true);
         $this->userRepository->update();
+
+        $token = new UsernamePasswordToken($user, $user->getPassword(), $user->getRoles());
+
+        $this->tokenStorage->setToken($token);
 
         return $this->redirectToRoute('homepage');
     }
@@ -87,24 +100,31 @@ class RegistrationController extends AbstractController
      */
     public function verifyAgain(int $send): Response
     {
+        $success = null;
+        $error = null;
         if (!$this->getUser()->isVerified()) {
-            $message = '';
             if ($send === 1) {
-                $message = $this->sendVerifyMail($this->getUser());
+                $result = $this->sendVerifyMail($this->getUser());
+                if ($result) {
+                    $success = 'Successfully send a verification mail.';
+                } else {
+                    $error = 'Could not send mail.';
+                }
             }
         } else {
-            $message = 'Your email is already verified.';
+            $success = 'Your email is already verified.';
         }
 
         return $this->render('registration/verifyAgain.html.twig', [
-            'message' => $message,
+            'success' => $success,
+            'error' => $error,
         ]);
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    private function sendVerifyMail(UserInterface $user): string
+    private function sendVerifyMail(UserInterface $user): bool
     {
         if ($this->kernel->getEnvironment() === 'prod') {
 
@@ -123,9 +143,9 @@ class RegistrationController extends AbstractController
 
             $this->mailer->send($email);
 
-            return 'Successfully send a verification mail.';
+            return true;
         }
 
-        return 'Could not send mail.';
+        return false;
     }
 }

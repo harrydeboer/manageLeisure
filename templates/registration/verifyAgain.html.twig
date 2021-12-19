@@ -4,8 +4,13 @@
 
 {% block body %}
     <div class="row text-center">
-        <div>{{ message }}</div>
-        {% if message != 'Your email is already verified.' %}
+        {% if success is not null %}
+            <div class="successMessage">{{ success }}</div>
+        {% endif %}
+        {% if error is not null %}
+            <div class="errorMessage">{{ error }}</div>
+        {% endif %}
+        {% if success != 'Your email is already verified.' %}
             <div>Your email is not verified. Check your inbox or
                 <a href="{{ path('verifyAgain', {'send' : 1}) }}">get
                     a verification email</a> again.</div>

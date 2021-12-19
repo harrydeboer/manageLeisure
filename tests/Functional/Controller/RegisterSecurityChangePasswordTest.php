@@ -25,6 +25,10 @@ class RegisterSecurityChangePasswordTest extends WebTestCase
 
         $this->assertResponseRedirects('/');
 
+        $this->client->request('GET', '/logout');
+
+        $this->assertResponseRedirects();
+
         $crawler = $this->client->request('GET', '/login');
 
         $buttonCrawlerNode = $crawler->selectButton('Sign in');

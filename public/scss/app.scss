@@ -64,3 +64,19 @@ body {
   padding-right: 0;
   padding-left: 0;
 }
+
+.flash-notice-success {
+  color: green;
+}
+
+.flash-notice-must-verify {
+  color: red;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.successMessage {
+  color: green;
+}

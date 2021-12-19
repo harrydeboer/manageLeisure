@@ -5,7 +5,12 @@
 {% block body %}
     <div class="text-center">
         {% for message in app.flashes('success') %}
-            <div class="flash-notice">
+            <div class="flash-notice-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('mustVerify') %}
+            <div class="flash-notice-must-verify">
                 {{ message }}
             </div>
         {% endfor %}
