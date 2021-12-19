@@ -16,7 +16,11 @@
 </head>
 <body>
 {% block headerImg %}
-    <img src="{{ asset('img/life.jpg') }}" id="lifeImg" alt="life">
+    <picture>
+        <source srcset="{{ asset('img/life.jpg') }}" media="(min-width: 500px)">
+        <source srcset="{{ asset('img/life500.jpg') }}">
+        <img src="{{ asset('img/life500.jpg') }}" id="lifeImg" alt="lifeImg">
+    </picture>
 {% endblock %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
