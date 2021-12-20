@@ -8,12 +8,17 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class IMDBIdRetriever
 {
-    public static function getResponseObject(string $title, string $apikey, int $year=null): object
+    public static function getResponseObject(string $title, string $apikey, int $year=null): ?object
     {
         // create curl resource
         $ch = curl_init();
 
         $contentObj = self::getCurlResult($ch, False, $title, $apikey, $year);
+
+        if (is_null($contentObj)) {
+            curl_close($ch);
+            return $contentObj;
+        }
 
         if (isset($contentObj->Error)) {
             curl_close($ch);
@@ -55,7 +60,7 @@ class IMDBIdRetriever
         // $output contains the output string
         $output = curl_exec($ch);
 
-        return json_decode($output);
+        return $output === false ? null : json_decode($output);
     }
 
     public static function getSingleMovie(string $id, string$apikey): object

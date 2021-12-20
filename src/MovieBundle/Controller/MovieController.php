@@ -45,6 +45,11 @@ class MovieController extends AuthController
             $responseObject = IMDBIdRetriever::getResponseObject($form->get('title')->getData(),
                 $this->getParameter('omdb_api_key'), $form->get('year')->getData() ?? null);
 
+            if (is_null($responseObject)) {
+                return $this->render('@MovieBundle/movie/warning.html.twig', [
+                    'message' => 'Could not connect to OMDB.',
+                ]);
+            }
 
             if (isset($responseObject->Error) && $responseObject->Error == 'Movie not found!') {
                 return $this->render('@MovieBundle/movie/warning.html.twig', [
