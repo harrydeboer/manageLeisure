@@ -33,6 +33,9 @@ class ImportCommand extends Command
         $sqlFilesPath = $projectDir . '/src/WineBundle/Data/sql-files';
         $labelsPath = $projectDir . '/src/WineBundle/Data/labels';
         $publicLabelsPath = $projectDir . '/public/img/wine/labels';
+        if ($this->kernel->getEnvironment() === 'test') {
+            $publicLabelsPath .= '/test';
+        }
 
         $files = scandir($sqlFilesPath);
         foreach($files as $file) {
@@ -43,16 +46,13 @@ class ImportCommand extends Command
 
         $output->writeln('SQL files loaded.');
 
-        if ($this->kernel->getEnvironment() !== 'test') {
-
-            $files = scandir($labelsPath);
-            foreach ($files as $file) {
-                if ($file !== '.' && $file !== '..') {
-                    copy($labelsPath . '/' . $file, $publicLabelsPath . '/' . $file);
-                }
+        $files = scandir($labelsPath);
+        foreach ($files as $file) {
+            if ($file !== '.' && $file !== '..') {
+                copy($labelsPath . '/' . $file, $publicLabelsPath . '/' . $file);
             }
-            $output->writeln('Labels moved to public/img/labels.');
         }
+        $output->writeln('Labels moved to public/img/labels.');
 
         return Command::SUCCESS;
     }
