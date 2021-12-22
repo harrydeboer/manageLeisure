@@ -5,10 +5,6 @@ twig:
         'src/WineBundle/Resources/views': 'WineBundle'
         'src/MovieBundle/Resources/views': 'MovieBundle'
 
-    globals:
-        # the value is the service's id
-        token: '@Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface'
-
 when@test:
     twig:
         strict_variables: true

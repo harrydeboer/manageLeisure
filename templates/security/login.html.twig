@@ -8,6 +8,10 @@
             <h1 class="h3 mb-3 font-weight-normal">You are logged in as {{ name }},
                 <a href="{{ path('app_logout') }}">click here to logout</a></h1>
             <h3>Change your password <a href="{{ path('changePassword') }}">here</a>.</h3>
+
+            {% if 'ROLE_ADMIN' in roles  %}
+                Manage <a href="{{ path('mailUser') }}">Mail Users</a>.
+            {% endif %}
         {% else %}
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 

@@ -40,9 +40,6 @@
                 <li><a href="{{ path('homepage') }}">Home</a></li>
                 <li><a href="{{ path('app_login') }}"><i class="fas fa-user"></i></a></li>
                 <li><a href="{{ path('contact') }}">Contact</a></li>
-                {% if token.token is not null and 'ROLE_ADMIN' in token.token.user.roles  %}
-                    <li><a href="{{ path('mailUser') }}">Mail Users</a></li>
-                {% endif %}
                 <li><a href="{{ path('wineHomepage') }}">Wines</a></li>
                 <li><a href="{{ path('movieHomepage') }}">Movies</a></li>
             </ul>

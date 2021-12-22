@@ -15,11 +15,7 @@
             </div>
         {% endfor %}
         <h1>Welcome to your leisure site.</h1>
-        {% if isLoggedIn %}
-            <p>Visit your <a href="{{ path('wineHomepage') }}">wines</a>.</p>
-        {% else %}
-            <p>Login to visit your <a href="{{ path('wineHomepage') }}">wines</a>.</p>
-        {% endif %}
+        <p>Visit your <a href="{{ path('wineHomepage') }}">wines</a>.</p>
         <p>Get the IMDB reviews rating of a <a href="{{ path('movieHomepage') }}">movie</a>.</p>
     </div>
 {% endblock %}

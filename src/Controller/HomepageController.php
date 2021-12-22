@@ -16,9 +16,7 @@ class HomepageController extends AbstractController
      */
     public function view(): Response
     {
-        return $this->render('homepage/view.html.twig', [
-            'isLoggedIn' => !is_null($this->getUser()),
-        ]);
+        return $this->render('homepage/view.html.twig');
     }
 
     public function notFound(): void

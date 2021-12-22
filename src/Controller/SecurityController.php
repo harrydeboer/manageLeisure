@@ -27,6 +27,7 @@ class SecurityController extends AbstractController
             'isLoggedIn' => !is_null($this->getUser()),
             'last_username' => $lastUsername,
             'name' => $this->getUser()?->getName(),
+            'roles' => $this->getUser()?->getRoles(),
             'error' => $error,
             ]);
     }
