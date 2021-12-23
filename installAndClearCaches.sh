@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 ./dockerBuildAndUp.sh
 PREFIX="docker exec -t manageLeisure"
 docker exec -t --user=www-data manageLeisure composer install --no-dev --no-progress --prefer-dist
