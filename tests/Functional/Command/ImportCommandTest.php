@@ -16,7 +16,7 @@ class ImportCommandTest extends KernelTestCase
         $kernel = self::bootKernel();
         $application = new Application($kernel);
 
-        $command = $application->find('app:import');
+        $command = $application->find('wine:import');
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 
