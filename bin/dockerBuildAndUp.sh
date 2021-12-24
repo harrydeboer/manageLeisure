@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 docker-compose -f docker-compose.yml -f docker-compose.live.yml -f docker-compose.{APP_ENV}.yml build --no-cache
