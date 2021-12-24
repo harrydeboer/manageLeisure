@@ -15,5 +15,3 @@ services:
   database:
     ports:
       - ${DB_PORT}:${DB_PORT}
-    extra_hosts:
-      - host.docker.internal:host-gateway
