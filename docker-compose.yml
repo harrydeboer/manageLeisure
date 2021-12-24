@@ -9,8 +9,6 @@ services:
         PHP_VERSION: "8.1"
     working_dir: /var/www/html
     container_name: manageLeisure
-    extra_hosts:
-      - host.docker.internal:host-gateway
     ports:
       - 80:80
       - 443:443
