@@ -10,7 +10,7 @@ use App\WineBundle\Factory\RegionFactory;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-class MovieController extends AuthWebTestCase
+class MovieControllerTest extends AuthWebTestCase
 {
     public function testHomepageAndForm(): void
     {
