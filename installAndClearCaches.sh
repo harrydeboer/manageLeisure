@@ -2,8 +2,8 @@
 set -e
 
 ./dockerBuildAndUp.sh
-PREFIX="docker exec -t manageLeisure"
-docker exec -t --user=www-data manageLeisure composer install --no-dev --no-progress --prefer-dist
+PREFIX="docker exec -t --user=www-data manageLeisure"
+$PREFIX composer install --no-dev --no-progress --prefer-dist
 $PREFIX php bin/console cache:clear
 ./opcacheReset.sh
 until $PREFIX php bin/console doctrine:migrations:migrate --no-interaction
