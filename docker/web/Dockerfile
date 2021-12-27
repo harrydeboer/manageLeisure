@@ -9,6 +9,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
     libcurl4-openssl-dev \
     libonig-dev \
     libzip-dev \
+    zip \
+    unzip \
     wget
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
@@ -32,7 +34,9 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 COPY . /var/www/html
 COPY ./docker/web/apache2.conf /etc/apache2/apache2.conf
 COPY ./docker/web/000-default.${APP_ENV}.conf /etc/apache2/sites-available/000-default.conf
-COPY ./docker/web/php.ini /usr/local/etc/php/conf.d/php.ini
+COPY ./docker/web/php-${APP_ENV}.ini /usr/local/etc/php/conf.d/php.ini
+
+RUN if [ "$APP_ENV" = "dev" ] ; then cp ./docker/web/php-dev.ini /usr/local/etc/php/conf.d/php-dev.ini; fi
 
 RUN if [ "$APP_ENV" = "dev" ] ; then \
     cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini;  else \
