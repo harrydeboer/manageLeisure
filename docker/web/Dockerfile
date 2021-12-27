@@ -36,7 +36,8 @@ COPY ./docker/web/apache2.conf /etc/apache2/apache2.conf
 COPY ./docker/web/000-default.${APP_ENV}.conf /etc/apache2/sites-available/000-default.conf
 COPY ./docker/web/php.ini /usr/local/etc/php/conf.d/php.ini
 
-RUN if [ "$APP_ENV" = "dev" ] ; then cp ./docker/web/php-dev.ini /usr/local/etc/php/conf.d/php-dev.ini; fi
+RUN if [ "$APP_ENV" = "dev" ] ; then cp ./docker/web/php-dev.ini /usr/local/etc/php/conf.d/php-dev.ini; else \
+  cp ./docker/web/php-live.ini /usr/local/etc/php/conf.d/php-live.ini; fi
 
 RUN if [ "$APP_ENV" = "dev" ] ; then \
     cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini;  else \
