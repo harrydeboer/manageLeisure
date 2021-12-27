@@ -1,47 +1,28 @@
-FROM ubuntu:20.04
+FROM php:8.1-apache
 
-ARG PHP_VERSION
 ARG APP_ENV
 
 RUN apt-get update
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common
-RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/php
-RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/apache2
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    git \
-    zip \
-    curl \
     nano \
-    sudo \
-    unzip \
+    libxml2-dev \
+    libcurl4-openssl-dev \
+    libonig-dev \
     libzip-dev \
-    apache2 \
-    php${PHP_VERSION} \
-    php${PHP_VERSION}-mysql \
-    libxml2 \
-    libxslt1.1 \
-    libc6 \
-    libonig5 \
-    wget \
-    libapache2-mod-php${PHP_VERSION}
+    wget
 
-RUN if [ "$APP_ENV" = "dev" ] ; then DEBIAN_FRONTEND=noninteractive apt-get -y install nodejs npm; fi
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
-RUN a2enmod php${PHP_VERSION}
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 RUN a2enmod headers rewrite ssl
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install \
-    php${PHP_VERSION}-sqlite php${PHP_VERSION}-bcmath php${PHP_VERSION}-xml php${PHP_VERSION}-curl  \
-    php${PHP_VERSION}-intl php${PHP_VERSION}-mbstring php${PHP_VERSION}-zip \
-    && phpenmod bcmath curl mbstring zip intl \
-    && phpdismod ffi gettext shmop sockets
+RUN if [ "$APP_ENV" = "dev" ] ; then DEBIAN_FRONTEND=noninteractive apt-get -y install nodejs npm; fi
 
-RUN if [ "$APP_ENV" = "dev" ] ; then apt-get install php${PHP_VERSION}-xdebug && phpenmod xdebug; fi
+RUN docker-php-ext-install bcmath curl mbstring xml intl zip pdo_mysql opcache
 
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+RUN if [ "$APP_ENV" = "dev" ] ; then pecl install xdebug && docker-php-ext-enable xdebug; fi
 
 COPY --from=composer:2.1.14 /usr/bin/composer /usr/bin/composer
 
@@ -49,14 +30,16 @@ RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 COPY . /var/www/html
-COPY ./config/web/apache2.conf /etc/apache2/apache2.conf
-COPY ./config/web/ports.conf /etc/apache2/ports.conf
-COPY ./config/web/000-default.${APP_ENV}.conf /etc/apache2/sites-available/000-default.conf
-COPY ./config/web/php-apache2.ini /etc/php/${PHP_VERSION}/apache2/conf.d/php-apache2.ini
-COPY ./config/web/php-cli.ini /etc/php/${PHP_VERSION}/cli/conf.d/php-cli.ini
+COPY ./docker/web/apache2.conf /etc/apache2/apache2.conf
+COPY ./docker/web/000-default.${APP_ENV}.conf /etc/apache2/sites-available/000-default.conf
+COPY ./docker/web/php.ini /usr/local/etc/php/conf.d/php.ini
 
-RUN if [ "$APP_ENV" = "dev" ] ; then cp /var/www/html/config/web/php-cli.xdebug.ini /etc/php/${PHP_VERSION}/cli/conf.d/xdebug-cli.ini; fi
-RUN if [ "$APP_ENV" = "dev" ] ; then cp /var/www/html/config/web/php-apache2.xdebug.ini /etc/php/${PHP_VERSION}/apache2/conf.d/xdebug-apache2.ini; fi
+RUN if [ "$APP_ENV" = "dev" ] ; then \
+    cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini;  else \
+    cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini; fi
+
+RUN if [ "$APP_ENV" = "dev" ] ;  \
+    then cp /var/www/html/docker/web/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; fi
 
 RUN chown www-data:www-data -R /var/www/html/
 
