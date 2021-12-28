@@ -36,7 +36,7 @@ class SitemapController extends AbstractController
 
         $update = '2021-12-18';
 
-        $pages = ['/', '/contact'];
+        $pages = ['/', '/contact', '/movie'];
 
         foreach ($pages as $page) {
             $url = $sitemap->addChild('url');
