@@ -31,12 +31,12 @@ class RegisterSecurityChangePasswordTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/login');
 
-        $buttonCrawlerNode = $crawler->selectButton('Sign in');
+        $buttonCrawlerNode = $crawler->selectButton('Login');
 
         $form = $buttonCrawlerNode->form();
 
-        $form['email'] = 'john@secret.com';
-        $form['password'] = 'secret';
+        $form['login[email]'] = 'john@secret.com';
+        $form['login[password]'] = 'secret';
 
         $this->client->submit($form);
 

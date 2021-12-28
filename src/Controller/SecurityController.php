@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,12 +24,15 @@ class SecurityController extends AbstractController
 
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        $form = $this->createForm(LoginType::class);
+
         return $this->render('security/login.html.twig', [
             'isLoggedIn' => !is_null($this->getUser()),
             'last_username' => $lastUsername,
             'name' => $this->getUser()?->getName(),
             'roles' => $this->getUser()?->getRoles(),
             'error' => $error,
+            'form' => $form->createView(),
             ]);
     }
 

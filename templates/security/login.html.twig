@@ -15,21 +15,16 @@
         {% else %}
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-            <form method="post" class="text-center">
-                {% if error %}
-                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
+            {{ form_start(form) }}
+            {{ form_errors(form.email) }}
+            {{ form_errors(form.password) }}
+            <table id="loginTable">
+                <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email) }}</td></tr>
+                <tr><td>{{ form_label(form.password) }}</td><td>{{ form_widget(form.password) }}</td></tr>
+                <tr><td colspan="2">{{ form_widget(form.login) }}</td></tr>
+            </table>
 
-                <table id="loginTable">
-                    <tr><td><label for="email">Email:</label></td>
-                        <td><input type="email" id="email" name="email" value="{{ last_username }}"/></td></tr>
-                    <tr><td><label for="password">Password:</label></td>
-                        <td><input type="password" id="password" name="password"/></td></tr>
-                    <tr><td colspan="2"><button type="submit" class="btn btn-primary">Sign in</button></td></tr>
-                </table>
-
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            </form>
+            {{ form_end(form) }}
             Not registered yet? Go to <a href="{{ path('app_register') }}">this</a> link.
         {% endif %}
     </div>
