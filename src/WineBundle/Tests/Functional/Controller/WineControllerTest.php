@@ -32,7 +32,9 @@ class WineControllerTest extends AuthWebTestCase
         $testLabelPath = __DIR__ . '/test.png';
         $form['wine[label]'] = new File($testLabelPath);
         $form['wine[name]'] = 'test';
+        /** @noinspection PhpPossiblePolymorphicInvocationInspection */
         $form['wine[grapes]'][0]->tick();
+        /** @noinspection PhpPossiblePolymorphicInvocationInspection */
         $form['wine[grapes]'][1]->tick();
         $form['wine[year]'] = 2000;
         $form['wine[rating]'] = 7;
