@@ -45,7 +45,7 @@ class ContactController extends AbstractController
                 ->from(new Address('postmaster@manageleisure.com', $form->get('name')->getData()))
                 ->replyTo($form->get('email')->getData())
                 ->to('info@manageleisure.com')
-                ->subject($form->get('subject')->getData())
+                ->subject(strip_tags($form->get('subject')->getData()))
                 ->html($form->get('message')->getData());
             $success = true;
 

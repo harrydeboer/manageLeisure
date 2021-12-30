@@ -4,6 +4,6 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 PREVIOUS=$(git rev-parse HEAD)
-git pull origin master
+sudo -u www-data git pull origin master
 test "$PREVIOUS" == "$(git rev-parse HEAD)" && exit 1
 ./installAndClearCaches.sh
