@@ -14,7 +14,8 @@ $('[name="contact"]').on('submit', function (event) {
     }
 });
 
-$('.no-html-tags').on('keypress', function(event) {
+let noHtmlTags = $('.no-html-tags');
+noHtmlTags.on('keypress', function(event) {
     let errorMessage = $('#no-html-allowed');
     errorMessage.text('');
 
@@ -30,3 +31,23 @@ $('.no-html-tags').on('keypress', function(event) {
         return false;
     }
 });
+
+noHtmlTags.on('input', function() {
+
+    let errorMessage = $('#no-html-allowed');
+    let pastedData = $(this).val();
+    errorMessage.text('');
+
+    if (
+        pastedData.indexOf('<') !== -1
+        || pastedData.indexOf('>') !== -1
+        || pastedData.indexOf('[') !== -1
+        || pastedData.indexOf(']') !== -1
+    ) {
+        errorMessage.text('No html allowed');
+
+        $(this).val('');
+
+        return false;
+    }
+})
