@@ -1,7 +1,6 @@
 services:
   web:
     volumes:
-      - ./public/.well-known/acme-challenge:/var/www/html/public/.well-known/acme-challenge
       - ./public/img/wine/labels:/var/www/html/public/img/wine/labels
     restart: always
     networks:
