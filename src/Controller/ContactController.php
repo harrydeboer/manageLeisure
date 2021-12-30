@@ -14,7 +14,6 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\Validator\Exception\ValidatorException;
 
 class ContactController extends AbstractController
 {
@@ -22,7 +21,6 @@ class ContactController extends AbstractController
         private MailerInterface $mailer,
         private KernelInterface $kernel,
     ) {
-
     }
 
     /**
@@ -37,8 +35,9 @@ class ContactController extends AbstractController
         $success = null;
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $error = null;
             if ($this->kernel->getEnvironment() !== 'test') {
-                $this->validateReCaptcha($form->get('reCaptchaToken')->getData());
+                $error = $this->validateReCaptcha($form->get('reCaptchaToken')->getData());
             }
 
             $email = (new Email())
@@ -49,7 +48,7 @@ class ContactController extends AbstractController
                 ->html($form->get('message')->getData());
             $success = true;
 
-            if ($this->kernel->getEnvironment() === 'prod') {
+            if ($this->kernel->getEnvironment() === 'prod' && is_null($error)) {
                 try {
                     $this->mailer->send($email);
                 } catch (TransportExceptionInterface) {
@@ -67,7 +66,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    private function validateReCaptcha(string $token)
+    private function validateReCaptcha(string $token): ?string
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -80,9 +79,11 @@ class ContactController extends AbstractController
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $result = json_decode($response);
         if ($httpCode !== 200 || $result->success === false) {
-            throw new ValidatorException('No bot requests allowed.');
+            return 'No bot requests allowed.';
         }
 
         curl_close($ch);
+
+        return null;
     }
 }
