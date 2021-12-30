@@ -5,11 +5,11 @@
 {% block body %}
     <div class="text-center">
         <h1>Contact us</h1>
-        {% if success is null %}
+        {% if success is null and error is null %}
         {% elseif success %}
-            <div class="successMessage">Successfully send email.</div>
-        {% else %}
-            <div class="errorMessage">Could not deliver mail.</div>
+            <div class="successMessage">{{ success }}</div>
+        {% elseif error %}
+            <div class="errorMessage">{{ error }}</div>
         {% endif %}
         {{ form_start(form) }}
         <table id="contact-table">

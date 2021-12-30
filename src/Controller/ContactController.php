@@ -33,9 +33,9 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         $success = null;
+        $error = null;
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $error = null;
             if ($this->kernel->getEnvironment() !== 'test') {
                 $error = $this->validateReCaptcha($form->get('reCaptchaToken')->getData());
             }
@@ -46,16 +46,16 @@ class ContactController extends AbstractController
                 ->to('info@manageleisure.com')
                 ->subject(strip_tags($form->get('subject')->getData()))
                 ->html($form->get('message')->getData());
-            $success = true;
 
             if ($this->kernel->getEnvironment() === 'prod' && is_null($error)) {
                 try {
                     $this->mailer->send($email);
+                    $success = "Successfully send email.";
                 } catch (TransportExceptionInterface) {
-                    $success = false;
+                    $error = "Could not deliver mail.";
                 }
             } else {
-                $success = false;
+                $error = "Could not deliver mail.";
             }
         }
 
@@ -63,6 +63,7 @@ class ContactController extends AbstractController
             'form' => $form->createView(),
             'reCaptchaKey' => $this->getParameter('re_captcha_key'),
             'success' => $success,
+            'error' => $error,
         ]);
     }
 
