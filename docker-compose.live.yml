@@ -6,6 +6,10 @@ services:
     networks:
       manageLeisure:
         ipv4_address: 172.20.0.6
+    deploy:
+      resources:
+        reservations:
+          memory: 512M
   database:
     restart: always
     ports:
@@ -13,6 +17,10 @@ services:
     networks:
       manageLeisure:
         ipv4_address: 172.20.0.7
+    deploy:
+      resources:
+        reservations:
+          memory: 512M
 
 networks:
   manageLeisure:
