@@ -1,7 +1,7 @@
 services:
   web:
     volumes:
-      - ./public/img/wine/labels:/var/www/html/public/img/wine/labels
+      - wineLabels:/var/www/html/public/img/wine/labels
     restart: always
     networks:
       manageLeisure:
@@ -24,6 +24,10 @@ services:
         limits:
           memory: 512M
           cpus: 0.3
+
+volumes:
+  wineLabels:
+    driver: local
 
 networks:
   manageLeisure:
