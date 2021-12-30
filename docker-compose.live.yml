@@ -2,7 +2,7 @@ services:
   web:
     volumes:
       - wineLabels:/var/www/html/public/img/wine/labels
-      - acme:/var/www/html/public/.well-known/acme-challenge
+      - ./public/.well-known/acme-challenge:/var/www/html/public/.well-known/acme-challenge
     restart: always
     networks:
       manageLeisure:
@@ -28,8 +28,6 @@ services:
 
 volumes:
   wineLabels:
-    driver: local
-  acme:
     driver: local
 
 networks:
