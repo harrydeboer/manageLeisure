@@ -72,7 +72,7 @@ class TasteProfile
 
     public function setName(string $name): void
     {
-        $this->name = $name;
+        $this->name = strip_tags($name);
     }
 
     public function getSecondName(): ?string
@@ -82,7 +82,7 @@ class TasteProfile
 
     public function setSecondName(?string $secondName): void
     {
-        $this->secondName = $secondName;
+        $this->secondName = strip_tags($secondName);
     }
 
     public function getDescription(): ?string
@@ -92,7 +92,7 @@ class TasteProfile
 
     public function setDescription(?string $description): void
     {
-        $this->description = $description;
+        $this->description = strip_tags($description);
     }
 
     public function getUser(): User

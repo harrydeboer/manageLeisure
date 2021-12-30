@@ -130,7 +130,7 @@ class Wine
 
     public function setName(string $name): void
     {
-        $this->name = $name;
+        $this->name = strip_tags($name);
     }
 
     public function getLabelExtension(): string
@@ -242,7 +242,7 @@ class Wine
 
     public function setDescription(?string $description): void
     {
-        $this->description = $description;
+        $this->description = strip_tags($description);
     }
 
     public function getReview(): ?string
@@ -252,7 +252,7 @@ class Wine
 
     public function setReview(?string $review): void
     {
-        $this->review = $review;
+        $this->review = strip_tags($review);
     }
 
     public function getCreatedAt(): int

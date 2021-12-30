@@ -3,32 +3,30 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="text-center">
-        {% if isLoggedIn %}
-            <h1 class="h3 mb-3 font-weight-normal">You are logged in as {{ name }},
-                <a href="{{ path('app_logout') }}">click here to logout</a></h1>
-            <h3>Change your password <a href="{{ path('changePassword') }}">here</a>.</h3>
+    {% if isLoggedIn %}
+        <h1 class="h3 mb-3 font-weight-normal">You are logged in as {{ name }},
+            <a href="{{ path('app_logout') }}">click here to logout</a></h1>
+        <h3>Change your password <a href="{{ path('changePassword') }}">here</a>.</h3>
 
-            {% if 'ROLE_ADMIN' in roles  %}
-                Manage <a href="{{ path('mailUser') }}">Mail Users</a>.
-            {% endif %}
-        {% else %}
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-            {{ form_start(form) }}
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-            {{ form_errors(form.email) }}
-            {{ form_errors(form.password) }}
-            <table id="loginTable">
-                <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email, {'value' : last_username}) }}</td></tr>
-                <tr><td>{{ form_label(form.password) }}</td><td>{{ form_widget(form.password) }}</td></tr>
-                <tr><td colspan="2">{{ form_widget(form.login) }}</td></tr>
-            </table>
-
-            {{ form_end(form) }}
-            Not registered yet? Go to <a href="{{ path('app_register') }}">this</a> link.
+        {% if 'ROLE_ADMIN' in roles  %}
+            Manage <a href="{{ path('mailUser') }}">Mail Users</a>.
         {% endif %}
-    </div>
+    {% else %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        {{ form_start(form) }}
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {{ form_errors(form.email) }}
+        {{ form_errors(form.password) }}
+        <table id="loginTable">
+            <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email, {'value' : last_username}) }}</td></tr>
+            <tr><td>{{ form_label(form.password) }}</td><td>{{ form_widget(form.password) }}</td></tr>
+            <tr><td colspan="2">{{ form_widget(form.login) }}</td></tr>
+        </table>
+
+        {{ form_end(form) }}
+        Not registered yet? Go to <a href="{{ path('app_register') }}">this</a> link.
+    {% endif %}
 {% endblock %}

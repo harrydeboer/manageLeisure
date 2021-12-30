@@ -16,7 +16,7 @@ class GrapeType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => ['red' => 'red', 'white' => 'white'],

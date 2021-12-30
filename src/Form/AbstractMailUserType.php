@@ -16,7 +16,7 @@ class AbstractMailUserType extends AbstractType
     {
         $builder
             ->add('domain', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('email', EmailType::class, [
                 'attr' => ['class' => 'form-control'],

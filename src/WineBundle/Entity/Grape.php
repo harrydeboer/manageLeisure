@@ -73,7 +73,7 @@ class Grape
 
     public function setName(string $name): void
     {
-        $this->name = $name;
+        $this->name = strip_tags($name);
     }
 
     public function getType(): string

@@ -25,7 +25,7 @@ class RegionType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('country', ChoiceType::class, [
                 'choices'  => array_merge(['' => null], $this->getUser()->getCountries()->toArray()),

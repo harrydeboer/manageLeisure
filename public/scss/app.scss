@@ -60,7 +60,11 @@ ul {
   width: 265px;
 }
 
-#loginTable, #registerTable, #changePasswordTable {
+#no-html-allowed {
+  color: red;
+}
+
+#loginTable, #registerTable, #changePasswordTable, #mailUserTable {
   width: 360px;
   margin: 0 auto;
 }

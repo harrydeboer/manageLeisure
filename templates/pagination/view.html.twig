@@ -1,5 +1,5 @@
 {% if paginator.hasToPaginate %}
-    <div class="navigation text-center">
+    <div class="navigation">
         <ul class="pagination">
             {% if paginator.hasPreviousPage %}
                 <li class="prev"><a href="{{ path('wine_index_paginated', {page: paginator.previousPage}) }}"

@@ -16,15 +16,15 @@ class TasteProfileType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('secondName', TextType::class, [
                 'required' => false,
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => ['class' => 'form-control', 'rows' => 20],
+                'attr' => ['class' => 'form-control no-html-tags', 'rows' => 20],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],

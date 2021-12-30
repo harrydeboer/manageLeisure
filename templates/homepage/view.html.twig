@@ -3,19 +3,17 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <div class="text-center">
-        {% for message in app.flashes('success') %}
-            <div class="flash-notice-success">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.flashes('mustVerify') %}
-            <div class="flash-notice-must-verify">
-                {{ message }}
-            </div>
-        {% endfor %}
-        <h1>Welcome to your leisure site.</h1>
-        <p>Visit your <a href="{{ path('wineHomepage') }}">wines</a>.</p>
-        <p>Get the IMDB reviews rating of a <a href="{{ path('movieHomepage') }}">movie</a>.</p>
-    </div>
+    {% for message in app.flashes('success') %}
+        <div class="flash-notice-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('mustVerify') %}
+        <div class="flash-notice-must-verify">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <h1>Welcome to your leisure site.</h1>
+    <p>Visit your <a href="{{ path('wineHomepage') }}">wines</a>.</p>
+    <p>Get the IMDB reviews rating of a <a href="{{ path('movieHomepage') }}">movie</a>.</p>
 {% endblock %}

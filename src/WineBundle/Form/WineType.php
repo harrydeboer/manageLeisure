@@ -28,7 +28,7 @@ class WineType extends AbstractWineType
         parent::buildForm($builder, $options);
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('price', NumberType::class, [
                 'html5' => true,
@@ -36,7 +36,7 @@ class WineType extends AbstractWineType
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-                'attr' => ['class' => 'form-control', 'rows' => 5],
+                'attr' => ['class' => 'form-control no-html-tags', 'rows' => 5],
             ])
             ->add('rating', NumberType::class, [
                 'html5' => true,
@@ -44,7 +44,8 @@ class WineType extends AbstractWineType
             ])
             ->add('review', TextareaType::class, [
                 'required' => false,
-                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0', 'class' => 'form-control', 'rows' => 5],
+                'attr' => ['step' => '0.1', 'min' => '1.0', 'max' => '10.0',
+                    'class' => 'form-control no-html-tags', 'rows' => 5],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],

@@ -1,7 +1,5 @@
-<div class="text-center">
-    <ul id="movie-results">
-        {% for result in results %}
-            <li><a href="{{ path('movieSingle', {id: result.imdbID}) }}">{{ result.Title }} {{ result.Year }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
+<ul id="movie-results">
+    {% for result in results %}
+        <li><a href="{{ path('movieSingle', {id: result.imdbID}) }}">{{ result.Title }} {{ result.Year }}</a></li>
+    {% endfor %}
+</ul>

@@ -15,7 +15,7 @@ class CountryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],

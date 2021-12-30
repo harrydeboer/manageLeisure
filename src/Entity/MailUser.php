@@ -58,7 +58,7 @@ class MailUser
 
     public function setDomain(string $domain): void
     {
-        $this->domain = $domain;
+        $this->domain = strip_tags($domain);
     }
 
     public function getPassword(): string

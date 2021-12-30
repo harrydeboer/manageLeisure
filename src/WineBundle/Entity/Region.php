@@ -74,7 +74,7 @@ class Region
 
     public function setName(string $name): void
     {
-        $this->name = $name;
+        $this->name = strip_tags($name);
     }
 
     public function getCountry(): Country
