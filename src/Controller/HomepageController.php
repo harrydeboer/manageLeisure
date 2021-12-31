@@ -38,7 +38,7 @@ class HomepageController extends AuthController
             $wine = $this->wineRepository->findOneBy(['id' => $id, 'user' => $this->getUser()->getId()]);
 
             if (is_null($wine)) {
-                throw new NotFoundHttpException('This label does not exist or does not belong to you.');
+                throw new NotFoundHttpException('This file does not exist or does not belong to you.');
             }
 
             $fileName = $this->kernel->getProjectDir() . '/public/uploads/' . $fileUrl;
@@ -49,7 +49,7 @@ class HomepageController extends AuthController
             fpassthru($fp);
         }
 
-        throw new NotFoundHttpException('The file has not been found.');
+        throw new NotFoundHttpException('This file does not exist or does not belong to you.');
     }
 
     public function catchAll(): void
