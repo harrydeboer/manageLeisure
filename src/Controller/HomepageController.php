@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -30,7 +31,7 @@ class HomepageController extends AbstractController
         return $this->render('homepage/view.html.twig');
     }
 
-    public function uploads(Request $request): void
+    public function uploads(Request $request): BinaryFileResponse
     {
         $fileUrl = $request->query->get('file');
 
@@ -47,9 +48,13 @@ class HomepageController extends AbstractController
             $fileName = $this->kernel->getProjectDir() . '/uploads/' . $fileUrl;
             $fp = fopen($fileName, 'rb');
             $mimeType = mime_content_type($fp);
-            header("Content-Type: " . $mimeType);
-            header("Content-Length: " . filesize($fileName));
-            fpassthru($fp);
+
+            $headers = [
+                "Content-Type:" => $mimeType,
+                'Content-Length' => filesize($fileName),
+            ];
+
+            return new BinaryFileResponse($fileName, 200, $headers);
         }
 
         throw new NotFoundHttpException('This file does not exist or does not belong to you.');
