@@ -32,12 +32,12 @@ class ErrorController extends AbstractController
             if ($this->environment->getLoader()->exists($templatePath)) {
                 return $this->render($templatePath, [
                     'message' => $exception->getMessage(),
-                ]);
+                ], new Response('', (int) $statusCodeString));
             }
         }
 
         return $this->render('error/500.html.twig', [
             'message' => 'Something went wrong.'
-        ]);
+        ], new Response('', 500));
     }
 }
