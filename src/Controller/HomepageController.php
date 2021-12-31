@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\WineBundle\Repository\WineRepositoryInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class HomepageController extends AuthController
+class HomepageController extends AbstractController
 {
     public function __construct(
         private KernelInterface $kernel,
@@ -31,7 +34,7 @@ class HomepageController extends AuthController
     {
         $fileUrl = $request->query->get('file');
 
-        if (!is_null($fileUrl) && str_contains($fileUrl, 'labels')) {
+        if (!is_null($fileUrl) && str_contains($fileUrl, 'labels') && !is_null($this->getUser())) {
             $fileUrlArray = explode('/', $fileUrl);
             $id = (int)explode('.', $fileUrlArray[2])[0];
 
@@ -55,5 +58,13 @@ class HomepageController extends AuthController
     public function catchAll(): void
     {
         throw new NotFoundHttpException('The page has not been found.');
+    }
+
+    /**
+     * @return ?User
+     */
+    protected function getUser(): ?UserInterface
+    {
+        return parent::getUser();
     }
 }
