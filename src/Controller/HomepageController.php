@@ -27,7 +27,7 @@ class HomepageController extends AuthController
         return $this->render('homepage/view.html.twig');
     }
 
-    public function catchAll(Request $request)
+    public function catchAll(Request $request): void
     {
         $fileUrl = $request->query->get('file');
         if ($fileUrl) {
