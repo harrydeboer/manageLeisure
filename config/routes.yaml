@@ -8,6 +8,12 @@ kernel:
     resource: ../src/Kernel.php
     type: annotation
 
+uploads:
+    path: /uploads/{req}
+    defaults: { _controller: 'App\Controller\HomepageController::uploads' }
+    requirements:
+        req: ".*"
+
 not_found:
     path: /{req}
     defaults: { _controller: 'App\Controller\HomepageController::catchAll' }

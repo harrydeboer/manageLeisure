@@ -27,32 +27,33 @@ class HomepageController extends AuthController
         return $this->render('homepage/view.html.twig');
     }
 
-    public function catchAll(Request $request): void
+    public function uploads(Request $request): void
     {
         $fileUrl = $request->query->get('file');
-        if ($fileUrl) {
+
+        if (!is_null($fileUrl) && str_contains($fileUrl, 'labels')) {
             $fileUrlArray = explode('/', $fileUrl);
-            if ($fileUrlArray[1] === 'labels') {
-                $id = (int) explode('.', $fileUrlArray[2])[0];
+            $id = (int)explode('.', $fileUrlArray[2])[0];
 
-                $wine = $this->wineRepository->findOneBy(['id' => $id, 'user' => $this->getUser()->getId()]);
+            $wine = $this->wineRepository->findOneBy(['id' => $id, 'user' => $this->getUser()->getId()]);
 
-                if (is_null($wine)) {
-                    throw new NotFoundHttpException('This label does not exist or does not belong to you.');
-                }
+            if (is_null($wine)) {
+                throw new NotFoundHttpException('This label does not exist or does not belong to you.');
             }
+
             $fileName = $this->kernel->getProjectDir() . '/public/uploads/' . $fileUrl;
             $fp = fopen($fileName, 'rb');
-
             $mimeType = mime_content_type($fp);
-
             header("Content-Type: " . $mimeType);
             header("Content-Length: " . filesize($fileName));
-
             fpassthru($fp);
-        } else {
-
-            throw new NotFoundHttpException('The page has not been found.');
         }
+
+        throw new NotFoundHttpException('The file has not been found.');
+    }
+
+    public function catchAll(): void
+    {
+        throw new NotFoundHttpException('The page has not been found.');
     }
 }
