@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Command;
+namespace App\WineBundle\Tests\Command;
 
 use App\Tests\Functional\KernelTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -29,7 +29,7 @@ class ImportCommandTest extends KernelTestCase
         $kernel = $this->getContainer()->get(KernelInterface::class);
 
         $projectDir = $kernel->getProjectDir();
-        $labelsPath = $projectDir . '/public/img/wine/labels/test';
+        $labelsPath = $projectDir . '/public/uploads/wine/labels/test';
 
         $files = scandir($labelsPath);
         foreach($files as $file) {

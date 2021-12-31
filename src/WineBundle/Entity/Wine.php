@@ -293,7 +293,7 @@ class Wine
                 $extraPath = 'test/';
             }
             $label->move(
-                $projectDir . '/public/img/wine/labels/' . $extraPath,
+                $projectDir . '/public/uploads/wine/labels/' . $extraPath,
                 $id . '.' . $label->getClientOriginalExtension()
             );
         }
@@ -307,7 +307,7 @@ class Wine
             $extraPath = 'test/';
         }
 
-        return 'img/wine/labels/' . $extraPath . $idString . '.' . $this->getLabelExtension();
+        return 'uploads/wine/labels/' . $extraPath . $idString . '.' . $this->getLabelExtension();
     }
 
     public function unlinkLabel(string $appEnv, string $projectDir)

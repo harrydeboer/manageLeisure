@@ -33,7 +33,7 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
         $wine = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($wine)) {
-            throw new NotFoundHttpException('This wine does not exist.');
+            throw new NotFoundHttpException('This wine does not exist or does not belong to you.');
         }
 
         return $wine;

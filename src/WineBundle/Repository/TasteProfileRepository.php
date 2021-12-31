@@ -30,7 +30,7 @@ class TasteProfileRepository extends ServiceEntityRepository implements TastePro
         $tasteProfile = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($tasteProfile)) {
-            throw new NotFoundHttpException('This taste profile does not exist.');
+            throw new NotFoundHttpException('This taste profile does not exist or does not belong to you.');
         }
 
         return $tasteProfile;

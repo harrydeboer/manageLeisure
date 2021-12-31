@@ -85,6 +85,10 @@ AddType application/x-font-ttf .ttf
     # If the requested filename exists, simply serve it.
     # We only want to let Apache serve files and not directories.
     # Rewrite all other queries to the front controller.
+
+    RewriteCond %{REQUEST_FILENAME} -s
+    RewriteRule ^uploads/(.*)$ index.php?file=$1 [QSA,L]
+
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ %{ENV:BASE}/index.php [L]
 </IfModule>

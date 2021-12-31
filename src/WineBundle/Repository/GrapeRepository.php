@@ -30,7 +30,7 @@ class GrapeRepository extends ServiceEntityRepository implements GrapeRepository
         $grape = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($grape)) {
-            throw new NotFoundHttpException('This grape does not exist.');
+            throw new NotFoundHttpException('This grape does not exist or does not belong to you.');
         }
 
         return $grape;

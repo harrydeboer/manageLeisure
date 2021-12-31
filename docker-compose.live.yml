@@ -1,7 +1,7 @@
 services:
   web:
     volumes:
-      - wineLabels:/var/www/html/public/img/wine/labels
+      - uploads:/var/www/html/public/uploads
       - ./public/.well-known/acme-challenge:/var/www/html/public/.well-known/acme-challenge
     restart: always
     networks:
@@ -16,7 +16,7 @@ services:
         ipv4_address: 172.20.0.7
 
 volumes:
-  wineLabels:
+  uploads:
     driver: local
 
 networks:

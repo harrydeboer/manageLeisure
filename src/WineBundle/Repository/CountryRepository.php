@@ -32,7 +32,7 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         $country = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($country)) {
-            throw new NotFoundHttpException('This country does not exist.');
+            throw new NotFoundHttpException('This country does not exist or does not belong to you.');
         }
 
         return $country;

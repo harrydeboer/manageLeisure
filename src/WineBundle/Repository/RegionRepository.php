@@ -30,7 +30,7 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
         $region = $this->findOneBy(['id' => $id, 'user' => $userId]);
 
         if (is_null($region)) {
-            throw new NotFoundHttpException('This region does not exist.');
+            throw new NotFoundHttpException('This region does not exist or does not belong to you.');
         }
 
         return $region;

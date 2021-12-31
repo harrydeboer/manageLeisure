@@ -32,7 +32,7 @@ class ImportCommand extends Command
         $projectDir = $this->kernel->getProjectDir();
         $sqlFilesPath = $projectDir . '/src/WineBundle/Data/sql-files';
         $labelsPath = $projectDir . '/src/WineBundle/Data/labels';
-        $publicLabelsPath = $projectDir . '/public/img/wine/labels';
+        $publicLabelsPath = $projectDir . '/public/uploads/wine/labels';
         if ($this->kernel->getEnvironment() === 'test') {
             $publicLabelsPath .= '/test';
         }
