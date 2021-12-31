@@ -10,6 +10,6 @@ kernel:
 
 not_found:
     path: /{req}
-    defaults: { _controller: 'App\Controller\HomepageController::notFound' }
+    defaults: { _controller: 'App\Controller\HomepageController::catchAll' }
     requirements:
         req: ".*"
