@@ -32,9 +32,9 @@ class ImportCommand extends Command
         $projectDir = $this->kernel->getProjectDir();
         $sqlFilesPath = $projectDir . '/src/WineBundle/Data/sql-files';
         $labelsPath = $projectDir . '/src/WineBundle/Data/labels';
-        $publicLabelsPath = $projectDir . '/public/uploads/wine/labels';
+        $uploadsLabelsPath = $projectDir . '/uploads/wine/labels';
         if ($this->kernel->getEnvironment() === 'test') {
-            $publicLabelsPath .= '/test';
+            $uploadsLabelsPath .= '/test';
         }
 
         $files = scandir($sqlFilesPath);
@@ -49,10 +49,10 @@ class ImportCommand extends Command
         $files = scandir($labelsPath);
         foreach ($files as $file) {
             if ($file !== '.' && $file !== '..') {
-                copy($labelsPath . '/' . $file, $publicLabelsPath . '/' . $file);
+                copy($labelsPath . '/' . $file, $uploadsLabelsPath . '/' . $file);
             }
         }
-        $output->writeln('Labels moved to public/img/labels.');
+        $output->writeln('Labels moved to uploads/wine/labels.');
 
         return Command::SUCCESS;
     }

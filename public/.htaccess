@@ -54,7 +54,6 @@ AddType application/x-font-ttf .ttf
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    RewriteCond %{REQUEST_FILENAME} -s
     RewriteRule ^uploads/(.*)$ index.php?file=$1 [QSA,L]
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the

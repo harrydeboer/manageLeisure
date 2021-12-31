@@ -44,7 +44,7 @@ class HomepageController extends AbstractController
                 throw new NotFoundHttpException('This file does not exist or does not belong to you.');
             }
 
-            $fileName = $this->kernel->getProjectDir() . '/public/uploads/' . $fileUrl;
+            $fileName = $this->kernel->getProjectDir() . '/uploads/' . $fileUrl;
             $fp = fopen($fileName, 'rb');
             $mimeType = mime_content_type($fp);
             header("Content-Type: " . $mimeType);

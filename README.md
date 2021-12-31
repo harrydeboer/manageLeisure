@@ -17,9 +17,6 @@ The test database has to be the database with suffix _test.</li>
 The SCSS Arguments in PhpStorm is '--style compressed $FileParentDir$/scss/$FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css'.</li>
 <li>Optional: run php bin/console wine:import to fill the database with 
 initial wine data and have initial wine labels.</li>
-<li>Optional: create profiler directory in the var directory and run 
-'php -d xdebug.mode=profile public/index.php' in the web container to use xdebug profiling.
-</li>
 </ol>
 
 <h3>Testing</h3>

@@ -16,7 +16,9 @@ class FileMTime implements VersionStrategyInterface
 
     public function getVersion(string $path): string
     {
-
+        if (str_starts_with($path, 'uploads')) {
+            return (string) filemtime($this->kernel->getProjectDir() . '/' . $path);
+        }
         return (string) filemtime($this->kernel->getProjectDir() . '/public/' . $path);
     }
 

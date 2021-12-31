@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Tests\Command;
+namespace App\WineBundle\Tests\Functional\Command;
 
 use App\Tests\Functional\KernelTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -24,12 +24,12 @@ class ImportCommandTest extends KernelTestCase
 
         $output = $commandTester->getDisplay();
         $this->assertStringContainsString('SQL files loaded.', $output);
-        $this->assertStringContainsString('Labels moved to public/img/labels.', $output);
+        $this->assertStringContainsString('Labels moved to uploads/wine/labels.', $output);
 
         $kernel = $this->getContainer()->get(KernelInterface::class);
 
         $projectDir = $kernel->getProjectDir();
-        $labelsPath = $projectDir . '/public/uploads/wine/labels/test';
+        $labelsPath = $projectDir . '/uploads/wine/labels/test';
 
         $files = scandir($labelsPath);
         foreach($files as $file) {
