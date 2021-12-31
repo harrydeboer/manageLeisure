@@ -50,3 +50,5 @@ RUN chown www-data:www-data -R /var/www/html/
 
 RUN mkdir /var/www/.composer
 RUN chown www-data:www-data -R /var/www/.composer
+RUN mkdir /var/www/.cache
+RUN chown www-data:www-data -R /var/www/.cache

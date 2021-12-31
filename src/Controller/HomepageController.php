@@ -44,7 +44,9 @@ class HomepageController extends AuthController
             $fileName = $this->kernel->getProjectDir() . '/public/uploads/' . $fileUrl;
             $fp = fopen($fileName, 'rb');
 
-            header("Content-Type: image/png");
+            $mimeType = mime_content_type($fp);
+
+            header("Content-Type: " . $mimeType);
             header("Content-Length: " . filesize($fileName));
 
             fpassthru($fp);
