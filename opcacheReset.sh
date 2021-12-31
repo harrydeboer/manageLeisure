@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if [[ $EUID -eq 0 ]]; then
+  echo "This script must NOT be run as root" 1>&2
+  exit 1
+fi
 PARENT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" || exit ; pwd -P )
 PARENT_DIR="$(basename "$PARENT_PATH")"
 PUBLIC_DIR=${PARENT_PATH}/public/

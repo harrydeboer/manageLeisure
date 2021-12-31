@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+if [[ $EUID -eq 0 ]]; then
+  echo "This script must NOT be run as root" 1>&2
+  exit 1
+fi
 ./dockerBuildAndUp.sh
 PREFIX="docker exec -t --user=www-data manageLeisure"
 $PREFIX composer install --no-dev --no-progress --prefer-dist
