@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\WineBundle\Repository\WineRepositoryInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomepageController extends AbstractController
+class HomepageController extends AuthController
 {
     public function __construct(
         private KernelInterface $kernel,
@@ -36,7 +35,6 @@ class HomepageController extends AbstractController
             if ($fileUrlArray[1] === 'labels') {
                 $id = (int) explode('.', $fileUrlArray[2])[0];
 
-                /** @noinspection PhpPossiblePolymorphicInvocationInspection */
                 $wine = $this->wineRepository->findOneBy(['id' => $id, 'user' => $this->getUser()->getId()]);
 
                 if (is_null($wine)) {
