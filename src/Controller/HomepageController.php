@@ -8,7 +8,6 @@ use App\Entity\User;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -31,13 +30,13 @@ class HomepageController extends AbstractController
         return $this->render('homepage/view.html.twig');
     }
 
-    public function uploads(Request $request): BinaryFileResponse
+    /**
+     * @Route("/uploads/wine/labels/{fileName}", name="wineLabels")
+     */
+    public function wineLabels(string $fileName): BinaryFileResponse
     {
-        $fileUrl = $request->query->get('file');
-
-        if (!is_null($fileUrl) && str_contains($fileUrl, 'labels') && !is_null($this->getUser())) {
-            $fileUrlArray = explode('/', $fileUrl);
-            $id = (int)explode('.', $fileUrlArray[2])[0];
+        if (!is_null($this->getUser())) {
+            $id = (int) explode('.', $fileName)[0];
 
             $wine = $this->wineRepository->findOneBy(['id' => $id, 'user' => $this->getUser()->getId()]);
 
@@ -45,7 +44,7 @@ class HomepageController extends AbstractController
                 throw new NotFoundHttpException('This file does not exist or does not belong to you.');
             }
 
-            $fileName = $this->kernel->getProjectDir() . '/uploads/' . $fileUrl;
+            $fileName = $this->kernel->getProjectDir() . '/uploads/wine/labels/' . $fileName;
             $fp = fopen($fileName, 'rb');
             $mimeType = mime_content_type($fp);
 
@@ -57,6 +56,11 @@ class HomepageController extends AbstractController
             return new BinaryFileResponse($fileName, 200, $headers);
         }
 
+        throw new NotFoundHttpException('This file does not exist or does not belong to you.');
+    }
+
+    public function uploads(): void
+    {
         throw new NotFoundHttpException('This file does not exist or does not belong to you.');
     }
 
