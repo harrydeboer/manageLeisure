@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -31,7 +32,8 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/uploads/wine/labels/{fileName}", name="wineLabels")
+     * @Route("/uploads/wine/labels/test/{fileName}", name="wineLabelsTest")
+     * @Route("/uploads/wine/labels/{fileName}", name="wineLabels")     *
      */
     public function wineLabels(string $fileName): BinaryFileResponse
     {
@@ -44,7 +46,7 @@ class HomepageController extends AbstractController
                 throw new NotFoundHttpException('This file does not exist or does not belong to you.');
             }
 
-            $fileName = $this->kernel->getProjectDir() . '/uploads/wine/labels/' . $fileName;
+            $fileName = $this->kernel->getProjectDir() . '/' . $wine->getLabelPath($this->kernel->getEnvironment());
             $fp = fopen($fileName, 'rb');
             $mimeType = mime_content_type($fp);
 
