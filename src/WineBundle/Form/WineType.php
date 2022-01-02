@@ -32,6 +32,7 @@ class WineType extends AbstractWineType
                 'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('type', ChoiceType::class, [
+                'placeholder' => 'select type',
                 'choices' => [
                     'red' => 'red',
                     'white' => 'white',

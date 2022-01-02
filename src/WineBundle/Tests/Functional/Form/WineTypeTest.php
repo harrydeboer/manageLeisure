@@ -13,11 +13,13 @@ class WineTypeTest extends AuthWebTestCase
     public function testSubmitModel()
     {
         $name = 'testWine';
+        $type = 'red';
         $year = 2020;
         $rating = 8;
         $price = 10;
         $formData = [
             'name' => $name,
+            'type' => $type,
             'year' => $year,
             'rating' => $rating,
             'price' => $price,
@@ -29,6 +31,7 @@ class WineTypeTest extends AuthWebTestCase
 
         $expected = new Wine();
         $expected->setName($name);
+        $expected->setType($type);
         $expected->setYear($year);
         $expected->setRating($rating);
         $expected->setPrice($price);
