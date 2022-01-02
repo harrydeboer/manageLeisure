@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Form;
 
-use App\WineBundle\Entity\Country;
 use App\Entity\User;
 use App\WineBundle\Repository\CountryRepositoryInterface;
-use App\WineBundle\Entity\Region;
-use App\WineBundle\Entity\TasteProfile;
 use App\WineBundle\Entity\Grape;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

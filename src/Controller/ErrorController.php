@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Twig\Environment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,5 +41,13 @@ class ErrorController extends AbstractController
         return $this->render('error/500.html.twig', [
             'message' => 'Something went wrong.'
         ], new Response('', 500));
+    }
+
+    /**
+     * @return ?User
+     */
+    protected function getUser(): ?UserInterface
+    {
+        return parent::getUser();
     }
 }

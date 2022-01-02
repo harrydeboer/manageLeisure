@@ -131,7 +131,7 @@ class RegistrationController extends AbstractController
     /**
      * @throws TransportExceptionInterface
      */
-    private function sendVerificationMail(UserInterface $user): bool
+    private function sendVerificationMail(User $user): bool
     {
         if ($this->kernel->getEnvironment() === 'prod') {
 
@@ -154,5 +154,13 @@ class RegistrationController extends AbstractController
         }
 
         return false;
+    }
+
+    /**
+     * @return ?User
+     */
+    protected function getUser(): ?UserInterface
+    {
+        return parent::getUser();
     }
 }

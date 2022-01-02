@@ -17,7 +17,7 @@ class IMDBIdRetriever
 
         if (is_null($contentObj)) {
             curl_close($ch);
-            return $contentObj;
+            return null;
         }
 
         if (isset($contentObj->Error)) {
