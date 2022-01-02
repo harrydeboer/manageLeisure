@@ -19,9 +19,16 @@ class MovieControllerTest extends AuthWebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['movie[title]'] = 'The Godfather';
-        $form['movie[year]'] = 1972;
 
         $this->client->submit($form);
+
+        $this->assertResponseIsSuccessful();
+
+        $this->client->request('GET', '/movie/get-rating', $form->getPhpFiles(), $form->getPhpFiles());
+
+        $this->assertResponseIsSuccessful();
+
+        $this->client->request('GET', '/movie/single-movie/tt0068646');
 
         $this->assertResponseIsSuccessful();
     }
