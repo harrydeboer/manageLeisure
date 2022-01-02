@@ -44,11 +44,10 @@ abstract class AbstractWineType extends AbstractType
             'attr' => ['class' => 'form-control'],
         ])
             ->add('tasteProfile', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $this->getUser()->getTasteProfiles()->toArray()),
+                'placeholder' => 'select taste profile',
+                'choices'  => $this->getUser()->getTasteProfiles()->toArray(),
                 'choice_value' => 'id',
-                'choice_label' => function(?TasteProfile $tasteProfile) {
-                    return $tasteProfile ? $tasteProfile->getName() : 'select taste profile';
-                },
+                'choice_label' => 'name',
                 'required' => false,
                 'attr' => ['class' => 'form-control'],
             ])
@@ -57,11 +56,10 @@ abstract class AbstractWineType extends AbstractType
                 'required' => false,
             ])
             ->add('country', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $this->getUser()->getCountries()->toArray()),
+                'placeholder' => 'select country',
+                'choices'  => $this->getUser()->getCountries()->toArray(),
                 'choice_value' => 'id',
-                'choice_label' => function(?Country $country) {
-                    return $country ? $country->getName() : 'select country';
-                },
+                'choice_label' => 'name',
                 'attr' => ['class' => 'form-control country-select'],
             ]);
         $regions = [];
@@ -69,11 +67,10 @@ abstract class AbstractWineType extends AbstractType
             $regions = $this->countryRepository->find((int) $options['country'])->getRegions()->toArray();
         }
         $builder->add('region', ChoiceType::class, [
-            'choices'  => array_merge(['' => null], $regions),
+            'placeholder' => 'select region',
+            'choices'  => $regions,
             'choice_value' => 'id',
-            'choice_label' => function(?Region $region) {
-                return $region ? $region->getName() : 'select region';
-            },
+            'choice_label' => 'name',
             'attr' => ['class' => 'form-control region-select'],
         ]);
     }

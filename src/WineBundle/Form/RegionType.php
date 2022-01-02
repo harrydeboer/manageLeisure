@@ -28,11 +28,10 @@ class RegionType extends AbstractType
                 'attr' => ['class' => 'form-control no-html-tags'],
             ])
             ->add('country', ChoiceType::class, [
-                'choices'  => array_merge(['' => null], $this->getUser()->getCountries()->toArray()),
+                'placeholder' => 'select country',
+                'choices'  => $this->getUser()->getCountries()->toArray(),
                 'choice_value' => 'id',
-                'choice_label' => function(?Country $country) {
-                    return $country ? $country->getName() : 'select country';
-                },
+                'choice_label' => 'name',
                 'attr' => ['class' => 'form-control'],
             ])
             ->add('submit', SubmitType::class, [
