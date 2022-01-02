@@ -30,7 +30,6 @@ class WineFilterAndSortType extends AbstractWineType
         ])->add('show', SubmitType::class, [
             'attr' => ['class' => 'btn btn-primary']
         ]);
-        $builder->get('year')->setRequired(false);
         $builder->get('country')->setRequired(false);
         $builder->get('region')->setRequired(false);
     }

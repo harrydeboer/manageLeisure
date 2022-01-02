@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,6 +30,18 @@ class WineType extends AbstractWineType
         $builder
             ->add('name', TextType::class, [
                 'attr' => ['class' => 'form-control no-html-tags'],
+            ])
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'red' => 'red',
+                    'white' => 'white',
+                    'rosé' => 'rosé',
+                    'orange' => 'orange',
+                    'sparkling' => 'sparkling',
+                    'dessert' => 'dessert',
+                    'fortified' => 'fortified',
+                    ],
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('price', NumberType::class, [
                 'html5' => true,

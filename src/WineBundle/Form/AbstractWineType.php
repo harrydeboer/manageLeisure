@@ -54,6 +54,7 @@ abstract class AbstractWineType extends AbstractType
             ])
             ->add('year', IntegerType::class, [
                 'attr' => ['min' => 1000, 'max' => 9999, 'class' => 'form-control'],
+                'required' => false,
             ])
             ->add('country', ChoiceType::class, [
                 'choices'  => array_merge(['' => null], $this->getUser()->getCountries()->toArray()),

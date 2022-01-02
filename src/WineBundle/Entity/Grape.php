@@ -36,7 +36,7 @@ class Grape
     private string $name;
 
     /**
-     * @ORM\Column(type="string", columnDefinition="enum('red', 'white')")
+     * @ORM\Column(type="string", columnDefinition="enum('red', 'white') NOT NULL")
      */
     private string $type;
 

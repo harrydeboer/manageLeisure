@@ -50,6 +50,9 @@ class WineFactory extends AbstractFactory
         $wine = new Wine();
         $wine->setUser($region->getUser());
         $wine->setName(uniqid('wine'));
+        $types = ['red', 'white', 'rosé', 'orange', 'sparkling', 'dessert', 'fortified'];
+        $randomTypeKey = array_rand($types);
+        $wine->setType($types[$randomTypeKey]);
         $wine->setRegion($region);
         $wine->setCountry($region->getCountry());
         $wine->setTasteProfile($tasteProfile);

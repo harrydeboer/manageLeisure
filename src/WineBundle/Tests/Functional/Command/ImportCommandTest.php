@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\WineBundle\Tests\Functional\Command;
 
 use App\Tests\Functional\KernelTestCase;
+use App\WineBundle\Entity\Wine;
+use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -25,6 +27,13 @@ class ImportCommandTest extends KernelTestCase
         $output = $commandTester->getDisplay();
         $this->assertStringContainsString('SQL files loaded.', $output);
         $this->assertStringContainsString('Labels moved to uploads/wine/labels.', $output);
+
+        $wineRepository = static::getContainer()->get(WineRepositoryInterface::class);
+
+        $wine = $wineRepository->find(1);
+
+        $this->assertInstanceOf(Wine::class, $wine);
+        $this->assertCount(1, $wine->getGrapes());
 
         $kernel = $this->getContainer()->get(KernelInterface::class);
 

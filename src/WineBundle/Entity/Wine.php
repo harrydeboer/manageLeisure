@@ -33,15 +33,21 @@ class Wine
     private string $name;
 
     /**
+     * @ORM\Column(type="string",
+     *     columnDefinition="enum('red', 'white', 'rosé', 'orange', 'sparkling', 'dessert', 'fortified') NOT NULL")
+     */
+    private string $type;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private string $labelExtension;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\Length(4)
      */
-    private int $year;
+    private ?int $year;
 
     /**
      * @ORM\Column(type="integer")
@@ -133,6 +139,16 @@ class Wine
         $this->name = strip_tags($name);
     }
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
     public function getLabelExtension(): string
     {
         return $this->labelExtension;
@@ -205,12 +221,12 @@ class Wine
         $this->user = $user;
     }
 
-    public function getYear(): int
+    public function getYear(): ?int
     {
         return $this->year;
     }
 
-    public function setYear(int $year): void
+    public function setYear(?int $year): void
     {
         $this->year = $year;
     }
