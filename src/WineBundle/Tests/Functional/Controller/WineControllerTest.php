@@ -59,22 +59,28 @@ class WineControllerTest extends AuthWebTestCase
         $wineRepository = $this->getContainer()->get(WineRepositoryInterface::class);
 
         $wine = $wineRepository->findOneBy(['name' => 'test']);
+        $id = $wine->getId();
 
-        $this->client->request('GET', '/wine/single/' . $wine->getId());
+        $this->client->request('GET', '/wine/single/' . $id);
 
         $this->assertResponseIsSuccessful();
 
-        $crawler = $this->client->request('GET', '/wine/edit/' . $wine->getId());
+        $crawler = $this->client->request('GET', '/wine/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
 
         $form = $buttonCrawlerNode->form();
 
-        $form['update_wine[name]'] = 'test2';
+        $updatedName = 'test2';
+        $form['update_wine[name]'] = $updatedName;
 
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine');
+
+        $wine = $wineRepository->find($id);
+
+        $this->assertEquals($updatedName, $wine->getName());
 
         $crawler = $this->client->request('GET', '/wine/edit/' . $wine->getId());
 
@@ -85,5 +91,9 @@ class WineControllerTest extends AuthWebTestCase
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine');
+
+        $wineRepository = $this->getContainer()->get(WineRepositoryInterface::class);
+
+        $this->assertNull($wineRepository->find($id));
     }
 }

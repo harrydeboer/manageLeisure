@@ -38,20 +38,26 @@ class MailUserControllerTest extends AuthWebTestCase
         $mailUserRepository = $this->getContainer()->get(MailUserRepositoryInterface::class);
 
         $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.nl']);
+        $id = $mailUser->getId();
 
-        $crawler = $this->client->request('GET', '/mail-user/edit/' . $mailUser->getId());
+        $crawler = $this->client->request('GET', '/mail-user/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
 
         $form = $buttonCrawlerNode->form();
 
-        $form['update_mail_user[domain]'] = 'test2.com';
+        $updatedDomain = 'test2.com';
+        $form['update_mail_user[domain]'] = $updatedDomain;
 
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/mail-user');
 
-        $crawler = $this->client->request('GET', '/mail-user/edit/' . $mailUser->getId());
+        $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.nl']);
+
+        $this->assertEquals($updatedDomain, $mailUser->getDomain());
+
+        $crawler = $this->client->request('GET', '/mail-user/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Delete');
 
@@ -60,5 +66,9 @@ class MailUserControllerTest extends AuthWebTestCase
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/mail-user');
+
+        $mailUserRepository = $this->getContainer()->get(MailUserRepositoryInterface::class);
+
+        $this->assertNull($mailUserRepository->find($id));
     }
 }

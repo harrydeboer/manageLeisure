@@ -19,11 +19,12 @@ class CountryRepositoryTest extends KernelTestCase
 
         $this->assertSame($country, $countryRepository->find($country->getId()));
 
-        $country->setName('Italy');
+        $updatedName = 'Italy';
+        $country->setName($updatedName);
 
         $countryRepository->update();
 
-        $this->assertSame('Italy', $countryRepository->find($country->getId())->getName());
+        $this->assertSame($updatedName, $countryRepository->find($country->getId())->getName());
 
         $id = $country->getId();
         $countryRepository->delete($country);

@@ -35,20 +35,26 @@ class RegionControllerTest extends AuthWebTestCase
         $regionRepository = $this->getContainer()->get(RegionRepositoryInterface::class);
 
         $region = $regionRepository->findOneBy(['name' => 'test']);
+        $id = $region->getId();
 
-        $crawler = $this->client->request('GET', '/wine/region/edit/' . $region->getId());
+        $crawler = $this->client->request('GET', '/wine/region/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
 
         $form = $buttonCrawlerNode->form();
 
-        $form['region[name]'] = 'test2';
+        $updatedName = 'test2';
+        $form['region[name]'] = $updatedName;
 
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine/region');
 
-        $crawler = $this->client->request('GET', '/wine/region/edit/' . $region->getId());
+        $region = $regionRepository->find($id);
+
+        $this->assertEquals($updatedName, $region->getName());
+
+        $crawler = $this->client->request('GET', '/wine/region/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Delete');
 
@@ -57,5 +63,9 @@ class RegionControllerTest extends AuthWebTestCase
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine/region');
+
+        $regionRepository = $this->getContainer()->get(RegionRepositoryInterface::class);
+
+        $this->assertNull($regionRepository->find($id));
     }
 }

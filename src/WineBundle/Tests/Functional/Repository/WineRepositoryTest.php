@@ -33,11 +33,12 @@ class WineRepositoryTest extends KernelTestCase
 
         $this->assertSame($wine, $this->wineRepository->find($wine->getId()));
 
-        $wine->setName('test2');
+        $updatedName = 'test2';
+        $wine->setName($updatedName);
 
         $this->wineRepository->update();
 
-        $this->assertSame('test2', $this->wineRepository->find($wine->getId())->getName());
+        $this->assertSame($updatedName, $this->wineRepository->find($wine->getId())->getName());
 
         $id = $wine->getId();
         $this->wineRepository->delete($wine);

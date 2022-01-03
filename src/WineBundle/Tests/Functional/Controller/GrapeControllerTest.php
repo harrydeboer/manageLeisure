@@ -32,20 +32,26 @@ class GrapeControllerTest extends AuthWebTestCase
         $grapeRepository = $this->getContainer()->get(GrapeRepositoryInterface::class);
 
         $grape = $grapeRepository->findOneBy(['name' => 'test']);
+        $id = $grape->getId();
 
-        $crawler = $this->client->request('GET', '/wine/grape/edit/' . $grape->getId());
+        $crawler = $this->client->request('GET', '/wine/grape/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
 
         $form = $buttonCrawlerNode->form();
 
-        $form['grape[name]'] = 'test2';
+        $updatedName = 'test2';
+        $form['grape[name]'] = $updatedName;
 
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine/grape');
 
-        $crawler = $this->client->request('GET', '/wine/grape/edit/' . $grape->getId());
+        $grape = $grapeRepository->find($id);
+
+        $this->assertEquals($updatedName, $grape->getName());
+
+        $crawler = $this->client->request('GET', '/wine/grape/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Delete');
 
@@ -54,5 +60,9 @@ class GrapeControllerTest extends AuthWebTestCase
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine/grape');
+
+        $grapeRepository = $this->getContainer()->get(GrapeRepositoryInterface::class);
+
+        $this->assertNull($grapeRepository->find($id));
     }
 }

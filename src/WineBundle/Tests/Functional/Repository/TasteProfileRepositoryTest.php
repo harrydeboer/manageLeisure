@@ -19,11 +19,12 @@ class TasteProfileRepositoryTest extends KernelTestCase
 
         $this->assertSame($tasteProfile, $tasteProfileRepository->find($tasteProfile->getId()));
 
-        $tasteProfile->setName('tasteProfileUpdate');
+        $updatedName = 'tasteProfileUpdate';
+        $tasteProfile->setName($updatedName);
 
         $tasteProfileRepository->update();
 
-        $this->assertSame('tasteProfileUpdate', $tasteProfileRepository->find($tasteProfile->getId())->getName());
+        $this->assertSame($updatedName, $tasteProfileRepository->find($tasteProfile->getId())->getName());
 
         $id = $tasteProfile->getId();
         $tasteProfileRepository->delete($tasteProfile);

@@ -18,11 +18,12 @@ class MailUserRepositoryTest extends KernelTestCase
 
         $this->assertSame($mailUser, $mailUserRepository->find($mailUser->getId()));
 
-        $mailUser->setDomain('test.com');
+        $updatedDomain = 'test2.com';
+        $mailUser->setDomain($updatedDomain);
 
         $mailUserRepository->update($mailUser, 'newPassword');
 
-        $this->assertSame('test.com', $mailUserRepository->find($mailUser->getId())->getDomain());
+        $this->assertSame($updatedDomain, $mailUserRepository->find($mailUser->getId())->getDomain());
 
         $id = $mailUser->getId();
         $mailUserRepository->delete($mailUser);

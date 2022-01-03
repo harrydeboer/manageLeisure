@@ -31,24 +31,30 @@ class TasteProfileControllerTest extends AuthWebTestCase
         $tasteProfileRepository = $this->getContainer()->get(TasteProfileRepositoryInterface::class);
 
         $tasteProfile = $tasteProfileRepository->findOneBy(['name' => 'test']);
+        $id = $tasteProfile->getId();
 
-        $this->client->request('GET', '/wine/taste-profile/single/' . $tasteProfile->getId());
+        $this->client->request('GET', '/wine/taste-profile/single/' . $id);
 
         $this->assertResponseIsSuccessful();
 
-        $crawler = $this->client->request('GET', '/wine/taste-profile/edit/' . $tasteProfile->getId());
+        $crawler = $this->client->request('GET', '/wine/taste-profile/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
 
         $form = $buttonCrawlerNode->form();
 
-        $form['taste_profile[name]'] = 'test2';
+        $updatedName = 'test2';
+        $form['taste_profile[name]'] = $updatedName;
 
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine/taste-profile');
 
-        $crawler = $this->client->request('GET', '/wine/taste-profile/edit/' . $tasteProfile->getId());
+        $tasteProfile = $tasteProfileRepository->find($id);
+
+        $this->assertEquals($updatedName, $tasteProfile->getName());
+
+        $crawler = $this->client->request('GET', '/wine/taste-profile/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Delete');
 
@@ -57,5 +63,9 @@ class TasteProfileControllerTest extends AuthWebTestCase
         $this->client->submit($form);
 
         $this->assertResponseRedirects('/wine/taste-profile');
+
+        $tasteProfileRepository = $this->getContainer()->get(TasteProfileRepositoryInterface::class);
+
+        $this->assertNull($tasteProfileRepository->find($id));
     }
 }

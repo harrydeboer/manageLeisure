@@ -19,11 +19,12 @@ class GrapeRepositoryTest extends KernelTestCase
 
         $this->assertSame($grape, $grapeRepository->find($grape->getId()));
 
-        $grape->setName('grapeUpdate');
+        $updatedName = 'grapeUpdate';
+        $grape->setName($updatedName);
 
         $grapeRepository->update();
 
-        $this->assertSame('grapeUpdate', $grapeRepository->find($grape->getId())->getName());
+        $this->assertSame($updatedName, $grapeRepository->find($grape->getId())->getName());
 
         $id = $grape->getId();
         $grapeRepository->delete($grape);
