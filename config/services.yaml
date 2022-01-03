@@ -31,7 +31,7 @@ services:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 
     App\Tests\Factory\:
-       resource: '../tests/Factory/'
+       resource: '../src/Tests/Factory/'
        public: true
 
     App\WineBundle\Tests\Factory\:

@@ -12,7 +12,7 @@ class MysqlVersionTest extends TestCase
 {
     public function testMysqlVersionsSameDotenvAndDockerCompose()
     {
-        $projectDir = dirname(__DIR__, 3);
+        $projectDir = dirname(__DIR__, 4);
 
         $yamlArray = Yaml::parse(file_get_contents($projectDir . '/docker-compose.yml'));
         $imageArray = explode(':', $yamlArray['services']['database']['image']);

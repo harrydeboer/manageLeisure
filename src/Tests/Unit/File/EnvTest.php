@@ -11,7 +11,7 @@ class EnvTest extends TestCase
 {
     public function testEnvLaravel()
     {
-        $projectDir = dirname(__DIR__, 3);
+        $projectDir = dirname(__DIR__, 4);
 
 	    $dotEnv = new Dotenv('dev');
         $envNames = $dotEnv->parse(file_get_contents($projectDir . '/.env.local'));
