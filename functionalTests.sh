@@ -4,4 +4,4 @@ if [[ ${OSTYPE} == 'msys' ]]; then
 else
   PREFIX=""
 fi
-$PREFIX docker exec -it manageLeisure php ./bin/phpunit --configuration phpunitFunctional.xml
+$PREFIX docker exec -it manageLeisure php ./vendor/bin/paratest -p4 --configuration phpunitFunctional.xml

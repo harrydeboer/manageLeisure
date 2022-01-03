@@ -7,7 +7,7 @@ My Life
 The DB_HOST has to be host.docker.internal and 
 MAILER_DSN has to be smtp://name:password@domain.com:25</li>
 <li>Build the docker-compose image and up -d the image.</li>
-<li>Create the database and the test database. 
+<li>Create the database and the 4 test databases ${DB_DATABASE}_test{1-4}. 
 The test database has to be the database with suffix _test.</li>
 <li>Run composer install.</li>
 <li>Run the migrations.</li>
