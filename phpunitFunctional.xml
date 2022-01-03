@@ -3,10 +3,8 @@
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
-         convertDeprecationsToExceptions="false"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -20,8 +18,8 @@
     <testsuites>
         <testsuite name="Functional">
             <directory>tests/Functional</directory>
-            <directory>src/WineBundle/Tests/Functional</directory>
             <directory>src/MovieBundle/Tests/Functional</directory>
+            <directory>src/WineBundle/Tests/Functional</directory>
         </testsuite>
     </testsuites>
 

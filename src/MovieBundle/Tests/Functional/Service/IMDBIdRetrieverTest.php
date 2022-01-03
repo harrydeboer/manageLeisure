@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace App\MovieBundle\Tests\Functional\Service;
 
 use App\MovieBundle\Service\IMDBIdRetriever;
-use App\Tests\Functional\WebTestCase;
+use App\Tests\Functional\KernelTestCase;
 
-class IMDBIdRetrieverTest extends WebTestCase
+class IMDBIdRetrieverTest extends KernelTestCase
 {
     public function testGetResponseObject()
     {
-        $result = IMDBIdRetriever::getResponseObject('The Godfather', $this->getContainer()->getParameter('omdb_api_key'));
+        $title = 'The Godfather';
+        $year = 1972;
+        $result = IMDBIdRetriever::getResponseObject($title, $this->getContainer()->getParameter('omdb_api_key'));
         $this->assertEquals( 'True', $result->Response);
         $this->assertObjectHasAttribute('Search', $result);
 
-        $result = IMDBIdRetriever::getResponseObject('The Godfather',
-            $this->getContainer()->getParameter('omdb_api_key'), 1972);
+        $result = IMDBIdRetriever::getResponseObject($title,
+            $this->getContainer()->getParameter('omdb_api_key'), $year);
         $this->assertEquals( 'The Godfather', $result->Title);
-        $this->assertEquals( '1972', $result->Year);
+        $this->assertEquals( (string) $year, $result->Year);
     }
 }
