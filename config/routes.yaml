@@ -10,12 +10,12 @@ kernel:
 
 uploads:
     path: /uploads/{req}
-    defaults: { _controller: 'App\Controller\HomepageController::uploads' }
+    defaults: { _controller: 'App\Controller\UploadsController::uploads' }
     requirements:
         req: ".*"
 
 not_found:
     path: /{req}
-    defaults: { _controller: 'App\Controller\HomepageController::catchAll' }
+    defaults: { _controller: 'App\Controller\PageNotFoundController::pageNotFound' }
     requirements:
         req: ".*"
