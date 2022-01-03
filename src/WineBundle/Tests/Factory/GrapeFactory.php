@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Factory;
+namespace App\WineBundle\Tests\Factory;
 
-use App\Factory\AbstractFactory;
-use App\Factory\UserFactory;
+use App\Tests\Factory\AbstractFactory;
+use App\Tests\Factory\UserFactory;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 

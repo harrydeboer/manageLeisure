@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\WineBundle\Tests\Functional\Controller;
 
 use App\Tests\Functional\AuthWebTestCase;
-use App\WineBundle\Factory\GrapeFactory;
-use App\WineBundle\Factory\RegionFactory;
+use App\WineBundle\Tests\Factory\GrapeFactory;
+use App\WineBundle\Tests\Factory\RegionFactory;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 

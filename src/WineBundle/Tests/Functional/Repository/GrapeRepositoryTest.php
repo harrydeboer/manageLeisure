@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\WineBundle\Tests\Functional\Repository;
 
 use App\Tests\Functional\KernelTestCase;
-use App\WineBundle\Factory\GrapeFactory;
+use App\WineBundle\Tests\Factory\GrapeFactory;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Functional\Controller;
 
-use App\WineBundle\Factory\CountryFactory;
+use App\WineBundle\Tests\Factory\CountryFactory;
 use App\Tests\Functional\AuthWebTestCase;
 use App\WineBundle\Repository\RegionRepositoryInterface;
 

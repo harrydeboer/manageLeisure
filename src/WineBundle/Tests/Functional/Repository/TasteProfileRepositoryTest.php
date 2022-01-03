@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\WineBundle\Tests\Functional\Repository;
 
 use App\Tests\Functional\KernelTestCase;
-use App\WineBundle\Factory\TasteProfileFactory;
+use App\WineBundle\Tests\Factory\TasteProfileFactory;
 use App\WineBundle\Repository\TasteProfileRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
