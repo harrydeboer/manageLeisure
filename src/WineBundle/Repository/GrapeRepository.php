@@ -51,6 +51,9 @@ class GrapeRepository extends ServiceEntityRepository implements GrapeRepository
 
     public function delete(Grape $grape): void
     {
+        foreach ($grape->getWines() as $wine) {
+            $this->em->remove($wine);
+        }
         $this->em->remove($grape);
         $this->em->flush();
     }
