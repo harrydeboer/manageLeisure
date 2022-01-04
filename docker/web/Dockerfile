@@ -28,8 +28,8 @@ RUN if [ "$APP_ENV" = "dev" ] ; then pecl install xdebug && docker-php-ext-enabl
 
 COPY --from=composer:2.1.14 /usr/bin/composer /usr/bin/composer
 
-RUN wget https://get.symfony.com/cli/installer -O - | bash
-RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+RUN if [ "$APP_ENV" = "dev" ] ; then wget https://get.symfony.com/cli/installer -O - | bash; fi
+RUN if [ "$APP_ENV" = "dev" ] ; then mv /root/.symfony/bin/symfony /usr/local/bin/symfony; fi
 
 COPY . /var/www/html
 COPY ./docker/web/apache2.conf /etc/apache2/apache2.conf
