@@ -1,8 +1,0 @@
-{{ form_start(form) }}
-{{ form_errors(form.name) }}
-<table class="createUpdateTable">
-    <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
-    <tr><td>{{ form_label(form.type) }}</td><td>{{ form_widget(form.type) }}</td></tr>
-    <tr><td colspan="2">{{ form_widget(form.submit, { 'label': submitLabel }) }}</td></tr>
-</table>
-{{ form_end(form) }}

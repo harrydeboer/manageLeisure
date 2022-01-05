@@ -15,8 +15,8 @@ class WineControllerTest extends AuthWebTestCase
     public function testCreateUpdateDelete(): void
     {
         $region = $this->getContainer()->get(RegionFactory::class)->create();
-        $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
-        $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
+        $this->getContainer()->get(GrapeFactory::class)->create();
+        $this->getContainer()->get(GrapeFactory::class)->create();
 
         $this->client->request('GET', '/wine');
 

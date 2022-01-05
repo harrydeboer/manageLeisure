@@ -7,6 +7,7 @@ namespace App\WineBundle\Form;
 use App\Entity\User;
 use App\Repository\CountryRepositoryInterface;
 use App\WineBundle\Entity\Grape;
+use App\WineBundle\Repository\GrapeRepositoryInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -24,6 +25,7 @@ abstract class AbstractWineType extends AbstractType
     public function __construct(
         private TokenStorageInterface $token,
         protected CountryRepositoryInterface $countryRepository,
+        protected GrapeRepositoryInterface $grapeRepository,
     ) {
     }
 
@@ -33,7 +35,7 @@ abstract class AbstractWineType extends AbstractType
             'class' => Grape::class,
             'expanded' => true,
             'multiple' => true,
-            'choices' => $this->getUser()->getGrapes(),
+            'choices' => $this->grapeRepository->findAll(),
             'choice_value' => 'id',
             'choice_label' => function(?Grape $grape) {
                 return $grape ? $grape->getName() : '';

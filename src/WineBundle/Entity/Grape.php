@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Entity;
 
-use App\Entity\User;
 use App\WineBundle\Repository\GrapeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(
  *    name="grape",
  *    uniqueConstraints={
- *        @ORM\UniqueConstraint(name="name_unique", columns={"user_id", "name"})
+ *        @ORM\UniqueConstraint(name="name_unique", columns={"name"})
  *    }
  * )
  */
@@ -39,12 +38,6 @@ class Grape
      * @ORM\Column(type="string", columnDefinition="enum('red', 'white') NOT NULL")
      */
     private string $type;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="grapes")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
-     */
-    private User $user;
 
     /**
      * @ORM\ManyToMany(targetEntity="Wine", mappedBy="grapes")
@@ -84,16 +77,6 @@ class Grape
     public function setType(string $type): void
     {
         $this->type = $type;
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): void
-    {
-        $this->user = $user;
     }
 
     public function getWines(): Collection

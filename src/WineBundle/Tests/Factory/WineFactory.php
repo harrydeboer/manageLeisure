@@ -40,7 +40,7 @@ class WineFactory extends AbstractFactory
             $paramsParent['user'] = $this->userFactory->create();
         }
         $tasteProfile = $this->tasteProfileFactory->create($paramsParent);
-        $grape = $this->grapeFactory->create($paramsParent);
+        $grape = $this->grapeFactory->create();
         $grapes = new ArrayCollection();
         $grapes->add($grape);
         if (isset($params['country'])) {

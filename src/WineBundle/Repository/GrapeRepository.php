@@ -25,9 +25,9 @@ class GrapeRepository extends ServiceEntityRepository implements GrapeRepository
         parent::__construct($registry, Grape::class);
     }
 
-    public function getFromUser(int $id, int $userId): Grape
+    public function get(int $id): Grape
     {
-        $grape = $this->findOneBy(['id' => $id, 'user' => $userId]);
+        $grape = $this->findOneBy(['id' => $id]);
 
         if (is_null($grape)) {
             throw new NotFoundHttpException('This grape does not exist or does not belong to you.');
