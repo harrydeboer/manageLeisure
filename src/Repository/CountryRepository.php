@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Country;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -55,14 +54,5 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
     {
         $this->em->remove($country);
         $this->em->flush();
-    }
-
-    public function findOrderedByName(User $user): array
-    {
-        $qb = $this->createQueryBuilder('c')
-            ->where('c.user = ' . $user->getId())
-            ->orderBy('c.name', 'ASC');
-
-        return $qb->getQuery()->execute();
     }
 }

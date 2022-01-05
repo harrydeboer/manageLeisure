@@ -35,7 +35,7 @@ abstract class AbstractWineType extends AbstractType
             'class' => Grape::class,
             'expanded' => true,
             'multiple' => true,
-            'choices' => $this->grapeRepository->findAll(),
+            'choices' => $this->grapeRepository->findAllOrderedByName(),
             'choice_value' => 'id',
             'choice_label' => function(?Grape $grape) {
                 return $grape ? $grape->getName() : '';

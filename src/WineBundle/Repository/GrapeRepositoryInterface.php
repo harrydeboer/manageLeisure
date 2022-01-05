@@ -15,4 +15,6 @@ interface GrapeRepositoryInterface
     public function update(): void;
 
     public function delete(Grape $grape): void;
+
+    public function findAllOrderedByName(): array;
 }

@@ -57,4 +57,12 @@ class GrapeRepository extends ServiceEntityRepository implements GrapeRepository
         $this->em->remove($grape);
         $this->em->flush();
     }
+
+    public function findAllOrderedByName(): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'ASC');
+
+        return $qb->getQuery()->execute();
+    }
 }
