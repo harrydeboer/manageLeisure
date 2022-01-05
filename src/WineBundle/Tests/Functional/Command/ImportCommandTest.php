@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Tests\Functional\Command;
 
+use App\Entity\Region;
+use App\Repository\RegionRepositoryInterface;
 use App\Tests\Functional\KernelTestCase;
-use App\WineBundle\Entity\Wine;
-use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 class ImportCommandTest extends KernelTestCase
 {
@@ -26,25 +25,11 @@ class ImportCommandTest extends KernelTestCase
 
         $output = $commandTester->getDisplay();
         $this->assertStringContainsString('SQL files loaded.', $output);
-        $this->assertStringContainsString('Labels moved to uploads/wine/labels.', $output);
 
-        $wineRepository = static::getContainer()->get(WineRepositoryInterface::class);
+        $regionRepository = static::getContainer()->get(RegionRepositoryInterface::class);
 
-        $wine = $wineRepository->find(1);
+        $region = $regionRepository->find(1);
 
-        $this->assertInstanceOf(Wine::class, $wine);
-        $this->assertCount(1, $wine->getGrapes());
-
-        $kernel = $this->getContainer()->get(KernelInterface::class);
-
-        $projectDir = $kernel->getProjectDir();
-        $labelsPath = $projectDir . '/uploads/wine/labels/test';
-
-        $files = scandir($labelsPath);
-        foreach($files as $file) {
-            if ($file !== '.' && $file !== '..' && $file !== '.gitkeep') {
-                unlink($labelsPath . '/' . $file);
-            }
-        }
+        $this->assertInstanceOf(Region::class, $region);
     }
 }
