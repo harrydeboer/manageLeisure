@@ -89,3 +89,8 @@ ul {
 .successMessage {
   color: green;
 }
+
+.dropdown-menu {
+  max-height: 280px;
+  overflow-y: auto;
+}
