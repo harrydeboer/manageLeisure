@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Tests\Functional\Repository;
+namespace App\Tests\Functional\Repository;
 
 use App\Tests\Functional\KernelTestCase;
-use App\WineBundle\Tests\Factory\RegionFactory;
-use App\WineBundle\Repository\RegionRepositoryInterface;
+use App\Tests\Factory\RegionFactory;
+use App\Repository\RegionRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RegionRepositoryTest extends KernelTestCase
@@ -31,6 +31,6 @@ class RegionRepositoryTest extends KernelTestCase
 
         $this->expectException(NotFoundHttpException::class);
 
-        $regionRepository->getFromUser($id, $region->getUser()->getId());
+        $regionRepository->get($id);
     }
 }

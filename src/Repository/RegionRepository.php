@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Repository;
+namespace App\Repository;
 
-use App\WineBundle\Entity\Region;
+use App\Entity\Region;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,9 +25,9 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
         parent::__construct($registry, Region::class);
     }
 
-    public function getFromUser(int $id, int $userId): Region
+    public function get(int $id): Region
     {
-        $region = $this->findOneBy(['id' => $id, 'user' => $userId]);
+        $region = $this->findOneBy(['id' => $id]);
 
         if (is_null($region)) {
             throw new NotFoundHttpException('This region does not exist or does not belong to you.');

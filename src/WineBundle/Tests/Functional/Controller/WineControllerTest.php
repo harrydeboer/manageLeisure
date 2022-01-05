@@ -6,7 +6,7 @@ namespace App\WineBundle\Tests\Functional\Controller;
 
 use App\Tests\Functional\AuthWebTestCase;
 use App\WineBundle\Tests\Factory\GrapeFactory;
-use App\WineBundle\Tests\Factory\RegionFactory;
+use App\Tests\Factory\RegionFactory;
 use App\WineBundle\Repository\WineRepositoryInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -14,7 +14,7 @@ class WineControllerTest extends AuthWebTestCase
 {
     public function testCreateUpdateDelete(): void
     {
-        $region = $this->getContainer()->get(RegionFactory::class)->create(['user' => $this->user]);
+        $region = $this->getContainer()->get(RegionFactory::class)->create();
         $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
         $this->getContainer()->get(GrapeFactory::class)->create(['user' => $this->user]);
 

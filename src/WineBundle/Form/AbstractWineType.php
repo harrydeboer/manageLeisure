@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\WineBundle\Form;
 
 use App\Entity\User;
-use App\WineBundle\Repository\CountryRepositoryInterface;
+use App\Repository\CountryRepositoryInterface;
 use App\WineBundle\Entity\Grape;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -54,7 +54,7 @@ abstract class AbstractWineType extends AbstractType
             ])
             ->add('country', ChoiceType::class, [
                 'placeholder' => 'select country',
-                'choices'  => $this->getUser()->getCountries()->toArray(),
+                'choices'  => $this->countryRepository->findAll(),
                 'choice_value' => 'id',
                 'choice_label' => 'name',
                 'attr' => ['class' => 'form-control country-select'],

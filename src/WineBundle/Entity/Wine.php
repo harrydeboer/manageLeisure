@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Entity;
 
+use App\Entity\Country;
+use App\Entity\Region;
 use App\Entity\User;
 use App\WineBundle\Repository\WineRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -103,13 +105,13 @@ class Wine
     private ?TasteProfile $tasteProfile;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Region", inversedBy="wines")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="wines")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=false)
      */
     private Region $region;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="wines")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="wines")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
      */
     private Country $country;

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Entity;
+namespace App\Entity;
 
-use App\Entity\User;
-use App\WineBundle\Repository\RegionRepository;
+use App\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(
  *    name="region",
  *    uniqueConstraints={
- *        @ORM\UniqueConstraint(name="name_unique", columns={"user_id", "name"})
+ *        @ORM\UniqueConstraint(name="name_unique", columns={"country_id", "name"})
  *    }
  * )
  */
@@ -36,13 +35,7 @@ class Region
     private string $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="regions")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
-     */
-    private User $user;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Wine", mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="region", orphanRemoval=true)
      */
     private Collection $wines;
 
@@ -85,16 +78,6 @@ class Region
     public function setCountry(Country $country): void
     {
         $this->country = $country;
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): void
-    {
-        $this->user = $user;
     }
 
     public function getWines(): Collection

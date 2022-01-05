@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Repository;
+namespace App\Repository;
 
-use App\WineBundle\Entity\Country;
+use App\Entity\Country;
 use App\Entity\User;
 
 interface CountryRepositoryInterface
 {
-    public function getFromUser(int $id, int $userId): Country;
+    public function get(int $id): Country;
 
     public function create(Country $country): Country;
 

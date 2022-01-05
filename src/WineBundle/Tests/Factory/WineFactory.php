@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\WineBundle\Tests\Factory;
 
 use App\Tests\Factory\AbstractFactory;
+use App\Tests\Factory\RegionFactory;
 use App\Tests\Factory\UserFactory;
 use App\WineBundle\Entity\Wine;
 use App\WineBundle\Repository\WineRepositoryInterface;
@@ -43,12 +44,13 @@ class WineFactory extends AbstractFactory
         $grapes = new ArrayCollection();
         $grapes->add($grape);
         if (isset($params['country'])) {
-            $paramsParent['country'] = $params['country'];
+            $region = $this->regionFactory->create($params['country']);
+        } else {
+            $region = $this->regionFactory->create();
         }
-        $region = $this->regionFactory->create($paramsParent);
 
         $wine = new Wine();
-        $wine->setUser($region->getUser());
+        $wine->setUser($paramsParent['user']);
         $wine->setName(uniqid('wine'));
         $types = ['red', 'white', 'rosé', 'orange', 'sparkling', 'dessert', 'fortified'];
         $randomTypeKey = array_rand($types);

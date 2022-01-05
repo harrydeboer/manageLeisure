@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Tests\Factory;
+namespace App\Tests\Factory;
 
-use App\Tests\Factory\AbstractFactory;
-use App\WineBundle\Entity\Region;
-use App\WineBundle\Repository\RegionRepositoryInterface;
+use App\Entity\Region;
+use App\Repository\RegionRepositoryInterface;
 
 class RegionFactory extends AbstractFactory
 {
@@ -18,16 +17,11 @@ class RegionFactory extends AbstractFactory
 
     public function create(array $params = []): Region
     {
-        $paramsParent = [];
-        if (isset($params['user'])) {
-            $paramsParent['user'] = $params['user'];
-        }
-        $country = $this->countryFactory->create($paramsParent);
+        $country = $this->countryFactory->create();
 
         $region = new Region();
         $region->setName('jan');
         $region->setCountry($country);
-        $region->setUser($country->getUser());
 
         $this->setParams($params, $region);
 

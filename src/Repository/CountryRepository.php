@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Repository;
+namespace App\Repository;
 
-use App\WineBundle\Entity\Country;
+use App\Entity\Country;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,9 +27,9 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         parent::__construct($registry, Country::class);
     }
 
-    public function getFromUser(int $id, int $userId): Country
+    public function get(int $id): Country
     {
-        $country = $this->findOneBy(['id' => $id, 'user' => $userId]);
+        $country = $this->findOneBy(['id' => $id]);
 
         if (is_null($country)) {
             throw new NotFoundHttpException('This country does not exist or does not belong to you.');

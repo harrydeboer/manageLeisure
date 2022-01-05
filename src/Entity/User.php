@@ -67,25 +67,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private Collection $grapes;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="user")
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
-    private Collection $regions;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Country", mappedBy="user")
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
-    private Collection $countries;
-
     public function __construct()
     {
         $this->wines = new ArrayCollection();
         $this->grapes = new ArrayCollection();
         $this->tasteProfiles = new ArrayCollection();
-        $this->countries = new ArrayCollection();
-        $this->regions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -196,25 +182,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGrapes(Collection $grapes): void
     {
         $this->grapes = $grapes;
-    }
-
-    public function getRegions(): Collection
-    {
-        return $this->regions;
-    }
-
-    public function setRegions(Collection $regions): void
-    {
-        $this->regions = $regions;
-    }
-
-    public function getCountries(): Collection
-    {
-        return $this->countries;
-    }
-
-    public function setCountries(Collection $countries): void
-    {
-        $this->countries = $countries;
     }
 }

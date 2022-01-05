@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Repository;
+namespace App\Repository;
 
-use App\WineBundle\Entity\Region;
+use App\Entity\Region;
 
 interface RegionRepositoryInterface
 {
-    public function getFromUser(int $id, int $userId): Region;
+    public function get(int $id): Region;
 
     public function create(Region $region): Region;
 
