@@ -30,10 +30,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
 
-    App\Tests\Factory\:
-       resource: '../src/Tests/Factory/'
+    App\Factory\:
+       resource: '../src/Factory/'
        public: true
 
-    App\WineBundle\Tests\Factory\:
-        resource: '../src/WineBundle/Tests/Factory/'
+    App\WineBundle\Factory\:
+        resource: '../src/WineBundle/Factory/'
         public: true
