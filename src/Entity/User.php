@@ -61,16 +61,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private Collection $tasteProfiles;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Grape", mappedBy="user")
-     * @ORM\OrderBy({"name" = "ASC"})
-     */
-    private Collection $grapes;
-
     public function __construct()
     {
         $this->wines = new ArrayCollection();
-        $this->grapes = new ArrayCollection();
         $this->tasteProfiles = new ArrayCollection();
     }
 
@@ -172,15 +165,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTasteProfiles(Collection $tasteProfiles): void
     {
         $this->tasteProfiles = $tasteProfiles;
-    }
-
-    public function getGrapes(): Collection
-    {
-        return $this->grapes;
-    }
-
-    public function setGrapes(Collection $grapes): void
-    {
-        $this->grapes = $grapes;
     }
 }

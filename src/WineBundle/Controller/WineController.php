@@ -65,7 +65,8 @@ class WineController extends AuthController
 
         $formUpdate = $this->createForm(UpdateWineType::class, $wine, [
             'method' => 'POST',
-            'country' => $wine->getCountry()->getId(),
+            'country' => isset($request->get('update_wine')['country']) ?
+                $request->get('update_wine')['country'] : $wine->getCountry()->getId(),
         ]);
 
         $formDelete = $this->createForm(DeleteWineType::class, $wine, [
