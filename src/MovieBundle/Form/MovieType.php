@@ -15,10 +15,16 @@ class MovieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class, [
-            'attr' => ['placeholder' => 'title'],
+            'attr' => [
+                'placeholder' => 'title',
+                'class' => 'form-control',
+                ],
         ])
             ->add('year', IntegerType::class, [
-                'attr' => ['placeholder' => 'year'],
+                'attr' => [
+                    'placeholder' => 'year',
+                    'class' => 'form-control',
+                    ],
                 'required' => false,
             ])
             ->add('submit', SubmitType::class, [
