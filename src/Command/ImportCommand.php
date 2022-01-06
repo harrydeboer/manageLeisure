@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\WineBundle\Command;
+namespace App\Command;
 
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class ImportCommand extends Command
 {
-    protected static $defaultName = 'wine:import';
+    protected static $defaultName = 'app:import';
 
     public function __construct(
         private KernelInterface $kernel,
@@ -30,7 +30,7 @@ class ImportCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $projectDir = $this->kernel->getProjectDir();
-        $sqlFilesPath = $projectDir . '/src/WineBundle/Data/sql-files';
+        $sqlFilesPath = $projectDir . '/src/Data/sql-files';
 
         $files = scandir($sqlFilesPath);
         foreach($files as $file) {

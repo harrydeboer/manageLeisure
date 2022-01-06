@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\WineBundle\Functional\Command;
+namespace App\Tests\Functional\Command;
 
 use App\Entity\Country;
 use App\Entity\Region;
@@ -20,7 +20,7 @@ class ImportCommandTest extends KernelTestCase
         $kernel = self::bootKernel();
         $application = new Application($kernel);
 
-        $command = $application->find('wine:import');
+        $command = $application->find('app:import');
         $commandTester = new CommandTester($command);
         $commandTester->execute([]);
 
