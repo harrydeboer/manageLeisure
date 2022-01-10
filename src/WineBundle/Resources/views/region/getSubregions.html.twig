@@ -1,0 +1,4 @@
+<option value="">select subregion</option>
+{% for subregion in subregions %}
+    <option value="{{ subregion.id }}">{{ subregion.name }}</option>
+{% endfor %}

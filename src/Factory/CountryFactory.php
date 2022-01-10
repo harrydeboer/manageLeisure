@@ -17,7 +17,7 @@ class CountryFactory extends AbstractFactory
     public function create(array $params = []): Country
     {
         $country = new Country();
-        $country->setName('jan');
+        $country->setName($this->generateRandomString());
 
         $this->setParams($params, $country);
 

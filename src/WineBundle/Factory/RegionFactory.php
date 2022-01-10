@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Factory;
+namespace App\WineBundle\Factory;
 
-use App\Entity\Region;
-use App\Repository\RegionRepositoryInterface;
+use App\Factory\AbstractFactory;
+use App\Factory\CountryFactory;
+use App\WineBundle\Entity\Region;
+use App\WineBundle\Repository\RegionRepositoryInterface;
 
 class RegionFactory extends AbstractFactory
 {
@@ -20,7 +22,7 @@ class RegionFactory extends AbstractFactory
         $country = $this->countryFactory->create();
 
         $region = new Region();
-        $region->setName('jan');
+        $region->setName($this->generateRandomString());
         $region->setCountry($country);
 
         $this->setParams($params, $region);

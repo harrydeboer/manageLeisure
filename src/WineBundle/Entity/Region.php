@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\WineBundle\Entity;
 
-use App\Repository\RegionRepository;
+use App\Entity\Country;
+use App\WineBundle\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,12 +36,17 @@ class Region
     private string $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Wine", mappedBy="region", orphanRemoval=true)
      */
     private Collection $wines;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="regions")
+     * @ORM\OneToMany(targetEntity="Subregion", mappedBy="region", orphanRemoval=true)
+     */
+    private Collection $subregions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="regions")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
      */
     private Country $country;
@@ -48,6 +54,7 @@ class Region
     public function __construct()
     {
         $this->wines = new ArrayCollection();
+        $this->subregions = new ArrayCollection();
     }
 
     public function getId(): int
@@ -88,5 +95,15 @@ class Region
     public function setWines(Collection $wines): void
     {
         $this->wines = $wines;
+    }
+
+    public function getSubregions(): Collection
+    {
+        return $this->subregions;
+    }
+
+    public function setSubregions(Collection $subregions): void
+    {
+        $this->subregions = $subregions;
     }
 }

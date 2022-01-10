@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\WineBundle\Entity;
 
-use App\Repository\CountryRepository;
+use App\WineBundle\Repository\SubregionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=CountryRepository::class)
+ * @ORM\Entity(repositoryClass=SubregionRepository::class)
  * @ORM\Table(
- *    name="country",
+ *    name="subregion",
  *    uniqueConstraints={
- *        @ORM\UniqueConstraint(name="name_unique", columns={"name"})
+ *        @ORM\UniqueConstraint(name="name_unique", columns={"region_id", "name"})
  *    }
  * )
  */
-class Country
+class Subregion
 {
     /**
      * @ORM\Id
@@ -35,18 +35,19 @@ class Country
     private string $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="country", orphanRemoval=true)
-     */
-    private Collection $regions;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="country", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Wine", mappedBy="subregion", orphanRemoval=true)
      */
     private Collection $wines;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Region", inversedBy="subregions")
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=false)
+     */
+    private Region $region;
+
     public function __construct()
     {
-        $this->regions = new ArrayCollection();
+        $this->wines = new ArrayCollection();
     }
 
     public function getId(): int
@@ -69,14 +70,14 @@ class Country
         $this->name = strip_tags($name);
     }
 
-    public function setRegions(Collection $regions): void
+    public function getRegion(): Region
     {
-        $this->regions = $regions;
+        return $this->region;
     }
 
-    public function getRegions(): Collection
+    public function setRegion(Region $region): void
     {
-        return $this->regions;
+        $this->region = $region;
     }
 
     public function getWines(): Collection

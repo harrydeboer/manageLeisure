@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\WineBundle\Repository;
 
-use App\Entity\Region;
+use App\WineBundle\Entity\Region;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Repository;
+namespace App\WineBundle\Repository;
 
-use App\Entity\Region;
+use App\WineBundle\Entity\Region;
 
 interface RegionRepositoryInterface
 {

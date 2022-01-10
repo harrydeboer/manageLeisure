@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\WineBundle\Entity;
 
 use App\Entity\Country;
-use App\Entity\Region;
 use App\Entity\User;
 use App\WineBundle\Repository\WineRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -105,16 +104,22 @@ class Wine
     private ?TasteProfile $tasteProfile;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Region", inversedBy="wines")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="wines")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
+     */
+    private Country $country;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Region", inversedBy="wines")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=false)
      */
     private Region $region;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="wines")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Subregion", inversedBy="wines")
+     * @ORM\JoinColumn(name="subregion_id", referencedColumnName="id", nullable=false)
      */
-    private Country $country;
+    private Subregion $subregion;
 
     public function __construct()
     {
@@ -333,6 +338,16 @@ class Wine
         unlink($projectDir . '/' . $this->getLabelPath($appEnv));
     }
 
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(Country $country): void
+    {
+        $this->country = $country;
+    }
+
     public function getRegion(): Region
     {
         return $this->region;
@@ -343,13 +358,13 @@ class Wine
         $this->region = $region;
     }
 
-    public function getCountry(): Country
+    public function getSubregion(): Subregion
     {
-        return $this->country;
+        return $this->subregion;
     }
 
-    public function setCountry(Country $country): void
+    public function setSubregion(Subregion $subregion): void
     {
-        $this->country = $country;
+        $this->subregion = $subregion;
     }
 }

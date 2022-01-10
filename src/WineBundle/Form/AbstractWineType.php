@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Repository\CountryRepositoryInterface;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Repository\GrapeRepositoryInterface;
+use App\WineBundle\Repository\RegionRepositoryInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,6 +26,7 @@ abstract class AbstractWineType extends AbstractType
     public function __construct(
         private TokenStorageInterface $token,
         protected CountryRepositoryInterface $countryRepository,
+        protected RegionRepositoryInterface $regionRepository,
         protected GrapeRepositoryInterface $grapeRepository,
     ) {
     }
@@ -72,6 +74,17 @@ abstract class AbstractWineType extends AbstractType
             'choice_label' => 'name',
             'attr' => ['class' => 'form-control region-select'],
         ]);
+        $subregions = [];
+        if ($options['region'] !== '' && !is_null($options['region'])) {
+            $subregions = $this->regionRepository->find((int) $options['region'])->getSubregions()->toArray();
+        }
+        $builder->add('subregion', ChoiceType::class, [
+            'placeholder' => 'select a subregion',
+            'choices'  => $subregions,
+            'choice_value' => 'id',
+            'choice_label' => 'name',
+            'attr' => ['class' => 'form-control subregion-select'],
+        ]);
     }
 
     /**
@@ -86,6 +99,7 @@ abstract class AbstractWineType extends AbstractType
     {
         $resolver->setDefaults([
             'country' => null,
+            'region' => null,
         ]);
     }
 }

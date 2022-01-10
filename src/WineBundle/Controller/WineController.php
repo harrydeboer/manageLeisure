@@ -67,6 +67,8 @@ class WineController extends AuthController
             'method' => 'POST',
             'country' => isset($request->get('update_wine')['country']) ?
                 $request->get('update_wine')['country'] : $wine->getCountry()->getId(),
+            'region' => isset($request->get('update_wine')['region']) ?
+                $request->get('update_wine')['region'] : $wine->getRegion()->getId(),
         ]);
 
         $formDelete = $this->createForm(DeleteWineType::class, $wine, [
@@ -82,6 +84,9 @@ class WineController extends AuthController
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
             if ($wine->getCountry() !== $wine->getRegion()->getCountry()) {
                 throw new ValidatorException('The region does not belong to the country.');
+            }
+            if ($wine->getRegion() !== $wine->getSubregion()->getRegion()) {
+                throw new ValidatorException('The subregion does not belong to the region.');
             }
 
             $this->wineRepository->update();
@@ -104,6 +109,7 @@ class WineController extends AuthController
         $wine = new Wine();
         $form = $this->createForm(WineType::class, $wine, [
             'country' => is_null($request->get('wine')) ? null : $request->get('wine')['country'],
+            'region' => is_null($request->get('wine')) ? null : $request->get('wine')['region'],
         ]);
         $form->handleRequest($request);
 
