@@ -82,10 +82,10 @@ class WineController extends AuthController
          * When a wine is updated the uploaded image gets moved to the label directory when not testing.
          */
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
-            if ($wine->getCountry() !== $wine->getRegion()->getCountry()) {
+            if (!is_null($wine->getRegion()) && $wine->getCountry() !== $wine->getRegion()->getCountry()) {
                 throw new ValidatorException('The region does not belong to the country.');
             }
-            if ($wine->getRegion() !== $wine->getSubregion()->getRegion()) {
+            if (!is_null($wine->getSubregion()) && $wine->getRegion() !== $wine->getSubregion()->getRegion()) {
                 throw new ValidatorException('The subregion does not belong to the region.');
             }
 
@@ -118,8 +118,11 @@ class WineController extends AuthController
          * The uploaded image gets moved to the label directory when not testing.
          */
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($wine->getCountry() !== $wine->getRegion()->getCountry()) {
+            if (!is_null($wine->getRegion()) && $wine->getCountry() !== $wine->getRegion()->getCountry()) {
                 throw new ValidatorException('The region does not belong to the country.');
+            }
+            if (!is_null($wine->getSubregion()) && $wine->getRegion() !== $wine->getSubregion()->getRegion()) {
+                throw new ValidatorException('The subregion does not belong to the region.');
             }
             $wine->setUser($this->getUser());
             $wine->setCreatedAt(time());
