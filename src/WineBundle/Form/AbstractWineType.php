@@ -72,6 +72,7 @@ abstract class AbstractWineType extends AbstractType
             'choices'  => $regions,
             'choice_value' => 'id',
             'choice_label' => 'name',
+            'required' => false,
             'attr' => ['class' => 'form-control region-select'],
         ]);
         $subregions = [];
@@ -83,6 +84,7 @@ abstract class AbstractWineType extends AbstractType
             'choices'  => $subregions,
             'choice_value' => 'id',
             'choice_label' => 'name',
+            'required' => false,
             'attr' => ['class' => 'form-control subregion-select'],
         ]);
     }
