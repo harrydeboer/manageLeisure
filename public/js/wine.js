@@ -16,6 +16,6 @@ $('.region-select').on('change', function() {
     });
 });
 
-$('#filterIcon').on('click', function() {
+$('#wineFilterIcon').on('click', function() {
     $('#filter-sort-form').toggle();
 });
