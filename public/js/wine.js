@@ -15,3 +15,7 @@ $('.region-select').on('change', function() {
         $('.subregion-select').html(data);
     });
 });
+
+$('#filterIcon').on('click', function() {
+    $('#filter-sort-form').toggle();
+});
