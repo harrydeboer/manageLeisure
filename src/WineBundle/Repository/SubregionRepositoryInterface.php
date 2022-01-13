@@ -15,4 +15,6 @@ interface SubregionRepositoryInterface
     public function update(): void;
 
     public function delete(Subregion $subregion): void;
+
+    public function findAllOrderedByName(int $regionId): array;
 }

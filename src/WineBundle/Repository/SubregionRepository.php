@@ -54,4 +54,13 @@ class SubregionRepository extends ServiceEntityRepository implements SubregionRe
         $this->em->remove($subregion);
         $this->em->flush();
     }
+
+    public function findAllOrderedByName(int $regionId): array
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->andWhere('s.region = ' . $regionId)
+            ->orderBy('s.name', 'ASC');
+
+        return $qb->getQuery()->execute();
+    }
 }

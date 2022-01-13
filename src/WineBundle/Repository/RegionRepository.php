@@ -54,4 +54,13 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
         $this->em->remove($region);
         $this->em->flush();
     }
+
+    public function findAllOrderedByName(int $countryId): array
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->andWhere('r.country = ' . $countryId)
+            ->orderBy('r.name', 'ASC');
+
+        return $qb->getQuery()->execute();
+    }
 }

@@ -24,6 +24,9 @@ class SubregionRepositoryTest extends KernelTestCase
 
         $subregionRepository->update();
 
+        $this->assertCount(1,
+            $subregionRepository->findAllOrderedByName($subregion->getRegion()->getId()));
+
         $this->assertSame($updatedName, $subregionRepository->find($subregion->getId())->getName());
 
         $id = $subregion->getId();

@@ -24,6 +24,8 @@ class GrapeRepositoryTest extends KernelTestCase
 
         $grapeRepository->update();
 
+        $this->assertCount(1, $grapeRepository->findAllOrderedByName());
+
         $this->assertSame($updatedName, $grapeRepository->find($grape->getId())->getName());
 
         $id = $grape->getId();

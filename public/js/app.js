@@ -4,7 +4,9 @@ $('.delete-modal-button').on('click', function() {
 
 $('[name="contact"]').on('submit', function (event) {
     if ($('#contact_reCaptchaToken').val() === '') {
+        // noinspection JSUnresolvedVariable
         grecaptcha.ready(function() {
+            // noinspection JSUnresolvedVariable,JSUnresolvedFunction
             grecaptcha.execute($('#reCaptchaKey').data('key'), {action: 'contact'}).then(function(token) {
                 $('#contact_reCaptchaToken').val(token);
                 $('[name="contact"]').trigger('submit');
@@ -51,10 +53,3 @@ noHtmlTags.on('input', function() {
         return false;
     }
 })
-
-$('.country-select').on('change', function() {
-    let id = $(this).val();
-    $.get('/country/get-regions/' + id, '', function (data) {
-        $('.region-select').html(data);
-    });
-});

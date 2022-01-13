@@ -17,20 +17,18 @@ class RegionController extends AuthController
     }
 
     /**
-     * @Route("/region/get-subregions/{id}", name="wineGetSubregions")
+     * @Route("/wine/get-regions/{id}", name="wineGetRegions")
      */
-    public function getSubregions(int $id = null): Response
+    public function getRegions(int $id = null): Response
     {
         if (is_null($id)) {
-            return $this->render('@WineBundle/region/getSubregions.html.twig', [
-                'subregions' => [],
+            return $this->render('@WineBundle/region/getRegions.html.twig', [
+                'regions' => [],
             ]);
         }
 
-        $region = $this->regionRepository->get($id);
-
-        return $this->render('@WineBundle/region/getSubregions.html.twig', [
-            'subregions' => $region->getSubregions(),
+        return $this->render('@WineBundle/region/getRegions.html.twig', [
+            'regions' => $this->regionRepository->findAllOrderedByName($id),
         ]);
     }
 }

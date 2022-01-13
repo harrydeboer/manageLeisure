@@ -24,6 +24,8 @@ class RegionRepositoryTest extends KernelTestCase
 
         $regionRepository->update();
 
+        $this->assertCount(1, $regionRepository->findAllOrderedByName($region->getCountry()->getId()));
+
         $this->assertSame($updatedName, $regionRepository->find($region->getId())->getName());
 
         $id = $region->getId();

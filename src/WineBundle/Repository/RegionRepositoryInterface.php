@@ -15,4 +15,6 @@ interface RegionRepositoryInterface
     public function update(): void;
 
     public function delete(Region $region): void;
+
+    public function findAllOrderedByName(int $countryId): array;
 }
