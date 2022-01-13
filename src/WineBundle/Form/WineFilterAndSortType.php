@@ -31,6 +31,5 @@ class WineFilterAndSortType extends AbstractWineType
             'attr' => ['class' => 'btn btn-primary']
         ]);
         $builder->get('country')->setRequired(false);
-        $builder->get('region')->setRequired(false);
     }
 }

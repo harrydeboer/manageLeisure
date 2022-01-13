@@ -80,7 +80,7 @@ abstract class AbstractWineType extends AbstractType
             $subregions = $this->regionRepository->find((int) $options['region'])->getSubregions()->toArray();
         }
         $builder->add('subregion', ChoiceType::class, [
-            'placeholder' => 'select a subregion',
+            'placeholder' => 'select subregion',
             'choices'  => $subregions,
             'choice_value' => 'id',
             'choice_label' => 'name',

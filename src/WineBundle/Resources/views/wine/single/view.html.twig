@@ -12,7 +12,12 @@
                 <tr><td>Type</td><td>{{ wine.type }}</td></tr>
                 <tr><td>Year</td><td>{{ wine.year }}</td></tr>
                 <tr><td>Country</td><td>{{ wine.country.name }}</td></tr>
-                <tr><td>Region</td><td>{{ wine.region.name }}</td></tr>
+                {% if wine.region is not null %}
+                    <tr><td>Region</td><td>{{ wine.region.name }}</td></tr>
+                {% endif %}
+                {% if wine.subregion is not null %}
+                    <tr><td>Subregion</td><td>{{ wine.subregion.name }}</td></tr>
+                {% endif %}
                 <tr><td>Created at</td><td>{{ date(wine.createdAt).format('d-m-Y') }}</td></tr>
                 <tr><td>Grape(s)</td><td>{{ wine.grapeNamesAsString }}</td></tr>
                 <tr><td>Taste profile</td><td>{{ wine.tasteProfile ? wine.tasteProfile.name : '' }}</td></tr>

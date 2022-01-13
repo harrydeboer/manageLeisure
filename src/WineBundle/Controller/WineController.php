@@ -39,6 +39,7 @@ class WineController extends AuthController
             'method' => 'GET',
             'csrf_protection' => false,
             'country' => $request->get('country'),
+            'region' => $request->get('region'),
         ]);
 
         $form->handleRequest($request);
