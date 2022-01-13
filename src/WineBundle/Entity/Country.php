@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=CountryRepository::class)
  * @ORM\Table(
- *    name="country",
+ *    name="wine_country",
  *    uniqueConstraints={
  *        @ORM\UniqueConstraint(name="name_unique", columns={"name"})
  *    }
