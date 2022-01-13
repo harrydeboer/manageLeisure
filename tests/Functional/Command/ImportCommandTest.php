@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Command;
 
-use App\Entity\Country;
 use App\Tests\Functional\KernelTestCase;
+use App\WineBundle\Entity\Country;
 use App\WineBundle\Entity\Grape;
 use App\WineBundle\Entity\Region;
 use App\WineBundle\Entity\Subregion;

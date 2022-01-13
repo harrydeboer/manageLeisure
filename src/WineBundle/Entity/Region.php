@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\WineBundle\Entity;
 
-use App\Entity\Country;
 use App\WineBundle\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -46,7 +45,7 @@ class Region
     private Collection $subregions;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="regions")
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="regions")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
      */
     private Country $country;

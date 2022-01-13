@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Repository;
+namespace App\Tests\WineBundle\Functional\Repository;
 
-use App\Factory\CountryFactory;
-use App\Repository\CountryRepositoryInterface;
 use App\Tests\Functional\KernelTestCase;
+use App\WineBundle\Factory\CountryFactory;
+use App\WineBundle\Repository\CountryRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CountryRepositoryTest extends KernelTestCase
