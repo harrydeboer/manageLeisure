@@ -1,15 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends '@AdminBundle/base.html.twig' %}
 
 {% block title %}Mail User{% endblock %}
 
 {% block body %}
-    <a href="{{ path('mailUserCreate') }}">Create a mail user</a>
+    <a href="{{ path('adminMailUserCreate') }}">Create a mail user</a>
     <table class="table table-striped" id="mailUserTable">
-        <tr><td colspan="2">Email</td></tr>
         {% for mailUser in mailUsers %}
             <tr>
                 <td>{{ mailUser.email }}</td>
-                <td><a href="{{ path('mailUserEdit', {'id': mailUser.id}) }}">edit</a></td>
+                <td><a href="{{ path('adminMailUserEdit', {'id': mailUser.id}) }}">edit</a></td>
             </tr>
         {% endfor %}
     </table>

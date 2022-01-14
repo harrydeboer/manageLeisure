@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Repository;
+namespace App\Tests\AdminBundle\Functional\Repository;
 
-use App\Factory\MailUserFactory;
+use App\AdminBundle\Factory\MailUserFactory;
 use App\Repository\MailUserRepositoryInterface;
 use App\Tests\Functional\KernelTestCase;
 

@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\AdminBundle\Controller;
 
-use App\Entity\MailUser;
-use App\Form\CreateMailUserType;
-use App\Form\DeleteMailUserType;
-use App\Form\UpdateMailUserType;
+use App\AdminBundle\Entity\MailUser;
+use App\AdminBundle\Form\CreateMailUserType;
+use App\AdminBundle\Form\DeleteMailUserType;
+use App\AdminBundle\Form\UpdateMailUserType;
+use App\Controller\AuthController;
 use App\Repository\MailUserRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,19 +23,19 @@ class MailUserController extends AuthController
     }
 
     /**
-     * @Route("/mail-user", name="mailUser")
+     * @Route("/admin/mail-user", name="adminMailUser")
      */
     public function view(): Response
     {
         $mailUsers = $this->mailUserRepository->findAll();
 
-        return $this->render('mailUser/view.html.twig', [
+        return $this->render('@AdminBundle/mailUser/view.html.twig', [
             'mailUsers' => $mailUsers,
         ]);
     }
 
     /**
-     * @Route("/mail-user/edit/{id}", name="mailUserEdit")
+     * @Route("/admin/mail-user/edit/{id}", name="adminMailUserEdit")
      */
     public function edit(Request $request, MailUser $mailUser): Response
     {
@@ -43,7 +44,7 @@ class MailUserController extends AuthController
         ]);
 
         $formDelete = $this->createForm(DeleteMailUserType::class, $mailUser, [
-            'action' => $this->generateUrl('mailUserDelete', ['id' => $mailUser->getId()]),
+            'action' => $this->generateUrl('adminMailUserDelete', ['id' => $mailUser->getId()]),
             'method' => 'POST',
         ]);
 
@@ -52,17 +53,17 @@ class MailUserController extends AuthController
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
             $this->mailUserRepository->update($mailUser, $formUpdate->get('newPassword')->getData());
 
-            return $this->redirectToRoute('mailUser');
+            return $this->redirectToRoute('adminMailUser');
         }
 
-        return $this->renderForm('mailUser/edit/view.html.twig', [
+        return $this->renderForm('@AdminBundle/mailUser/edit/view.html.twig', [
             'formUpdate' => $formUpdate,
             'formDelete' => $formDelete,
         ]);
     }
 
     /**
-     * @Route("/mail-user/create", name="mailUserCreate")
+     * @Route("/admin/mail-user/create", name="adminMailUserCreate")
      */
     public function new(Request $request): Response
     {
@@ -73,16 +74,16 @@ class MailUserController extends AuthController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->mailUserRepository->create($mailUser);
 
-            return $this->redirectToRoute('mailUser');
+            return $this->redirectToRoute('adminMailUser');
         }
 
-        return $this->renderForm('mailUser/new/view.html.twig', [
+        return $this->renderForm('@AdminBundle/mailUser/new/view.html.twig', [
             'form' => $form,
         ]);
     }
 
     /**
-     * @Route("/mail-user/delete/{id}", name="mailUserDelete")
+     * @Route("/admin/mail-user/delete/{id}", name="adminMailUserDelete")
      */
     public function delete(Request $request, MailUser $mailUser): RedirectResponse
     {
@@ -93,6 +94,6 @@ class MailUserController extends AuthController
             $this->mailUserRepository->delete($mailUser);
         }
 
-        return $this->redirectToRoute('mailUser');
+        return $this->redirectToRoute('adminMailUser');
     }
 }

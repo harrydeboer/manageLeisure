@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Form;
+namespace App\Tests\AdminBundle\Unit\Form;
 
-use App\Entity\MailUser;
-use App\Form\UpdateMailUserType;
-use Symfony\Component\Form\Test\TypeTestCase;
+use App\AdminBundle\Entity\MailUser;
+use App\AdminBundle\Form\CreateMailUserType;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;
 
-class UpdateMailUserTypeTest extends TypeTestCase
+class CreateMailUserTypeTest extends TypeTestCase
 {
     public function testSubmitModel(): void
     {
@@ -20,18 +20,18 @@ class UpdateMailUserTypeTest extends TypeTestCase
         $formData = [
             'domain' => $domain,
             'email' => $email,
-            'newPassword' => $password,
+            'password' => $password,
         ];
 
         $mailUser = new MailUser();
 
         // $model will retrieve data from the form submission; pass it as the second argument
-        $form = $this->factory->create(UpdateMailUserType::class, $mailUser);
+        $form = $this->factory->create(CreateMailUserType::class, $mailUser);
 
         $expected = new MailUser();
         $expected->setDomain($domain);
         $expected->setEmail($email);
-        $expected->setNewPassword($password);
+        $expected->setPassword($password);
         // ...populate $object properties with the data stored in $formData
 
         // submit the data to the form directly

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Entity;
+namespace App\AdminBundle\Entity;
 
 use App\Repository\MailUserRepository;
 use Doctrine\ORM\Mapping as ORM;

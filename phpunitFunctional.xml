@@ -20,6 +20,7 @@
             <directory>tests/Functional</directory>
             <directory>tests/MovieBundle/Functional</directory>
             <directory>tests/WineBundle/Functional</directory>
+            <directory>tests/AdminBundle/Functional</directory>
         </testsuite>
     </testsuites>
 

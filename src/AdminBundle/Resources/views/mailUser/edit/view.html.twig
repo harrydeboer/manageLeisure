@@ -1,9 +1,9 @@
-{% extends '@WineBundle/base.html.twig' %}
+{% extends '@AdminBundle/base.html.twig' %}
 
 {% block title %}Edit{% endblock %}
 
 {% block body %}
-    {{ include('mailUser/form.html.twig', {form: formUpdate, submitLabel: 'Update'}) }}
+    {{ include('@AdminBundle/mailUser/form.html.twig', {form: formUpdate, submitLabel: 'Update'}) }}
     <br>
     {{ include('deleteModal.html.twig', {
         entityName: 'mail user',

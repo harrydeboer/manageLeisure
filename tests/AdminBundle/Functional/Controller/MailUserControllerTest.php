@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Controller;
+namespace App\Tests\AdminBundle\Functional\Controller;
 
 use App\Repository\MailUserRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
@@ -17,11 +17,11 @@ class MailUserControllerTest extends AuthWebTestCase
         $userRepository->update();
         $this->client->loginUser($this->user);
 
-        $this->client->request('GET', '/mail-user');
+        $this->client->request('GET', '/admin/mail-user');
 
         $this->assertResponseIsSuccessful();
 
-        $crawler = $this->client->request('GET', '/mail-user/create');
+        $crawler = $this->client->request('GET', '/admin/mail-user/create');
 
         $buttonCrawlerNode = $crawler->selectButton('Create');
 
@@ -33,14 +33,14 @@ class MailUserControllerTest extends AuthWebTestCase
 
         $this->client->submit($form);
 
-        $this->assertResponseRedirects('/mail-user');
+        $this->assertResponseRedirects('/admin/mail-user');
 
         $mailUserRepository = $this->getContainer()->get(MailUserRepositoryInterface::class);
 
         $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.nl']);
         $id = $mailUser->getId();
 
-        $crawler = $this->client->request('GET', '/mail-user/edit/' . $id);
+        $crawler = $this->client->request('GET', '/admin/mail-user/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Update');
 
@@ -51,13 +51,13 @@ class MailUserControllerTest extends AuthWebTestCase
 
         $this->client->submit($form);
 
-        $this->assertResponseRedirects('/mail-user');
+        $this->assertResponseRedirects('/admin/mail-user');
 
         $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.nl']);
 
         $this->assertEquals($updatedDomain, $mailUser->getDomain());
 
-        $crawler = $this->client->request('GET', '/mail-user/edit/' . $id);
+        $crawler = $this->client->request('GET', '/admin/mail-user/edit/' . $id);
 
         $buttonCrawlerNode = $crawler->selectButton('Delete');
 
@@ -65,7 +65,7 @@ class MailUserControllerTest extends AuthWebTestCase
 
         $this->client->submit($form);
 
-        $this->assertResponseRedirects('/mail-user');
+        $this->assertResponseRedirects('/admin/mail-user');
 
         $mailUserRepository = $this->getContainer()->get(MailUserRepositoryInterface::class);
 

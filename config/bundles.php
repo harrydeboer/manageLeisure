@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-use App\WineBundle\WineBundle;
+use App\AdminBundle\AdminBundle;
 use App\MovieBundle\MovieBundle;
+use App\WineBundle\WineBundle;
 
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
@@ -18,6 +19,7 @@ return [
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle::class => ['all' => true],
-    WineBundle::class => ['all' => true],
+    AdminBundle::class => ['all' => true],
     MovieBundle::class => ['all' => true],
+    WineBundle::class => ['all' => true],
 ];

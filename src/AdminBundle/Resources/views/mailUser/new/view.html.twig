@@ -1,0 +1,7 @@
+{% extends '@AdminBundle/base.html.twig' %}
+
+{% block title %}Create{% endblock %}
+
+{% block body %}
+    {{ include('@AdminBundle/mailUser/form.html.twig', {form: form, submitLabel: 'Create'}) }}
+{% endblock %}

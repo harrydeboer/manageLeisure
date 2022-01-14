@@ -45,7 +45,7 @@ class Page
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
-     * @Assert\Length(min=255)
+     * @Assert\Length(min=10)
      */
     private string $content;
 
@@ -87,7 +87,7 @@ class Page
 
     public function setSlug(string $slug): void
     {
-        $this->slug = $slug;
+        $this->slug = strtolower($slug);
     }
 
     public function getSummary(): ?string
