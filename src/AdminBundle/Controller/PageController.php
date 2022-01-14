@@ -22,7 +22,7 @@ class PageController extends AuthController
     }
 
     /**
-     * @Route("/admin/page", name="adminPage")
+     * @Route("/page", name="adminPage")
      */
     public function view(): Response
     {
@@ -34,7 +34,7 @@ class PageController extends AuthController
     }
 
     /**
-     * @Route("/admin/page/edit/{id}", name="adminPageEdit")
+     * @Route("/page/edit/{id}", name="adminPageEdit")
      */
     public function edit(Request $request, Page $page): Response
     {
@@ -62,7 +62,7 @@ class PageController extends AuthController
     }
 
     /**
-     * @Route("/admin/page/create", name="adminPageCreate")
+     * @Route("/page/create", name="adminPageCreate")
      */
     public function new(Request $request): Response
     {
@@ -84,7 +84,7 @@ class PageController extends AuthController
     }
 
     /**
-     * @Route("/admin/page/delete/{id}", name="adminPageDelete")
+     * @Route("/page/delete/{id}", name="adminPageDelete")
      */
     public function delete(Request $request, Page $page): RedirectResponse
     {

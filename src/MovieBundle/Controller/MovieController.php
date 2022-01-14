@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MovieController extends AuthController
 {
     /**
-     * @Route("/movie", name="movieHomepage")
+     * @Route("/", name="movieHomepage")
      */
     public function view(Request $request): Response
     {
@@ -32,7 +32,7 @@ class MovieController extends AuthController
     }
 
     /**
-     * @Route("/movie/get-rating", name="movieGetRating")
+     * @Route("/get-rating", name="movieGetRating")
      */
     public function getRating(Request $request): Response
     {
@@ -87,7 +87,7 @@ class MovieController extends AuthController
     }
 
     /**
-     * @Route("/movie/single-movie/{id}", name="movieSingle")
+     * @Route("/single-movie/{id}", name="movieSingle")
      */
     public function singleMovie(string $id): Response
     {

@@ -1,5 +1,6 @@
 controllers:
   resource: ../../Controller/
+  prefix: /admin
   type: annotation
 
 kernel:

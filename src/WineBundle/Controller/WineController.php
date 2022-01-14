@@ -30,8 +30,8 @@ class WineController extends AuthController
     }
 
     /**
-     * @Route("/wine", defaults={"page": "1"}, name="wineHomepage")
-     * @Route("/page/{page<[1-9]\d*>}", methods="GET", name="wine_index_paginated")
+     * @Route("/", defaults={"page": "1"}, name="wineHomepage")
+     * @Route("/page/{page<[1-9]\d*>}", methods="GET", name="wineIndexPaginated")
      */
     public function view(Request $request, int $page): Response
     {
@@ -58,7 +58,7 @@ class WineController extends AuthController
     }
 
     /**
-     * @Route("/wine/edit/{id}", name="wineEdit")
+     * @Route("/edit/{id}", name="wineEdit")
      */
     public function edit(Request $request, int $id): Response
     {
@@ -103,7 +103,7 @@ class WineController extends AuthController
     }
 
     /**
-     * @Route("/wine/create", name="wineCreate")
+     * @Route("/create", name="wineCreate")
      */
     public function new(Request $request): Response
     {
@@ -139,7 +139,7 @@ class WineController extends AuthController
     }
 
     /**
-     * @Route("/wine/delete/{id}", name="wineDelete")
+     * @Route("/delete/{id}", name="wineDelete")
      */
     public function delete(Request $request, int $id): RedirectResponse
     {
@@ -162,7 +162,7 @@ class WineController extends AuthController
     }
 
     /**
-     * @Route("/wine/single/{id}", name="wineSingle")
+     * @Route("/single/{id}", name="wineSingle")
      */
     public function single(int $id): Response
     {

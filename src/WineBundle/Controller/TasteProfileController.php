@@ -22,7 +22,7 @@ class TasteProfileController extends AuthController
     }
 
     /**
-     * @Route("/wine/taste-profile", name="wineTasteProfile")
+     * @Route("/taste-profile", name="wineTasteProfile")
      */
     public function view(): Response
     {
@@ -34,7 +34,7 @@ class TasteProfileController extends AuthController
     }
 
     /**
-     * @Route("/wine/taste-profile/edit/{id}", name="wineTasteProfileEdit")
+     * @Route("/taste-profile/edit/{id}", name="wineTasteProfileEdit")
      */
     public function edit(Request $request, int $id): Response
     {
@@ -64,7 +64,7 @@ class TasteProfileController extends AuthController
     }
 
     /**
-     * @Route("/wine/taste-profile/create", name="wineTasteProfileCreate")
+     * @Route("/taste-profile/create", name="wineTasteProfileCreate")
      */
     public function new(Request $request): Response
     {
@@ -85,7 +85,7 @@ class TasteProfileController extends AuthController
     }
 
     /**
-     * @Route("/wine/taste-profile/delete/{id}", name="wineTasteProfileDelete")
+     * @Route("/taste-profile/delete/{id}", name="wineTasteProfileDelete")
      */
     public function delete(Request $request, int $id): RedirectResponse
     {
@@ -102,7 +102,7 @@ class TasteProfileController extends AuthController
     }
 
     /**
-     * @Route("/wine/taste-profile/single/{id}", name="wineTasteProfileSingle")
+     * @Route("/taste-profile/single/{id}", name="wineTasteProfileSingle")
      */
     public function single(int $id): Response
     {

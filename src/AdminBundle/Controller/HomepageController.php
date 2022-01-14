@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomepageController extends AuthController
 {
     /**
-     * @Route("/admin", name="adminHomepage")
+     * @Route("/", name="adminHomepage")
      */
     public function view(): Response
     {
