@@ -33,10 +33,9 @@ countries, regions and grapes.</li>
 <li>Follow the steps in update.sh.</li>
 <li>Register the user in the route /register.</li>
 <li>Run make:admin to make the first user admin.</li>
-<li>For staging: allow certain ips only (and the server ip) in the ./config/apache.conf file.</li>
 <li>In production: install postfix, dovecot, opendkim, opendmarc, postsrsd and spamassassin.</li>
 <li>In production: add the mail users yourdevuser@manageleisure.com, info@manageleisure.com, noreply@manageleisure.com, 
-postmaster@manageleisure.com and root@manageleisure.com by going to /mail-user.</li>
+postmaster@manageleisure.com and root@manageleisure.com by going to /admin/mail-user.</li>
 <li>An update in production or staging can be retrieved with the command ’./update.sh’</li>
 <li>To revert the update execute ’./rollback.sh’.</li>
 </ol>
