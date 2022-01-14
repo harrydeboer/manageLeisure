@@ -18,7 +18,7 @@ class WineControllerTest extends AuthWebTestCase
         $this->getContainer()->get(GrapeFactory::class)->create();
         $this->getContainer()->get(GrapeFactory::class)->create();
 
-        $this->client->request('GET', '/wine');
+        $this->client->request('GET', '/wine/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('nav', 'Home');
@@ -51,9 +51,9 @@ class WineControllerTest extends AuthWebTestCase
         $values['wine']['subregion'] = $subregion->getId();
         $this->client->request($form->getMethod(), $form->getUri(), $values, $form->getPhpFiles());
 
-        $this->assertResponseRedirects('/wine');
+        $this->assertResponseRedirects('/wine/');
 
-        $this->client->request('GET', '/wine?tasteProfile=&year=&sort=createdAt_DESC&show=');
+        $this->client->request('GET', '/wine/?tasteProfile=&year=&sort=createdAt_DESC&show=');
 
         $this->assertResponseIsSuccessful();
 
@@ -80,7 +80,7 @@ class WineControllerTest extends AuthWebTestCase
         $values['wine']['subregion'] = $subregion->getId();
         $this->client->request($form->getMethod(), $form->getUri(), $values, $form->getPhpFiles());
 
-        $this->assertResponseRedirects('/wine');
+        $this->assertResponseRedirects('/wine/');
 
 //        $wine = $wineRepository->find($id);
 //
@@ -94,7 +94,7 @@ class WineControllerTest extends AuthWebTestCase
 
         $this->client->submit($form);
 
-        $this->assertResponseRedirects('/wine');
+        $this->assertResponseRedirects('/wine/');
 
         $wineRepository = $this->getContainer()->get(WineRepositoryInterface::class);
 

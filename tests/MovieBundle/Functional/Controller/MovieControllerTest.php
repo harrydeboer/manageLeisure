@@ -10,7 +10,7 @@ class MovieControllerTest extends WebTestCase
 {
     public function testHomepageAndForm(): void
     {
-        $crawler = $this->client->request('GET', '/movie');
+        $crawler = $this->client->request('GET', '/movie/');
 
         $this->assertResponseIsSuccessful();
 
