@@ -57,6 +57,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $wines;
 
     /**
+     * @ORM\OneToMany(targetEntity="Page", mappedBy="author")
+     */
+    private Collection $pages;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\TasteProfile", mappedBy="user")
      */
     private Collection $tasteProfiles;
@@ -64,6 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->wines = new ArrayCollection();
+        $this->pages = new ArrayCollection();
         $this->tasteProfiles = new ArrayCollection();
     }
 
@@ -145,6 +151,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function getPages(): Collection
+    {
+        return $this->pages;
+    }
+
+    public function setPages(Collection $pages): void
+    {
+        $this->pages = $pages;
     }
 
     public function getWines(): Collection
