@@ -55,4 +55,12 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         $this->em->remove($country);
         $this->em->flush();
     }
+
+    public function findAllOrderedByName(): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'ASC');
+
+        return $qb->getQuery()->execute();
+    }
 }

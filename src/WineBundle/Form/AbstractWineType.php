@@ -60,7 +60,7 @@ abstract class AbstractWineType extends AbstractType
             ])
             ->add('country', ChoiceType::class, [
                 'placeholder' => 'select country',
-                'choices'  => $this->countryRepository->findAll(),
+                'choices'  => $this->countryRepository->findAllOrderedByName(),
                 'choice_value' => 'id',
                 'choice_label' => 'name',
                 'attr' => ['class' => 'form-control country-select'],

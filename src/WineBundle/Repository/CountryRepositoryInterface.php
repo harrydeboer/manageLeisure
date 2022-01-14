@@ -15,4 +15,6 @@ interface CountryRepositoryInterface
     public function update(): void;
 
     public function delete(Country $country): void;
+
+    public function findAllOrderedByName(): array;
 }
