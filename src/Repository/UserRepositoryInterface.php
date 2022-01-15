@@ -14,5 +14,7 @@ interface UserRepositoryInterface extends ServiceEntityRepositoryInterface
 
     public function update(): void;
 
+    public function delete(User $user): void;
+
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newPassword): void;
 }

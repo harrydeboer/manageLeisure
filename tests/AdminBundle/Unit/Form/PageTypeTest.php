@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\AdminBundle\Unit\Form;
 
 use App\AdminBundle\Form\PageType;
-
 use App\Entity\Page;
 use Symfony\Component\Form\Test\TypeTestCase;
 

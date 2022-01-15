@@ -18,7 +18,7 @@ class ContactControllerTest extends WebTestCase
 
         $form['contact[name]'] = 'John';
         $form['contact[subject]'] = 'Test';
-        $form['contact[email]'] = 'test@test.nl';
+        $form['contact[email]'] = 'test@test.com';
         $form['contact[message]'] = 'test message';
 
         $this->client->submit($form);

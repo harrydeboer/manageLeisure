@@ -12,7 +12,7 @@ class LoginTypeTest extends TypeTestCase
     public function testSubmitModel(): void
     {
         $formData = [
-            'email' => 'test@test.nl',
+            'email' => 'test@test.com',
             'password' => 'secret',
         ];
 

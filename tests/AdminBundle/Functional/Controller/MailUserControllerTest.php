@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\AdminBundle\Functional\Controller;
 
-use App\Repository\MailUserRepositoryInterface;
+use App\AdminBundle\Repository\MailUserRepositoryInterface;
 use App\Repository\UserRepositoryInterface;
 use App\Tests\Functional\AuthWebTestCase;
 
@@ -29,7 +29,7 @@ class MailUserControllerTest extends AuthWebTestCase
 
         $form['create_mail_user[domain]'] = 'test.com';
         $form['create_mail_user[password]'] = 'testTest';
-        $form['create_mail_user[email]'] = 'test@test.nl';
+        $form['create_mail_user[email]'] = 'test@test.com';
 
         $this->client->submit($form);
 
@@ -37,7 +37,7 @@ class MailUserControllerTest extends AuthWebTestCase
 
         $mailUserRepository = $this->getContainer()->get(MailUserRepositoryInterface::class);
 
-        $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.nl']);
+        $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.com']);
         $id = $mailUser->getId();
 
         $crawler = $this->client->request('GET', '/admin/mail-user/edit/' . $id);
@@ -53,7 +53,7 @@ class MailUserControllerTest extends AuthWebTestCase
 
         $this->assertResponseRedirects('/admin/mail-user');
 
-        $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.nl']);
+        $mailUser = $mailUserRepository->findOneBy(['email' => 'test@test.com']);
 
         $this->assertEquals($updatedDomain, $mailUser->getDomain());
 

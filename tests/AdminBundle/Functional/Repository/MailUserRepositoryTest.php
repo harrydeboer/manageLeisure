@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\AdminBundle\Functional\Repository;
 
 use App\AdminBundle\Factory\MailUserFactory;
-use App\Repository\MailUserRepositoryInterface;
+use App\AdminBundle\Repository\MailUserRepositoryInterface;
 use App\Tests\Functional\KernelTestCase;
 
 class MailUserRepositoryTest extends KernelTestCase

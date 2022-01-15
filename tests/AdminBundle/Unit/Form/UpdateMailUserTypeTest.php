@@ -15,7 +15,7 @@ class UpdateMailUserTypeTest extends TypeTestCase
     public function testSubmitModel(): void
     {
         $domain = 'test.com';
-        $email = 'test@test.nl';
+        $email = 'test@test.com';
         $password = 'testTest';
         $formData = [
             'domain' => $domain,

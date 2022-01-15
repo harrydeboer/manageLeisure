@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\AdminBundle\Factory;
 
 use App\AdminBundle\Entity\MailUser;
+use App\AdminBundle\Repository\MailUserRepositoryInterface;
 use App\Factory\AbstractFactory;
-use App\Repository\MailUserRepositoryInterface;
 
 class MailUserFactory extends AbstractFactory
 {

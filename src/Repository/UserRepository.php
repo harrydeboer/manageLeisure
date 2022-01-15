@@ -58,4 +58,10 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
     {
         $this->em->flush();
     }
+
+    public function delete(User $user): void
+    {
+        $this->em->remove($user);
+        $this->em->flush();
+    }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AdminBundle\Entity;
 
-use App\Repository\MailUserRepository;
+use App\AdminBundle\Repository\MailUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 

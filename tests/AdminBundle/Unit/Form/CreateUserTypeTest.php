@@ -2,43 +2,40 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Form;
+namespace App\Tests\AdminBundle\Unit\Form;
 
+use App\AdminBundle\Form\CreateUserType;
 use App\Entity\User;
-use App\Form\RegistrationType;
-use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
+use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;
 
-class RegistrationTypeTest extends TypeTestCase
+class CreateUserTypeTest extends TypeTestCase
 {
-    public function testSubmitModel(): void
+    public function testSubmitModel()
     {
         $name = 'testUser';
         $email = 'test@test.com';
         $formData = [
             'name' => $name,
             'email' => $email,
-            'plainPassword' => 'plainPassword',
+            'isVerified' => true,
         ];
 
         $user = new User();
 
         // $model will retrieve data from the form submission; pass it as the second argument
-        $form = $this->factory->create(RegistrationType::class, $user);
+        $form = $this->factory->create(CreateUserType::class, $user);
 
         $expected = new User();
         $expected->setName($name);
         $expected->setEmail($email);
-        // ...populate $object properties with the data stored in $formData
+        $expected->setIsVerified(true);
 
-        // submit the data to the form directly
         $form->submit($formData);
 
-        // This check ensures there are no transformation failures
         $this->assertTrue($form->isSynchronized());
 
-        // check that $model was modified as expected when the form was submitted
         $this->assertEquals($expected, $user);
     }
 
