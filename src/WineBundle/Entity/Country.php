@@ -35,12 +35,12 @@ class Country
     private string $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="country", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="country", cascade={"remove"})
      */
     private Collection $regions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="country", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="country", cascade={"remove"})
      */
     private Collection $wines;
 

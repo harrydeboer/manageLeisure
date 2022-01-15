@@ -35,7 +35,7 @@ class Subregion
     private string $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Wine", mappedBy="subregion", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Wine", mappedBy="subregion", cascade={"remove"})
      */
     private Collection $wines;
 

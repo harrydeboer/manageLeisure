@@ -52,17 +52,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private bool $isVerified = false;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="user", cascade={"remove"})
      */
     private Collection $wines;
 
     /**
-     * @ORM\OneToMany(targetEntity="Page", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="Page", mappedBy="author", cascade={"remove"})
      */
     private Collection $pages;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\TasteProfile", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\TasteProfile", mappedBy="user", cascade={"remove"})
      */
     private Collection $tasteProfiles;
 

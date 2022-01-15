@@ -35,12 +35,12 @@ class Region
     private string $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Wine", mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Wine", mappedBy="region", cascade={"remove"})
      */
     private Collection $wines;
 
     /**
-     * @ORM\OneToMany(targetEntity="Subregion", mappedBy="region", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Subregion", mappedBy="region", cascade={"remove"})
      */
     private Collection $subregions;
 
