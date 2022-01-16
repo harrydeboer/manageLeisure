@@ -16,7 +16,7 @@ class PageControllerTest extends WebTestCase
         $this->client->request('GET', $page->getSlug());
 
         $this->assertResponseIsSuccessful();
-        
+
         $this->client->request('GET', '/doesNotExist/');
 
         $this->assertResponseStatusCodeSame(404);

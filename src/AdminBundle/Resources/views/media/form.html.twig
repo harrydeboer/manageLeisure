@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+<table id="mediaTable">
+    <tr><td>{{ form_label(form.file) }}</td><td>{{ form_widget(form.file) }}</td></tr>
+    <tr><td colspan="2">{{ form_widget(form.submit, { 'label': submitLabel }) }}</td></tr>
+</table>
+{{ form_end(form) }}

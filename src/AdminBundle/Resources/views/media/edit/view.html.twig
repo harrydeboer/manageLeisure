@@ -1,0 +1,12 @@
+{% extends '@AdminBundle/base.html.twig' %}
+
+{% block title %}Edit{% endblock %}
+
+{% block body %}
+    {{ include('@AdminBundle/media/form.html.twig', {form: formUpdate, submitLabel: 'Update'}) }}
+    <br>
+    {{ include('deleteModal.html.twig', {
+        entityName: 'media',
+        warning: 'Are you sure you want to delete this media item?'
+    }) }}
+{% endblock %}

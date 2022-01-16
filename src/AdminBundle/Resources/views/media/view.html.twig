@@ -1,0 +1,17 @@
+{% extends '@AdminBundle/base.html.twig' %}
+
+{% block title %}Media{% endblock %}
+
+{% block body %}
+    <h1>Media</h1>
+    <a href="{{ path('adminMediaCreate') }}">Add a file</a>
+    {{ form_start(form) }}
+    {{ form_widget(form.year) }}{{ form_widget(form.month) }}{{ form_widget(form.show) }}
+    {{ form_end(form) }}
+    <table class="table table-striped" id="mediaFiles">
+        {% for fileName in files %}
+            <tr><td>{{ fileName }}</td><td><a href="{{ path('adminMediaEdit',
+                        {'year': yearString, 'month': monthString, 'fileName': fileName}) }}">edit</a></td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

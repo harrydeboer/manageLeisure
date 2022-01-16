@@ -24,11 +24,11 @@ class PageType extends AbstractType
             ])
             ->add('summary', TextareaType::class, [
                 'required' => false,
-                'attr' => ['class' => 'form-control no-html-tags', 'rows' => 20],
+                'attr' => ['class' => 'form-control', 'rows' => 20],
             ])
             ->add('content', TextareaType::class, [
                 'required' => false,
-                'attr' => ['class' => 'form-control no-html-tags', 'rows' => 20],
+                'attr' => ['class' => 'form-control', 'rows' => 20],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary'],
