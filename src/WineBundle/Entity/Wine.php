@@ -112,13 +112,13 @@ class Wine
      * @ORM\ManyToOne(targetEntity="Region", inversedBy="wines")
      * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=true)
      */
-    private ?Region $region;
+    private ?Region $region = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="Subregion", inversedBy="wines")
      * @ORM\JoinColumn(name="subregion_id", referencedColumnName="id", nullable=true)
      */
-    private ?Subregion $subregion;
+    private ?Subregion $subregion = null;
 
     public function __construct()
     {
