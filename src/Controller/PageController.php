@@ -21,6 +21,9 @@ class PageController extends AbstractController
     {
         $uri = explode('/', $request->getUri())[3];
         if ($uri) {
+            if ($uri === 'home') {
+                return $this->redirectToRoute('homepage');
+            }
             return $this->render('page/view.html.twig', [
                 'page' => $this->pageRepository->getBySlug($uri),
             ]);

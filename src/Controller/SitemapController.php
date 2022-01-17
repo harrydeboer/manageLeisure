@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\PageRepositoryInterface;
 use SimpleXMLElement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,7 @@ class SitemapController extends AbstractController
 {
     public function __construct(
         private KernelInterface $kernel,
+        private PageRepositoryInterface $pageRepository,
     ) {
     }
 
@@ -43,11 +45,15 @@ class SitemapController extends AbstractController
 
         $update = '2021-12-18';
 
-        $pages = ['/', '/contact', '/movie', '/login', '/register'];
+        $pageSlugs = ['/', '/contact', '/movie', '/login', '/register'];
 
-        foreach ($pages as $page) {
+        foreach ($this->pageRepository->findAll() as $page) {
+            $pageSlugs[] = '/' . $page->getSlug();
+        }
+
+        foreach ($pageSlugs as $pageSlug) {
             $url = $sitemap->addChild('url');
-            $url->addChild('loc', $baseUrl . $page);
+            $url->addChild('loc', $baseUrl . $pageSlug);
             $url->addChild('priority', '1.0');
             $url->addChild('lastmod', $update);
             $url->addChild('changefreq', 'monthly');
