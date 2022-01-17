@@ -48,6 +48,9 @@ class SitemapController extends AbstractController
         $pageSlugs = ['/', '/contact', '/movie', '/login', '/register'];
 
         foreach ($this->pageRepository->findAll() as $page) {
+            if ($page->getSlug() === 'home') {
+                continue;
+            }
             $pageSlugs[] = '/' . $page->getSlug();
         }
 
