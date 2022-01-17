@@ -23,26 +23,19 @@ class MediaController extends AuthController
 
     /**
      * @Route("/media", name="adminMedia")
+     * @Route("/media/filter/{year}/{month}", name="adminMediaFilter")
      */
-    public function view(Request $request): Response
+    public function view(string $year = null, string $month = null): Response
     {
-        $form = $this->createForm(MediaFilterType::class, [
+        $form = $this->createForm(MediaFilterType::class, ['year' => $year, 'month' => $month], [
             'method' => 'GET',
             'csrf_protection' => false,
         ]);
 
-        $form->handleRequest($request);
-
         $files = [];
-        $yearString = null;
-        $monthString = null;
-        if ($form->isSubmitted() && $form->isValid()) {
-            $yearString = (string) $form->get('year')->getData();
-            $monthString = (string) $form->get('month')->getData();
-            if (strlen($monthString) === 1) {
-                $monthString = '0' . $monthString;
-            }
-            $base = $this->kernel->getProjectDir() . '/public/uploads/' . $yearString . '/' . $monthString . '/';
+        if (!is_null($year) && !is_null($month)) {
+
+            $base = $this->kernel->getProjectDir() . '/public/uploads/' . $year . '/' . $month . '/';
             $filesScan = scandir($base);
             foreach($filesScan as $file) {
                 if ($file !== '.' && $file !== '..') {
@@ -54,15 +47,15 @@ class MediaController extends AuthController
         return $this->render('@AdminBundle/media/view.html.twig', [
             'form' => $form->createView(),
             'files' => $files,
-            'yearString' => $yearString,
-            'monthString' => $monthString,
+            'year' => $year,
+            'month' => $month,
         ]);
     }
 
     /**
      * @Route("/media/edit/{year}/{month}/{fileName}", name="adminMediaEdit")
      */
-    public function edit(Request $request, int $year, int $month, string $fileName): Response
+    public function edit(Request $request, string $year, string $month, string $fileName): Response
     {
         $formUpdate = $this->createForm(MediaType::class);
 
@@ -76,13 +69,8 @@ class MediaController extends AuthController
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
 
             $file = $formUpdate->get('file')->getData();
-            $yearString = (string) $year;
-            $monthString = (string) $month;
-            if (strlen($monthString) === 1) {
-                $monthString = '0' . $monthString;
-            }
             $base = $this->kernel->getProjectDir() . '/public/uploads/';
-            $file->move($base . $yearString . '/' . $monthString . '/', $fileName);
+            $file->move($base . $year . '/' . $month . '/', $fileName);
 
             return $this->redirectToRoute('adminMedia');
         }
@@ -132,20 +120,15 @@ class MediaController extends AuthController
     /**
      * @Route("/media/delete/{year}/{month}/{fileName}", name="adminMediaDelete")
      */
-    public function delete(Request $request, int $year, int $month, string $fileName): RedirectResponse
+    public function delete(Request $request, string $year, string $month, string $fileName): RedirectResponse
     {
         $form = $this->createForm(DeleteMediaType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $yearString = (string) $year;
-            $monthString = (string) $month;
-            if (strlen($monthString) === 1) {
-                $monthString = '0' . $monthString;
-            }
             unlink($this->kernel->getProjectDir() .
-                '/public/uploads/' . $yearString . '/' . $monthString . '/' . $fileName);
+                '/public/uploads/' . $year . '/' . $month . '/' . $fileName);
         }
 
         return $this->redirectToRoute('adminMedia');

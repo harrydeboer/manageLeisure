@@ -11,7 +11,7 @@
     <table class="table table-striped" id="mediaFiles">
         {% for fileName in files %}
             <tr><td>{{ fileName }}</td><td><a href="{{ path('adminMediaEdit',
-                        {'year': yearString, 'month': monthString, 'fileName': fileName}) }}">edit</a></td></tr>
+                        {'year': year, 'month': month, 'fileName': fileName}) }}">edit</a></td></tr>
         {% endfor %}
     </table>
 {% endblock %}
