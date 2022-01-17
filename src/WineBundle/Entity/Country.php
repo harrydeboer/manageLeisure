@@ -46,6 +46,7 @@ class Country
 
     public function __construct()
     {
+        $this->wines = new ArrayCollection();
         $this->regions = new ArrayCollection();
     }
 

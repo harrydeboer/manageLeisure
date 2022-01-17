@@ -47,7 +47,7 @@ class Wine
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Length(4)
      */
-    private ?int $year;
+    private ?int $year = null;
 
     /**
      * @ORM\Column(type="integer")
@@ -65,12 +65,12 @@ class Wine
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $description;
+    private ?string $description = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $review;
+    private ?string $review = null;
 
     /**
      * @ORM\Column(type="integer")
@@ -100,7 +100,7 @@ class Wine
      * @ORM\ManyToOne(targetEntity="TasteProfile", inversedBy="wines")
      * @ORM\JoinColumn(name="taste_profile_id", referencedColumnName="id", nullable=true)
      */
-    private ?TasteProfile $tasteProfile;
+    private ?TasteProfile $tasteProfile = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="wines")

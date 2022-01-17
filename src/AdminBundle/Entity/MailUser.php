@@ -39,7 +39,7 @@ class MailUser
     /**
      * @ORM\Column(type="string", length=180, nullable=true)
      */
-    private ?string $forward;
+    private ?string $forward = null;
 
     public function getId(): int
     {

@@ -6,6 +6,7 @@ namespace App\WineBundle\Entity;
 
 use App\Entity\User;
 use App\WineBundle\Repository\TasteProfileRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -37,12 +38,12 @@ class TasteProfile
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $secondName;
+    private ?string $secondName = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $description;
+    private ?string $description = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tasteProfiles")
@@ -54,6 +55,11 @@ class TasteProfile
      * @ORM\OneToMany(targetEntity="Wine", mappedBy="tasteProfile")
      */
     private Collection $wines;
+
+    public function __construct()
+    {
+        $this->wines = new ArrayCollection();
+    }
 
     public function getId(): int
     {

@@ -40,7 +40,7 @@ class Page
      * @ORM\Column(type="string", nullable=true)
      * @Assert\Length(max=255)
      */
-    private ?string $summary;
+    private ?string $summary = null;
 
     /**
      * @ORM\Column(type="text")
