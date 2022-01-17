@@ -6,7 +6,7 @@
     {{ include('@AdminBundle/media/form.html.twig', {form: formUpdate, submitLabel: 'Update'}) }}
     <br>
     {{ include('deleteModal.html.twig', {
-        entityName: 'media',
+        entityName: 'media item',
         warning: 'Are you sure you want to delete this media item?'
     }) }}
 {% endblock %}
