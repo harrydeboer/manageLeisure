@@ -35,7 +35,8 @@ class MediaController extends AuthController
         $files = [];
         if (!is_null($year) && !is_null($month)) {
 
-            $base = $this->kernel->getProjectDir() . '/public/uploads/' . $year . '/' . $month . '/';
+            $base = $this->kernel->getProjectDir() . '/public/uploads/' .
+                $this->extraPath() . $year . '/' . $month . '/';
             $filesScan = scandir($base);
             foreach($filesScan as $file) {
                 if ($file !== '.' && $file !== '..') {
@@ -69,7 +70,7 @@ class MediaController extends AuthController
         if ($formUpdate->isSubmitted() && $formUpdate->isValid()) {
 
             $file = $formUpdate->get('file')->getData();
-            $base = $this->kernel->getProjectDir() . '/public/uploads/';
+            $base = $this->kernel->getProjectDir() . '/public/uploads/' . $this->extraPath();
             $file->move($base . $year . '/' . $month . '/', $fileName);
 
             return $this->redirectToRoute('adminMedia');
@@ -97,7 +98,7 @@ class MediaController extends AuthController
 
             $file = $form->get('file')->getData();
 
-            $base = $this->kernel->getProjectDir() . '/public/uploads/';
+            $base = $this->kernel->getProjectDir() . '/public/uploads/' . $this->extraPath();
 
             if (!is_dir($base . date('Y'))) {
                 mkdir($base . date('Y'));
@@ -128,9 +129,19 @@ class MediaController extends AuthController
         if ($form->isSubmitted() && $form->isValid()) {
 
             unlink($this->kernel->getProjectDir() .
-                '/public/uploads/' . $year . '/' . $month . '/' . $fileName);
+                '/public/uploads/' . $this->extraPath() . $year . '/' . $month . '/' . $fileName);
         }
 
         return $this->redirectToRoute('adminMedia');
+    }
+
+    private function extraPath(): string
+    {
+        $extraPath = '';
+        if ($this->kernel->getEnvironment() === 'test') {
+            $extraPath = 'test/';
+        }
+
+        return $extraPath;
     }
 }
