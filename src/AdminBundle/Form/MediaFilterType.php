@@ -21,6 +21,7 @@ class MediaFilterType extends AbstractType
     {
         $base = $this->kernel->getProjectDir() . '/public/uploads/';
         $yearsScan = scandir($base);
+        $years = [];
         foreach($yearsScan as $year) {
             if ($year !== '.' && $year !== '..' && $year !== '.gitignore' && $year !== 'test') {
                 $years[$year] = $year;
