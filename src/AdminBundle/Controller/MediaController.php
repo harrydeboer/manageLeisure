@@ -37,10 +37,12 @@ class MediaController extends AuthController
 
             $base = $this->kernel->getProjectDir() . '/public/uploads/' .
                 $this->extraPath() . $year . '/' . $month . '/';
-            $filesScan = scandir($base);
-            foreach($filesScan as $file) {
-                if ($file !== '.' && $file !== '..') {
-                    $files[] = $file;
+            if (is_dir($base)) {
+                $filesScan = scandir($base);
+                foreach ($filesScan as $file) {
+                    if ($file !== '.' && $file !== '..') {
+                        $files[] = $file;
+                    }
                 }
             }
         }

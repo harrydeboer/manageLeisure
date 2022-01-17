@@ -1,21 +1,23 @@
-$('.dropdown-menu').on('click', function (event) {
-    event.stopPropagation();
-});
-
-$('.country-select').on('change', function() {
-    let id = $(this).val();
-    $.get('/wine/get-regions/' + id, '', function (data) {
-        $('.region-select').html(data);
+$(function() {
+    $('.dropdown-menu').on('click', function (event) {
+        event.stopPropagation();
     });
-});
 
-$('.region-select').on('change', function() {
-    let id = $(this).val();
-    $.get('/wine/get-subregions/' + id, '', function (data) {
-        $('.subregion-select').html(data);
+    $('.country-select').on('change', function() {
+        let id = $(this).val();
+        $.get('/wine/get-regions/' + id, '', function (data) {
+            $('.region-select').html(data);
+        });
     });
-});
 
-$('#wineFilterIcon').on('click', function() {
-    $('#filter-sort-form').toggle();
+    $('.region-select').on('change', function() {
+        let id = $(this).val();
+        $.get('/wine/get-subregions/' + id, '', function (data) {
+            $('.subregion-select').html(data);
+        });
+    });
+
+    $('#wineFilterIcon').on('click', function() {
+        $('#filter-sort-form').toggle();
+    });
 });
