@@ -10,4 +10,5 @@ if [[ ${NUMBER_OF_CPUS} -lt 4 ]]; then
 else
   PROCESSES=4
 fi
-$PREFIX docker exec -it manageLeisure php ./vendor/bin/paratest -p$PROCESSES --configuration phpunitFunctional.xml
+$PREFIX docker exec -it --user=www-data manageLeisure \
+  php ./vendor/bin/paratest -p$PROCESSES --configuration phpunitFunctional.xml
