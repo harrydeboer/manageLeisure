@@ -22,9 +22,7 @@ class UserController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/user", name="adminUser")
-     */
+    #[Route('/user', name: 'adminUser')]
     public function view(): Response
     {
         $users = $this->userRepository->findAll();
@@ -34,9 +32,7 @@ class UserController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/user/edit/{id}", name="adminUserEdit")
-     */
+    #[Route('/user/edit/{id}', name: 'adminUserEdit')]
     public function edit(Request $request, User $user): Response
     {
         $formUpdate = $this->createForm(UpdateUserType::class, $user, [
@@ -66,9 +62,7 @@ class UserController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/user/create", name="adminUserCreate")
-     */
+    #[Route('/user/create', name: 'adminUserCreate')]
     public function new(Request $request): Response
     {
         $user = new User();
@@ -86,9 +80,7 @@ class UserController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/user/delete/{id}", name="adminUserDelete")
-     */
+    #[Route('/user/delete/{id}', name: 'adminUserDelete')]
     public function delete(Request $request, User $user): RedirectResponse
     {
         $form = $this->createForm(DeleteUserType::class);

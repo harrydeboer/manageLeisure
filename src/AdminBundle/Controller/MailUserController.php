@@ -22,9 +22,7 @@ class MailUserController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/mail-user", name="adminMailUser")
-     */
+    #[Route('/mail-user', name: 'adminMailUser')]
     public function view(): Response
     {
         $mailUsers = $this->mailUserRepository->findAll();
@@ -34,9 +32,7 @@ class MailUserController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/mail-user/edit/{id}", name="adminMailUserEdit")
-     */
+    #[Route('/mail-user/edit/{id}', name: 'adminMailUserEdit')]
     public function edit(Request $request, MailUser $mailUser): Response
     {
         $formUpdate = $this->createForm(UpdateMailUserType::class, $mailUser, [
@@ -62,9 +58,7 @@ class MailUserController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/mail-user/create", name="adminMailUserCreate")
-     */
+    #[Route('/mail-user/create', name: 'adminMailUserCreate')]
     public function new(Request $request): Response
     {
         $mailUser = new MailUser();
@@ -82,9 +76,7 @@ class MailUserController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/mail-user/delete/{id}", name="adminMailUserDelete")
-     */
+    #[Route('/mail-user/delete/{id}', name: 'adminMailUserDelete')]
     public function delete(Request $request, MailUser $mailUser): RedirectResponse
     {
         $form = $this->createForm(DeleteMailUserType::class);

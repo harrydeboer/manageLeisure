@@ -21,9 +21,7 @@ class PageController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/page", name="adminPage")
-     */
+    #[Route('/page', name: 'adminPage')]
     public function view(): Response
     {
         $pages = $this->pageRepository->findAll();
@@ -33,9 +31,7 @@ class PageController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/page/edit/{id}", name="adminPageEdit")
-     */
+    #[Route('/page/edit/{id}', name: 'adminPageEdit')]
     public function edit(Request $request, Page $page): Response
     {
         $formUpdate = $this->createForm(PageType::class, $page, [
@@ -61,9 +57,7 @@ class PageController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/page/create", name="adminPageCreate")
-     */
+    #[Route('/page/create', name: 'adminPageCreate')]
     public function new(Request $request): Response
     {
         $page = new Page();
@@ -83,9 +77,7 @@ class PageController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/page/delete/{id}", name="adminPageDelete")
-     */
+    #[Route('/page/delete/{id}', name: 'adminPageDelete')]
     public function delete(Request $request, Page $page): RedirectResponse
     {
         $form = $this->createForm(DeletePageType::class);

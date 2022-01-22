@@ -21,10 +21,8 @@ class MediaController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/media", name="adminMedia")
-     * @Route("/media/filter/{year}/{month}", name="adminMediaFilter")
-     */
+    #[Route('/media', name: 'adminMedia'),
+        Route('/media/filter/{year}/{month}', name: 'adminMediaFilter')]
     public function view(string $year = null, string $month = null): Response
     {
         $form = $this->createForm(MediaFilterType::class, ['year' => $year, 'month' => $month], [
@@ -55,9 +53,7 @@ class MediaController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/media/edit/{year}/{month}/{fileName}", name="adminMediaEdit")
-     */
+    #[Route('/media/edit/{year}/{month}/{fileName}', name: 'adminMediaEdit')]
     public function edit(Request $request, string $year, string $month, string $fileName): Response
     {
         $formUpdate = $this->createForm(MediaType::class);
@@ -84,9 +80,7 @@ class MediaController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/media/create", name="adminMediaCreate")
-     */
+    #[Route('/media/create', name: 'adminMediaCreate')]
     public function new(Request $request): Response
     {
         $form = $this->createForm(MediaType::class, null, [
@@ -120,9 +114,7 @@ class MediaController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/media/delete/{year}/{month}/{fileName}", name="adminMediaDelete")
-     */
+    #[Route('/media/delete/{year}/{month}/{fileName}', name: 'adminMediaDelete')]
     public function delete(Request $request, string $year, string $month, string $fileName): RedirectResponse
     {
         $form = $this->createForm(DeleteMediaType::class);
