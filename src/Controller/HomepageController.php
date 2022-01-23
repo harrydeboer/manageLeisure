@@ -16,9 +16,7 @@ class HomepageController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/", name="homepage")
-     */
+    #[Route('/', name: 'homepage')]
     public function view(): Response
     {
         return $this->render('homepage/view.html.twig', [

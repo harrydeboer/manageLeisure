@@ -16,9 +16,7 @@ class RegionController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/get-regions/{id}", name="wineGetRegions")
-     */
+    #[Route('/get-regions/{id}', name: 'wineGetRegions')]
     public function getRegions(int $id = null): Response
     {
         if (is_null($id)) {

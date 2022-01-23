@@ -29,10 +29,8 @@ class WineController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/", defaults={"page": "1"}, name="wineHomepage")
-     * @Route("/page/{page<[1-9]\d*>}", methods="GET", name="wineIndexPaginated")
-     */
+    #[Route('/', defaults: ['page' => '1'], name: 'wineHomepage'),
+        Route('/page/{page<[1-9]\d*>}', name: 'wineIndexPaginated')]
     public function view(Request $request, int $page): Response
     {
         $form = $this->formFactory->createNamed('', WineFilterAndSortType::class, null, [
@@ -57,9 +55,7 @@ class WineController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/edit/{id}", name="wineEdit")
-     */
+    #[Route('/edit/{id}', name: 'wineEdit')]
     public function edit(Request $request, int $id): Response
     {
         $wine = $this->getWine($id);
@@ -102,9 +98,7 @@ class WineController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/create", name="wineCreate")
-     */
+    #[Route('/create', name: 'wineCreate')]
     public function new(Request $request): Response
     {
         $wine = new Wine();
@@ -138,9 +132,7 @@ class WineController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/delete/{id}", name="wineDelete")
-     */
+    #[Route('/delete/{id}', name: 'wineDelete')]
     public function delete(Request $request, int $id): RedirectResponse
     {
         $wine = $this->getWine($id);
@@ -161,9 +153,7 @@ class WineController extends AuthController
         return $this->redirectToRoute('wineHomepage');
     }
 
-    /**
-     * @Route("/single/{id}", name="wineSingle")
-     */
+    #[Route('/single/{id}', name: 'wineSingle')]
     public function single(int $id): Response
     {
         $wine = $this->getWine($id);

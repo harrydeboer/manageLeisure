@@ -16,9 +16,7 @@ class SubregionController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/get-subregions/{id}", name="wineGetSubregions")
-     */
+    #[Route('/get-subregions/{id}', name: 'wineGetSubregions')]
     public function getSubregions(int $id = null): Response
     {
         if (is_null($id)) {

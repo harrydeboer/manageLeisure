@@ -34,10 +34,11 @@ class RegistrationController extends AbstractController
     ) {
     }
 
+
     /**
-     * @Route("/register", name="app_register")
      * @throws TransportExceptionInterface
      */
+    #[Route('/register', name: 'app_register')]
     public function register(Request $request): Response
     {
         $user = new User();
@@ -64,9 +65,7 @@ class RegistrationController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/verify", name="registration_confirmation_route")
-     */
+    #[Route('/verify', name: 'registration_confirmation_route')]
     public function verifyUserEmail(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -96,9 +95,9 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/send-verification-email-again", name="sendVerificationEmailAgain")
      * @throws TransportExceptionInterface
      */
+    #[Route('/send-verification-email-again', name: 'sendVerificationEmailAgain')]
     public function sendVerificationEmailAgain(Request $request): Response
     {
         $success = null;

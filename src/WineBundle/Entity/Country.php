@@ -8,6 +8,7 @@ use App\WineBundle\Repository\CountryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -44,7 +45,7 @@ class Country
      */
     private Collection $wines;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->wines = new ArrayCollection();
         $this->regions = new ArrayCollection();

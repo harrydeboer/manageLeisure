@@ -9,6 +9,7 @@ use App\WineBundle\Repository\WineRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ValidatorException;
@@ -120,7 +121,7 @@ class Wine
      */
     private ?Subregion $subregion = null;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->grapes = new ArrayCollection();
     }
@@ -321,7 +322,7 @@ class Wine
         }
     }
 
-    public function getLabelPath(string $appEnv): string
+    #[Pure] public function getLabelPath(string $appEnv): string
     {
         $idString = (string) $this->getId();
         $extraPath = '';

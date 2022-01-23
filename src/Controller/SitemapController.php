@@ -21,9 +21,9 @@ class SitemapController extends AbstractController
     }
 
     /**
-     * @Route("/sitemap", name="sitemap")
      * @throws Exception
      */
+    #[Route('/sitemap', name: 'sitemap')]
     public function view(): Response
     {
         /**

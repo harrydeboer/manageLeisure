@@ -9,6 +9,7 @@ use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 use Iterator;
 use Exception;
+use JetBrains\PhpStorm\Pure;
 use function count;
 
 class Paginator
@@ -80,12 +81,12 @@ class Paginator
         return max(1, $this->currentPage - 1);
     }
 
-    public function hasNextPage(): bool
+    #[Pure] public function hasNextPage(): bool
     {
         return $this->currentPage < $this->getLastPage();
     }
 
-    public function getNextPage(): int
+    #[Pure] public function getNextPage(): int
     {
         return min($this->getLastPage(), $this->currentPage + 1);
     }

@@ -8,6 +8,7 @@ use App\WineBundle\Repository\SubregionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -45,7 +46,7 @@ class Subregion
      */
     private Region $region;
 
-    public function __construct()
+    #[Pure] public function __construct()
     {
         $this->wines = new ArrayCollection();
     }

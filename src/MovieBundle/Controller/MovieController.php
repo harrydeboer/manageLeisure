@@ -14,9 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MovieController extends AuthController
 {
-    /**
-     * @Route("/", name="movieHomepage")
-     */
+    #[Route('/', name: 'movieHomepage')]
     public function view(Request $request): Response
     {
         $form = $this->createForm(MovieType::class, null, [
@@ -31,9 +29,7 @@ class MovieController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/get-rating", name="movieGetRating")
-     */
+    #[Route('/get-rating', name: 'movieGetRating')]
     public function getRating(Request $request): Response
     {
         $form = $this->createForm(MovieType::class, null, [
@@ -86,9 +82,7 @@ class MovieController extends AuthController
         ]);
     }
 
-    /**
-     * @Route("/single-movie/{id}", name="movieSingle")
-     */
+    #[Route('/single-movie/{id}', name: 'movieSingle')]
     public function singleMovie(string $id): Response
     {
         $responseObject = IMDBIdRetriever::getSingleMovie($id, $this->getParameter('omdb_api_key'));

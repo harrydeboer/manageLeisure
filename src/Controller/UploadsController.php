@@ -21,10 +21,8 @@ class UploadsController extends AbstractController
     ) {
     }
 
-    /**
-     * @Route("/uploads/wine/labels/test/{fileName}", name="wineLabelsTest")
-     * @Route("/uploads/wine/labels/{fileName}", name="wineLabels")     *
-     */
+    #[Route('/uploads/wine/labels/test/{fileName}', name: 'wineLabelsTest'),
+        Route('/uploads/wine/labels/{fileName}', name: 'wineLabels')]
     public function wineLabels(string $fileName): BinaryFileResponse
     {
         if (!is_null($this->getUser())) {

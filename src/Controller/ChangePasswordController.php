@@ -17,9 +17,7 @@ class ChangePasswordController extends AuthController
     ) {
     }
 
-    /**
-     * @Route("/change-password", name="changePassword")
-     */
+    #[Route('/change-password', name: 'changePassword')]
     public function changePassword(Request $request): Response
     {
         $form = $this->createForm(ChangePasswordType::class);
