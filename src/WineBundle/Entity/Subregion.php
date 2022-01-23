@@ -9,41 +9,27 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=SubregionRepository::class)
- * @ORM\Table(
- *    name="subregion",
- *    uniqueConstraints={
- *        @ORM\UniqueConstraint(name="name_unique", columns={"region_id", "name"})
- *    }
- * )
- */
+#[ORM\Entity(repositoryClass: SubregionRepository::class)]
+#[ORM\Table(name: "subregion")]
+#[ORM\UniqueConstraint(name: "name_unique", columns: ["region_id", "name"])]
+#[UniqueEntity(fields: ["region_id", "name"], message: "There is already a subregion with this name.")]
 class Subregion
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     */
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank]
     private string $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Wine", mappedBy="subregion", cascade={"remove"})
-     */
+    #[ORM\OneToMany(mappedBy: "subregion", targetEntity: "Wine", cascade: ["remove"])]
     private Collection $wines;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Region", inversedBy="subregions")
-     * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: "Region", inversedBy: "subregions")]
+    #[ORM\JoinColumn(name: "region_id", referencedColumnName: "id", nullable: false)]
     private Region $region;
 
     #[Pure] public function __construct()

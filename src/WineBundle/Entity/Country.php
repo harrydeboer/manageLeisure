@@ -9,40 +9,26 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass=CountryRepository::class)
- * @ORM\Table(
- *    name="country",
- *    uniqueConstraints={
- *        @ORM\UniqueConstraint(name="name_unique", columns={"name"})
- *    }
- * )
- */
+#[ORM\Entity(repositoryClass: CountryRepository::class)]
+#[ORM\Table(name: "country")]
+#[ORM\UniqueConstraint(name: "name_unique", fields: ["name"])]
+#[UniqueEntity(fields: ["name"], message: "There is already a country with this name.")]
 class Country
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     */
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank]
     private string $name;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Region", mappedBy="country", cascade={"remove"})
-     */
+    #[ORM\OneToMany(mappedBy: "country",targetEntity: "Region", cascade: ["remove"])]
     private Collection $regions;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="country", cascade={"remove"})
-     */
+    #[ORM\OneToMany(mappedBy: "country",targetEntity: "Wine", cascade: ["remove"])]
     private Collection $wines;
 
     #[Pure] public function __construct()

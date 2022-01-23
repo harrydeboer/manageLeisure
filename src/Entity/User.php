@@ -13,58 +13,37 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email.")
- */
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: "user")]
+#[ORM\UniqueConstraint(fields: ["email"])]
+#[UniqueEntity(fields: ["email"], message: "There is already a user with this email.")]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=180)
-     */
+    #[ORM\Column(type: "string", length: 180)]
     private string $name;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
+    #[ORM\Column(type: "string", length: 180, unique: true)]
     private string $email;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: "json")]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
+    #[ORM\Column(type: "string")]
     private string $password;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: "boolean")]
     private bool $isVerified = false;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\Wine", mappedBy="user", cascade={"remove"})
-     */
+    #[ORM\OneToMany(mappedBy: "user", targetEntity: "App\WineBundle\Entity\Wine", cascade: ["remove"])]
     private Collection $wines;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Page", mappedBy="author", cascade={"remove"})
-     */
+    #[ORM\OneToMany(mappedBy: "author", targetEntity: "Page", cascade: ["remove"])]
     private Collection $pages;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\WineBundle\Entity\TasteProfile", mappedBy="user", cascade={"remove"})
-     */
+    #[ORM\OneToMany(mappedBy: "user", targetEntity: "App\WineBundle\Entity\TasteProfile", cascade: ["remove"])]
     private Collection $tasteProfiles;
 
     #[Pure] public function __construct()

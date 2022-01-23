@@ -14,111 +14,70 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ValidatorException;
 
-/**
- * @ORM\Entity(repositoryClass=WineRepository::class)
- * @ORM\Table(name="wine")
- */
+#[ORM\Entity(repositoryClass: WineRepository::class)]
+#[ORM\Table(name: "wine")]
 class Wine
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     */
+    #[ORM\Column(type: "string", length: 255)]
+    #[Assert\NotBlank]
     private string $name;
 
-    /**
-     * @ORM\Column(type="string",
-     *     columnDefinition="enum('red', 'white', 'rosé', 'orange', 'sparkling', 'dessert', 'fortified') NOT NULL")
-     */
+    #[ORM\Column(type: "string", columnDefinition: "enum('red', 'white', 'rosé', 'orange', 'sparkling', 'dessert', 'fortified') NOT NULL")]
     private string $type;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: "string", length: 255)]
     private string $labelExtension;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Length(4)
-     */
+    #[ORM\Column(type: "integer", nullable: true)]
+    #[Assert\Length(4)]
     private ?int $year = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\GreaterThanOrEqual(10)
-     * @Assert\LessThanOrEqual(100)
-     */
+    #[ORM\Column(type: "integer")]
+    #[Assert\GreaterThanOrEqual(10)]
+    #[Assert\LessThanOrEqual(100)]
     private int $rating;
 
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\GreaterThanOrEqual(0)
-     */
+    #[ORM\Column(type: "integer")]
+    #[Assert\GreaterThanOrEqual(0)]
     private int $price;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+    #[ORM\Column(type: "text", nullable: true)]
     private ?string $review = null;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Column(type: "integer")]
     private int $createdAt;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Grape", inversedBy="wines")
-     * @ORM\JoinTable(name="wine_grape",
-     *     joinColumns={@ORM\JoinColumn(name="wine_id", referencedColumnName="id", onDelete="CASCADE")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="grape_id", referencedColumnName="id", onDelete="CASCADE")}
-     *     )
-     * @Assert\Count(
-     *      min = 1,
-     *      minMessage = "The wine must have at least one grape.",
-     * )
-     */
+    #[ORM\ManyToMany(targetEntity: "Grape", inversedBy: "wines")]
+    #[ORM\JoinTable(name: "wine_grape")]
+    #[ORM\JoinColumn(name: "wine_id", referencedColumnName: "id", onDelete: "CASCADE")]
+    #[ORM\InverseJoinColumn(name: "grape_id", referencedColumnName: "id", onDelete: "CASCADE")]
+    #[Assert\Count(min: 1, minMessage: "The wine must have at least one grape.")]
     private Collection $grapes;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="wines")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "wines")]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false)]
     private User $user;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="TasteProfile", inversedBy="wines")
-     * @ORM\JoinColumn(name="taste_profile_id", referencedColumnName="id", nullable=true)
-     */
+    #[ORM\ManyToOne(targetEntity: "TasteProfile", inversedBy: "wines")]
+    #[ORM\JoinColumn(name: "taste_profile_id", referencedColumnName: "id", nullable: true)]
     private ?TasteProfile $tasteProfile = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="wines")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id", nullable=false)
-     */
+    #[ORM\ManyToOne(targetEntity: "Country", inversedBy: "wines")]
+    #[ORM\JoinColumn(name: "country_id", referencedColumnName: "id", nullable: false)]
     private Country $country;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Region", inversedBy="wines")
-     * @ORM\JoinColumn(name="region_id", referencedColumnName="id", nullable=true)
-     */
+    #[ORM\ManyToOne(targetEntity: "Region", inversedBy: "wines")]
+    #[ORM\JoinColumn(name: "region_id", referencedColumnName: "id", nullable: true)]
     private ?Region $region = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Subregion", inversedBy="wines")
-     * @ORM\JoinColumn(name="subregion_id", referencedColumnName="id", nullable=true)
-     */
+    #[ORM\ManyToOne(targetEntity: "Subregion", inversedBy: "wines")]
+    #[ORM\JoinColumn(name: "subregion_id", referencedColumnName: "id", nullable: true)]
     private ?Subregion $subregion = null;
 
     #[Pure] public function __construct()

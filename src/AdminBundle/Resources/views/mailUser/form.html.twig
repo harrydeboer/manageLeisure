@@ -1,4 +1,12 @@
 {{ form_start(form) }}
+{{ form_errors(form.domain) }}
+{% if submitLabel == 'Create' %}
+    {{ form_errors(form.password) }}
+{% else %}
+    {{ form_errors(form.newPassword) }}
+{% endif %}
+{{ form_errors(form.email) }}
+{{ form_errors(form.forward) }}
 <table id="mailUserTable">
     <tr><td>{{ form_label(form.domain) }}</td><td>{{ form_widget(form.domain) }}</td></tr>
     {% if submitLabel == 'Create' %}

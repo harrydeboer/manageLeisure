@@ -1,4 +1,6 @@
 {{ form_start(form) }}
+{{ form_errors(form.title) }}
+{{ form_errors(form.slug) }}
 <table id="pageTable">
     <tr><td>{{ form_label(form.title) }}</td><td>{{ form_widget(form.title) }}</td></tr>
     <tr><td>{{ form_label(form.slug) }}</td><td>{{ form_widget(form.slug) }}</td></tr>

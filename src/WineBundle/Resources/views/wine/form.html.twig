@@ -1,7 +1,16 @@
 {{ form_start(form) }}
+{{ form_errors(form.year) }}
+{{ form_errors(form.rating) }}
+{{ form_errors(form.price) }}
+{{ form_errors(form.type) }}
 {{ form_errors(form.label) }}
 {{ form_errors(form.name) }}
 {{ form_errors(form.tasteProfile) }}
+{{ form_errors(form.country) }}
+{{ form_errors(form.region) }}
+{{ form_errors(form.subregion) }}
+{{ form_errors(form.description) }}
+{{ form_errors(form.review) }}
 {{ form_errors(form.grapes) }}
 <ul class="d-none" id="grapeError">
     <li>Specify a grape.</li>

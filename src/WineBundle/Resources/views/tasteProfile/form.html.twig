@@ -1,5 +1,7 @@
 {{ form_start(form) }}
 {{ form_errors(form.name) }}
+{{ form_errors(form.secondName) }}
+{{ form_errors(form.description) }}
 <table class="createUpdateTable">
     <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
     <tr><td>{{ form_label(form.secondName) }}</td><td>{{ form_widget(form.secondName) }}</td></tr>
