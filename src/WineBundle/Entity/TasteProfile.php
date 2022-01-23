@@ -10,13 +10,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TasteProfileRepository::class)]
 #[ORM\Table(name: "taste_profile")]
 #[ORM\UniqueConstraint(name: "name_unique", columns: ["user_id", "name"])]
-#[UniqueEntity(fields: ["user_id", "name"], message: "There is already a taste profile with this name.")]
 class TasteProfile
 {
     #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
