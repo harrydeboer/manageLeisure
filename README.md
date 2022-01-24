@@ -12,8 +12,10 @@ MAILER_DSN has to be smtp://name:password@domain.com:25</li>
 <li>Run the migrations.</li>
 <li>Register the user in the route /register.</li>
 <li>Run make:admin to make the first user admin.</li>
-<li>Run npm install. Then link the UglifyJS and SCSS File Watchers to the node_modules/.bin binaries. 
-The SCSS Arguments in PhpStorm is '--style compressed $FileParentDir$/scss/$FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css'.</li>
+<li>Run npm install (with a global node and npm). 
+Then link the UglifyJS and SCSS File Watchers to the node_modules/.bin binaries. 
+The SCSS Arguments in PhpStorm is 
+'--style compressed $FileParentDir$/scss/$FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css'.</li>
 <li>Run php bin/console app:import to fill the database with 
 countries, regions and grapes.</li>
 </ol>
