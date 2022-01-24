@@ -9,20 +9,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
 #[ORM\Table(name: "region")]
 #[ORM\UniqueConstraint(name: "name_unique", columns: ["country_id", "name"])]
-#[UniqueEntity(fields: ["country_id", "name"], message: "There is already a region with this name.")]
 class Region
 {
     #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private int $id;
 
     #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank]
     private string $name;
 
     #[ORM\OneToMany(mappedBy: "region", targetEntity: "Wine", cascade: ["remove"])]

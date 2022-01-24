@@ -64,10 +64,10 @@ class TasteProfileController extends AuthController
     {
         $tasteProfile = new TasteProfile();
         $form = $this->createForm(TasteProfileType::class, $tasteProfile);
+        $tasteProfile->setUser($this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $tasteProfile->setUser($this->getUser());
             $this->tasteProfileRepository->create($tasteProfile);
 
             return $this->redirectToRoute('wineTasteProfile');

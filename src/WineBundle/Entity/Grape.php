@@ -9,20 +9,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GrapeRepository::class)]
 #[ORM\Table(name: "grape")]
 #[ORM\UniqueConstraint(name: "name_unique",fields: ["name"])]
-#[UniqueEntity(fields: ["name"], message: "There is already a grape with this name.")]
 class Grape
 {
     #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private int $id;
 
     #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank]
     private string $name;
 
     #[ORM\Column(type: "string", columnDefinition: "enum('red', 'white', 'rosé') NOT NULL")]
