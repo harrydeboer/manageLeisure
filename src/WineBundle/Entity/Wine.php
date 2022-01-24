@@ -33,10 +33,7 @@ class Wine
     ]
     private string $name;
 
-    #[ORM\Column(
-        type: "string",
-        columnDefinition: "enum('red', 'white', 'rosé', 'orange', 'sparkling', 'dessert', 'fortified') NOT NULL",
-    )]
+    #[ORM\Column(type: "wine_type", nullable: false)]
     private string $type;
 
     #[ORM\Column(type: "string", length: 255)]

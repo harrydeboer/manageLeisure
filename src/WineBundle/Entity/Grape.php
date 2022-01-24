@@ -27,7 +27,7 @@ class Grape
     #[ORM\Column(type: "string", length: 255)]
     private string $name;
 
-    #[ORM\Column(type: "string", columnDefinition: "enum('red', 'white', 'rosé') NOT NULL")]
+    #[ORM\Column(type: "grape_type", nullable: false)]
     private string $type;
 
     #[ORM\ManyToMany(targetEntity: "Wine", mappedBy: "grapes")]
