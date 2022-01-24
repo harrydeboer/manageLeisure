@@ -24,7 +24,7 @@ RUN docker-php-ext-install bcmath curl mbstring xml intl zip pdo_mysql opcache
 
 RUN if [ "$APP_ENV" = "dev" ] ; then pecl install xdebug && docker-php-ext-enable xdebug; fi
 
-COPY --from=composer:2.1.14 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2.4 /usr/bin/composer /usr/bin/composer
 
 RUN if [ "$APP_ENV" = "dev" ] ; then wget https://get.symfony.com/cli/installer -O - | bash; fi
 RUN if [ "$APP_ENV" = "dev" ] ; then mv /root/.symfony/bin/symfony /usr/local/bin/symfony; fi
@@ -48,5 +48,3 @@ RUN chown www-data:www-data -R /var/www/html/
 
 RUN mkdir /var/www/.composer
 RUN chown www-data:www-data -R /var/www/.composer
-RUN mkdir /var/www/.cache
-RUN chown www-data:www-data -R /var/www/.cache
