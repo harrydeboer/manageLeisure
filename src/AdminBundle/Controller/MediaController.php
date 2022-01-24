@@ -21,8 +21,10 @@ class MediaController extends AuthController
     ) {
     }
 
-    #[Route('/media', name: 'adminMedia'),
-        Route('/media/filter/{year}/{month}', name: 'adminMediaFilter')]
+    #[
+        Route('/media', name: 'adminMedia'),
+        Route('/media/filter/{year}/{month}', name: 'adminMediaFilter'),
+    ]
     public function view(string $year = null, string $month = null): Response
     {
         $form = $this->createForm(MediaFilterType::class, ['year' => $year, 'month' => $month], [

@@ -21,7 +21,8 @@
         {{ form_errors(form.email) }}
         {{ form_errors(form.password) }}
         <table id="loginTable">
-            <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email, {'value' : last_username}) }}</td></tr>
+            <tr><td>{{ form_label(form.email) }}</td><td>{{ form_widget(form.email,
+                        {'value' : last_username}) }}</td></tr>
             <tr><td>{{ form_label(form.password) }}</td><td>{{ form_widget(form.password) }}</td></tr>
             <tr><td colspan="2">{{ form_widget(form.login) }}</td></tr>
         </table>

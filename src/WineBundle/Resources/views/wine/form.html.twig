@@ -22,7 +22,8 @@
     <tr><td>{{ form_label(form.label) }}</td><td>{{ form_widget(form.label) }}</td></tr>
     <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
     <tr><td>{{ form_label(form.type) }}</td><td>{{ form_widget(form.type) }}</td></tr>
-    <tr><td>{{ form_label(form.tasteProfile) }}</td><td>{{ form_widget(form.tasteProfile, { 'id': 'taste-profile'}) }}</td></tr>
+    <tr><td>{{ form_label(form.tasteProfile) }}</td><td>{{ form_widget(form.tasteProfile,
+                { 'id': 'taste-profile'}) }}</td></tr>
     <tr>
         <td>
             {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'Red'}) }}

@@ -13,17 +13,25 @@ use JetBrains\PhpStorm\Pure;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: TasteProfileRepository::class)]
-#[ORM\Table(name: "taste_profile")]
-#[ORM\UniqueConstraint(name: "name_unique", columns: ["user_id", "name"])]
-#[UniqueEntity(fields: ["user", "name"], message: "There is already a taste profile with this name.")]
+#[
+    ORM\Entity(repositoryClass: TasteProfileRepository::class),
+    ORM\Table(name: "taste_profile"),
+    ORM\UniqueConstraint(name: "name_unique", columns: ["user_id", "name"]),
+    UniqueEntity(fields: ["user", "name"], message: "There is already a taste profile with this name."),
+]
 class TasteProfile
 {
-    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[
+        ORM\Id,
+        ORM\Column(type: "integer"),
+        ORM\GeneratedValue(strategy: "IDENTITY"),
+    ]
     private int $id;
 
-    #[ORM\Column(type: "string", length: 255)]
-    #[Assert\NotBlank]
+    #[
+        ORM\Column(type: "string", length: 255),
+        Assert\NotBlank,
+    ]
     private string $name;
 
     #[ORM\Column(type: "string", length: 255, nullable: true)]
@@ -32,8 +40,10 @@ class TasteProfile
     #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "tasteProfiles")]
-    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false)]
+    #[
+        ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "tasteProfiles"),
+        ORM\JoinColumn(name: "user_id", referencedColumnName: "id", nullable: false),
+    ]
     private User $user;
 
     #[ORM\OneToMany(mappedBy: "tasteProfile", targetEntity: "Wine")]

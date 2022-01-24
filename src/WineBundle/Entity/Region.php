@@ -10,12 +10,18 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 
-#[ORM\Entity(repositoryClass: RegionRepository::class)]
-#[ORM\Table(name: "region")]
-#[ORM\UniqueConstraint(name: "name_unique", columns: ["country_id", "name"])]
+#[
+    ORM\Entity(repositoryClass: RegionRepository::class),
+    ORM\Table(name: "region"),
+    ORM\UniqueConstraint(name: "name_unique", columns: ["country_id", "name"]),
+]
 class Region
 {
-    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[
+        ORM\Id,
+        ORM\Column(type: "integer"),
+        ORM\GeneratedValue(strategy: "IDENTITY"),
+    ]
     private int $id;
 
     #[ORM\Column(type: "string", length: 255)]
@@ -27,8 +33,10 @@ class Region
     #[ORM\OneToMany(mappedBy: "region", targetEntity: "Subregion", cascade: ["remove"])]
     private Collection $subregions;
 
-    #[ORM\ManyToOne(targetEntity: "Country", inversedBy: "regions")]
-    #[ORM\JoinColumn(name: "country_id", referencedColumnName: "id", nullable: false)]
+    #[
+        ORM\ManyToOne(targetEntity: "Country", inversedBy: "regions"),
+        ORM\JoinColumn(name: "country_id", referencedColumnName: "id", nullable: false),
+    ]
     private Country $country;
 
     #[Pure] public function __construct()

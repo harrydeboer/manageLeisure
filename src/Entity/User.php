@@ -12,20 +12,33 @@ use JetBrains\PhpStorm\Pure;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: "user")]
-#[ORM\UniqueConstraint(fields: ["email"])]
-#[UniqueEntity(fields: ["email"], message: "There is already a user with this email.")]
+#[
+    ORM\Entity(repositoryClass: UserRepository::class),
+    ORM\Table(name: "user"),
+    ORM\UniqueConstraint(fields: ["email"]),
+    UniqueEntity(fields: ["email"], message: "There is already a user with this email."),
+]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[
+        ORM\Id,
+        ORM\Column(type: "integer"),
+        ORM\GeneratedValue(strategy: "IDENTITY"),
+    ]
     private int $id;
 
-    #[ORM\Column(type: "string", length: 180)]
+    #[
+        ORM\Column(type: "string", length: 180),
+        Assert\NotBlank,
+    ]
     private string $name;
 
-    #[ORM\Column(type: "string", length: 180, unique: true)]
+    #[
+        ORM\Column(type: "string", length: 180, unique: true),
+        Assert\NotBlank,
+    ]
     private string $email;
 
     #[ORM\Column(type: "json")]

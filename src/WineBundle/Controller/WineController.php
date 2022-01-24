@@ -29,8 +29,10 @@ class WineController extends AuthController
     ) {
     }
 
-    #[Route('/', defaults: ['page' => '1'], name: 'wineHomepage'),
-        Route('/page/{page<[1-9]\d*>}', name: 'wineIndexPaginated')]
+    #[
+        Route('/', name: 'wineHomepage', defaults: ['page' => '1']),
+        Route('/page/{page<[1-9]\d*>}', name: 'wineIndexPaginated'),
+    ]
     public function view(Request $request, int $page): Response
     {
         $form = $this->formFactory->createNamed('', WineFilterAndSortType::class, null, [

@@ -10,12 +10,18 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
 
-#[ORM\Entity(repositoryClass: CountryRepository::class)]
-#[ORM\Table(name: "country")]
-#[ORM\UniqueConstraint(name: "name_unique", fields: ["name"])]
+#[
+    ORM\Entity(repositoryClass: CountryRepository::class),
+    ORM\Table(name: "country"),
+    ORM\UniqueConstraint(name: "name_unique", fields: ["name"]),
+]
 class Country
 {
-    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[
+        ORM\Id,
+        ORM\Column(type: "integer"),
+        ORM\GeneratedValue(strategy: "IDENTITY"),
+    ]
     private int $id;
 
     #[ORM\Column(type: "string", length: 255)]

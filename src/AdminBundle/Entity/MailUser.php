@@ -7,23 +7,39 @@ namespace App\AdminBundle\Entity;
 use App\AdminBundle\Repository\MailUserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: MailUserRepository::class)]
-#[ORM\Table(name: "mail_user")]
-#[ORM\UniqueConstraint(fields: ["email"])]
-#[UniqueEntity(fields: ["email"], message: "There is already a mail user with this email.")]
+#[
+    ORM\Entity(repositoryClass: MailUserRepository::class),
+    ORM\Table(name: "mail_user"),
+    ORM\UniqueConstraint(fields: ["email"]),
+    UniqueEntity(fields: ["email"], message: "There is already a mail user with this email."),
+]
 class MailUser
 {
-    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[
+        ORM\Id,
+        ORM\Column(type: "integer"),
+        ORM\GeneratedValue(strategy: "IDENTITY"),
+    ]
     private int $id;
 
-    #[ORM\Column(type: "string", length: 180)]
+    #[
+        ORM\Column(type: "string", length: 180),
+        Assert\NotBlank,
+    ]
     private string $domain;
 
-    #[ORM\Column(type: "string", length: 180)]
+    #[
+        ORM\Column(type: "string", length: 180),
+        Assert\NotBlank,
+    ]
     private string $password;
 
-    #[ORM\Column(type: "string", length: 180, unique: true)]
+    #[
+        ORM\Column(type: "string", length: 180, unique: true),
+        Assert\NotBlank,
+    ]
     private string $email;
 
     #[ORM\Column(type: "string", length: 180, nullable: true)]
