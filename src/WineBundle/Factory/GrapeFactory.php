@@ -19,7 +19,9 @@ class GrapeFactory extends AbstractFactory
     {
         $grape = new Grape();
         $grape->setName(uniqid('grape'));
-        $grape->setType(array_rand(['red' => 0, 'white' => 1]));
+        $types = Grape::TYPES;
+        $randomTypeKey = array_rand($types);
+        $grape->setType($types[$randomTypeKey]);
 
         $this->setParams($params, $grape);
 

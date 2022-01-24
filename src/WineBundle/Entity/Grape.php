@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JetBrains\PhpStorm\Pure;
+use InvalidArgumentException;
 
 #[
     ORM\Entity(repositoryClass: GrapeRepository::class),
@@ -17,6 +18,8 @@ use JetBrains\PhpStorm\Pure;
 ]
 class Grape
 {
+    public const TYPES = ['red', 'white','rosé'];
+
     #[
         ORM\Id,
         ORM\Column(type: "integer"),
@@ -27,7 +30,7 @@ class Grape
     #[ORM\Column(type: "string", length: 255)]
     private string $name;
 
-    #[ORM\Column(type: "grape_type", nullable: false)]
+    #[ORM\Column(type: "string", nullable: false)]
     private string $type;
 
     #[ORM\ManyToMany(targetEntity: "Wine", mappedBy: "grapes")]
@@ -65,6 +68,9 @@ class Grape
 
     public function setType(string $type): void
     {
+        if (!in_array($type, self::TYPES)) {
+            throw new InvalidArgumentException("Invalid type.");
+        }
         $this->type = $type;
     }
 

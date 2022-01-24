@@ -13,6 +13,7 @@ use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Exception\ValidatorException;
+use InvalidArgumentException;
 
 #[
     ORM\Entity(repositoryClass: WineRepository::class),
@@ -20,6 +21,8 @@ use Symfony\Component\Validator\Exception\ValidatorException;
 ]
 class Wine
 {
+    public const TYPES = ['red', 'white', 'rosé', 'orange', 'sparkling', 'dessert', 'fortified'];
+
     #[
         ORM\Id,
         ORM\Column(type: "integer"),
@@ -33,7 +36,7 @@ class Wine
     ]
     private string $name;
 
-    #[ORM\Column(type: "wine_type", nullable: false)]
+    #[ORM\Column(type: "string", nullable: false)]
     private string $type;
 
     #[ORM\Column(type: "string", length: 255)]
@@ -138,6 +141,9 @@ class Wine
 
     public function setType(string $type): void
     {
+        if (!in_array($type, self::TYPES)) {
+            throw new InvalidArgumentException("Invalid type.");
+        }
         $this->type = $type;
     }
 
