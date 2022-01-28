@@ -10,7 +10,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class PageTypeTest extends TypeTestCase
 {
-    public function testSubmitModel()
+    public function testSubmitModel(): void
     {
         $title = 'testPage';
         $slug = 'testSlug';

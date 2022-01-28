@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class SubregionRepositoryTest extends KernelTestCase
 {
-    public function testCreateUpdateDelete()
+    public function testCreateUpdateDelete(): void
     {
         $subregion = static::getContainer()->get(SubregionFactory::class)->create();
 

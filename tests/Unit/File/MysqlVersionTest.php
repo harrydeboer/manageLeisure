@@ -10,7 +10,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class MysqlVersionTest extends TestCase
 {
-    public function testMysqlVersionsSameDotenvAndDockerCompose()
+    public function testMysqlVersionsSameDotenvAndDockerCompose(): void
     {
         $projectDir = dirname(__DIR__, 3);
 

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class MediaTypeTest extends TypeTestCase
 {
-    public function testSubmitModel()
+    public function testSubmitModel(): void
     {
         $testFilePath = __DIR__ . '/test.png';
         $file = new File($testFilePath);

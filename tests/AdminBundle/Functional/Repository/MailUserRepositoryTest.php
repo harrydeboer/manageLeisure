@@ -10,7 +10,7 @@ use App\Tests\Functional\KernelTestCase;
 
 class MailUserRepositoryTest extends KernelTestCase
 {
-    public function testCreateUpdateDelete()
+    public function testCreateUpdateDelete(): void
     {
         $mailUser = static::getContainer()->get(MailUserFactory::class)->create();
 

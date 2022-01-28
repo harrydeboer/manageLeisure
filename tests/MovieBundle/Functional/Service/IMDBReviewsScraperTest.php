@@ -9,7 +9,7 @@ use App\Tests\Functional\KernelTestCase;
 
 class IMDBReviewsScraperTest extends KernelTestCase
 {
-    public function testGetRating()
+    public function testGetRating(): void
     {
         $result = IMDBReviewsScraper::getRating('tt0068646');
         $this->assertIsFloat( $result);

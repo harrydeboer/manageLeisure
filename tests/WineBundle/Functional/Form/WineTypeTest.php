@@ -11,7 +11,7 @@ use App\WineBundle\Form\WineType;
 
 class WineTypeTest extends AuthWebTestCase
 {
-    public function testSubmitModel()
+    public function testSubmitModel(): void
     {
         $name = 'testWine';
         $type = 'red';

@@ -82,9 +82,9 @@ class WineControllerTest extends AuthWebTestCase
 
         $this->assertResponseRedirects('/wine/');
 
-//        $wine = $wineRepository->find($id);
-//
-//        $this->assertEquals($updatedName, $wine->getName());
+        $wine = $wineRepository->find($id);
+
+        $this->assertEquals($updatedName, $wine->getName());
 
         $crawler = $this->client->request('GET', '/wine/edit/' . $wine->getId());
 

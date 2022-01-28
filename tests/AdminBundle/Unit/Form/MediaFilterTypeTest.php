@@ -31,7 +31,7 @@ class MediaFilterTypeTest extends TypeTestCase
         ];
     }
 
-    public function testSubmitModel()
+    public function testSubmitModel(): void
     {
         $formData = [
             'year' => date('Y'),

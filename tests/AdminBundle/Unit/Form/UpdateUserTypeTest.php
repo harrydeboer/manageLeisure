@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Validation;
 
 class UpdateUserTypeTest extends TypeTestCase
 {
-    public function testSubmitModel()
+    public function testSubmitModel(): void
     {
         $name = 'testUser';
         $email = 'test@test.com';

@@ -27,7 +27,7 @@ class WineRepositoryTest extends KernelTestCase
     /**
      * @throws Exception
      */
-    public function testCreateUpdateDelete()
+    public function testCreateUpdateDelete(): void
     {
         $wine = $this->wineFactory->create();
 
@@ -51,7 +51,7 @@ class WineRepositoryTest extends KernelTestCase
     /**
      * @throws Exception
      */
-    public function testFindBySortAndFilter()
+    public function testFindBySortAndFilter(): void
     {
         $wine = $this->wineFactory->create();
 

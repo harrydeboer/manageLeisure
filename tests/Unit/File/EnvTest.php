@@ -9,7 +9,7 @@ use Symfony\Component\Dotenv\Dotenv;
 
 class EnvTest extends TestCase
 {
-    public function testEnvLaravel()
+    public function testEnv(): void
     {
         $projectDir = dirname(__DIR__, 3);
 

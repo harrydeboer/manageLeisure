@@ -10,7 +10,7 @@ use App\Tests\Functional\KernelTestCase;
 
 class UserRepositoryTest extends KernelTestCase
 {
-    public function testCreateUpdateDelete()
+    public function testCreateUpdateDelete(): void
     {
         $user = static::getContainer()->get(UserFactory::class)->create();
 

@@ -20,6 +20,13 @@ class GrapeFactory extends AbstractFactory
         $grape = new Grape();
         $grape->setName(uniqid('grape'));
         $types = Grape::TYPES;
+
+        /**
+         * Remove rosé from types.
+         */
+        $key = array_search('rosé', $types);
+        unset($types[$key]);
+
         $randomTypeKey = array_rand($types);
         $grape->setType($types[$randomTypeKey]);
 

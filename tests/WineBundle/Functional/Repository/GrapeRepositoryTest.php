@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GrapeRepositoryTest extends KernelTestCase
 {
-    public function testCreateUpdateDelete()
+    public function testCreateUpdateDelete(): void
     {
         $grape = static::getContainer()->get(GrapeFactory::class)->create();
 

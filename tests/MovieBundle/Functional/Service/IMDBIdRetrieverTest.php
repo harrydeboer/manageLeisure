@@ -9,7 +9,7 @@ use App\Tests\Functional\KernelTestCase;
 
 class IMDBIdRetrieverTest extends KernelTestCase
 {
-    public function testGetResponseObject()
+    public function testGetResponseObject(): void
     {
         $title = 'The Godfather';
         $year = 1972;

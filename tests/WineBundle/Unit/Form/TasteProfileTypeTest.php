@@ -10,7 +10,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class TasteProfileTypeTest extends TypeTestCase
 {
-    public function testSubmitModel()
+    public function testSubmitModel(): void
     {
         $name = 'testTasteProfile';
         $formData = [

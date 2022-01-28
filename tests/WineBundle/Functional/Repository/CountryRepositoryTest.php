@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CountryRepositoryTest extends KernelTestCase
 {
-    public function testCreateUpdateDelete()
+    public function testCreateUpdateDelete(): void
     {
         $country = static::getContainer()->get(CountryFactory::class)->create();
 

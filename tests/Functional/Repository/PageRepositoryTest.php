@@ -10,7 +10,7 @@ use App\Tests\Functional\KernelTestCase;
 
 class PageRepositoryTest extends KernelTestCase
 {
-    public function testCreateUpdateDelete()
+    public function testCreateUpdateDelete(): void
     {
         $page = static::getContainer()->get(PageFactory::class)->create();
 
