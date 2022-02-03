@@ -15,4 +15,9 @@ do
   echo "Try again"
   sleep 1
 done
+until $PREFIX php bin/console fos:elastica:populate
+do
+  echo "Try again"
+  sleep 1
+done
 docker system prune -f

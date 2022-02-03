@@ -4,23 +4,33 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Repository\PageRepositoryInterface;
+use Elastica\Query;
+use FOS\ElasticaBundle\Finder\FinderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use FOS\ElasticaBundle\Finder\PaginatedFinderInterface;
 
 class HomepageController extends AbstractController
 {
     public function __construct(
-        private PageRepositoryInterface $pageRepository,
+        private PaginatedFinderInterface $finder,
     ) {
     }
 
     #[Route('/', name: 'homepage')]
     public function view(): Response
     {
+        $query = new Query([
+            'query' => [
+                'match' => [
+                    'title' => 'Homez',
+                ],
+            ],
+        ]);
+
         return $this->render('homepage/view.html.twig', [
-            'page' => $this->pageRepository->getByTitle('Home'),
+            'page' => $this->finder->find($query)[0],
         ]);
     }
 }

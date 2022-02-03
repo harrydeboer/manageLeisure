@@ -12,6 +12,9 @@ services:
       - PHP_IDE_CONFIG=serverName=manageLeisure
     volumes:
       - .:/var/www/html
+  elasticsearch:
+    ports:
+      - ${ELASTICSEARCH_PORT}:${ELASTICSEARCH_PORT}
   database:
     ports:
       - ${DB_PORT}:${DB_PORT}

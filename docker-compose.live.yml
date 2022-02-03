@@ -8,6 +8,13 @@ services:
     networks:
       manageLeisure:
         ipv4_address: 172.20.0.6
+  elasticsearch:
+    restart: always
+    ports:
+      - 127.0.0.1:${ELASTICSEARCH_PORT}:${ELASTICSEARCH_PORT}
+    networks:
+      manageLeisure:
+        ipv4_address: 172.20.0.8
   database:
     restart: always
     ports:

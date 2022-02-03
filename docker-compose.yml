@@ -14,6 +14,23 @@ services:
       manageLeisure:
     depends_on:
       - database
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    container_name: manageLeisureElasticsearch
+    environment:
+      - node.name=manageLeisure-elasticsearch
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      manageLeisure:
   database:
     image: mysql:8.0
     container_name: manageLeisureDb
@@ -24,6 +41,8 @@ services:
       manageLeisure:
 
 volumes:
+  esdata:
+    driver: local
   mysqldata:
     driver: local
 
