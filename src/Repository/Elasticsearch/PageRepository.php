@@ -10,6 +10,7 @@ use Elastica\Query;
 use FOS\ElasticaBundle\Persister\ObjectPersisterInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Psr\Container\ContainerInterface;
 
 class PageRepository implements PageRepositoryInterface
 {
@@ -17,6 +18,7 @@ class PageRepository implements PageRepositoryInterface
 
     public function __construct(
         private KernelInterface $kernel,
+        private ContainerInterface $container,
         private ObjectPersisterInterface $objectPersister,
     ) {
         $this->client = new Client(['host' => 'host.docker.internal', 'port' => 9200]);
@@ -27,7 +29,7 @@ class PageRepository implements PageRepositoryInterface
         $this->objectPersister->insertOne($page);
     }
 
-    public function getByTitle(string $title, ?string $testDb): Page
+    public function getByTitle(string $title): Page
     {
         $query = new Query([
             'query' => [
@@ -37,10 +39,10 @@ class PageRepository implements PageRepositoryInterface
             ],
         ]);
 
-        return $this->search($query, $testDb);
+        return $this->search($query);
     }
 
-    public function getBySlug(string $slug, ?string $testDb): Page
+    public function getBySlug(string $slug): Page
     {
         $query = new Query([
             'query' => [
@@ -50,14 +52,14 @@ class PageRepository implements PageRepositoryInterface
             ],
         ]);
 
-        return $this->search($query, $testDb);
+        return $this->search($query);
     }
 
-    private function search(Query $query, ?string $testDb): Page
+    private function search(Query $query): Page
     {
         $index = 'page';
         if ($this->kernel->getEnvironment() === 'test') {
-            $index = 'page_test' . $testDb;
+            $index = 'page_test' . $this->container->getParameter('test_db');
         }
         $resultArray = $this->client->getIndex($index)->search($query);
 

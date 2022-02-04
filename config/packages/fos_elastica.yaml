@@ -3,7 +3,8 @@ fos_elastica:
     clients:
       default: { host: '%env(ELASTICSEARCH_HOST)%', port: '%env(ELASTICSEARCH_PORT)%' }
     indexes:
-      page:
+      index:
+        index_name: 'page'
         properties:
           id: ~
           title: ~

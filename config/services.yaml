@@ -32,7 +32,8 @@ services:
         public: true
         arguments:
             - '@kernel'
-            - '@fos_elastica.object_persister.page'
+            - '@service_container'
+            - '@fos_elastica.object_persister.index'
 
     App\EventListener\RequestListener:
         tags:
