@@ -1,18 +1,5 @@
 # Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
 fos_elastica:
-    clients:
-      default: { host: '%env(ELASTICSEARCH_HOST)%', port: '%env(ELASTICSEARCH_PORT)%' }
     indexes:
       index:
         index_name: 'page_test%env(default::TEST_TOKEN)%'
-        properties:
-          id: ~
-          title: ~
-          slug: ~
-          summary: ~
-          content: ~
-          publishedAt: ~
-          author_id: ~
-        persistence:
-          driver: orm
-          model: App\Entity\Page

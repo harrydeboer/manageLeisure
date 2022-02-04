@@ -175,4 +175,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->tasteProfiles = $tasteProfiles;
     }
+
+    public function __toString(): string
+    {
+        return (string) $this->id;
+    }
 }

@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity\Elasticsearch;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use App\Entity\User;
-
 class Page
 {
     private int $id;
@@ -22,7 +18,7 @@ class Page
 
     private int $publishedAt;
 
-    private User $author;
+    private int $authorId;
 
     public function getId(): int
     {
@@ -84,13 +80,13 @@ class Page
         $this->publishedAt = $publishedAt;
     }
 
-    public function getAuthor(): User
+    public function getAuthorId(): int
     {
-        return $this->author;
+        return $this->authorId;
     }
 
-    public function setAuthor(User $author): void
+    public function setAuthorId(int $authorId): void
     {
-        $this->author = $author;
+        $this->authorId = $authorId;
     }
 }

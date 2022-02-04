@@ -69,10 +69,9 @@ class PageRepository implements PageRepositoryInterface
 
         $page = new Page();
         foreach ($resultArray[0]->getData() as $key => $value) {
-            if ($key === 'author_id') {
-                continue;
-            }
-            $page->{'set' . ucwords($key)}($value);
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+            $key = lcfirst(str_replace(' ', '', ucwords(str_replace('.', ' ', $key))));
+            $page->{'set' . $key}($value);
         }
 
         return $page;

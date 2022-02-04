@@ -11,8 +11,8 @@ fos_elastica:
           slug: ~
           summary: ~
           content: ~
-          publishedAt: ~
-          author_id: ~
+          published_at: ~
+          author.id: ~
         persistence:
           driver: orm
           model: App\Entity\Page
