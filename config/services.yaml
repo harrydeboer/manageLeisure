@@ -26,12 +26,6 @@ services:
             - '../src/Tests/'
     App\Asset\VersionStrategy\FileMTime:
 
-    App\Controller\HomepageController:
-        tags: [ 'controller.service_arguments' ]
-        public: true
-        arguments:
-            - '@fos_elastica.finder.page'
-
     App\EventListener\RequestListener:
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

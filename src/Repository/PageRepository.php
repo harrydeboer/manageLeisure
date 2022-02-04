@@ -36,17 +36,6 @@ class PageRepository extends ServiceEntityRepository implements PageRepositoryIn
         return $page;
     }
 
-    public function getByTitle(string $title): Page
-    {
-        $page = $this->findOneBy(['title' => $title]);
-
-        if (is_null($page)) {
-            throw new NotFoundHttpException('This page does not exist or does not belong to you.');
-        }
-
-        return $page;
-    }
-
     public function getBySlug(string $slug): Page
     {
         $page = $this->findOneBy(['slug' => $slug]);

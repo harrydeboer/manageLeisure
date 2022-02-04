@@ -11,8 +11,6 @@ interface PageRepositoryInterface extends ServiceEntityRepositoryInterface
 {
     public function getFromUser(int $id, int $userId): Page;
 
-    public function getByTitle(string $title): Page;
-
     public function getBySlug(string $slug): Page;
 
     public function create(Page $page): Page;
