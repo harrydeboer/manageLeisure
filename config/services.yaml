@@ -8,6 +8,7 @@ parameters:
     omdb_api_key: '%env(OMDB_API_KEY)%'
     re_captcha_key: '%env(RECAPTCHA_KEY)%'
     re_captcha_secret: '%env(RECAPTCHA_SECRET)%'
+    test_db: '%env(default::TEST_TOKEN)%'
 
 services:
     # default configuration for services in *this* file
@@ -25,6 +26,13 @@ services:
             - '../src/Kernel.php'
             - '../src/Tests/'
     App\Asset\VersionStrategy\FileMTime:
+
+    App\Repository\Elasticsearch\PageRepository:
+        tags: [ 'controller.service_arguments' ]
+        public: true
+        arguments:
+            - '@kernel'
+            - '@fos_elastica.object_persister.page'
 
     App\EventListener\RequestListener:
         tags:

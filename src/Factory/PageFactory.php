@@ -6,15 +6,24 @@ namespace App\Factory;
 
 use App\Entity\Page;
 use App\Repository\PageRepositoryInterface;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Exception;
 
 class PageFactory extends AbstractFactory
 {
     public function __construct(
         private UserFactory $userFactory,
         private PageRepositoryInterface $pageRepository,
+        private \App\Repository\Elasticsearch\PageRepositoryInterface $pageRepositoryElasticsearch,
     ) {
     }
 
+    /**
+     * @throws Exception
+     */
     public function create(array $params = []): Page
     {
         $paramsParent = [];
@@ -34,6 +43,12 @@ class PageFactory extends AbstractFactory
 
         $this->setParams($params, $page);
 
-        return $this->pageRepository->create($page);
+        $page = $this->pageRepository->create($page);
+
+        $this->pageRepositoryElasticsearch->index($page);
+
+        sleep(2);
+
+        return $page;
     }
 }

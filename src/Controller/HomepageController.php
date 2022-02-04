@@ -20,7 +20,7 @@ class HomepageController extends AbstractController
     public function view(): Response
     {
         return $this->render('homepage/view.html.twig', [
-            'page' => $this->pageRepository->getByTitle('Home'),
+            'page' => $this->pageRepository->getByTitle('Home', $this->getParameter('test_db')),
         ]);
     }
 }

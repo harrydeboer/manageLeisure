@@ -25,7 +25,7 @@ class PageController extends AbstractController
                 return $this->redirectToRoute('homepage');
             }
             return $this->render('page/view.html.twig', [
-                'page' => $this->pageRepository->getBySlug($uri),
+                'page' => $this->pageRepository->getBySlug($uri, $this->getParameter('test_db')),
             ]);
         }
 
