@@ -24,9 +24,6 @@ class PageRepositoryTest extends KernelTestCase
 
         $pageRepository->update();
 
-        $this->assertSame($updatedTitle, $pageRepository->getByTitle($updatedTitle)->getTitle());
-        $this->assertSame(strtolower($updatedTitle), $pageRepository->getBySlug(strtolower($updatedTitle))->getSlug());
-
         $id = $page->getId();
         $pageRepository->delete($page);
 
