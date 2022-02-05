@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection MissingService */
 
 declare(strict_types=1);
 
@@ -8,9 +8,9 @@ use App\Entity\Elasticsearch\Page;
 use Elastica\Client;
 use Elastica\Query;
 use FOS\ElasticaBundle\Persister\ObjectPersisterInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelInterface;
-use Psr\Container\ContainerInterface;
 
 class PageRepository implements PageRepositoryInterface
 {
@@ -18,10 +18,12 @@ class PageRepository implements PageRepositoryInterface
 
     public function __construct(
         private KernelInterface $kernel,
-        private ContainerInterface $container,
+        private ParameterBagInterface $parameterBag,
         private ObjectPersisterInterface $objectPersister,
     ) {
-        $this->client = new Client(['host' => 'host.docker.internal', 'port' => 9200]);
+        $host = $this->parameterBag->get('elasticsearch_host');
+        $port = $this->parameterBag->get('elasticsearch_port');
+        $this->client = new Client(['host' => $host, 'port' => $port]);
     }
 
     public function index(\App\Entity\Page $page): void
@@ -59,7 +61,7 @@ class PageRepository implements PageRepositoryInterface
     {
         $index = 'page';
         if ($this->kernel->getEnvironment() === 'test') {
-            $index = 'page_test' . $this->container->getParameter('test_db');
+            $index = 'page_test' . $this->parameterBag->get('test_db');
         }
         $resultArray = $this->client->getIndex($index)->search($query);
 

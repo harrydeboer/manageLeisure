@@ -9,6 +9,8 @@ parameters:
     re_captcha_key: '%env(RECAPTCHA_KEY)%'
     re_captcha_secret: '%env(RECAPTCHA_SECRET)%'
     test_db: '%env(default::TEST_TOKEN)%'
+    elasticsearch_host: '%env(ELASTICSEARCH_HOST)%'
+    elasticsearch_port: '%env(ELASTICSEARCH_PORT)%'
 
 services:
     # default configuration for services in *this* file
@@ -27,13 +29,7 @@ services:
             - '../src/Tests/'
     App\Asset\VersionStrategy\FileMTime:
 
-    App\Repository\Elasticsearch\PageRepository:
-        tags: [ 'controller.service_arguments' ]
-        public: true
-        arguments:
-            - '@kernel'
-            - '@service_container'
-            - '@fos_elastica.object_persister.index'
+    FOS\ElasticaBundle\Persister\ObjectPersisterInterface: '@fos_elastica.object_persister.index'
 
     App\EventListener\RequestListener:
         tags:
