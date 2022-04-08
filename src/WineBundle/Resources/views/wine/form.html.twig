@@ -2,6 +2,7 @@
 {{ form_errors(form.year) }}
 {{ form_errors(form.rating) }}
 {{ form_errors(form.price) }}
+{{ form_errors(form.percentage) }}
 {{ form_errors(form.type) }}
 {{ form_errors(form.label) }}
 {{ form_errors(form.name) }}
@@ -15,9 +16,6 @@
 <ul class="d-none" id="grapeError">
     <li>Specify a grape.</li>
 </ul>
-{{ form_errors(form.year) }}
-{{ form_errors(form.rating) }}
-{{ form_errors(form.price) }}
 <table class="createUpdateTable">
     <tr><td>{{ form_label(form.label) }}</td><td>{{ form_widget(form.label) }}</td></tr>
     <tr><td>{{ form_label(form.name) }}</td><td>{{ form_widget(form.name) }}</td></tr>
@@ -34,6 +32,7 @@
     </tr>
     <tr><td>{{ form_label(form.year) }}</td><td>{{ form_widget(form.year) }}</td></tr>
     <tr><td>{{ form_label(form.price) }}</td><td>{{ form_widget(form.price) }}</td></tr>
+    <tr><td>{{ form_label(form.percentage) }}</td><td>{{ form_widget(form.percentage) }}</td></tr>
     <tr><td>{{ form_label(form.country) }}</td><td>{{ form_widget(form.country) }}</td></tr>
     <tr><td>{{ form_label(form.region) }}</td><td>{{ form_widget(form.region) }}</td></tr>
     <tr><td>{{ form_label(form.subregion) }}</td><td>{{ form_widget(form.subregion) }}</td></tr>

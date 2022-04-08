@@ -42,6 +42,10 @@ class WineType extends AbstractWineType
                 'html5' => true,
                 'attr' => ['step' => '0.01', 'min' => '0', 'class' => 'form-control'],
             ])
+            ->add('percentage', NumberType::class, [
+                    'html5' => true,
+                    'attr' => ['step' => '0.1', 'min' => '0', 'class' => 'form-control'],
+                ])
             ->add('description', TextareaType::class, [
                 'required' => false,
                 'attr' => ['class' => 'form-control no-html-tags', 'rows' => 5],

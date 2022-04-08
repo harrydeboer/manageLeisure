@@ -61,6 +61,12 @@ class Wine
     ]
     private int $price;
 
+    #[
+        ORM\Column(type: "integer"),
+        Assert\GreaterThanOrEqual(0),
+    ]
+    private int $percentage;
+
     #[ORM\Column(type: "text", nullable: true)]
     private ?string $description = null;
 
@@ -237,6 +243,16 @@ class Wine
     public function setPrice(float $price): void
     {
         $this->price = (int) ($price * 100);
+    }
+
+    public function getPercentage(): float
+    {
+        return $this->percentage / 10;
+    }
+
+    public function setPercentage(float $percentage): void
+    {
+        $this->percentage = (int) ($percentage * 10);
     }
 
     public function getRating(): float
