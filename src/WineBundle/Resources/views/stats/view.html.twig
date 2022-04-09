@@ -1,0 +1,35 @@
+{% extends '@WineBundle/base.html.twig' %}
+
+{% block title %}Stats{% endblock %}
+
+{% block body %}
+    <div>
+        <i id="wineFilterIcon" class="fas fa-sliders-h"></i>
+    </div>
+    {{ form_start(form, {'attr': {'id': 'filter-sort-form'}}) }}
+    {{ form_errors(form) }}
+
+    {{ form_widget(form.tasteProfile, { 'id': 'taste-profile'}) }}
+
+    {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'Red'}) }}
+    {{ include('@Wine/wine/dropdownGrapes.html.twig', {grapes: form.grapes, redOrWhite: 'White'}) }}
+    {{ form_widget(form.year, {'attr': {'placeholder': 'year'}}) }}
+    {{ form_widget(form.country) }}
+    {{ form_widget(form.region) }}
+    {{ form_widget(form.subregion) }}
+    {{ form_widget(form.sort) }}
+    {{ form_widget(form.show) }}
+    {{ form_end(form, {render_rest: false}) }}
+
+    <table class="table">
+        {% for item, key in pieChart %}
+            <tr><td>{{ key }}</td><td>{{ item }}</td></tr>
+        {% endfor %}
+    </table>
+
+    <table class="table">
+        <tr><td>Rating</td><td>{{ average['rating'] }}</td></tr>
+        <tr><td>Price</td><td>{{ average['price'] }}</td></tr>
+        <tr><td>Percentage</td><td>{{ average['percentage'] }}</td></tr>
+    </table>
+{% endblock %}

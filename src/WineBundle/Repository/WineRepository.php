@@ -68,7 +68,7 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
         User $user,
         int $page,
         array $formData = null,
-    ): Paginator
+    ): Paginator|array
     {
         $qb = $this->createQueryBuilder('w')
             ->where('w.user = ' . $user->getId());
@@ -108,6 +108,10 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
             $qb->orderBy('w.' . $filterArray[0], $filterArray[1]);
         } else {
             $qb->orderBy('w.createdAt', 'DESC');
+        }
+
+        if ($page === 0) {
+            return $qb->getQuery()->execute();
         }
 
         return (new Paginator($qb))->paginate($page);

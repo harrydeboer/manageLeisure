@@ -40,6 +40,7 @@ class WineControllerTest extends AuthWebTestCase
         $form['wine[year]'] = 2000;
         $form['wine[rating]'] = 7;
         $form['wine[price]'] = 10;
+        $form['wine[percentage]'] = 14;
         $form['wine[country]'] = $subregion->getRegion()->getCountry()->getId();
 
         /**

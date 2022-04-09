@@ -22,5 +22,5 @@ interface WineRepositoryInterface
         User $user,
         int $page,
         array $formData = null,
-    ): Paginator;
+    ): Paginator|array;
 }

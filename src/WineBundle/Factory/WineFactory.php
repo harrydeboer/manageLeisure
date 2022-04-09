@@ -70,6 +70,7 @@ class WineFactory extends AbstractFactory
         $wine->setYear(random_int(1000, 9999));
         $wine->setRating(random_int(1, 10));
         $wine->setPrice(random_int(1, 100));
+        $wine->setPercentage(random_int(10, 20));
         $wine->setCreatedAt(time());
 
         $this->setParams($params, $wine);
