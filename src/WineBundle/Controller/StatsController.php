@@ -36,7 +36,7 @@ class StatsController extends AuthController
         if ($form->isSubmitted() && $form->isValid()) {
             $wines = $this->wineRepository->findBySortAndFilter($this->getUser(),0, $form->getData());
         } else {
-            $wines = $this->wineRepository->findAll();
+            $wines = $this->wineRepository->findAllOfUser($this->getUser());
         }
 
         return $this->renderForm('@WineBundle/stats/view.html.twig', [

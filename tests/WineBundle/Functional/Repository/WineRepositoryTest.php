@@ -51,6 +51,16 @@ class WineRepositoryTest extends KernelTestCase
     /**
      * @throws Exception
      */
+    public function testFindAllOfUser(): void
+    {
+        $wine = $this->wineFactory->create();
+
+        $this->assertCount(1, $this->wineRepository->findAllOfUser($wine->getUser()));
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testFindBySortAndFilter(): void
     {
         $wine = $this->wineFactory->create();

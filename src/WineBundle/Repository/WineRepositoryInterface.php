@@ -18,6 +18,8 @@ interface WineRepositoryInterface
 
     public function delete(Wine $wine): void;
 
+    public function findAllOfUser(User $user): array;
+
     public function findBySortAndFilter(
         User $user,
         int $page,

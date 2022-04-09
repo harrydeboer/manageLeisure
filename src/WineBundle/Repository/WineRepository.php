@@ -58,6 +58,14 @@ class WineRepository extends ServiceEntityRepository implements WineRepositoryIn
         $this->em->flush();
     }
 
+    public function findAllOfUser(User $user): array
+    {
+        $qb = $this->createQueryBuilder('w')
+            ->where('w.user = ' . $user->getId());
+
+        return $qb->getQuery()->execute();
+    }
+
     /**
      * The wine homepage has a filtering and sorting of wines.
      * The filtering is on the current user, grapes, year, taste profile.
