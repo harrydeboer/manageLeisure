@@ -50,7 +50,7 @@ class ContactController extends AbstractController
                     $this->mailer->send($email);
                     $success = "Successfully send email.";
                 } catch (TransportExceptionInterface $exception) {
-                    $error = "Could not deliver mailz.";
+                    $error = "Could not deliver mailzzz.";
                     var_dump($exception);
                 }
             } else {
