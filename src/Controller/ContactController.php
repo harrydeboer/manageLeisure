@@ -39,7 +39,7 @@ class ContactController extends AbstractController
             }
 
             $email = (new Email())
-                ->from(new Address('postmaster@manageleisure.com', strip_tags($form->get('name')->getData())))
+                ->from(new Address('info@manageleisure.com', strip_tags($form->get('name')->getData())))
                 ->replyTo($form->get('email')->getData())
                 ->to('info@manageleisure.com')
                 ->subject(strip_tags($form->get('subject')->getData()))
@@ -49,8 +49,9 @@ class ContactController extends AbstractController
                 try {
                     $this->mailer->send($email);
                     $success = "Successfully send email.";
-                } catch (TransportExceptionInterface) {
-                    $error = "Could not deliver mail.";
+                } catch (TransportExceptionInterface $exception) {
+                    $error = "Could not deliver mailz.";
+                    var_dump($exception);
                 }
             } else {
                 $error = "Could not deliver mail.";
