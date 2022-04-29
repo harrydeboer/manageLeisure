@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220408104513 extends AbstractMigration
+final class Version20220429124309 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,7 +22,6 @@ final class Version20220408104513 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE country (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, UNIQUE INDEX name_unique (name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE grape (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL, UNIQUE INDEX name_unique (name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE mail_user (id INT AUTO_INCREMENT NOT NULL, domain VARCHAR(180) NOT NULL, password VARCHAR(180) NOT NULL, email VARCHAR(180) NOT NULL, forward VARCHAR(180) DEFAULT NULL, UNIQUE INDEX UNIQ_20E84520E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE page (id INT AUTO_INCREMENT NOT NULL, author_id INT NOT NULL, title VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, summary VARCHAR(255) DEFAULT NULL, content LONGTEXT NOT NULL, published_at INT NOT NULL, INDEX IDX_140AB620F675F31B (author_id), UNIQUE INDEX title_unique (title), UNIQUE INDEX slug_unique (slug), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE region (id INT AUTO_INCREMENT NOT NULL, country_id INT NOT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_F62F176F92F3E70 (country_id), UNIQUE INDEX name_unique (country_id, name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE subregion (id INT AUTO_INCREMENT NOT NULL, region_id INT NOT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_691E795398260155 (region_id), UNIQUE INDEX name_unique (region_id, name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -59,7 +58,6 @@ final class Version20220408104513 extends AbstractMigration
         $this->addSql('ALTER TABLE wine_grape DROP FOREIGN KEY FK_573E24FD28A2BD76');
         $this->addSql('DROP TABLE country');
         $this->addSql('DROP TABLE grape');
-        $this->addSql('DROP TABLE mail_user');
         $this->addSql('DROP TABLE page');
         $this->addSql('DROP TABLE region');
         $this->addSql('DROP TABLE subregion');

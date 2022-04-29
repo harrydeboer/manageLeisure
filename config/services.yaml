@@ -34,10 +34,6 @@ services:
        resource: '../src/Factory/'
        public: true
 
-    App\AdminBundle\Factory\:
-        resource: '../src/AdminBundle/Factory/'
-        public: true
-
     App\WineBundle\Factory\:
         resource: '../src/WineBundle/Factory/'
         public: true

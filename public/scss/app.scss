@@ -64,14 +64,9 @@ ul {
   color: red;
 }
 
-#loginTable, #registerTable, #changePasswordTable, #mailUserTable {
+#loginTable, #registerTable, #changePasswordTable {
   width: 360px;
   margin: 0 auto;
-}
-
-#mailUserTable td {
-  padding-right: 0;
-  padding-left: 0;
 }
 
 .flash-notice-success {
