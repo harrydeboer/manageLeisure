@@ -22,15 +22,15 @@ class StatsCalculator
             $average['price'] = 'N/A';
             $average['percentage'] = 'N/A';
         } else {
-            $average['rating'] = $rating / count($wines);
-            $average['price'] = $price / count($wines);
-            $average['percentage'] = $percentage / count($wines);
+            $average['rating'] = round($rating / count($wines), 1);
+            $average['price'] = round($price / count($wines), 1);
+            $average['percentage'] = round($percentage / count($wines), 1);
         }
 
         return $average;
     }
 
-    public static function pieChart(array $wines): array
+    public static function pieChart(array $wines): string
     {
         $country = [];
         foreach ($wines as $wine) {
@@ -42,6 +42,6 @@ class StatsCalculator
         }
         arsort($country);
 
-        return $country;
+        return json_encode($country);
     }
 }

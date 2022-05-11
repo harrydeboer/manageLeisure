@@ -21,11 +21,10 @@
     {{ form_widget(form.show) }}
     {{ form_end(form, {render_rest: false}) }}
 
-    <table class="table">
-        {% for item, key in pieChart %}
-            <tr><td>{{ key }}</td><td>{{ item }}</td></tr>
-        {% endfor %}
-    </table>
+    <div id="pieChartContainer">
+        <div id="pieChartData" data-pie-chart="{{ pieChartData }}"></div>
+        <div id="pieChart" style="width: 900px; height: 500px;"></div>
+    </div>
 
     <table class="table">
         <tr><td>Rating</td><td>{{ average['rating'] }}</td></tr>

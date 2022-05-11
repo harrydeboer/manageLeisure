@@ -27,7 +27,7 @@ class StatsCalculatorTest extends TestCase
         $countryMock = $this->createMock(Country::class);
         $wineMock->method('getCountry')->willReturn($countryMock);
         $countryMock->method('getName')->willReturn('France');
-        $country = StatsCalculator::pieChart([$wineMock]);
+        $country = json_decode(StatsCalculator::pieChart([$wineMock]), true);
         $this->assertEquals(1, $country['France']);
     }
 }

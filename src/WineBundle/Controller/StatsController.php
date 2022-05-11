@@ -42,7 +42,7 @@ class StatsController extends AuthController
         return $this->renderForm('@WineBundle/stats/view.html.twig', [
             'form' => $form,
             'average' => StatsCalculator::average($wines),
-            'pieChart' => StatsCalculator::pieChart($wines),
+            'pieChartData' => StatsCalculator::pieChart($wines),
         ]);
     }
 }
