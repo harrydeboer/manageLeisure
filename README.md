@@ -1,4 +1,4 @@
-My Life
+Manage Leisure
 ========================
 
 <h3>Install Development</h3>
@@ -17,7 +17,7 @@ Then link the UglifyJS and SCSS File Watchers to the node_modules/.bin binaries.
 The SCSS Arguments in PhpStorm is 
 '--style compressed $FileParentDir$/scss/$FileName$:$FileParentDir$/css/$FileNameWithoutExtension$.css'.</li>
 <li>Run php bin/console app:import to fill the database with 
-countries, regions and grapes.</li>
+countries, regions, subregions, pages and grapes.</li>
 </ol>
 
 <h3>Testing</h3>
@@ -35,9 +35,8 @@ countries, regions and grapes.</li>
 <li>Follow the steps in update.sh.</li>
 <li>Register the user in the route /register.</li>
 <li>Run make:admin to make the first user admin.</li>
-<li>In production: install postfix, dovecot, opendkim, opendmarc, postsrsd and spamassassin.</li>
-<li>In production: add the mail users yourdevuser@manageleisure.com, info@manageleisure.com, noreply@manageleisure.com, 
-postmaster@manageleisure.com and root@manageleisure.com by going to /admin/mail-user.</li>
+<li>Run php bin/console app:import to fill the database with 
+countries, regions, subregions, pages and grapes.</li>
 <li>An update in production or staging can be retrieved with the command ’./update.sh’</li>
 <li>To revert the update execute ’./rollback.sh’.</li>
 </ol>
