@@ -4,8 +4,7 @@ Manage Leisure
 <h3>Install Development</h3>
 <ol>
 <li>Copy .env.local.example to .env.local and fill in the fields.
-The DB_HOST has to be host.docker.internal and 
-MAILER_DSN has to be smtp://name:password@domain.com:25</li>
+The DB_HOST has to be host.docker.internal</li>
 <li>Build the docker-compose image and up -d the image.</li>
 <li>Create the database and the 4 test databases named ${DB_DATABASE}_test{1-4}.</li>
 <li>Run composer install.</li>
