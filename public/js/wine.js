@@ -21,8 +21,10 @@ $(function() {
         $('#filter-sort-form').toggle();
     });
 
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+    if ($('#pieChart').length) {
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+    }
 
     function drawChart() {
 
@@ -41,7 +43,7 @@ $(function() {
             title: 'Wines per country'
         };
 
-        let chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+        let chart = new google.visualization.PieChart($('#pieChart')[0]);
 
         chart.draw(data, options);
     }
