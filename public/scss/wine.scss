@@ -76,6 +76,17 @@
   height: 600px;
 }
 
+#filter-sort-form .form-control {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  #pieChart {
+    width: 640px !important;
+  }
+}
+
 @media (max-width: 576px) {
   #filter-sort-form .form-control {
     width: 150px;
@@ -101,9 +112,8 @@
   .createUpdateTable #dropdown-grapes-div-white .btn {
     width: 135px;
   }
-}
 
-#filter-sort-form .form-control {
-  margin-right: auto;
-  margin-left: auto;
+  #pieChart {
+    width: 480px !important;
+  }
 }
