@@ -17,7 +17,8 @@ class MediaFilterTypeTest extends TypeTestCase
     protected function setUp(): void
     {
         $this->kernel = $this->createMock(KernelInterface::class);
-        $this->kernel->method('getProjectDir')->willReturn('/var/www/html');
+        $base = dirname(__DIR__, 4);
+        $this->kernel->method('getProjectDir')->willReturn($base);
 
         parent::setUp();
     }
