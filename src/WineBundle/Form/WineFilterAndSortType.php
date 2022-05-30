@@ -6,6 +6,7 @@ namespace App\WineBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -29,6 +30,9 @@ class WineFilterAndSortType extends AbstractWineType
             'attr' => ['class' => 'form-control'],
         ])->add('show', SubmitType::class, [
             'attr' => ['class' => 'btn btn-primary']
+        ])->add('search', TextType::class, [
+            'required' => false,
+            'attr' => ['class' => 'form-control']
         ]);
         $builder->get('country')->setRequired(false);
     }
