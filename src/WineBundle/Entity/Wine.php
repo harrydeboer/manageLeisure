@@ -282,7 +282,11 @@ class Wine
 
     public function setReview(?string $review): void
     {
-        $this->review = strip_tags($review);
+        if (is_null($review)) {
+            $this->review = null;
+        } else {
+            $this->review = strip_tags($review);
+        }
     }
 
     public function getCreatedAt(): int
